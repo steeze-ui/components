@@ -1,0 +1,58 @@
+.prose p {
+	color: var(--st-colors-light5);
+}
+.prose h1 {
+	color: #fff;
+}
+.prose h2 {
+	color: var(--st-colors-gray3);
+	font-weight: 500;
+}
+.prose h3 {
+	color: var(--st-colors-gray5);
+	font-weight: 500;
+}
+.prose a {
+	color: var(--st-primary-light-color);
+}
+.prose code {
+	color: var(--st-primary-light-color);
+	background-color: rgba(49, 46, 129, 0.4);
+	padding: 0.2rem 0.4rem;
+	border-radius: var(--st-border-radius-sm);
+}
+.prose code[hl] {
+	color: var(--st-colors-gray5);
+	background-color: var(--st-colors-dark6);
+	font-weight: var(--st-font-weight-normal);
+}
+
+.prose code::before,
+.prose code::after {
+	content: '';
+}
+.prose blockquote {
+	color: var(--st-primary-light-color);
+}
+.prose th {
+	color: var(--st-colors-gray7);
+}
+.prose td {
+	color: var(--st-colors-gray5);
+	/* display: flex; */
+	/* align-items: center; */
+}
+.prose thead {
+	border-bottom-color: var(--st-colors-gray9) !important;
+}
+.prose tr {
+	border-bottom-color: var(--st-colors-gray9) !important;
+}
+
+.prose pre {
+	background: rgba(49, 46, 129, 0.25);
+}
+
+table {
+	border-collapse: collapse;
+}

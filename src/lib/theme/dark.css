@@ -1,0 +1,185 @@
+:root {
+	/* ! Primitives */
+
+	/* Colors */
+	--st-colors-gray1: rgb(248, 250, 252);
+	--st-colors-gray2: rgb(241, 245, 249);
+	--st-colors-gray3: rgb(226, 232, 240);
+	--st-colors-gray4: rgb(203, 213, 225);
+	--st-colors-gray5: rgb(148, 163, 184);
+	--st-colors-gray6: rgb(100, 116, 139);
+	--st-colors-gray7: rgb(71, 85, 105);
+	--st-colors-gray8: rgb(51, 65, 85);
+	--st-colors-gray9: rgb(30, 41, 59);
+	--st-colors-gray10: rgb(15, 23, 42);
+
+	--st-colors-dark1: rgb(74, 74, 74);
+	--st-colors-dark2: rgb(60, 60, 60);
+	--st-colors-dark3: rgb(50, 50, 50);
+	--st-colors-dark4: rgb(45, 45, 45);
+	--st-colors-dark5: rgb(34, 34, 34);
+	--st-colors-dark6: rgb(31, 31, 31);
+	--st-colors-dark7: rgb(28, 28, 30);
+	--st-colors-dark8: rgb(27, 27, 27);
+	--st-colors-dark9: rgb(24, 24, 24);
+	--st-colors-dark10: rgb(15, 15, 15);
+
+	--st-colors-light1: rgb(253, 253, 253);
+	--st-colors-light2: rgb(252, 252, 252);
+	--st-colors-light3: rgb(250, 250, 250);
+	--st-colors-light4: rgb(248, 249, 250);
+	--st-colors-light5: rgb(246, 246, 246);
+	--st-colors-light6: rgb(242, 242, 242);
+	--st-colors-light7: rgb(241, 243, 245);
+	--st-colors-light8: rgb(233, 236, 239);
+	--st-colors-light9: rgb(222, 226, 230);
+	--st-colors-light10: rgb(221, 225, 227);
+
+	--st-colors-emerald8: #047857;
+	--st-colors-teal8: #0f766e;
+	--st-colors-cyan8: rgb(14 116 144);
+	--st-colors-sky8: #0369a1;
+	--st-colors-blue8: #1d4ed8;
+	--st-colors-violet8: rgb(109, 40, 217);
+	--st-colors-purple8: rgb(126, 34, 206);
+	--st-colors-fuchsia8: rgb(162, 28, 175);
+	--st-colors-pink8: rgb(190, 24, 93);
+	--st-colors-rose8: rgb(190, 18, 60);
+	--st-colors-orange8: #c2410c;
+	--st-colors-yellow8: #a16207;
+	--st-colors-lime8: #4d7c0f;
+
+	/* Border Radius */
+	--st-border-radius-none: 0;
+	--st-border-radius-sm: 0.125rem;
+	--st-border-radius: 0.25rem;
+	--st-border-radius-md: 0.375rem;
+	--st-border-radius-lg: 0.5rem;
+	--st-border-radius-xl: 0.75rem;
+	--st-border-radius-2xl: 1rem;
+	--st-border-radius-3xl: 1.5rem;
+	--st-border-radius-full: 9999px;
+	--st-container-border-radius: var(--st-border-radius);
+
+	/* Font Size */
+	--st-font-size-xs: 0.75rem;
+	--st-font-size-sm: 0.875rem;
+	--st-font-size-base: 1rem;
+	--st-font-size-lg: 1.125rem;
+	--st-font-size-xl: 1.25rem;
+	--st-font-size-2xl: 1.5rem;
+	--st-font-size-3xl: 1.875rem;
+	--st-font-size-4xl: 2.25rem;
+	--st-font-size-5xl: 3rem;
+	--st-font-size-6xl: 3.75rem;
+
+	/* Font Weight */
+	--st-font-weight-light: 300;
+	--st-font-weight-normal: 400;
+	--st-font-weight-medium: 500;
+	--st-font-weight-semibold: 600;
+	--st-font-weight-bold: 700;
+	--st-font-weight-extrabold: 800;
+
+	/* Transitions */
+	--st-hover-transition: background-color 0.15s ease-in-out;
+
+	/* Icons Size*/
+	--st-icon-size-xs: 0.5rem;
+	--st-icon-size-sm: 1rem;
+
+	/* Box Shadow */
+	--st-box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--st-box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--st-box-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--st-box-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--st-box-shadow-focus: 0 0 0 calc(2px) var(--st-primary-color);
+
+	/* Overlay */
+	--st-overlay-box-shadow: var(--st-box-shadow-lg);
+	--st-overlay-border-width: 1px;
+	--st-overlay-border-radius: var(--st-container-border-radius);
+
+	/* Item */
+	--st-item-font-size: var(--st-text-field-font-size);
+	--st-item-font-weight: var(--st-text-field-font-weight);
+	--st-item-border-radius: var(--st-container-border-radius);
+	--st-item-padding: 0.2rem 0.75rem 0.2rem 0.5rem;
+
+	/* Text color */
+	--st-primary-color: rgb(79, 70, 229);
+	--st-primary-light-color: rgb(129, 140, 248);
+	--st-primary-dark-color: rgb(49, 46, 129);
+
+	/* Text Field */
+	--st-text-field-size: 1.75rem;
+	--st-text-field-border-radius: var(--st-container-border-radius);
+	--st-text-field-font-size: var(--st-font-size-sm);
+	--st-text-field-font-weight: var(--st-font-weight-normal);
+	--st-text-field-border-width: 1px;
+
+	/* Focus */
+	--st-outline-width: 2px;
+	--st-outline-color: var(--st-primary-color);
+
+	/* ! Light Theme */
+	/* Text color */
+	--st-body-text-color: var(--st-colors-gray9);
+	--st-secondary-text-color: var(--st-colors-gray6);
+	--st-tertiary-text-color: var(--st-colors-gray5);
+	--st-disabled-text-color: var(--st-colors-gray5);
+
+	/* Text Field */
+	--st-text-field-bg-color: var(--st-colors-light2);
+	--st-text-field-color: var(--st-body-text-color);
+	--st-text-field-placeholder-color: var(--st-secondary-text-color);
+	--st-text-field-border-color: var(--st-colors-light4);
+	--st-text-field-button-bg-color: var(--st-colors-light7);
+	--st-text-field-button-hover-bg-color: var(--st-colors-light7);
+
+	/* Overlay */
+	--st-overlay-border-color: var(--st-colors-light4);
+	--st-overlay-bg-color: var(--st-colors-light6);
+
+	/* Item */
+	--st-item-text-color: var(--st-text-field-color);
+	--st-item-active-text-color: var(--st-colors-light2);
+	--st-item-bg-color: transparent;
+	--st-item-active-bg-color: var(--st-primary-color);
+	--st-item-icon-color: var(--st-primary-color);
+	--st-item-active-icon-color: var(--st-colors-light2);
+}
+
+/* ! Dark Theme */
+.dark-theme {
+	/* Text color */
+	--st-body-text-color: var(--st-colors-gray3);
+	--st-secondary-text-color: var(--st-colors-gray5);
+	--st-tertiary-text-color: var(--st-colors-gray6);
+	--st-disabled-text-color: var(--st-colors-gray6);
+
+	/* Text Field */
+	--st-text-field-bg-color: var(--st-colors-dark6);
+	--st-text-field-color: var(--st-body-text-color);
+	--st-text-field-placeholder-color: var(--st-secondary-text-color);
+	--st-text-field-border-color: var(--st-colors-dark4);
+	--st-text-field-button-bg-color: var(--st-colors-dark4);
+	--st-text-field-button-hover-bg-color: var(--st-colors-dark3);
+
+	/* Overlay */
+	--st-overlay-border-color: var(--st-colors-dark4);
+	--st-overlay-bg-color: var(--st-colors-dark6);
+
+	/* Item */
+	--st-item-text-color: var(--st-text-field-color);
+	--st-item-bg-color: transparent;
+	--st-item-hover-bg-color: var(--st-colors-dark4);
+	--st-item-icon-color: var(--st-primary-color);
+}
+
+.st-focus-ring:focus {
+	outline: none;
+}
+.st-focus-ring:focus-visible {
+	outline: var(--st-outline-width) solid var(--st-outline-color);
+}

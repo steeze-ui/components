@@ -1,0 +1,23 @@
+html {
+	font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	background-color: var(--st-colors-dark10);
+}
+
+#svelte {
+	position: relative;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: var(--st-colors-dark10);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: var(--st-colors-dark2);
+}

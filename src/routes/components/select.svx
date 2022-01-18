@@ -1,0 +1,109 @@
+---
+id: 0
+title: Select
+description: Choose a single item from a list of items
+---
+
+<script lang="ts">
+	import Select from '$lib/select/Select.svelte'
+	import Demo from './../_components/Demo.svelte'
+	import Title from './../_components/Title.svelte'
+	import Help from './../_components/Help.svelte'
+
+	const items = [
+		{ id: '1', label: 'First Item', },
+		{ id: '2', label: 'Second Item' }
+	]
+	const itemsMap = { '1': {label: 'First Item'},'2': {label: 'Second Item'}, }
+	
+</script>
+
+<Title {title} {description} />
+
+<Demo id={id}>
+	<Select width="12rem" placeholder="Choose.." items={items} value={items[0]} />
+  <Select width="12rem" searchable clearable placeholder="Grouped Select.." items={itemsMap} value="5" />
+</Demo>
+
+## Quickstart
+
+```svelte
+<script>
+	import {Select} from '@steeze-ui/components'
+
+	const items = [
+		{ id: '1', label: 'First Item' },
+		{ id: '2', label: 'Second Item' }
+	]
+</script>
+
+<Select {items} selectedItem={items[0]} />
+```
+
+## API Reference
+
+| Property                                                                                  | Type                                     | Default                             |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------- |
+| `items`<Help text="The values to choose from" />                                          | <code hl>SelectItem[]</code>             | <code hl>[]</code>                  |
+| `value`<Help text="The selected value" />                                                 | <code hl>SelectItem</code>               | <code hl>null</code>                |
+| `itemLabelRenderer`<Help text="How to represent the value" />                             | <code hl>(e:SelectItem) => string</code> | <code hl>e => e?.label ?? ""</code> |
+| `groupBy`<Help text="Group Items by a given key" />                                       | <code hl>(e:SelectItem) => string</code> | <code hl>null</code>                |
+| `identifier`<Help text="Unique identifier of the item, used for internal calculations" /> | <code hl>String</code>                   | <code hl>"id"</code>                |
+| `placeholder`<Help text="What to show when no value is selected" />                       | <code hl>String</code>                   | <code hl>""</code>                  |
+| `focus`<Help text="Focus when the component mounts" />                                    | <code hl>Boolean</code>                  | <code hl>false</code>               |
+| `searchable`<Help text="Allow the user to search for items " />                           | <code hl>Boolean</code>                  | <code hl>false</code>               |
+| `clearable`<Help text="Allow the user to clear the selected value " />                    | <code hl>Boolean</code>                  | <code hl>false</code>               |
+| `position`<Help text="Prefered initial position of the floating menu" />                  | <code hl>FloatingPosition</code>         | <code hl>bottom</code>              |
+| `width`<Help text="Width of the container" />                                             | <code hl>String</code>                   | <code hl>"100"</code>               |
+
+## Examples
+
+### Custom Value Renderer
+
+Changes how the label will be rendered for the Input and Selector Items. This is needed in the case where your item object has no `label` property
+
+```svelte
+<script>
+	const items = [{id:"item1",value:"value 1"}]
+</script>
+
+<Select {items} itemLabelRenderer={(e)=>`Item: ${e.value}`} />
+```
+
+### Custom Item Renderer
+
+Render a completely custom Menu Item using the `item` slot and its `let:` properties. Don't forget to apply the `id`, to makte it accessible
+
+```svelte
+<Select {items}>
+	<p
+		slot="item"
+		let:id let:item let:label
+		let:focused let:selected
+		let:onSelect let:onFocus
+		{id}
+		on:pointerdown={onSelect}
+		on:pointerover={onFocus}
+		style:background-color={focused ? "blue" : "" }
+		style:color={selected ? "red" : "" }
+	>
+		{label}
+	</p>
+</Select>
+```
+
+<!-- ### Grouping Items
+
+Sort items by Grouping them together.
+
+```svelte
+<script>
+	const items = [
+		{id:"item1",value:"Value 1",group:"Group 1"},
+		{id:"item2",value:"Value 2",group:"Group 2"},
+		{id:"item3",value:"Value 3",group:"Group 2"},
+	]
+</script>
+
+<Select {items} groupBy={(e)=>e.group} />
+``` -->

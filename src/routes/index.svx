@@ -1,0 +1,14 @@
+# Introduction
+
+## Accessible Components for Svelte
+
+This project is a small set of customizable UI components for the [Svelte](https://svelte.dev) framework. Svelte is a rather new framework comparable to `react`, `vue` or `lit` to build modern UI's while writing less code.
+
+## Motivation
+
+Recently in Uni I had a course about Accessibility in the web where we had the opportunity to speak with blind people. We found out that many Websites suffer from inaccessible content, where the errors lie mostly in the fundamental components that a website is made of.
+For critical Services like Health-Ensurances or Online Shops, inaccessible sites could lose customers.
+
+For that reason I wanted to learn more about UI patterns by [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) and integrate it into my personal projects so I created this library
+
+Some API and Design decisions are inspired by [Radix UI](https://radix-ui.com) and [Vaadin](https://vaadin.com)
