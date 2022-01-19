@@ -14,6 +14,14 @@ description: Choose a single item from a list of items
 		{ id: '1', label: 'First Item', },
 		{ id: '2', label: 'Second Item' }
 	]
+	const itemsWithGroup = [	
+		{id:"item1",label:"Value 1",group:"Group 1"},
+		{id:"item2",label:"Value 2",group:"Group 2"},
+		{id:"item3",label:"Value 3",group:"Group 2"},
+		{id:"item4",label:"Value 4",group:"Group 1"},
+		{id:"item5",label:"Value 5",group:""},
+		{id:"item6",label:"Value 6",group:""},
+	]
 	const itemsMap = { '1': {label: 'First Item'},'2': {label: 'Second Item'}, }
 	
 </script>
@@ -21,8 +29,8 @@ description: Choose a single item from a list of items
 <Title {title} {description} />
 
 <Demo id={id}>
-	<Select width="12rem" placeholder="Choose.." items={items} value={items[0]} />
-  <Select width="12rem" searchable clearable placeholder="Grouped Select.." items={itemsMap} value="5" />
+	<!-- <Select width="12rem" placeholder="Choose.." items={items} value={items[0]} /> -->
+  <Select width="12rem" groupBy={e=>e.group} searchable clearable placeholder="Grouped Select.." items={itemsWithGroup} value="item4" />
 </Demo>
 
 ## Quickstart

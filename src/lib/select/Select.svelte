@@ -13,7 +13,7 @@
 	import { scale } from 'svelte/transition'
 
 	export let items: SelectValue[] | SelectValueMap
-	export let value: SelectValue = null
+	export let value: SelectValue | string = null
 	export let placeholder = ''
 	export let focus = false
 	export let searchable = false
@@ -22,6 +22,7 @@
 	export let width: string = '100%'
 	export let identifier = 'id'
 	export let itemLabelRenderer = (e: SelectValue) => e?.label ?? ''
+	export let groupBy: (e: SelectValue) => string = null
 
 	let refTrigger: HTMLElement
 	let refContent: HTMLElement
@@ -45,41 +46,63 @@
 		}
 	})
 
+	// experimental
+	const itemsMap: { [group: string]: { [id: string]: any } } = {}
+
 	//itemsmap to items
 	if (items.constructor.name === 'Object') {
-		const itemsMap = items
-		items = Object.keys(itemsMap).map((item) => ({
-			...itemsMap[item],
-			[identifier]: item
-		}))
+		console.log('init from object')
+		for (const id of Object.keys(items)) {
+			const item = { ...items[id], [identifier]: id } as SelectValue
+			const group = groupBy ? groupBy(item) : ''
+			if (!itemsMap[group]) {
+				itemsMap[group] = {}
+			}
+			itemsMap[group][id] = item
+		}
+	} else {
+		console.log('init from list')
+
+		for (const item of items as SelectValue[]) {
+			const group = groupBy ? groupBy(item) : ''
+			if (!itemsMap[group]) {
+				itemsMap[group] = {}
+			}
+			itemsMap[group][item[identifier] as string] = item
+		}
 	}
+	console.log({ itemsMap })
 
 	if (typeof value === 'string') {
-		value = (items as SelectValue[]).find((e) => e[identifier] === value)
+		for (const group of Object.keys(itemsMap)) {
+			if (itemsMap[group][value as string]) {
+				value = itemsMap[group][value as string]
+				break
+			}
+		}
 	}
+	console.log({ value })
 
 	// Value
 	let shownValue: string
-	$: selectorItems = !searchable
-		? (items as SelectValue[])
-		: (items as SelectValue[]).filter((e) =>
-				itemLabelRenderer(e).toLowerCase().includes(searchText.toLowerCase())
-		  )
-	let selectedItemIndex: number
+	$: selectorItems = !searchable ? itemsMap : itemsMap
+	// : (items as SelectValue[]).filter((e) =>
+	// 		itemLabelRenderer(e).toLowerCase().includes(searchText.toLowerCase())
+	//   )
+
+	// let selectedItemIndex: number
 	$: isSelected = value != null
 	$: {
 		if (isSelected) {
-			selectedItemIndex = selectorItems.indexOf(
-				selectorItems.find((e) => e[identifier] === value[identifier])
-			)
-			shownValue = itemLabelRenderer(value)
+			// selectedItemIndex = selectorItems.indexOf(
+			// 	selectorItems.find((e) => e[identifier] === value[identifier])
+			// )
+			shownValue = itemLabelRenderer(value as SelectValue)
 		} else {
 			shownValue = placeholder
-			selectedItemIndex = -1
+			// selectedItemIndex = -1
 		}
 	}
-
-	$: console.log({ selectedItemIndex })
 
 	// Search
 	let searchText = ''
@@ -93,7 +116,11 @@
 			closeSelector()
 		} else {
 			opened = true
-			focusItem(0)
+			searchText = ''
+			const firstItemGroup = groupBy(selectorItems[Object.keys(selectorItems)[0]])
+			const firstItemId = Object.keys(selectorItems[firstItemGroup])[0]
+			const firstItem = selectorItems[firstItemGroup][firstItemId]
+			focusItem(firstItem)
 		}
 	}
 
@@ -121,29 +148,29 @@
 	}
 
 	// Focus
-	let focusedItemIndex = 0
-	$: focusedItemId = `${itemsId}-menu-item-${focusedItemIndex}`
+	let focusedItem: SelectValue = null
+	$: focusedItemAriaId = `${itemsId}-menu-item-${focusedItem}`
 
-	function focusItem(index: number) {
-		focusedItemIndex = index
+	function focusItem(item: SelectValue) {
+		focusedItem = item
 	}
 
 	function focusNextItem() {
-		const next = focusedItemIndex + 1
-		if (next >= selectorItems.length) {
-			focusedItemIndex = 0
-		} else {
-			focusedItemIndex = next
-		}
+		// const next = focusedItemIndex + 1
+		// if (next >= selectorItems.length) {
+		// 	focusedItemIndex = 0
+		// } else {
+		// 	focusedItemIndex = next
+		// }
 	}
 
 	function focusPrevItem() {
-		const prev = focusedItemIndex - 1
-		if (prev < 0) {
-			focusedItemIndex = selectorItems.length - 1
-		} else {
-			focusedItemIndex = prev
-		}
+		// const prev = focusedItemIndex - 1
+		// if (prev < 0) {
+		// 	focusedItemIndex = selectorItems.length - 1
+		// } else {
+		// 	focusedItemIndex = prev
+		// }
 	}
 
 	// Key Events
@@ -164,7 +191,7 @@
 					break
 				case 'Enter':
 					if (opened) {
-						selectItem(selectorItems[focusedItemIndex])
+						selectItem(focusedItem)
 						refTrigger?.focus()
 					} else {
 						openSelector()
@@ -176,7 +203,7 @@
 				case ' ':
 					event.preventDefault()
 					if (opened) {
-						selectItem(selectorItems[focusedItemIndex])
+						selectItem(focusedItem)
 						refTrigger?.focus()
 					} else {
 						openSelector()
@@ -309,7 +336,7 @@
 			<div
 				id={itemsId}
 				aria-labelledby={buttonId}
-				aria-activedescendant={focusedItemId}
+				aria-activedescendant={focusedItemAriaId}
 				part="overlay"
 				role="menu"
 				aria-orientation="vertical"
@@ -320,41 +347,50 @@
 					<input bind:this={refInput} bind:value={searchText} placeholder="Search.." />
 				{/if}
 				<ul part="menu-items">
-					{#each selectorItems as item, i (item?.[identifier])}
-						{@const focused = focusedItemIndex === i}
-						{@const selected = selectedItemIndex === i}
-						{@const id = `${itemsId}-menu-item-${i}`}
-						{@const label = itemLabelRenderer(item)}
-						<slot
-							name="item"
-							{id}
-							{item}
-							{label}
-							{focused}
-							{selected}
-							onFocus={() => focusItem(i)}
-							onSelect={() => selectItem(item)}
-						>
-							<li
+					{#each Object.keys(selectorItems) as group, i (group)}
+						{#each Object.keys(selectorItems[group]) as itemId, i (itemId)}
+							{@const item = selectorItems[group][itemId]}
+							{@const focused = focusedItem[identifier] === itemId}
+							{@const selected = value?.[identifier] === itemId ?? false}
+							{@const id = `${itemsId}-menu-item-${i}`}
+							{@const label = itemLabelRenderer(item)}
+
+							{#if groupBy && (i === 0 || groupBy?.(selectorItems?.[i - 1]) != groupBy?.(item))}
+								<span part="menu-item-group-label">
+									{item.group}
+								</span>
+							{/if}
+							<slot
+								name="item"
 								{id}
-								part="menu-item"
-								role="menuitem"
-								aria-checked={selected}
-								data-focused={focused}
-								tabindex={focused ? 0 : -1}
-								on:pointerover={() => {
-									focusItem(i)
-								}}
-								on:pointerdown={() => selectItem(item)}
+								{item}
+								{label}
+								{focused}
+								{selected}
+								onFocus={() => focusItem(item)}
+								onSelect={() => selectItem(item)}
 							>
-								<div part="selected-icon">
-									{#if selected}
-										<Icon size="16px" src={Check} />
-									{/if}
-								</div>
-								<span>{itemLabelRenderer(item)}</span>
-							</li>
-						</slot>
+								<li
+									{id}
+									part="menu-item"
+									role="menuitem"
+									aria-checked={selected}
+									data-focused={focused}
+									tabindex={focused ? 0 : -1}
+									on:pointerover={() => {
+										focusItem(item)
+									}}
+									on:pointerdown={() => selectItem(item)}
+								>
+									<div part="selected-icon">
+										{#if selected}
+											<Icon size="16px" src={Check} />
+										{/if}
+									</div>
+									<span>{itemLabelRenderer(item)}</span>
+								</li>
+							</slot>
+						{/each}
 					{/each}
 				</ul>
 			</div>
@@ -459,8 +495,8 @@
 		gap: 0.25rem;
 	}
 	[part='menu-item'][data-focused='true'] {
-		background-color: var(--st-item-active-bg-color);
-		color: var(--st-item-active-text-color);
+		background-color: var(--st-item-focus-bg-color);
+		color: var(--st-item-focus-text-color);
 	}
 	[part='selected-icon'] {
 		width: 1rem;
@@ -468,6 +504,12 @@
 		color: var(--st-item-icon-color);
 	}
 	[part='menu-item'][data-focused='true'] [part='selected-icon'] {
-		color: var(--st-item-active-icon-color);
+		color: var(--st-item-focus-icon-color);
+	}
+	[part='menu-item-group-label'] {
+		color: var(--st-item-group-text-color);
+		font-size: var(--st-item-group-font-size);
+		font-weight: var(--st-item-group-font-weight);
+		margin: var(--st-item-group-margin);
 	}
 </style>

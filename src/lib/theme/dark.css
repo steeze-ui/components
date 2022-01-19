@@ -105,6 +105,8 @@
 	--st-item-font-weight: var(--st-text-field-font-weight);
 	--st-item-border-radius: var(--st-container-border-radius);
 	--st-item-padding: 0.2rem 0.75rem 0.2rem 0.5rem;
+	--st-item-group-font-size: var(--st-font-size-xs);
+	--st-item-group-font-weight: var(--st-font-weight-medium);
 
 	/* Text color */
 	--st-primary-color: rgb(79, 70, 229);
@@ -143,11 +145,12 @@
 
 	/* Item */
 	--st-item-text-color: var(--st-text-field-color);
-	--st-item-active-text-color: var(--st-colors-light2);
+	--st-item-focus-text-color: var(--st-colors-light2);
 	--st-item-bg-color: transparent;
-	--st-item-active-bg-color: var(--st-primary-color);
+	--st-item-focus-bg-color: var(--st-primary-color);
 	--st-item-icon-color: var(--st-primary-color);
-	--st-item-active-icon-color: var(--st-colors-light2);
+	--st-item-focus-icon-color: var(--st-colors-light2);
+	--st-item-group-text-color: var(--st-secondary-text-color);
 }
 
 /* ! Dark Theme */
@@ -175,6 +178,9 @@
 	--st-item-bg-color: transparent;
 	--st-item-hover-bg-color: var(--st-colors-dark4);
 	--st-item-icon-color: var(--st-primary-color);
+	--st-item-focus-icon-color: var(--st-colors-light2);
+	--st-item-group-text-color: var(--st-secondary-text-color);
+	--st-item-group-margin: 0 0 0 0.25rem;
 }
 
 .st-focus-ring:focus {
