@@ -1,60 +1,51 @@
 ---
-id: 0
-title: Select
-description: Choose a Single Item from a Set of Items
+id: 2
+title: Popover
+description: Display Content that floats around a trigger
 ---
 
 <script lang="ts">
-	import Select from '$lib/select/Select.svelte'
+	import Popover from '$lib/popover/Popover.svelte'
+	import Button from '$lib/button/Button.svelte'
 	import Demo from './../_components/Demo.svelte'
 	import Title from './../_components/Title.svelte'
 	import Help from './../_components/Help.svelte'
 	import Features from './../_components/Features.svelte'
-
-	const items = [
-		{ id: '1', label: 'Hot', },
-		{ id: '2', label: 'New' }
-	]
-	const itemsWithGroup = [	
-		{id:"1",label:"Flatrail",group:"Rails"},
-		{id:"2",label:"Handrail",group:"Rails"},
-		{id:"3",label:"Wallbank",group:"Bank"},
-		{id:"4",label:"Speedbank",group:"Bank"},
-		{id:"5",label:"A-Frame",group:"Funbox"},
-		{id:"6",label:"Pyramid",group:"Funbox"},
-	]
-	const itemsMap = { '1': {label: 'First Item'},'2': {label: 'Second Item'}, }
 	
 </script>
 
 <Title {title} {description} />
 
 <Demo id={id}>
-	<Select width="12rem" placeholder="Filter.." items={items} />
-  <Select width="12rem" loop searchable clearable groupBy={e=>e.group} placeholder="Choose Obstacle.." items={itemsWithGroup}  />
+	<Popover>
+		<Button slot="trigger" let:toggleOpened on:click={toggleOpened}>open</Button>
+		<div>
+			<p style:color="white">Content</p>
+		</div>
+	</Popover>
 </Demo>
 
 <Features features={[
 "Keyboard support",
 "Screen Reader capable",
-"Searchable",
-"Groupable",
-"Custom Renderers"
+"Floating",
+"Custom Content"
 ]} />
 
 ## Quickstart
 
 ```svelte
 <script>
-	import {Select} from '@steeze-ui/components'
+	import {Popover,Button} from '@steeze-ui/components'
 
-	const items = [
-		{ id: '1', label: 'First Item' },
-		{ id: '2', label: 'Second Item' }
-	]
 </script>
 
-<Select {items} selectedItem={items[0]} />
+<Popover>
+	<Button slot="trigger">open</Button>
+	<div slot="content">
+		content
+	</div>
+</Popover>
 ```
 
 ## API Reference

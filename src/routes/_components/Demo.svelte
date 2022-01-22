@@ -18,6 +18,11 @@
 </script>
 
 <script lang="ts">
+	import { Moon, Sun } from '@steeze-ui/heroicons'
+	import { Icon } from '@steeze-ui/svelte-icon'
+
+	import { lightTheme } from '../_stores/theme'
+
 	export let id: number
 
 	const first = colors[id % colors.length]
@@ -27,9 +32,21 @@
 <div
 	part="box"
 	style="background-image: linear-gradient(22deg, var({first}) 0%, var({second}) 100%);"
-	class="rounded-xl flex flex-col h-64 gap-4 overflow-hidden items-center relative justify-center lg:-mx-11"
+	class="{$lightTheme
+		? 'light-theme'
+		: 'dark-theme'} relative rounded-xl p-4 flex flex-col min-h-64 gap-4 overflow-hidden items-center relative justify-center lg:-mx-11"
 >
-	<div part="grid" class="flex flex-col h-full w-full gap-4 items-center justify-center">
+	<slot name="prefix" />
+	<button
+		aria-label="toggle dark/light theme"
+		class="absolute top-3 right-3 z-50"
+		on:click={() => {
+			lightTheme.toggle()
+		}}
+	>
+		<Icon src={$lightTheme ? Moon : Sun} size="24px" />
+	</button>
+	<div part="grid" class="relative flex flex-col h-full w-full gap-4 items-center justify-center">
 		<slot />
 	</div>
 </div>

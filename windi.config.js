@@ -5,7 +5,9 @@ import typography from 'windicss/plugin/typography'
 export default defineConfig({
 	darkMode: 'class', // or 'media'
 	preflight: 'true',
-
+	extract: {
+		include: ['src/**/*.{html,svx,svelte}']
+	},
 	plugins: [typography()],
 	theme: {
 		extend: {

@@ -6,6 +6,7 @@
 	import Menu from './_components/menu/Menu.svelte'
 	import MenuItem from './_components/menu/MenuItem.svelte'
 	import MenuSection from './_components/menu/MenuSection.svelte'
+	import Select from '$lib/select/Select.svelte'
 
 	let menuOpen = false
 
@@ -23,11 +24,22 @@
 			<MenuItem label="Introduction" href="/" />
 			<MenuItem label="Getting Started" href="/overview/getting-started" />
 			<MenuItem label="Styling" href="/overview/styling" />
+			<MenuItem label="Accessibility" href="/overview/accessibility" />
 		</MenuSection>
 		<MenuSection label="Components">
-			<MenuItem label="Select" href="/components/select" />
-			<MenuItem label="Multiselect" href="/components/multiselect" />
+			<MenuItem label="Button" href="/components/button" />
+			<MenuItem tag="Planned" disabled label="Dialog" href="/components/dialog" />
 			<MenuItem label="Popover" href="/components/popover" />
+			<MenuItem label="Select" href="/components/select" />
+			<MenuItem tag="Planned" disabled label="Switch" href="/components/switch" />
+			<MenuItem tag="Planned" disabled label="Notification" href="/components/notification" />
+			<MenuItem tag="Planned" disabled label="Tabs" href="/components/tabs" />
+			<MenuItem tag="Planned" disabled label="Tooltip" href="/components/tooltip" />
+		</MenuSection>
+		<MenuSection label="Icons">
+			<MenuItem label="About" href="/icons" />
+			<MenuItem label="Icon Packs" href="/icons/packs" />
+			<MenuItem label="Icon Components" href="/icons/components" />
 		</MenuSection>
 	</Menu>
 	<main class="flex flex-col flex-grow max-w-full flex-1 py-16 items-center md:pl-64">

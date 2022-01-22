@@ -1,92 +1,34 @@
 <script script lang="ts">
-	import { clickOutside } from '$lib/core/actions/clickOutside'
-	import { portal } from '$lib/core/actions/portal'
+	import Button from '$lib/button/Button.svelte'
 
-	import Button from '$lib/steeze-ui/button/Button.svelte'
-	import { arrow, computePosition, flip, offset, size } from '@floating-ui/dom'
+	import Floating from '$lib/core/parts/Floating.svelte'
+	import Portal from '$lib/core/parts/Portal.svelte'
+	import type { FloatingPosition } from '$lib/core/types'
 	import { X } from '@steeze-ui/heroicons'
-	import { fly } from 'svelte/transition'
 	import { getId } from '../core/utils/id'
 
 	const contentId = getId()
 
+	export let position: FloatingPosition
 	let refTrigger: HTMLElement
-	let refContent: HTMLElement
-	let refArrow: HTMLElement
-
-	let floatingX = 0
-	let floatingY = 0
-
-	let arrowX = 0
-	let arrowY = 0
-	let staticSide: string
+	let refFloatingElement: HTMLElement
+	let refFloating: any
 
 	let opened = false
 
-	$: opened && refContent && refArrow && updatePosition()
-
-	export async function updatePosition() {
-		const {
-			x,
-			y,
-			middlewareData,
-			placement: pl
-		} = await computePosition(refTrigger, refContent, {
-			placement: 'bottom',
-			middleware: [
-				// shift(),
-				flip(),
-				arrow({ element: refArrow }),
-				offset(10),
-				size({
-					apply({ width, height }) {
-						Object.assign(refContent.style, {
-							maxWidth: `${width}px`,
-							maxHeight: `${height}px`
-						})
-					}
-				})
-			]
-		})
-
-		staticSide = {
-			top: 'bottom',
-			right: 'left',
-			bottom: 'top',
-			left: 'right'
-		}[pl.split('-')[0]]
-
-		floatingX = x
-		floatingY = y
-
-		arrowX = middlewareData.arrow.x
-		arrowY = middlewareData.arrow.y
-	}
+	$: opened && refFloating && refFloating.updatePosition()
 
 	export function setOpened(value: boolean) {
 		opened = value
 	}
 
+	export function setClosed() {
+		opened = false
+	}
+
 	export function toggleOpened() {
 		opened = !opened
 	}
-
-	const contentStyles = css({
-		border: '1px solid $dark300',
-		position: 'absolute',
-		boxShadow: '$lg',
-		p: 4,
-		zIndex: 40,
-		borderRadius: '$default',
-		backgroundColor: '$dark500'
-	})()
-
-	const arrowStyles = css({
-		backgroundColor: '$dark500',
-		border: '1px solid $dark300',
-		position: 'absolute',
-		size: 2
-	})()
 </script>
 
 <div bind:this={refTrigger}>
@@ -94,40 +36,39 @@
 </div>
 
 {#if opened}
-	<div
-		role="dialog"
-		id={contentId}
-		tabindex="-1"
-		in:fly={{ y: -5, duration: 200 }}
-		use:clickOutside={{
-			cb: () => {
-				setOpened(false)
-			},
-			enabled: true,
-			exclude: [refTrigger]
-		}}
-		use:portal
-		bind:this={refContent}
-		class={contentStyles}
-		style="position:absolute;left:{floatingX}px;top:{floatingY}px"
-	>
-		<div style="position:absolute; color:white; top:0.25rem; right:0.25rem">
-			<Button
-				icon={X}
-				on:click={() => {
-					setOpened(false)
-				}}
-				variants={{ background: 'transparent', borderless: true }}
-			/>
-		</div>
-		<slot />
-		<div
-			part="arrow"
-			bind:this={refArrow}
-			class={arrowStyles}
-			style="{arrowX ? `left:${arrowX}px;` : ''}{arrowY
-				? `top:${arrowY}px;`
-				: ''} transform:rotate(45deg); {staticSide}: -4px"
-		/>
-	</div>
+	<Portal>
+		<Floating
+			bind:ref={refFloatingElement}
+			{position}
+			trigger={refTrigger}
+			bind:this={refFloating}
+			clickOutsideCallback={setClosed}
+		>
+			<div part="dialog" role="dialog" id={contentId} tabindex="-1">
+				<div style="position:absolute; color:white; top:0rem; right:0rem">
+					<Button
+						theme="tertiary"
+						icon={X}
+						on:click={() => {
+							setOpened(false)
+						}}
+					/>
+				</div>
+				<slot />
+			</div>
+		</Floating>
+	</Portal>
 {/if}
+
+<style>
+	/* Overlay */
+	[part='dialog'] {
+		overflow: auto;
+		box-shadow: var(--st-overlay-box-shadow);
+		border: var(--st-overlay-border-width) solid var(--st-overlay-border-color);
+		background-color: var(--st-overlay-bg-color);
+		border-radius: var(--st-overlay-border-radius);
+		padding: 1rem;
+		z-index: 50;
+	}
+</style>

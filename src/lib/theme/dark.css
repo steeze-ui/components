@@ -101,29 +101,38 @@
 	--st-overlay-border-radius: var(--st-container-border-radius);
 
 	/* Item */
-	--st-item-font-size: var(--st-text-field-font-size);
-	--st-item-font-weight: var(--st-text-field-font-weight);
+	--st-item-font-size: var(--st-field-font-size);
+	--st-item-font-weight: var(--st-field-font-weight);
 	--st-item-border-radius: var(--st-container-border-radius);
 	--st-item-padding: 0.2rem 0.75rem 0.2rem 0.5rem;
 	--st-item-group-font-size: var(--st-font-size-xs);
 	--st-item-group-font-weight: var(--st-font-weight-medium);
+	--st-item-group-margin: 0 0 0 0.5rem;
 
 	/* Text color */
 	--st-primary-color: rgb(79, 70, 229);
+	--st-primary-lighter-color: rgb(85, 88, 237);
 	--st-primary-light-color: rgb(129, 140, 248);
 	--st-primary-dark-color: rgb(49, 46, 129);
 
-	/* Text Field */
-	--st-text-field-size: 1.75rem;
-	--st-text-field-border-radius: var(--st-container-border-radius);
-	--st-text-field-font-size: var(--st-font-size-sm);
-	--st-text-field-font-weight: var(--st-font-weight-normal);
-	--st-text-field-border-width: 1px;
+	/* Field Sizes*/
+	--st-field-size-sm: 1.75rem;
+	--st-field-size-md: 2.25rem;
+	--st-field-size-lg: 2.75rem;
+
+	/* Field */
+	--st-field-size: var(--st-field-size-sm);
+	--st-field-border-radius: var(--st-container-border-radius);
+	--st-field-font-size: var(--st-font-size-sm);
+	--st-field-font-weight: var(--st-font-weight-normal);
+	--st-field-border-width: 1px;
 
 	/* Focus */
 	--st-outline-width: 2px;
 	--st-outline-color: var(--st-primary-color);
+}
 
+.light-theme  {
 	/* ! Light Theme */
 	/* Text color */
 	--st-body-text-color: var(--st-colors-gray9);
@@ -131,20 +140,27 @@
 	--st-tertiary-text-color: var(--st-colors-gray5);
 	--st-disabled-text-color: var(--st-colors-gray5);
 
-	/* Text Field */
-	--st-text-field-bg-color: var(--st-colors-light2);
-	--st-text-field-color: var(--st-body-text-color);
-	--st-text-field-placeholder-color: var(--st-secondary-text-color);
-	--st-text-field-border-color: var(--st-colors-light4);
-	--st-text-field-button-bg-color: var(--st-colors-light7);
-	--st-text-field-button-hover-bg-color: var(--st-colors-light7);
+	/* Field */
+	--st-field-bg-color: var(--st-colors-light2);
+	--st-field-hover-bg-color: var(--st-colors-light10);
+	--st-field-color: var(--st-body-text-color);
+	--st-field-placeholder-color: var(--st-secondary-text-color);
+	--st-field-border-color: var(--st-colors-light4);
+	--st-field-button-bg-color: var(--st-colors-light7);
+	--st-field-button-hover-bg-color: var(--st-colors-light7);
+
+	/* Button */
+	--st-button-bg-color: var(--st-colors-light2);
+	--st-button-color: var(--st-field-color);
+	--st-button-border-color: var(--st-colors-light9);
+	--st-button-hover-bg-color: var(--st-colors-light9);
 
 	/* Overlay */
 	--st-overlay-border-color: var(--st-colors-light4);
 	--st-overlay-bg-color: var(--st-colors-light6);
 
 	/* Item */
-	--st-item-text-color: var(--st-text-field-color);
+	--st-item-text-color: var(--st-field-color);
 	--st-item-focus-text-color: var(--st-colors-light2);
 	--st-item-bg-color: transparent;
 	--st-item-focus-bg-color: var(--st-primary-color);
@@ -161,26 +177,31 @@
 	--st-tertiary-text-color: var(--st-colors-gray6);
 	--st-disabled-text-color: var(--st-colors-gray6);
 
-	/* Text Field */
-	--st-text-field-bg-color: var(--st-colors-dark6);
-	--st-text-field-color: var(--st-body-text-color);
-	--st-text-field-placeholder-color: var(--st-secondary-text-color);
-	--st-text-field-border-color: var(--st-colors-dark4);
-	--st-text-field-button-bg-color: var(--st-colors-dark4);
-	--st-text-field-button-hover-bg-color: var(--st-colors-dark3);
+	/* Field */
+	--st-field-bg-color: var(--st-colors-dark6);
+	--st-field-color: var(--st-body-text-color);
+	--st-field-placeholder-color: var(--st-secondary-text-color);
+	--st-field-border-color: var(--st-colors-dark4);
+	--st-field-button-bg-color: var(--st-colors-dark4);
+	--st-field-button-hover-bg-color: var(--st-colors-dark3);
+
+	/* Button */
+	--st-button-bg-color: var(--st-colors-dark5);
+	--st-button-color: var(--st-field-color);
+	--st-button-border-color: var(--st-colors-dark1);
+	--st-button-hover-bg-color: var(--st-colors-dark4);
 
 	/* Overlay */
 	--st-overlay-border-color: var(--st-colors-dark4);
 	--st-overlay-bg-color: var(--st-colors-dark6);
 
 	/* Item */
-	--st-item-text-color: var(--st-text-field-color);
+	--st-item-text-color: var(--st-field-color);
 	--st-item-bg-color: transparent;
 	--st-item-hover-bg-color: var(--st-colors-dark4);
 	--st-item-icon-color: var(--st-primary-color);
 	--st-item-focus-icon-color: var(--st-colors-light2);
 	--st-item-group-text-color: var(--st-secondary-text-color);
-	--st-item-group-margin: 0 0 0 0.25rem;
 }
 
 .st-focus-ring:focus {

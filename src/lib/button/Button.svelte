@@ -1,159 +1,93 @@
 <script lang="ts">
-	import { css } from '$stitches'
-	import { IconSource, Icon } from '@steeze-ui/svelte-icon'
-	import type { VariantProps } from '@stitches/core'
-
-	export let variants: IconButtonVariants = {}
+	import { Icon } from '@steeze-ui/svelte-icon'
+	import type { IconSource } from '@steeze-ui/svelte-icon/types'
 
 	export let disabled = false
 	export let icon: IconSource = null
 	export let iconTheme = 'default'
-	export let onClick: () => void = null
+	export let theme: ButtonTheme = 'secondary'
+	export let size: ButtonSize = 'sm'
 
-	type IconButtonVariants = VariantProps<typeof buttonStyles>
+	$: iconSize = icon && getIconSize(size)
 
-	const iconSize = getIconSize(variants?.size ?? 'default')
+	type ButtonSize = 'sm' | 'md' | 'lg'
+	type ButtonTheme = 'primary' | 'secondary' | 'tertiary'
 
-	function getIconSize(size: IconButtonVariants['size']) {
+	function getIconSize(size: ButtonSize) {
 		switch (size) {
-			case 'lg':
+			case 'sm':
+				return '14px'
+			case 'md':
 				return '20px'
-			case 'xl':
+			case 'lg':
 				return '24px'
 			default:
 				return '14px'
 		}
 	}
-
-	if ($$slots.default) {
-		variants.withText = true
-	}
-
-	const buttonStyles = css({
-		borderRadius: '$default',
-		border: '1px solid $dark300',
-		transition: '$hover',
-		outline: 'none',
-		gap: 1.5,
-
-		variants: {
-			background: {
-				default: {
-					backgroundColor: '$dark600',
-				},
-				transparent: {
-					backgroundColor: 'transparent',
-				},
-				active: {
-					backgroundColor: '$dark900',
-				},
-				primary: {
-					backgroundColor: '$primary600',
-					color: 'white',
-					borderColor: '$primary500',
-					'&:hover': {
-						backgroundColor: '$primary700',
-					},
-					'&:focus': {
-						outline: 'none',
-						boxShadow: '$focus',
-					},
-				},
-			},
-			color: {
-				default: {
-					color: '$gray200',
-				},
-				dimmed: {
-					color: '$gray500',
-				},
-				primary: {
-					color: '$primary600',
-				},
-			},
-			borderless: {
-				true: {
-					border: '0',
-				},
-			},
-			size: {
-				default: {
-					height: '$formHeight',
-					p: 1.5,
-					fontSize: '$sm',
-					lineHeight: '$none',
-				},
-				lg: {
-					height: '2.25rem',
-					p: 2,
-					fontSize: '$base',
-					lineHeight: '$none',
-				},
-				xl: {
-					height: '2.75rem',
-					p: 3,
-					fontSize: '$lg',
-					lineHeight: '$none',
-				},
-			},
-
-			withText: {
-				true: {},
-			},
-		},
-
-		'&:hover': {
-			backgroundColor: '$dark900',
-		},
-		'&:focus': {
-			outline: 'none',
-			boxShadow: '$focus',
-		},
-		'&:active': {
-			boxShadow: '$focus',
-		},
-
-		defaultVariants: {
-			color: 'default',
-			size: 'default',
-			background: 'default',
-		},
-		compoundVariants: [
-			{
-				withText: true,
-				size: 'default',
-				css: {
-					px: 2,
-				},
-			},
-			{
-				withText: true,
-				size: 'lg',
-				css: {
-					px: 3,
-				},
-			},
-			{
-				withText: true,
-				size: 'xl',
-				css: {
-					px: 4,
-				},
-			},
-		],
-	})
 </script>
 
-<button
-	{...$$restProps}
-	{disabled}
-	on:click
-	on:click={onClick}
-	style="display:flex; align-items:center; justify-content:center;"
-	class={buttonStyles(variants)}
->
+<button {...$$restProps} {disabled} data-theme={theme} data-size={size} on:click>
 	{#if icon}
 		<Icon theme={iconTheme} src={icon} width={iconSize} height={iconSize} />
 	{/if}
 	<slot />
 </button>
+
+<style>
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--st-border-radius);
+		border: 1px solid var(--st-button-border-color);
+		transition: var(--st-hover-transition);
+		outline: none;
+		gap: 0.5rem;
+		line-height: 1;
+
+		background-color: var(--st-button-bg-color);
+		color: var(--st-button-color);
+		font-size: var(--st-field-font-size);
+		height: var(--st-field-size);
+	}
+	button:hover {
+		background-color: var(--st-button-hover-bg-color);
+	}
+	/* Sizes */
+	[data-size='sm'] {
+		--st-field-font-size: var(--st-font-size-sm);
+		--st-field-size: var(--st-field-size-sm);
+		padding: 0.375rem;
+	}
+	[data-size='md'] {
+		--st-field-font-size: var(--st-font-size-md);
+		--st-field-size: var(--st-field-size-md);
+		padding: 0.5rem;
+	}
+	[data-size='lg'] {
+		--st-field-font-size: var(--st-font-size-lg);
+		--st-field-size: var(--st-field-size-lg);
+		padding: 0.8rem 1rem;
+	}
+
+	/* Color Themes */
+	[data-theme*='primary'] {
+		--st-button-bg-color: var(--st-primary-color);
+		--st-button-color: var(--st-colors-light5);
+		--st-button-border-color: var(--st-primary-lighter-color);
+	}
+	button[data-theme*='primary']:hover {
+		/* --st-button-bg-color: var(--st-primary-dark-color); */
+		--st-button-hover-bg-color: var(--st-primary-lighter-color);
+	}
+
+	[data-theme*='tertiary'] {
+		--st-button-bg-color: transparent;
+		--st-button-border-color: transparent;
+	}
+	button[data-theme*='tertiary']:hover {
+		/* --st-button-bg-color: var(--st-tertiary-dark-color); */
+		--st-button-hover-bg-color: rgba(51, 65, 85, 0.2);
+	}
+</style>

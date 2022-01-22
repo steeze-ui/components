@@ -12,10 +12,10 @@
 		position: relative;
 		overflow: hidden;
 		outline: none;
-		border: var(--st-text-field-border-width) solid var(--st-text-field-border-color);
-		height: var(--st-text-field-size);
-		border-radius: var(--st-text-field-border-radius);
-		background-color: var(--st-text-field-bg-color);
+		border: var(--st-field-border-width) solid var(--st-field-border-color);
+		height: var(--st-field-size);
+		border-radius: var(--st-field-border-radius);
+		background-color: var(--st-field-bg-color);
 	}
 
 	[part='input-field']:focus {

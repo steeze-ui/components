@@ -1,39 +1,36 @@
 <script lang="ts">
-	import { clickOutside } from '$lib/core/actions/clickOutside'
-	import { portal } from '$lib/core/actions/portal'
-	import InputContainer from '$lib/core/primitives/InputContainer.svelte'
-
+	import Floating from '$lib/core/parts/Floating.svelte'
+	import InputContainer from '$lib/core/parts/InputContainer.svelte'
+	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition, SelectValue, SelectValueMap } from '$lib/core/types'
 	import { getId } from '$lib/core/utils/id'
-
-	import { arrow, computePosition, flip, offset, shift, size } from '@floating-ui/dom'
-	import { Check, ChevronDown, X } from '@steeze-ui/heroicons'
+	import Item from '$lib/listbox/Item.svelte'
+	import ListBox from '$lib/listbox/ListBox.svelte'
+	import { ChevronDown, X } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { createEventDispatcher, onMount } from 'svelte'
-	import { scale } from 'svelte/transition'
 
 	export let items: SelectValue[] | SelectValueMap
 	export let value: SelectValue | string = null
+	export let itemLabelRenderer = (e: SelectValue) => e?.label ?? ''
+	export let groupBy: (e: SelectValue) => string = null
+	export let identifier = 'id'
 	export let placeholder = ''
 	export let focus = false
 	export let searchable = false
 	export let clearable = false
 	export let position: FloatingPosition = 'bottom-end'
 	export let width: string = '100%'
-	export let identifier = 'id'
-	export let itemLabelRenderer = (e: SelectValue) => e?.label ?? ''
-	export let groupBy: (e: SelectValue) => string = null
+	export let loop = false
 
 	let refTrigger: HTMLElement
-	let refContent: HTMLElement
+	let refFloatingElement: HTMLElement
+	let refFloating: any
 	let refInput: HTMLElement
 
 	let buttonId = getId()
 	let itemsId = getId()
 	let dispatch = createEventDispatcher()
-
-	let floatingX = 0
-	let floatingY = 0
 
 	// let refArrow: HTMLElement
 	// let arrowX = 0
@@ -46,66 +43,75 @@
 		}
 	})
 
-	// experimental
-	const itemsMap: { [group: string]: { [id: string]: any } } = {}
+	// create items Map from items
+	interface ItemsMap {
+		[group: string]: SelectValue[]
+	}
+	const itemsMap: ItemsMap = {}
 
-	//itemsmap to items
 	if (items.constructor.name === 'Object') {
-		console.log('init from object')
 		for (const id of Object.keys(items)) {
 			const item = { ...items[id], [identifier]: id } as SelectValue
 			const group = groupBy ? groupBy(item) : ''
 			if (!itemsMap[group]) {
-				itemsMap[group] = {}
+				itemsMap[group] = []
 			}
-			itemsMap[group][id] = item
+			itemsMap[group].push(item)
 		}
 	} else {
-		console.log('init from list')
-
 		for (const item of items as SelectValue[]) {
 			const group = groupBy ? groupBy(item) : ''
 			if (!itemsMap[group]) {
-				itemsMap[group] = {}
+				itemsMap[group] = []
 			}
-			itemsMap[group][item[identifier] as string] = item
+			itemsMap[group].push(item)
 		}
 	}
-	console.log({ itemsMap })
 
-	if (typeof value === 'string') {
+	if (value && typeof value === 'string') {
 		for (const group of Object.keys(itemsMap)) {
-			if (itemsMap[group][value as string]) {
-				value = itemsMap[group][value as string]
+			const item = itemsMap[group].find((e) => e[identifier] === value)
+			if (item) {
+				value = item
 				break
 			}
 		}
 	}
-	console.log({ value })
 
 	// Value
 	let shownValue: string
-	$: selectorItems = !searchable ? itemsMap : itemsMap
-	// : (items as SelectValue[]).filter((e) =>
-	// 		itemLabelRenderer(e).toLowerCase().includes(searchText.toLowerCase())
-	//   )
+	$: selectorItems = !searchable ? itemsMap : getItemsBySearch(searchText)
 
-	// let selectedItemIndex: number
+	function getItemsBySearch(searchText: string): ItemsMap {
+		const map: ItemsMap = {}
+		for (const [group, items] of Object.entries(itemsMap)) {
+			const found = items.filter((e) =>
+				itemLabelRenderer(e).toLowerCase().includes(searchText.toLowerCase())
+			)
+			if (found.length > 0) {
+				map[group] = found
+			}
+		}
+
+		return map
+	}
+
 	$: isSelected = value != null
 	$: {
 		if (isSelected) {
-			// selectedItemIndex = selectorItems.indexOf(
-			// 	selectorItems.find((e) => e[identifier] === value[identifier])
-			// )
 			shownValue = itemLabelRenderer(value as SelectValue)
 		} else {
 			shownValue = placeholder
-			// selectedItemIndex = -1
 		}
 	}
 
 	// Search
 	let searchText = ''
+	$: {
+		searchText
+		focusedItemGroupIndex = 0
+		focusedItemIndex = 0
+	}
 
 	// Selector
 	let opened = false
@@ -117,10 +123,7 @@
 		} else {
 			opened = true
 			searchText = ''
-			const firstItemGroup = groupBy(selectorItems[Object.keys(selectorItems)[0]])
-			const firstItemId = Object.keys(selectorItems[firstItemGroup])[0]
-			const firstItem = selectorItems[firstItemGroup][firstItemId]
-			focusItem(firstItem)
+			focusItem(0, 0)
 		}
 	}
 
@@ -130,8 +133,6 @@
 	}
 
 	function selectItem(item: SelectValue) {
-		console.log('select', { item, value })
-
 		if (clearable && item?.[identifier] === value?.[identifier]) {
 			value = null
 		} else {
@@ -148,33 +149,77 @@
 	}
 
 	// Focus
-	let focusedItem: SelectValue = null
-	$: focusedItemAriaId = `${itemsId}-menu-item-${focusedItem}`
+	let focusedItemAriaId
+	let focusedItemGroupIndex = 0
+	let focusedItemIndex = 0
 
-	function focusItem(item: SelectValue) {
-		focusedItem = item
+	function focusItem(groupIndex: number, itemIndex: number) {
+		focusedItemGroupIndex = groupIndex
+		focusedItemIndex = itemIndex
+		focusedItemAriaId = `${itemsId}-menu-item-${groupIndex}-${itemIndex}`
 	}
 
 	function focusNextItem() {
-		// const next = focusedItemIndex + 1
-		// if (next >= selectorItems.length) {
-		// 	focusedItemIndex = 0
-		// } else {
-		// 	focusedItemIndex = next
-		// }
+		const currentGroup = Object.keys(selectorItems)[focusedItemGroupIndex]
+		const lenItems = selectorItems[currentGroup].length
+
+		const nextItemIndex = focusedItemIndex + 1
+		if (nextItemIndex >= lenItems) {
+			if (focusedItemGroupIndex >= Object.keys(selectorItems).length - 1) {
+				if (loop) {
+					focusedItemGroupIndex = 0
+					focusedItemIndex = 0
+				}
+			} else {
+				focusedItemGroupIndex += 1
+				focusedItemIndex = 0
+			}
+		} else {
+			focusedItemIndex = nextItemIndex
+		}
 	}
 
 	function focusPrevItem() {
-		// const prev = focusedItemIndex - 1
-		// if (prev < 0) {
-		// 	focusedItemIndex = selectorItems.length - 1
-		// } else {
-		// 	focusedItemIndex = prev
-		// }
+		const prevItemIndex = focusedItemIndex - 1
+		if (prevItemIndex >= 0) {
+			focusedItemIndex = prevItemIndex
+		} else {
+			const prevGroupIndex = focusedItemGroupIndex - 1
+			const lastItemIndex =
+				selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]].length - 1
+			if (prevGroupIndex >= 0) {
+				focusedItemGroupIndex = prevGroupIndex
+				focusedItemIndex = lastItemIndex
+			} else {
+				if (loop) {
+					focusedItemGroupIndex = Object.keys(selectorItems).length - 1
+					focusedItemIndex = lastItemIndex
+				}
+			}
+		}
 	}
 
 	// Key Events
 	function handleKeydown(event: KeyboardEvent) {
+		if (document.activeElement.isSameNode(refInput)) {
+			switch (event.key) {
+				case 'ArrowUp':
+					event.preventDefault()
+					focusPrevItem()
+					return
+				case 'ArrowDown':
+					event.preventDefault()
+					focusNextItem()
+					return
+				case 'Enter':
+					event.preventDefault()
+					selectItem(
+						selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
+					)
+					return
+			}
+		}
+
 		if (refTrigger.contains(document.activeElement)) {
 			switch (event.key) {
 				case 'ArrowUp':
@@ -191,7 +236,9 @@
 					break
 				case 'Enter':
 					if (opened) {
-						selectItem(focusedItem)
+						selectItem(
+							selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
+						)
 						refTrigger?.focus()
 					} else {
 						openSelector()
@@ -203,7 +250,9 @@
 				case ' ':
 					event.preventDefault()
 					if (opened) {
-						selectItem(focusedItem)
+						selectItem(
+							selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
+						)
 						refTrigger?.focus()
 					} else {
 						openSelector()
@@ -221,54 +270,16 @@
 	}
 
 	//* Position
-	$: opened && refTrigger && refContent && updatePosition()
-
-	export async function updatePosition() {
-		const {
-			x,
-			y,
-			middlewareData,
-			placement: pl
-		} = await computePosition(refTrigger, refContent, {
-			placement: position,
-			middleware: [
-				flip(),
-				shift(),
-				// arrow({ element: refArrow }),
-				offset(5),
-				size({
-					apply({ width, height }) {
-						Object.assign(refContent.style, {
-							maxWidth: `${width}px`,
-							maxHeight: `${height}px`
-						})
-					}
-				})
-			]
-		})
-
-		floatingX = x
-		floatingY = y
-
-		// staticSide = {
-		// 	top: 'bottom',
-		// 	right: 'left',
-		// 	bottom: 'top',
-		// 	left: 'right'
-		// }[pl.split('-')[0]]
-
-		// arrowX = middlewareData.arrow.x
-		// arrowY = middlewareData.arrow.y
-	}
+	$: opened && refTrigger && refFloatingElement && refFloating.updatePosition()
 </script>
 
 <svelte:window
 	on:keydown={handleKeydown}
 	on:resize={() => {
-		opened && updatePosition()
+		opened && refFloating.updatePosition()
 	}}
 	on:scroll={() => {
-		opened && updatePosition()
+		opened && refFloating.updatePosition()
 	}}
 />
 
@@ -312,90 +323,65 @@
 </InputContainer>
 
 <!-- Selector -->
+
 {#if opened}
-	<div
-		use:portal
-		data-steeze-portal
-		style="position: absolute; top: 0px; left: 0px; z-index: 2147483647;"
-	>
-		<div
-			data-steeze-overlay-content-wrapper
-			style="position: absolute; min-width: max-content; will-change: transform;"
-			style:top="{floatingY}px"
-			style:left="{floatingX}px"
-			in:scale={{ start: 0.9, duration: 125, opacity: 0.6 }}
-			bind:this={refContent}
-			use:clickOutside={{
-				cb: () => {
-					closeSelector()
-				},
-				enabled: true,
-				exclude: [refTrigger]
-			}}
+	<Portal>
+		<Floating
+			bind:ref={refFloatingElement}
+			{position}
+			trigger={refTrigger}
+			bind:this={refFloating}
+			clickOutsideCallback={closeSelector}
 		>
-			<div
+			<ListBox
 				id={itemsId}
 				aria-labelledby={buttonId}
 				aria-activedescendant={focusedItemAriaId}
-				part="overlay"
-				role="menu"
-				aria-orientation="vertical"
-				tabindex="-1"
+				showPrefix={searchable}
 			>
-				<!-- Search Input -->
-				{#if searchable}
-					<input bind:this={refInput} bind:value={searchText} placeholder="Search.." />
-				{/if}
-				<ul part="menu-items">
-					{#each Object.keys(selectorItems) as group, i (group)}
-						{#each Object.keys(selectorItems[group]) as itemId, i (itemId)}
-							{@const item = selectorItems[group][itemId]}
-							{@const focused = focusedItem[identifier] === itemId}
-							{@const selected = value?.[identifier] === itemId ?? false}
-							{@const id = `${itemsId}-menu-item-${i}`}
-							{@const label = itemLabelRenderer(item)}
+				<input slot="prefix" bind:this={refInput} bind:value={searchText} placeholder="Search.." />
 
-							{#if groupBy && (i === 0 || groupBy?.(selectorItems?.[i - 1]) != groupBy?.(item))}
-								<span part="menu-item-group-label">
-									{item.group}
-								</span>
-							{/if}
-							<slot
-								name="item"
-								{id}
-								{item}
-								{label}
-								{focused}
+				{#each Object.keys(selectorItems) as group, groupIndex (group)}
+					{#if groupBy}
+						<span part="group-label">
+							{group}
+						</span>
+					{/if}
+					{#each selectorItems[group] as item, itemIndex (item[identifier])}
+						{@const id = item[identifier]}
+						{@const focused =
+							groupIndex === focusedItemGroupIndex && itemIndex === focusedItemIndex}
+						{@const selected = value?.[identifier] === id ?? false}
+						{@const ariaId = `${itemsId}-menu-item-${groupIndex}-${itemIndex}`}
+						{@const label = itemLabelRenderer(item)}
+
+						<slot
+							name="item"
+							{id}
+							{item}
+							{label}
+							{focused}
+							{selected}
+							onFocus={() => focusItem(groupIndex, itemIndex)}
+							onSelect={() => selectItem(item)}
+						>
+							<Item
+								id={ariaId}
 								{selected}
-								onFocus={() => focusItem(item)}
-								onSelect={() => selectItem(item)}
+								{focused}
+								on:pointerover={() => {
+									focusItem(groupIndex, itemIndex)
+								}}
+								on:pointerdown={() => selectItem(item)}
 							>
-								<li
-									{id}
-									part="menu-item"
-									role="menuitem"
-									aria-checked={selected}
-									data-focused={focused}
-									tabindex={focused ? 0 : -1}
-									on:pointerover={() => {
-										focusItem(item)
-									}}
-									on:pointerdown={() => selectItem(item)}
-								>
-									<div part="selected-icon">
-										{#if selected}
-											<Icon size="16px" src={Check} />
-										{/if}
-									</div>
-									<span>{itemLabelRenderer(item)}</span>
-								</li>
-							</slot>
-						{/each}
+								{itemLabelRenderer(item)}
+							</Item>
+						</slot>
 					{/each}
-				</ul>
-			</div>
-		</div>
-	</div>
+				{/each}
+			</ListBox>
+		</Floating>
+	</Portal>
 {/if}
 
 <style>
@@ -414,12 +400,12 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		font-size: var(--st-text-field-font-size);
-		font-weight: var(--st-text-field-font-weight);
-		color: var(--st-text-field-placeholder-color);
+		font-size: var(--st-field-font-size);
+		font-weight: var(--st-field-font-weight);
+		color: var(--st-field-color);
 	}
-	[part='value'][selected='true'] {
-		color: var(--st-text-field-color);
+	[part='value'][selected='false'] {
+		color: var(--st-field-placeholder-color);
 	}
 	[part='clear-button'],
 	[part='toggle-button'] {
@@ -442,29 +428,19 @@
 	[part='clear-button']:hover,
 	[part='toggle-button']:hover,
 	[part='toggle-button'][data-active='true'] {
-		background-color: var(--st-text-field-button-hover-bg-color);
+		background-color: var(--st-field-button-hover-bg-color);
 	}
 	[part='clear-button'] {
 		border-radius: var(--st-border-radius-full);
-		background-color: var(--st-text-field-button-bg-color);
+		background-color: var(--st-field-button-bg-color);
 	}
 	[part='toggle-button'] {
 		border-radius: var(--st-border-radius-sm);
 	}
 
-	/* Overlay */
-	[part='overlay'] {
-		overflow: auto;
-		box-shadow: var(--st-overlay-box-shadow);
-		border: var(--st-overlay-border-width) solid var(--st-overlay-border-color);
-		background-color: var(--st-overlay-bg-color);
-		border-radius: var(--st-overlay-border-radius);
-		padding: 0.25rem;
-	}
-
-	[part='overlay'] input {
+	input {
 		--st-overlay-search-font-size: var(--st-font-size-xs);
-		--st-overlay-search-text-color: var(--st-text-field-color);
+		--st-overlay-search-text-color: var(--st-field-color);
 
 		background-color: transparent;
 		color: var(--st-overlay-search-text-color);
@@ -472,44 +448,16 @@
 		padding: 0.5rem 1rem;
 		outline: none;
 	}
-	[part='overlay'] input:focus {
+
+	input:focus {
 		outline: none;
 	}
 
-	[part='menu-items'] {
-		overflow: auto;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-	[part='menu-item'] {
-		display: flex;
-		align-items: center;
-		border-radius: var(--st-item-border-radius);
-		background-color: var(--st-item-bg-color);
-		font-size: var(--st-item-font-size);
-		font-weight: var(--st-item-font-weight);
-		color: var(--st-item-text-color);
-		cursor: pointer;
-		padding: var(--st-item-padding);
-		gap: 0.25rem;
-	}
-	[part='menu-item'][data-focused='true'] {
-		background-color: var(--st-item-focus-bg-color);
-		color: var(--st-item-focus-text-color);
-	}
-	[part='selected-icon'] {
-		width: 1rem;
-		height: 1rem;
-		color: var(--st-item-icon-color);
-	}
-	[part='menu-item'][data-focused='true'] [part='selected-icon'] {
-		color: var(--st-item-focus-icon-color);
-	}
-	[part='menu-item-group-label'] {
+	[part='group-label'] {
 		color: var(--st-item-group-text-color);
 		font-size: var(--st-item-group-font-size);
 		font-weight: var(--st-item-group-font-weight);
 		margin: var(--st-item-group-margin);
+		/* margin-top: 0.25rem; */
 	}
 </style>

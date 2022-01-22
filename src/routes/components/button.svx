@@ -1,0 +1,75 @@
+---
+id: 1
+title: Button
+description: Click for Action
+---
+
+<script lang="ts">
+	import Button from '$lib/button/Button.svelte'
+	import Demo from './../_components/Demo.svelte'
+	import Title from './../_components/Title.svelte'
+	import Help from './../_components/Help.svelte'
+	import Features from './../_components/Features.svelte'
+	import { Moon, Sun } from '@steeze-ui/heroicons'
+	import { Icon } from '@steeze-ui/svelte-icon'
+	
+	let size = "sm"
+</script>
+
+<Title {title} {description} />
+
+<Demo id={id}>
+	<div slot="prefix" class="z-50 absolute flex gap-4" style:bottom="0.75rem" style:left="1rem">
+		<button style:color={size==="sm" ? "white" : ""} on:click={()=>size="sm"}>small</button>
+		<button style:color={size==="md" ? "white" : ""} on:click={()=>size="md"}>medium</button>
+		<button style:color={size==="lg" ? "white" : ""} on:click={()=>size="lg"}>large</button>
+	</div>
+	<Button theme="primary" {size} style="width:8rem">Primary</Button>
+	<Button style="width:8rem" {size}>Secondary</Button>
+	<Button theme="tertiary" {size} style="width:8rem">Tertiary</Button>
+	<Button theme="secondary" icon={Moon} {size} >Dark</Button>
+	<Button theme="secondary" icon={Sun} {size} ></Button>
+</Demo>
+
+<Features features={[
+"Icon Support",
+"3 Color Themes",
+"3 Sizes",
+]} />
+
+## Quickstart
+
+```svelte
+<script>
+	import {Button} from '@steeze-ui/components'
+</script>
+
+<Button
+	on:click={()=>console.log("clicked!")}
+>Click Me</Button>
+```
+
+## API Reference
+
+| Property                                                | Type                        | Default                     |
+| ------------------------------------------------------- | --------------------------- | --------------------------- |
+| `disabled`                                              | <code hl>Boolean</code>     | <code hl>false</code>       |
+| `icon`<Help text="Icon Source from @steeze-ui/icons" /> | <code hl>IconSource</code>  | <code hl>null</code>        |
+| `iconTheme`<Help text="Icon Theme used for the icon" /> | <code hl>String</code>      | <code hl>"default"</code>   |
+| `size`<Help text="Size of the button" />                | <code hl>ButtonTheme</code> | <code hl>"sm"</code>        |
+| `theme`<Help text="Appearance of the button" />         | <code hl>ButtonSize</code>  | <code hl>"secondary"</code> |
+
+## Examples
+
+### Use with icon
+
+You can use any Icon from our [Icon Packs](/icons/packs)
+
+```svelte
+<script>
+	import { Moon } from '@steeze-ui/heroicons'
+	import { Button } from '@steeze-ui/components'
+</script>
+
+<Button icon={Moon} iconTheme="solid" />
+```
