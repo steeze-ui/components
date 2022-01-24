@@ -2,52 +2,62 @@
 	/* ! Primitives */
 
 	/* Colors */
-	--st-colors-gray1: rgb(248, 250, 252);
-	--st-colors-gray2: rgb(241, 245, 249);
-	--st-colors-gray3: rgb(226, 232, 240);
-	--st-colors-gray4: rgb(203, 213, 225);
-	--st-colors-gray5: rgb(148, 163, 184);
-	--st-colors-gray6: rgb(100, 116, 139);
-	--st-colors-gray7: rgb(71, 85, 105);
-	--st-colors-gray8: rgb(51, 65, 85);
-	--st-colors-gray9: rgb(30, 41, 59);
-	--st-colors-gray10: rgb(15, 23, 42);
+	--st-colors-dark1: hsl(234, 4%, 29%);
+	--st-colors-dark2: hsl(234, 7%, 24%);
+	--st-colors-dark3: hsl(235, 10%, 20%);
+	--st-colors-dark4: hsl(236, 13%, 18%);
+	--st-colors-dark5: hsl(238, 13%, 13%);
+	--st-colors-dark6: hsl(240, 15%, 12%);
+	--st-colors-dark7: hsl(241, 18%, 11%);
+	--st-colors-dark8: hsl(243, 21%, 11%);
+	--st-colors-dark9: hsl(246, 24%, 9%);
+	--st-colors-dark10: hsl(248, 27%, 6%);
 
-	--st-colors-dark1: rgb(74, 74, 74);
-	--st-colors-dark2: rgb(60, 60, 60);
-	--st-colors-dark3: rgb(50, 50, 50);
-	--st-colors-dark4: rgb(45, 45, 45);
-	--st-colors-dark5: rgb(34, 34, 34);
-	--st-colors-dark6: rgb(31, 31, 31);
-	--st-colors-dark7: rgb(28, 28, 30);
-	--st-colors-dark8: rgb(27, 27, 27);
-	--st-colors-dark9: rgb(24, 24, 24);
-	--st-colors-dark10: rgb(15, 15, 15);
+	--st-colors-gray1: hsl(240, 6%, 98%);
+	--st-colors-gray2: hsl(240, 6%, 95%);
+	--st-colors-gray3: hsl(243, 6%, 87%);
+	--st-colors-gray4: hsl(243, 6%, 78%);
+	--st-colors-gray5: hsl(243, 6%, 65%);
+	--st-colors-gray6: hsl(243, 6%, 55%);
+	--st-colors-gray7: hsl(244, 7%, 45%);
+	--st-colors-gray8: hsl(244, 8%, 35%);
+	--st-colors-gray9: hsl(246, 11%, 22%);
+	--st-colors-gray10: hsl(246, 18%, 15%);
 
-	--st-colors-light1: rgb(253, 253, 253);
-	--st-colors-light2: rgb(252, 252, 252);
-	--st-colors-light3: rgb(250, 250, 250);
-	--st-colors-light4: rgb(248, 249, 250);
-	--st-colors-light5: rgb(246, 246, 246);
-	--st-colors-light6: rgb(242, 242, 242);
-	--st-colors-light7: rgb(241, 243, 245);
-	--st-colors-light8: rgb(233, 236, 239);
-	--st-colors-light9: rgb(222, 226, 230);
-	--st-colors-light10: rgb(221, 225, 227);
+	--st-colors-light1: hsl(240, 6%, 99%);
+	--st-colors-light2: hsl(240, 6%, 99%);
+	--st-colors-light3: hsl(243, 6%, 98%);
+	--st-colors-light4: hsl(243, 6%, 98%);
+	--st-colors-light5: hsl(243, 6%, 96%);
+	--st-colors-light6: hsl(243, 6%, 95%);
+	--st-colors-light7: hsl(244, 7%, 95%);
+	--st-colors-light8: hsl(244, 8%, 93%);
+	--st-colors-light9: hsl(246, 11%, 89%);
+	--st-colors-light10: hsl(246, 18%, 88%);
 
-	--st-colors-emerald8: #047857;
-	--st-colors-teal8: #0f766e;
-	--st-colors-cyan8: rgb(14 116 144);
-	--st-colors-sky8: #0369a1;
-	--st-colors-blue8: #1d4ed8;
-	--st-colors-violet8: rgb(109, 40, 217);
-	--st-colors-purple8: rgb(126, 34, 206);
-	--st-colors-fuchsia8: rgb(162, 28, 175);
-	--st-colors-pink8: rgb(190, 24, 93);
-	--st-colors-rose8: rgb(190, 18, 60);
-	--st-colors-orange8: #c2410c;
-	--st-colors-yellow8: #a16207;
-	--st-colors-lime8: #4d7c0f;
+	--st-colors-primary1: hsl(240, 70%, 95%);
+	--st-colors-primary2: hsl(240, 70%, 85%);
+	--st-colors-primary3: hsl(240, 70%, 75%);
+	--st-colors-primary4: hsl(240, 70%, 65%);
+	--st-colors-primary5: hsl(240, 60%, 52%);
+	--st-colors-primary6: hsl(240, 55%, 43%);
+	--st-colors-primary7: hsl(240, 50%, 32%);
+	--st-colors-primary8: hsl(240, 45%, 28%);
+	--st-colors-primary9: hsl(240, 40%, 16%);
+
+	--st-colors-emerald8: hsl(163, 94%, 24%);
+	--st-colors-teal8: hsl(175, 77%, 26%);
+	--st-colors-cyan8: hsl(193, 82%, 31%);
+	--st-colors-sky8: hsl(201, 96%, 32%);
+	--st-colors-blue8: hsl(224, 76%, 48%);
+	--st-colors-violet8: hsl(263, 70%, 50%);
+	--st-colors-purple8: hsl(272, 72%, 47%);
+	--st-colors-fuchsia8: hsl(295, 72%, 40%);
+	--st-colors-pink8: hsl(335, 78%, 42%);
+	--st-colors-rose8: hsl(345, 83%, 41%);
+	--st-colors-orange8: rgb(194, 65, 12);
+	--st-colors-yellow8: hsl(35, 92%, 33%);
+	--st-colors-lime8: hsl(86, 78%, 27%);
 
 	/* Border Radius */
 	--st-border-radius-none: 0;
@@ -59,7 +69,6 @@
 	--st-border-radius-2xl: 1rem;
 	--st-border-radius-3xl: 1.5rem;
 	--st-border-radius-full: 9999px;
-	--st-container-border-radius: var(--st-border-radius);
 
 	/* Font Size */
 	--st-font-size-xs: 0.75rem;
@@ -82,9 +91,13 @@
 	--st-font-weight-extrabold: 800;
 
 	/* Transitions */
-	--st-hover-transition: background-color 0.15s ease-in-out;
+	--st-hover-transition: transform, background-color 0.15s ease-in-out;
 
-	/* Icons Size*/
+	/* Focus */
+	--st-outline-width: 2px;
+	--st-outline-color: var(--st-colors-primary4);
+
+	/* Icon Size */
 	--st-icon-size-xs: 0.5rem;
 	--st-icon-size-sm: 1rem;
 
@@ -95,93 +108,86 @@
 	--st-box-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 	--st-box-shadow-focus: 0 0 0 calc(2px) var(--st-primary-color);
 
+	/* Primary color */
+	--st-primary-light-color: var(--st-colors-primary3);
+	--st-primary-color: var(--st-colors-primary5);
+	--st-primary-dark-color: var(--st-colors-primary7);
+
 	/* Overlay */
 	--st-overlay-box-shadow: var(--st-box-shadow-lg);
 	--st-overlay-border-width: 1px;
-	--st-overlay-border-radius: var(--st-container-border-radius);
+	--st-overlay-border-radius: var(--st-border-radius);
 
 	/* Item */
 	--st-item-font-size: var(--st-field-font-size);
 	--st-item-font-weight: var(--st-field-font-weight);
-	--st-item-border-radius: var(--st-container-border-radius);
+	--st-item-border-radius: var(--st-border-radius-sm);
 	--st-item-padding: 0.2rem 0.75rem 0.2rem 0.5rem;
 	--st-item-group-font-size: var(--st-font-size-xs);
 	--st-item-group-font-weight: var(--st-font-weight-medium);
 	--st-item-group-margin: 0 0 0 0.5rem;
 
-	/* Text color */
-	--st-primary-color: rgb(79, 70, 229);
-	--st-primary-lighter-color: rgb(85, 88, 237);
-	--st-primary-light-color: rgb(129, 140, 248);
-	--st-primary-dark-color: rgb(49, 46, 129);
-
-	/* Field Sizes*/
-	--st-field-size-sm: 1.75rem;
-	--st-field-size-md: 2.25rem;
-	--st-field-size-lg: 2.75rem;
-
 	/* Field */
-	--st-field-size: var(--st-field-size-sm);
-	--st-field-border-radius: var(--st-container-border-radius);
-	--st-field-font-size: var(--st-font-size-sm);
+	--st-field-size-sm: 28px;
+	--st-field-size-md: 42px;
+
+	--st-field-padding-sm: 0.3rem 0.5rem;
+	--st-field-padding-md: 0.5rem 0.75rem;
+
+	--st-field-font-size-sm: var(--st-font-size-sm);
+	--st-field-font-size-md: var(--st-font-size-base);
+
+	--st-field-border-radius-sm: var(--st-border-radius-sm);
+	--st-field-border-radius-md: var(--st-border-radius-md);
+
+	/* Field medium */
+	--st-field-size: var(--st-field-size-md);
+	--st-field-padding: var(--st-field-padding-md);
+	--st-field-border-radius: var(--st-field-border-radius-md);
+	--st-field-font-size: var(--st-field-font-size-md);
 	--st-field-font-weight: var(--st-font-weight-normal);
 	--st-field-border-width: 1px;
 
-	/* Focus */
-	--st-outline-width: 2px;
-	--st-outline-color: var(--st-primary-color);
-}
-
-.light-theme  {
-	/* ! Light Theme */
-	/* Text color */
-	--st-body-text-color: var(--st-colors-gray9);
-	--st-secondary-text-color: var(--st-colors-gray6);
-	--st-tertiary-text-color: var(--st-colors-gray5);
-	--st-disabled-text-color: var(--st-colors-gray5);
-
-	/* Field */
-	--st-field-bg-color: var(--st-colors-light2);
-	--st-field-hover-bg-color: var(--st-colors-light10);
-	--st-field-color: var(--st-body-text-color);
-	--st-field-placeholder-color: var(--st-secondary-text-color);
-	--st-field-border-color: var(--st-colors-light4);
-	--st-field-button-bg-color: var(--st-colors-light7);
-	--st-field-button-hover-bg-color: var(--st-colors-light7);
-
 	/* Button */
-	--st-button-bg-color: var(--st-colors-light2);
-	--st-button-color: var(--st-field-color);
-	--st-button-border-color: var(--st-colors-light9);
-	--st-button-hover-bg-color: var(--st-colors-light9);
+	--st-button-size: var(--st-field-size);
+	--st-button-font-weight: var(--st-field-font-weight);
+	--st-button-font-size: var(--st-field-font-size);
+	--st-button-border-radius: var(--st-field-border-radius);
+	--st-button-padding: var(--st-field-padding);
 
-	/* Overlay */
-	--st-overlay-border-color: var(--st-colors-light4);
-	--st-overlay-bg-color: var(--st-colors-light6);
+	/* Label */
+	--st-label-font-size: var(--st-font-size-xs);
+	--st-label-font-weight: var(--st-font-weight-semibold);
+	--st-label-color: var(--st-colors-gray4);
 
-	/* Item */
-	--st-item-text-color: var(--st-field-color);
-	--st-item-focus-text-color: var(--st-colors-light2);
-	--st-item-bg-color: transparent;
-	--st-item-focus-bg-color: var(--st-primary-color);
-	--st-item-icon-color: var(--st-primary-color);
-	--st-item-focus-icon-color: var(--st-colors-light2);
-	--st-item-group-text-color: var(--st-secondary-text-color);
+	/* Helper */
+	--st-helper-font-size: var(--st-font-size-xs);
+	--st-helper-font-weight: var(--st-font-weight-normal);
+	--st-helper-color: var(--st-colors-gray5);
+
+	/* Toggle */
+	--st-toggle-size: 20px;
+	--st-toggle-offset: 4px;
 }
 
 /* ! Dark Theme */
 .dark-theme {
-	/* Text color */
+	/* Background Color */
+	--st-bg-color: var(--st-colors-dark9);
+	--st-secondary-bg-color: var(--st-colors-dark8);
+	--st-border-color: var(--st-colors-gray9);
+
+	/* Text Color */
 	--st-body-text-color: var(--st-colors-gray3);
-	--st-secondary-text-color: var(--st-colors-gray5);
+	--st-secondary-text-color: var(--st-colors-gray6);
 	--st-tertiary-text-color: var(--st-colors-gray6);
 	--st-disabled-text-color: var(--st-colors-gray6);
 
 	/* Field */
-	--st-field-bg-color: var(--st-colors-dark6);
+	--st-field-bg-color: var(--st-colors-dark8);
 	--st-field-color: var(--st-body-text-color);
 	--st-field-placeholder-color: var(--st-secondary-text-color);
-	--st-field-border-color: var(--st-colors-dark4);
+	--st-field-border-color: var(--st-border-color);
 	--st-field-button-bg-color: var(--st-colors-dark4);
 	--st-field-button-hover-bg-color: var(--st-colors-dark3);
 
@@ -196,17 +202,11 @@
 	--st-overlay-bg-color: var(--st-colors-dark6);
 
 	/* Item */
-	--st-item-text-color: var(--st-field-color);
 	--st-item-bg-color: transparent;
-	--st-item-hover-bg-color: var(--st-colors-dark4);
+	--st-item-focus-bg-color: var(--st-primary-color);
+	--st-item-text-color: var(--st-field-color);
+	--st-item-focus-text-color: var(--st-colors-light2);
 	--st-item-icon-color: var(--st-primary-color);
 	--st-item-focus-icon-color: var(--st-colors-light2);
 	--st-item-group-text-color: var(--st-secondary-text-color);
-}
-
-.st-focus-ring:focus {
-	outline: none;
-}
-.st-focus-ring:focus-visible {
-	outline: var(--st-outline-width) solid var(--st-outline-color);
 }

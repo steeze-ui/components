@@ -1,35 +1,28 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import type { IconSource } from '@steeze-ui/svelte-icon/types'
+	import { onMount } from 'svelte'
 
 	export let disabled = false
 	export let icon: IconSource = null
 	export let iconTheme = 'default'
 	export let theme: ButtonTheme = 'secondary'
-	export let size: ButtonSize = 'sm'
+	export let width = 'min-content'
 
-	$: iconSize = icon && getIconSize(size)
-
-	type ButtonSize = 'sm' | 'md' | 'lg'
 	type ButtonTheme = 'primary' | 'secondary' | 'tertiary'
 
-	function getIconSize(size: ButtonSize) {
-		switch (size) {
-			case 'sm':
-				return '14px'
-			case 'md':
-				return '20px'
-			case 'lg':
-				return '24px'
-			default:
-				return '14px'
+	const props = {}
+
+	onMount(() => {
+		if (!$$slots.default) {
+			props['data-icon'] = ''
 		}
-	}
+	})
 </script>
 
-<button {...$$restProps} {disabled} data-theme={theme} data-size={size} on:click>
+<button {...props} {...$$restProps} {disabled} data-theme={theme} style:width on:click>
 	{#if icon}
-		<Icon theme={iconTheme} src={icon} width={iconSize} height={iconSize} />
+		<Icon theme={iconTheme} src={icon} width={'20px'} height={'20px'} />
 	{/if}
 	<slot />
 </button>
@@ -39,47 +32,54 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: var(--st-border-radius);
-		border: 1px solid var(--st-button-border-color);
-		transition: var(--st-hover-transition);
 		outline: none;
 		gap: 0.5rem;
 		line-height: 1;
-
+		border-radius: var(--st-button-border-radius);
+		border: 1px solid var(--st-button-border-color);
+		transition: var(--st-hover-transition);
 		background-color: var(--st-button-bg-color);
 		color: var(--st-button-color);
-		font-size: var(--st-field-font-size);
-		height: var(--st-field-size);
+		font-size: var(--st-button-font-size);
+		height: var(--st-button-size);
+		padding: var(--st-button-padding);
 	}
 	button:hover {
 		background-color: var(--st-button-hover-bg-color);
 	}
-	/* Sizes */
-	[data-size='sm'] {
-		--st-field-font-size: var(--st-font-size-sm);
-		--st-field-size: var(--st-field-size-sm);
-		padding: 0.375rem;
+	button:active {
+		transform: scale(0.95);
 	}
-	[data-size='md'] {
-		--st-field-font-size: var(--st-font-size-md);
-		--st-field-size: var(--st-field-size-md);
-		padding: 0.5rem;
+	button:disabled {
+		cursor: not-allowed;
 	}
-	[data-size='lg'] {
-		--st-field-font-size: var(--st-font-size-lg);
-		--st-field-size: var(--st-field-size-lg);
-		padding: 0.8rem 1rem;
+	button:disabled {
+		opacity: 0.5;
 	}
 
 	/* Color Themes */
 	[data-theme*='primary'] {
 		--st-button-bg-color: var(--st-primary-color);
 		--st-button-color: var(--st-colors-light5);
-		--st-button-border-color: var(--st-primary-lighter-color);
+		--st-button-border-color: transparent;
 	}
 	button[data-theme*='primary']:hover {
-		/* --st-button-bg-color: var(--st-primary-dark-color); */
-		--st-button-hover-bg-color: var(--st-primary-lighter-color);
+		--st-button-hover-bg-color: var(--st-colors-primary4);
+	}
+	button[data-theme*='primary']:disabled:hover {
+		--st-button-hover-bg-color: var(--st-button-bg-color);
+	}
+
+	[data-theme*='secondary'] {
+		--st-button-bg-color: var(--st-field-bg-color);
+		--st-button-color: var(--st-field-color);
+		--st-button-border-color: var(--st-colors-primary8);
+	}
+	button[data-theme*='secondary']:hover {
+		--st-button-hover-bg-color: var(--st-colors-primary9);
+	}
+	button[data-theme*='secondary']:disabled:hover {
+		--st-button-hover-bg-color: var(--st-button-bg-color);
 	}
 
 	[data-theme*='tertiary'] {
@@ -87,7 +87,22 @@
 		--st-button-border-color: transparent;
 	}
 	button[data-theme*='tertiary']:hover {
-		/* --st-button-bg-color: var(--st-tertiary-dark-color); */
-		--st-button-hover-bg-color: rgba(51, 65, 85, 0.2);
+		--st-button-hover-bg-color: var(--st-colors-primary9);
+	}
+	button[data-theme*='tertiary']:disabled:hover {
+		--st-button-hover-bg-color: var(--st-button-bg-color);
+	}
+
+	button:focus {
+		outline: none;
+	}
+	button:focus-visible {
+		outline: var(--st-outline-width) solid var(--st-outline-color);
+	}
+
+	button[data-icon] {
+		width: var(--st-button-size) !important;
+		height: var(--st-button-size);
+		padding: 0;
 	}
 </style>

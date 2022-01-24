@@ -1,8 +1,12 @@
 <script lang="ts">
+	import Label from '$lib/core/parts/Label.svelte'
+
+	export let disabled = false
 	export let ref = null
 </script>
 
-<div on:click on:focus bind:this={ref} part="input-field" {...$$restProps}>
+<div data-disabled={disabled} on:click on:focus bind:this={ref} part="input-field" {...$$restProps}>
+	<slot name="prefix" />
 	<slot />
 </div>
 
@@ -15,6 +19,17 @@
 		border: var(--st-field-border-width) solid var(--st-field-border-color);
 		height: var(--st-field-size);
 		border-radius: var(--st-field-border-radius);
+		background-color: var(--st-field-bg-color);
+		padding: var(--st-field-padding);
+	}
+
+	[part='input-field'][data-disabled='true'] {
+		border-style: dashed;
+		overflow: hidden;
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+	[part='input-field'][data-disabled='true']:hover {
 		background-color: var(--st-field-bg-color);
 	}
 

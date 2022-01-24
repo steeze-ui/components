@@ -1,20 +1,20 @@
 <script script lang="ts">
-	import Button from '$lib/button/Button.svelte'
-
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition } from '$lib/core/types'
 	import { X } from '@steeze-ui/heroicons'
+	import { Icon } from '@steeze-ui/svelte-icon'
 	import { getId } from '../core/utils/id'
+
+	export let position: FloatingPosition
+	export let showClose = false
+	export let opened = false
 
 	const contentId = getId()
 
-	export let position: FloatingPosition
 	let refTrigger: HTMLElement
 	let refFloatingElement: HTMLElement
 	let refFloating: any
-
-	let opened = false
 
 	$: opened && refFloating && refFloating.updatePosition()
 
@@ -45,15 +45,17 @@
 			clickOutsideCallback={setClosed}
 		>
 			<div part="dialog" role="dialog" id={contentId} tabindex="-1">
-				<div style="position:absolute; color:white; top:0rem; right:0rem">
-					<Button
-						theme="tertiary"
-						icon={X}
-						on:click={() => {
-							setOpened(false)
-						}}
-					/>
-				</div>
+				{#if showClose}
+					<div style="position:absolute; color:white; top:0rem; right:0rem">
+						<button
+							on:click={() => {
+								setOpened(false)
+							}}
+						>
+							<Icon src={X} size="16" />
+						</button>
+					</div>
+				{/if}
 				<slot />
 			</div>
 		</Floating>

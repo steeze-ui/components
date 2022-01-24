@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Floating from '$lib/core/parts/Floating.svelte'
+	import Helper from '$lib/core/parts/Helper.svelte'
 	import InputContainer from '$lib/core/parts/InputContainer.svelte'
+	import Label from '$lib/core/parts/Label.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition, SelectValue, SelectValueMap } from '$lib/core/types'
 	import { getId } from '$lib/core/utils/id'
@@ -10,18 +12,25 @@
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { createEventDispatcher, onMount } from 'svelte'
 
+	export let identifier = 'id'
 	export let items: SelectValue[] | SelectValueMap
 	export let value: SelectValue | string = null
-	export let itemLabelRenderer = (e: SelectValue) => e?.label ?? ''
+	//functionality
 	export let groupBy: (e: SelectValue) => string = null
-	export let identifier = 'id'
-	export let placeholder = ''
-	export let focus = false
 	export let searchable = false
 	export let clearable = false
-	export let position: FloatingPosition = 'bottom-end'
-	export let width: string = '100%'
 	export let loop = false
+	//display
+	export let label = ''
+	export let helper = ''
+	export let placeholder = ''
+	export let itemLabelRenderer = (e: SelectValue) => e?.label ?? ''
+	export let position: FloatingPosition = 'bottom-end'
+	export let width: string = '12rem'
+	//form
+	export let disabled = false
+	export let name = ''
+	export let focus = false
 
 	let refTrigger: HTMLElement
 	let refFloatingElement: HTMLElement
@@ -101,7 +110,7 @@
 		if (isSelected) {
 			shownValue = itemLabelRenderer(value as SelectValue)
 		} else {
-			shownValue = placeholder
+			shownValue = ''
 		}
 	}
 
@@ -118,12 +127,14 @@
 	let lastCleared = false
 
 	function openSelector() {
-		if (opened) {
-			closeSelector()
-		} else {
-			opened = true
-			searchText = ''
-			focusItem(0, 0)
+		if (!disabled) {
+			if (opened) {
+				closeSelector()
+			} else {
+				opened = true
+				searchText = ''
+				focusItem(0, 0)
+			}
 		}
 	}
 
@@ -283,44 +294,72 @@
 	}}
 />
 
-<InputContainer
-	on:click={() => {
-		if (lastCleared) {
-			lastCleared = false
-		}
-		openSelector()
-		refInput?.focus()
-	}}
-	bind:ref={refTrigger}
-	on:focus
-	id={buttonId}
-	role="button"
-	tabindex="0"
-	aria-haspopup="true"
-	aria-expanded={opened}
-	aria-controls={itemsId}
-	style="width:{width}"
->
-	<slot name="prefix" />
-
-	<div part="value-container">
-		<!-- Value -->
-		<span part="value" selected={isSelected}>
-			{shownValue}
-		</span>
-		{#if isSelected && clearable}
-			<button aria-label="Clear Select" on:pointerdown={clearItem} part="clear-button">
-				<!-- Clear Icon -->
-				<Icon src={X} size="9" />
-			</button>
-		{:else}
-			<button data-active={opened} part="toggle-button">
-				<!-- Select Icon -->
-				<Icon src={ChevronDown} size="9" />
-			</button>
+<div part="select" style:width>
+	<slot name="label">
+		{#if label}
+			<Label for={name}>{label}</Label>
 		{/if}
-	</div>
-</InputContainer>
+	</slot>
+	<InputContainer
+		on:click={() => {
+			if (lastCleared) {
+				lastCleared = false
+			}
+			openSelector()
+			refInput?.focus()
+		}}
+		bind:ref={refTrigger}
+		{disabled}
+		on:focus
+		id={buttonId}
+		role="button"
+		tabindex="0"
+		aria-haspopup="true"
+		aria-expanded={opened}
+		data-expanded={opened}
+		aria-controls={itemsId}
+		{label}
+		{name}
+	>
+		<slot name="prefix" />
+
+		<div part="value-container">
+			<input
+				readonly
+				tabindex="-1"
+				aria-hidden="true"
+				part="value"
+				type="text"
+				{placeholder}
+				value={shownValue}
+				{name}
+				{disabled}
+			/>
+
+			{#if isSelected && clearable}
+				<button
+					aria-label="Clear Select"
+					on:pointerdown={clearItem}
+					part="clear-button"
+					type="button"
+				>
+					<!-- Clear Icon -->
+					<Icon src={X} size="9" />
+				</button>
+			{:else}
+				<button part="toggle-button" tabindex="-1" type="button">
+					<!-- Select Icon -->
+					<Icon src={ChevronDown} size="9" />
+				</button>
+			{/if}
+		</div>
+	</InputContainer>
+	<slot name="helper">
+		{#if helper}
+			<Helper>{helper}</Helper>
+		{/if}
+	</slot>
+</div>
 
 <!-- Selector -->
 
@@ -385,6 +424,17 @@
 {/if}
 
 <style>
+	:global([part='select'] [part='input-field'][data-expanded='true'], [part='select']
+			[part='input-field']:hover) {
+		background-color: var(--st-colors-gray10);
+	}
+
+	[part='select'] {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
 	[part='value-container'] {
 		height: 100%;
 		width: 100%;
@@ -393,8 +443,6 @@
 		justify-content: space-between;
 		align-items: center;
 		overflow: hidden;
-		padding: 0 0.5rem;
-		padding-right: 0.33rem;
 	}
 	[part='value'] {
 		overflow: hidden;
@@ -403,10 +451,11 @@
 		font-size: var(--st-field-font-size);
 		font-weight: var(--st-field-font-weight);
 		color: var(--st-field-color);
+		padding: 0;
+		cursor: pointer;
+		pointer-events: none;
 	}
-	[part='value'][selected='false'] {
-		color: var(--st-field-placeholder-color);
-	}
+
 	[part='clear-button'],
 	[part='toggle-button'] {
 		display: flex;
@@ -421,21 +470,15 @@
 		margin-left: 0.5rem;
 		outline: none;
 	}
-	[part='clear-button']:focus-visible,
-	[part='toggle-button']:focus-visible {
+	[part='clear-button']:focus-visible {
 		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}
-	[part='clear-button']:hover,
-	[part='toggle-button']:hover,
-	[part='toggle-button'][data-active='true'] {
+	[part='clear-button']:hover {
 		background-color: var(--st-field-button-hover-bg-color);
 	}
 	[part='clear-button'] {
 		border-radius: var(--st-border-radius-full);
 		background-color: var(--st-field-button-bg-color);
-	}
-	[part='toggle-button'] {
-		border-radius: var(--st-border-radius-sm);
 	}
 
 	input {

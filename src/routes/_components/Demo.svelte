@@ -32,9 +32,7 @@
 <div
 	part="box"
 	style="background-image: linear-gradient(22deg, var({first}) 0%, var({second}) 100%);"
-	class="{$lightTheme
-		? 'light-theme'
-		: 'dark-theme'} relative rounded-xl p-4 flex flex-col min-h-64 gap-4 overflow-hidden items-center relative justify-center lg:-mx-11"
+	class="relative rounded-xl p-4 flex flex-col min-h-64 gap-4 overflow-hidden items-center relative justify-center lg:-mx-11"
 >
 	<slot name="prefix" />
 	<button

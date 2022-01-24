@@ -13,28 +13,21 @@ description: Click for Action
 	import { Moon, Sun } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 	
-	let size = "sm"
 </script>
 
 <Title {title} {description} />
 
 <Demo id={id}>
-	<div slot="prefix" class="z-50 absolute flex gap-4" style:bottom="0.75rem" style:left="1rem">
-		<button style:color={size==="sm" ? "white" : ""} on:click={()=>size="sm"}>small</button>
-		<button style:color={size==="md" ? "white" : ""} on:click={()=>size="md"}>medium</button>
-		<button style:color={size==="lg" ? "white" : ""} on:click={()=>size="lg"}>large</button>
-	</div>
-	<Button theme="primary" {size} style="width:8rem">Primary</Button>
-	<Button style="width:8rem" {size}>Secondary</Button>
-	<Button theme="tertiary" {size} style="width:8rem">Tertiary</Button>
-	<Button theme="secondary" icon={Moon} {size} >Dark</Button>
-	<Button theme="secondary" icon={Sun} {size} ></Button>
+	<Button theme="primary" style="width:8rem">Primary</Button>
+	<Button style="width:8rem">Secondary</Button>
+	<Button theme="tertiary" style="width:8rem">Tertiary</Button>
+	<Button theme="secondary" icon={Moon} >Dark</Button>
+	<Button theme="secondary" icon={Sun} ></Button>
 </Demo>
 
 <Features features={[
 "Icon Support",
 "3 Color Themes",
-"3 Sizes",
 ]} />
 
 ## Quickstart
@@ -45,19 +38,19 @@ description: Click for Action
 </script>
 
 <Button
+	theme="primary"
 	on:click={()=>console.log("clicked!")}
 >Click Me</Button>
 ```
 
 ## API Reference
 
-| Property                                                | Type                        | Default                     |
-| ------------------------------------------------------- | --------------------------- | --------------------------- |
-| `disabled`                                              | <code hl>Boolean</code>     | <code hl>false</code>       |
-| `icon`<Help text="Icon Source from @steeze-ui/icons" /> | <code hl>IconSource</code>  | <code hl>null</code>        |
-| `iconTheme`<Help text="Icon Theme used for the icon" /> | <code hl>String</code>      | <code hl>"default"</code>   |
-| `size`<Help text="Size of the button" />                | <code hl>ButtonTheme</code> | <code hl>"sm"</code>        |
-| `theme`<Help text="Appearance of the button" />         | <code hl>ButtonSize</code>  | <code hl>"secondary"</code> |
+| Property                                                | Type                       | Default                     |
+| ------------------------------------------------------- | -------------------------- | --------------------------- |
+| `disabled`                                              | <code hl>Boolean</code>    | <code hl>false</code>       |
+| `icon`<Help text="Icon Source from @steeze-ui/icons" /> | <code hl>IconSource</code> | <code hl>null</code>        |
+| `iconTheme`<Help text="Icon Theme used for the icon" /> | <code hl>String</code>     | <code hl>"default"</code>   |
+| `theme`<Help text="Appearance of the button" />         | <code hl>ButtonSize</code> | <code hl>"secondary"</code> |
 
 ## Examples
 

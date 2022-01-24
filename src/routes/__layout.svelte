@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { browser } from '$app/env'
+	import { afterNavigate } from '$app/navigation'
 	import '$lib/theme/dark.css'
 	import 'virtual:windi.css'
 	import './../markdown.css'
@@ -6,16 +8,26 @@
 	import Menu from './_components/menu/Menu.svelte'
 	import MenuItem from './_components/menu/MenuItem.svelte'
 	import MenuSection from './_components/menu/MenuSection.svelte'
-	import Select from '$lib/select/Select.svelte'
+	import { lightTheme } from './_stores/theme'
 
 	let menuOpen = false
-
-	import { afterNavigate } from '$app/navigation'
 
 	afterNavigate(() => {
 		menuOpen = false
 	})
+
+	$: {
+		if (browser) {
+			if ($lightTheme) {
+				document.body.className = 'light-theme'
+			} else {
+				document.body.className = 'dark-theme'
+			}
+		}
+	}
 </script>
+
+<svelte:body />
 
 <Header bind:menuOpen />
 <div class="flex flex-grow relative">
@@ -29,11 +41,11 @@
 		<MenuSection label="Components">
 			<MenuItem label="Button" href="/components/button" />
 			<MenuItem tag="Planned" disabled label="Dialog" href="/components/dialog" />
+			<MenuItem tag="Planned" disabled label="Notification" href="/components/notification" />
 			<MenuItem label="Popover" href="/components/popover" />
 			<MenuItem label="Select" href="/components/select" />
-			<MenuItem tag="Planned" disabled label="Switch" href="/components/switch" />
-			<MenuItem tag="Planned" disabled label="Notification" href="/components/notification" />
 			<MenuItem tag="Planned" disabled label="Tabs" href="/components/tabs" />
+			<MenuItem label="Toggle" href="/components/toggle" />
 			<MenuItem tag="Planned" disabled label="Tooltip" href="/components/tooltip" />
 		</MenuSection>
 		<MenuSection label="Icons">

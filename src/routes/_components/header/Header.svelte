@@ -29,3 +29,9 @@
 		<Icon src={Menu} size="22" color="white" />
 	</button>
 </div>
+
+<style>
+	header {
+		background-color: rgba(19, 17, 28, 0.8);
+	}
+</style>

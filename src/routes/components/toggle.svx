@@ -1,0 +1,68 @@
+---
+id: 3
+title: Toggle
+description: Switch a value betwenn two states
+---
+
+<script lang="ts">
+	import Demo from './../_components/Demo.svelte'
+	import Title from './../_components/Title.svelte'
+	import Help from './../_components/Help.svelte'
+	import Features from './../_components/Features.svelte'
+	import Toggle from "$lib/toggle/Toggle.svelte"
+
+</script>
+
+<Title {title} {description} />
+
+<Demo id={id}>
+	<Toggle checked />
+</Demo>
+
+<Features features={[]} />
+
+## Quickstart
+
+```svelte
+<script>
+	import {Toggle} from '@steeze-ui/components'
+</script>
+
+<Toggle checked />
+```
+
+## API Reference
+
+| Property                                                   | Type                    | Default               |
+| ---------------------------------------------------------- | ----------------------- | --------------------- |
+| `checked`<Help text="The value of the Toggle" />           | <code hl>Boolean</code> | <code hl>false</code> |
+| `disabled`<Help text="If the user can change the value" /> | <code hl>Boolean</code> | <code hl>false</code> |
+| `name`<Help text="Name attribute for forms" />             | <code hl>String</code>  | <code hl>""</code>    |
+| `value`<Help text="Value attribute for forms" />           | <code hl>String</code>  | <code hl>"on"</code>  |
+
+## Examples
+
+### Listen for changes
+
+Use the dispatched listener `change` to run custom code when the value changes
+
+```svelte
+<Toggle
+	on:change={(e) => {
+		console.log(e.detail.checked)
+	}}
+/>
+```
+
+### Usable with HTML forms
+
+Your backend will receive the associated `formData`
+
+```svelte
+<form action="/api/toggle" method="post">
+	<Toggle
+		name="my-toggle"
+		value="active"
+	/>
+</form>
+```
