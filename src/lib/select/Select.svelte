@@ -323,8 +323,9 @@
 	>
 		<slot name="prefix" />
 
-		<div part="value-container">
+		<div part="value-container" title={shownValue ? shownValue : placeholder}>
 			<input
+				title="bla"
 				readonly
 				tabindex="-1"
 				aria-hidden="true"
@@ -462,12 +463,12 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: var(--st-icon-size-sm);
-		height: var(--st-icon-size-sm);
+		width: var(--st-select-toggle-size, var(--st-icon-size-sm));
+		height: var(--st-select-toggle-size, var(--st-icon-size-sm));
 		color: var(--st-select-toggle-color, var(--st-secondary-text-color));
 		transition: var(--st-hover-transition);
 		padding: 0;
-		margin-left: 0.5rem;
+		margin-left: var(--st-select-toggle-margin, 0 0 0 0.5rem);
 		outline: none;
 	}
 	[part='clear-button']:focus-visible {
@@ -501,5 +502,17 @@
 		font-size: var(--st-select-group-font-size, var(--st-font-size-xs));
 		font-weight: var(--st-select-group-font-weight, var(--st-font-weight-medium));
 		margin: var(--st-select-group-margin, 0 0 0 0.5rem);
+	}
+
+	/* Theme */
+	[part='select'][data-theme*='small'] {
+		--st-select-font-size: var(--st-font-size-xs);
+		--st-field-padding: var(--st-field-padding-sm);
+		--st-field-height: var(--st-field-size-sm);
+		--st-select-toggle-margin: 0;
+		--st-select-toggle-size: 12px;
+	}
+	[part='select'][data-theme*='transparent'] {
+		--st-field-bg-color: transparent;
 	}
 </style>

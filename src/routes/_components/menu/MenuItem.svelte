@@ -53,7 +53,7 @@
 	[part='tag'] {
 		font-size: var(--st-font-size-xs);
 		border-radius: var(--st-border-radius);
-		background-color: var(--st-colors-dark7);
+		background-color: var(--st-colors-dark5);
 		padding: 0 0.3rem;
 	}
 </style>

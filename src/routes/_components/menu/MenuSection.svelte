@@ -3,7 +3,10 @@
 </script>
 
 <li class="flex flex-col gap-1">
-	<h5 class="font-medium py-1 pl-6 text-gray-300">{label}</h5>
+	<div class="flex gap-4 items-center justify-between mx-2">
+		<h5 class="font-medium py-1 pl-4 text-gray-300">{label}</h5>
+		<slot name="label-suffix" />
+	</div>
 	<ul class="flex flex-col gap-1">
 		<slot />
 	</ul>

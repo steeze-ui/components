@@ -2,13 +2,19 @@
 
 ## Accessible Components for Svelte
 
-This project is a small set of customizable UI components for the [Svelte](https://svelte.dev) framework. Svelte is a rather new framework and comparable to `react`, `vue` or `lit` for building modern UI's in a more elegant way.
+This project is a small set of customizable UI components for the [Svelte](https://svelte.dev) framework. Svelte is a rather new framework and comparable to `react`, `vue` or `lit` for building modern UI's but in a more elegant way.
+
+See for yourself and try their [awesome interactive tutorial](https://svelte.dev/tutorial/basics)
 
 ## Motivation
 
-Recently in Uni I had a course about Accessibility in the web where we had the opportunity to speak with blind people. We found out that many Websites suffer from inaccessible content, where the errors lie mostly in the fundamental components that a website is made of.
-For critical Services like Health-Ensurances or Online Shops, inaccessible sites could lose customers.
+Recently in Uni I had a course about Accessibility in the web where we had the opportunity to speak with blind people. We found out that many sites in the web suffer from inaccessible content, where the errors lie mostly in the fundamental components that a website is made of.
+For critical Services like Health-Ensurances or Online Shops, inaccessible sites could mean a loss of customers.
 
 For that reason I wanted to learn more about the UI patterns by [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) and integrate it into my personal projects, so I created this library in hope some might find this useful
 
 Some API and Design decisions are inspired by [Radix UI](https://radix-ui.com), [Tailwind CSS](https://tailwindcss.com/) and [Vaadin](https://vaadin.com). Big shoutout to these awesome projects!
+
+## Contribution
+
+This Project is licensed under MIT and you can do whatever you want with it. If you find bugs or want to add certain features/components, feel free to open an issue or PR on [GitHub](https://github.com/steeze-ui/components)

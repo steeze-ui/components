@@ -56,7 +56,7 @@ description: Click for Action
 
 ### Slots
 
-| Slot name | Props | Description                                   |
+| Name      | Props | Notes                                         |
 | --------- | ----- | --------------------------------------------- |
 | `default` | -     | Button Content                                |
 | `prefix`  | -     | What to render before the button default slot |
@@ -78,7 +78,7 @@ description: Click for Action
 
 ### Themes
 
-| Theme Name  | Notes                         |
+| Name        | Notes                         |
 | ----------- | ----------------------------- |
 | `primary`   | A theme for important buttons |
 | `secondary` |                               |

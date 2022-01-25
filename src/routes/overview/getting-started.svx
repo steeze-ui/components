@@ -8,7 +8,7 @@ pnpm i -D @steeze-ui/components
 
 ## Import Base Styles
 
-If you want a solid foundation of styles that can be easily overriden using CSS Custom Components:
+If you want a solid foundation of styles that can be easily overriden using CSS Custom Components, then import the base styles with:
 
 ```svelte
 <script>

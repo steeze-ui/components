@@ -8,13 +8,80 @@
 	import Menu from './_components/menu/Menu.svelte'
 	import MenuItem from './_components/menu/MenuItem.svelte'
 	import MenuSection from './_components/menu/MenuSection.svelte'
+	import Select from '$lib/select/Select.svelte'
 	import { lightTheme } from './_stores/theme'
 
 	let menuOpen = false
 
+	const menu = {
+		Overview: {
+			Introduction: '/',
+			'Getting Started': '/overview/getting-started',
+			Styling: '/overview/styling',
+			Accessibility: '/overview/accessibility'
+		},
+		Components: {
+			'Form Input': {
+				Select: '/components/select',
+				'Combo Box': '_/components/combo-box',
+				'Radio Group': '_/components/radio-group',
+				Checkbox: '_/components/checkbox',
+				'Text Field': '_/components/text-field',
+				'Number Field': '_/components/number-field',
+				'Text Area': '_/components/text-area',
+				Toggle: '/components/toggle'
+			},
+			'Visualization & Interaction': {
+				Button: '/components/button',
+				Tooltip: '/components/tooltip',
+				Popover: '/components/popover',
+				Grid: '_/components/grid',
+				Carousel: '_/components/carousel',
+				Details: '_/components/details',
+				'Dropdown Menu': '_/components/dropdown-menu',
+				Tabs: '_/components/tabs',
+				Accordion: '_/components/accordion',
+				Notification: '_/components/notification',
+				Dialog: '_/components/dialog'
+			},
+			Layouts: {
+				Flex: '_/components/flex',
+				Split: '_/components/split',
+				Scrollable: '_/components/scrollable'
+			}
+		},
+		Icons: {
+			About: '/icons',
+			'Icon Packs': '/icons/packs',
+			'Icon Components': '/icons/components'
+		}
+	}
+
+	$: filteredItems = (
+		!selectedFilter || selectedFilter.id === '0'
+			? [].concat(
+					Object.entries(menu['Components']['Form Input']),
+					Object.entries(menu['Components']['Visualization & Interaction']),
+					Object.entries(menu['Components']['Layouts'])
+			  )
+			: Object.entries(menu['Components'][selectedFilter?.label])
+	) as [string, string][]
+
+	$: sortedItems = filteredItems.sort(([firstLabel], [secondLabel]) =>
+		firstLabel > secondLabel ? 1 : -1
+	)
+
 	afterNavigate(() => {
-		menuOpen = false
+		if (menuOpen) {
+			menuOpen = false
+		}
 	})
+
+	let filterItems = ['All', ...Object.keys(menu['Components'])].map((e, i) => ({
+		id: i.toString(),
+		label: e
+	}))
+	let selectedFilter = filterItems[0]
 
 	$: {
 		if (browser) {
@@ -33,25 +100,27 @@
 <div class="flex flex-grow relative">
 	<Menu bind:menuOpen>
 		<MenuSection label="Overview">
-			<MenuItem label="Introduction" href="/" />
-			<MenuItem label="Getting Started" href="/overview/getting-started" />
-			<MenuItem label="Styling" href="/overview/styling" />
-			<MenuItem label="Accessibility" href="/overview/accessibility" />
+			{#each Object.keys(menu['Overview']) as label}
+				<MenuItem {label} href={menu['Overview'][label]} />
+			{/each}
 		</MenuSection>
 		<MenuSection label="Components">
-			<MenuItem label="Button" href="/components/button" />
-			<MenuItem tag="Planned" disabled label="Dialog" href="/components/dialog" />
-			<MenuItem tag="Planned" disabled label="Notification" href="/components/notification" />
-			<MenuItem label="Popover" href="/components/popover" />
-			<MenuItem label="Select" href="/components/select" />
-			<MenuItem tag="Planned" disabled label="Tabs" href="/components/tabs" />
-			<MenuItem label="Toggle" href="/components/toggle" />
-			<MenuItem label="Tooltip" href="/components/tooltip" />
+			<Select
+				width="6rem"
+				slot="label-suffix"
+				theme="small transparent"
+				items={filterItems}
+				bind:value={selectedFilter}
+			/>
+			{#each sortedItems as [label, href]}
+				{@const isPlanned = href.startsWith('_')}
+				<MenuItem disabled={isPlanned} tag={isPlanned ? 'Planned' : ''} {label} {href} />
+			{/each}
 		</MenuSection>
 		<MenuSection label="Icons">
-			<MenuItem label="About" href="/icons" />
-			<MenuItem label="Icon Packs" href="/icons/packs" />
-			<MenuItem label="Icon Components" href="/icons/components" />
+			{#each Object.keys(menu['Icons']) as label}
+				<MenuItem {label} href={menu['Icons'][label]} />
+			{/each}
 		</MenuSection>
 	</Menu>
 	<main class="flex flex-col flex-grow max-w-full flex-1 py-16 items-center md:pl-64">

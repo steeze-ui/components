@@ -43,7 +43,7 @@ description: Switch a value betwenn two states
 
 ### Styles
 
-| Custom Propery                       | Default                              | Description                   |
+| Custom Propery                       | Default                              | Notes                         |
 | ------------------------------------ | ------------------------------------ | ----------------------------- |
 | `--st-toggle-size`                   | <code hl>20px</code>                 | Diameter of the Thumb         |
 | `--st-toggle-offset`                 | <code hl>4px</code>                  | Offset between Root and Thumb |

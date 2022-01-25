@@ -60,7 +60,7 @@ description: Display Content that floats around a trigger
 
 ### Slots
 
-| Slot name | Props                                                                  | Description                                    |
+| Name      | Props                                                                  | Notes                                          |
 | --------- | ---------------------------------------------------------------------- | ---------------------------------------------- |
 | `trigger` | <code hl>id</code> <code hl>opened</code> <code hl>toggleOpened</code> | The trigger that initiates the popover content |
 | `content` | -                                                                      | The content to display in the popover          |

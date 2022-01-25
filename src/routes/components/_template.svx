@@ -1,0 +1,72 @@
+---
+id: 0
+type: ?
+title: ?
+description: Click for Action
+---
+
+<script lang="ts">
+	import ? from '$lib/?.svelte'
+	import Demo from './../_components/Demo.svelte'
+	import Title from './../_components/Title.svelte'
+	import Help from './../_components/Help.svelte'
+	import Features from './../_components/Features.svelte'
+</script>
+
+<Title {title} {type} {description} />
+
+<Demo id={id}>
+	<? />
+</Demo>
+
+<Features features={[
+
+]} />
+
+## Quickstart
+
+```svelte
+<script>
+	import {?} from '@steeze-ui/components'
+</script>
+
+<? />
+```
+
+## API Reference
+
+| Property   | Type                    | Default               |
+| ---------- | ----------------------- | --------------------- |
+| `disabled` | <code hl>Boolean</code> | <code hl>false</code> |
+
+### Slots
+
+| Name      | Props | Notes |
+| --------- | ----- | ----- |
+| `default` | -     |       |
+
+### Styles
+
+| Custom Propery     | Default                           |
+| ------------------ | --------------------------------- |
+| `--st-item-height` | <code hl>--st-field-height</code> |
+
+### Themes
+
+| Name    | Notes |
+| ------- | ----- |
+| `small` |       |
+
+## Examples
+
+### Example usage
+
+This demonstrates the usage
+
+```svelte
+<script>
+	import { Button } from '@steeze-ui/components'
+</script>
+
+<Button />
+```
