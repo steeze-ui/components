@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/env'
 	import { afterNavigate } from '$app/navigation'
-	import '$lib/theme/dark.css'
+	import '$lib/base.css'
 	import 'virtual:windi.css'
 	import './../markdown.css'
 	import Header from './_components/header/Header.svelte'
