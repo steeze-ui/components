@@ -32,13 +32,13 @@
 	[part='item'] {
 		display: flex;
 		align-items: center;
-		border-radius: var(--st-border-radius-sm);
-		background-color: var(--st-item-bg-color);
-		font-size: var(--st-item-font-size);
-		font-weight: var(--st-item-font-weight);
-		color: var(--st-item-text-color);
+		border-radius: var(--st-item-border-radius, var(--st-border-radius-sm));
+		font-size: var(--st-item-font-size, var(--st-field-font-size));
+		font-weight: var(--st-item-font-weight, var(--st-field-font-weight));
+		color: var(--st-item-text-color, var(--st-body-text-color));
+		background-color: var(--st-item-bg-color, transparent);
 		cursor: pointer;
-		padding: var(--st-item-padding);
+		padding: var(--st-item-padding, 0.2rem 0.75rem 0.2rem 0.5rem);
 		gap: 0.25rem;
 	}
 	[part='item'][data-focused='true'] {

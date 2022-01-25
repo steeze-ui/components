@@ -12,11 +12,14 @@
 	color: var(--st-colors-gray5);
 	font-weight: 500;
 }
+.prose h4 {
+	color: var(--st-colors-gray6);
+}
 .prose a {
-	color: var(--st-primary-light-color);
+	color: var(--st-colors-primary3);
 }
 .prose code {
-	color: var(--st-primary-light-color);
+	color: var(--st-colors-primary3);
 	background-color: rgba(49, 46, 129, 0.4);
 	padding: 0.2rem 0.4rem;
 	border-radius: var(--st-border-radius-sm);
@@ -32,7 +35,7 @@
 	content: '';
 }
 .prose blockquote {
-	color: var(--st-primary-light-color);
+	color: var(--st-colors-primary3);
 }
 .prose th {
 	color: var(--st-colors-gray7);

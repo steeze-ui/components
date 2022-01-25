@@ -31,9 +31,9 @@
 	export let disabled = false
 	export let name = ''
 	export let focus = false
+	export let theme = ''
 
 	let refTrigger: HTMLElement
-	let refFloatingElement: HTMLElement
 	let refFloating: any
 	let refInput: HTMLElement
 
@@ -281,7 +281,7 @@
 	}
 
 	//* Position
-	$: opened && refTrigger && refFloatingElement && refFloating.updatePosition()
+	$: opened && refTrigger && refFloating && refFloating.updatePosition()
 </script>
 
 <svelte:window
@@ -294,7 +294,7 @@
 	}}
 />
 
-<div part="select" style:width>
+<div part="select" style:width data-theme={theme} {...$$restProps}>
 	<slot name="label">
 		{#if label}
 			<Label for={name}>{label}</Label>
@@ -313,7 +313,7 @@
 		on:focus
 		id={buttonId}
 		role="button"
-		tabindex="0"
+		tabindex={disabled ? '-1' : 0}
 		aria-haspopup="true"
 		aria-expanded={opened}
 		data-expanded={opened}
@@ -366,8 +366,8 @@
 {#if opened}
 	<Portal>
 		<Floating
-			bind:ref={refFloatingElement}
 			{position}
+			clickOutsideEnabled
 			trigger={refTrigger}
 			bind:this={refFloating}
 			clickOutsideCallback={closeSelector}
@@ -448,9 +448,9 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		font-size: var(--st-field-font-size);
-		font-weight: var(--st-field-font-weight);
-		color: var(--st-field-color);
+		font-size: var(--st-select-font-size, var(--st-field-font-size));
+		font-weight: var(--st-select-font-weight, var(--st-field-font-weight));
+		color: var(--st-select-color, var(--st-field-color));
 		padding: 0;
 		cursor: pointer;
 		pointer-events: none;
@@ -464,7 +464,7 @@
 		flex-shrink: 0;
 		width: var(--st-icon-size-sm);
 		height: var(--st-icon-size-sm);
-		color: var(--st-secondary-text-color);
+		color: var(--st-select-toggle-color, var(--st-secondary-text-color));
 		transition: var(--st-hover-transition);
 		padding: 0;
 		margin-left: 0.5rem;
@@ -474,20 +474,20 @@
 		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}
 	[part='clear-button']:hover {
-		background-color: var(--st-field-button-hover-bg-color);
+		background-color: var(
+			--st-select-clear-hover-bg-color,
+			var(--st-field-secondary-hover-bg-color)
+		);
 	}
 	[part='clear-button'] {
-		border-radius: var(--st-border-radius-full);
-		background-color: var(--st-field-button-bg-color);
+		border-radius: var(--st-select-clear-border-radius, var(--st-border-radius-full));
+		background-color: var(--st-select-clear-bg-color, var(--st-field-secondary-bg-color));
 	}
 
 	input {
-		--st-overlay-search-font-size: var(--st-font-size-xs);
-		--st-overlay-search-text-color: var(--st-field-color);
-
 		background-color: transparent;
-		color: var(--st-overlay-search-text-color);
-		font-size: var(--st-overlay-search-font-size);
+		color: var(--st-select-search-text-color, var(--st-field-color));
+		font-size: var(--st-select-search-font-size, var(--st-font-size-xs));
 		padding: 0.5rem 1rem;
 		outline: none;
 	}
@@ -497,10 +497,9 @@
 	}
 
 	[part='group-label'] {
-		color: var(--st-item-group-text-color);
-		font-size: var(--st-item-group-font-size);
-		font-weight: var(--st-item-group-font-weight);
-		margin: var(--st-item-group-margin);
-		/* margin-top: 0.25rem; */
+		color: var(--st-select-group-color, var(--st-item-group-color));
+		font-size: var(--st-select-group-font-size, var(--st-font-size-xs));
+		font-weight: var(--st-select-group-font-weight, var(--st-font-weight-medium));
+		margin: var(--st-select-group-margin, 0 0 0 0.5rem);
 	}
 </style>

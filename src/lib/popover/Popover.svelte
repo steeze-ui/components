@@ -9,11 +9,11 @@
 	export let position: FloatingPosition
 	export let showClose = false
 	export let opened = false
+	export let theme = ''
 
 	const contentId = getId()
 
 	let refTrigger: HTMLElement
-	let refFloatingElement: HTMLElement
 	let refFloating: any
 
 	$: opened && refFloating && refFloating.updatePosition()
@@ -38,13 +38,13 @@
 {#if opened}
 	<Portal>
 		<Floating
-			bind:ref={refFloatingElement}
 			{position}
 			trigger={refTrigger}
 			bind:this={refFloating}
+			clickOutsideEnabled
 			clickOutsideCallback={setClosed}
 		>
-			<div part="dialog" role="dialog" id={contentId} tabindex="-1">
+			<div part="popover" data-theme={theme} role="dialog" id={contentId} tabindex="-1">
 				{#if showClose}
 					<div style="position:absolute; color:white; top:0rem; right:0rem">
 						<button
@@ -56,7 +56,7 @@
 						</button>
 					</div>
 				{/if}
-				<slot />
+				<slot name="content" />
 			</div>
 		</Floating>
 	</Portal>
@@ -64,13 +64,14 @@
 
 <style>
 	/* Overlay */
-	[part='dialog'] {
+	[part='popover'] {
 		overflow: auto;
-		box-shadow: var(--st-overlay-box-shadow);
-		border: var(--st-overlay-border-width) solid var(--st-overlay-border-color);
-		background-color: var(--st-overlay-bg-color);
-		border-radius: var(--st-overlay-border-radius);
-		padding: 1rem;
-		z-index: 50;
+		z-index: 100;
+		padding: var(--st-popover-padding, 1rem);
+		box-shadow: var(--st-popover-box-shadow, var(--st-overlay-box-shadow));
+		background-color: var(--st-popover-bg-color, var(--st-overlay-bg-color));
+		border: var(--st-popover-border-width, var(--st-overlay-border-width)) solid
+			var(--st-popover-border-color, var(--st-overlay-border-color));
+		border-radius: var(--st-popover-border-radius, var(--st-overlay-border-radius));
 	}
 </style>

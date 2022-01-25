@@ -2,91 +2,32 @@
 	import Button from '$lib/button/Button.svelte'
 	import Toggle from '$lib/toggle/Toggle.svelte'
 	import Select from '$lib/select/Select.svelte'
-
-	export function enhance(
-		form: HTMLFormElement,
-		{
-			pending,
-			error,
-			result
-		}: {
-			pending?: (data: FormData, form: HTMLFormElement) => void
-			error?: (res: Response | null, error: Error | null, form: HTMLFormElement) => void
-			result: (res: Response, form: HTMLFormElement) => void
-		}
-	): { destroy: () => void } {
-		let current_token: unknown
-
-		async function handle_submit(e: Event) {
-			const token = (current_token = {})
-
-			e.preventDefault()
-
-			const body = new FormData(form)
-
-			if (pending) pending(body, form)
-
-			try {
-				const res = await fetch(form.action, {
-					method: form.method,
-					headers: {
-						accept: 'application/json'
-					},
-					body
-				})
-
-				if (token !== current_token) return
-
-				if (res.ok) {
-					result(res, form)
-				} else if (error) {
-					error(res, null, form)
-				} else {
-					console.error(await res.text())
-				}
-			} catch (e: any) {
-				if (error) {
-					error(null, e, form)
-				} else {
-					throw e
-				}
-			}
-		}
-
-		form.addEventListener('submit', handle_submit)
-
-		return {
-			destroy() {
-				form.removeEventListener('submit', handle_submit)
-			}
-		}
-	}
+	import Form from '$lib/core/form/Form.svelte'
 
 	const colors = {
 		light: 10,
 		dark: 10,
 		gray: 10,
-		primary: 5
+		primary: 9
 	}
 </script>
 
-<form
-	use:enhance={{
+<Form
+	enhance={{
 		result: async (res, form) => {
 			const created = await res.json()
 			console.log(created)
-
 			form.reset()
 		}
 	}}
 	action="/api/test"
 	method="post"
-	class="rounded-lg p-8 flex flex-col gap-4"
+	class="rounded-lg p-8 flex flex-col gap-6"
 >
 	<h2 class="!m-0">Form Example</h2>
 	<div class="flex gap-4 flex-wrap">
 		<Select
-			label="Label"
+			label="With Placeholder"
 			helper="This text might help you"
 			name="val1"
 			placeholder="Select"
@@ -96,10 +37,13 @@
 				{ id: '3', label: 'Value 3' }
 			]}
 		/>
-		<Select name="val2" placeholder="Select" value="1" items={[{ id: '1', label: 'Value' }]}>
-			<span slot="label">label</span>
-			<span slot="helper">helper</span>
-		</Select>
+		<Select
+			label="Already Filled"
+			name="val2"
+			placeholder="Select"
+			value="1"
+			items={[{ id: '1', label: 'Value' }]}
+		/>
 		<Select name="val3" disabled placeholder="Select" items={[{ id: '1', label: 'Value' }]} />
 		<Select
 			name="val4"
@@ -130,9 +74,9 @@
 		<Button theme="secondary" disabled>Submit</Button>
 		<Button theme="tertiary" disabled>Submit</Button>
 	</div>
-</form>
+</Form>
 
-<!-- <div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4 mt-24">
 	{#each Object.keys(colors) as color}
 		<div class="flex flex-col gap-2">
 			<span class="text-gray-200">{color}</span>
@@ -146,11 +90,11 @@
 			</div>
 		</div>
 	{/each}
-</div> -->
+</div>
+
 <style>
-	form {
+	:global([part='form']) {
 		background: var(--st-secondary-bg-color);
-		/* background: var(--st-colors-gray2); */
 		border: 1px solid var(--st-border-color);
 	}
 </style>

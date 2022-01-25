@@ -9,6 +9,6 @@ This project is a small set of customizable UI components for the [Svelte](https
 Recently in Uni I had a course about Accessibility in the web where we had the opportunity to speak with blind people. We found out that many Websites suffer from inaccessible content, where the errors lie mostly in the fundamental components that a website is made of.
 For critical Services like Health-Ensurances or Online Shops, inaccessible sites could lose customers.
 
-For that reason I wanted to learn more about UI patterns by [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) and integrate it into my personal projects so I created this library
+For that reason I wanted to learn more about the UI patterns by [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) and integrate it into my personal projects, so I created this library in hope some might find this useful
 
-Some API and Design decisions are inspired by [Radix UI](https://radix-ui.com) and [Vaadin](https://vaadin.com)
+Some API and Design decisions are inspired by [Radix UI](https://radix-ui.com), [Tailwind CSS](https://tailwindcss.com/) and [Vaadin](https://vaadin.com). Big shoutout to these awesome projects!

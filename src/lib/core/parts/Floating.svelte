@@ -12,48 +12,51 @@
 	export let trigger = null
 
 	export let clickOutsideCallback: () => void = null
+	export let clickOutsideEnabled = false
 
 	export async function updatePosition() {
-		const {
-			x,
-			y,
-			middlewareData,
-			placement: pl
-		} = await computePosition(trigger, ref, {
-			placement: position,
-			middleware: [
-				flip(),
-				shift(),
-				// arrow({ element: refArrow }),
-				offset(5),
-				size({
-					apply({ width, height }) {
-						Object.assign(ref.style, {
-							maxWidth: `${width}px`,
-							maxHeight: `${height}px`
-						})
-					}
-				})
-			]
-		})
+		if (trigger && ref) {
+			const {
+				x,
+				y,
+				middlewareData,
+				placement: pl
+			} = await computePosition(trigger, ref, {
+				placement: position,
+				middleware: [
+					flip(),
+					shift(),
+					// arrow({ element: refArrow }),
+					offset(5),
+					size({
+						apply({ width, height }) {
+							Object.assign(ref.style, {
+								maxWidth: `${width}px`,
+								maxHeight: `${height}px`
+							})
+						}
+					})
+				]
+			})
 
-		posX = x
-		posY = y
+			posX = x
+			posY = y
 
-		// staticSide = {
-		// 	top: 'bottom',
-		// 	right: 'left',
-		// 	bottom: 'top',
-		// 	left: 'right'
-		// }[pl.split('-')[0]]
+			// staticSide = {
+			// 	top: 'bottom',
+			// 	right: 'left',
+			// 	bottom: 'top',
+			// 	left: 'right'
+			// }[pl.split('-')[0]]
 
-		// arrowX = middlewareData.arrow.x
-		// arrowY = middlewareData.arrow.y
+			// arrowX = middlewareData.arrow.x
+			// arrowY = middlewareData.arrow.y
+		}
 	}
 </script>
 
 <div
-	data-steeze-overlay-content-wrapper
+	data-steeze-floating-content-wrapper
 	style="position: absolute; min-width: max-content; will-change: transform;"
 	style:top="{posY}px"
 	style:left="{posX}px"
@@ -63,7 +66,7 @@
 		cb: () => {
 			clickOutsideCallback?.()
 		},
-		enabled: true,
+		enabled: clickOutsideEnabled,
 		exclude: [trigger]
 	}}
 >

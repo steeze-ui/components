@@ -17,7 +17,7 @@
 		overflow: hidden;
 		outline: none;
 		border: var(--st-field-border-width) solid var(--st-field-border-color);
-		height: var(--st-field-size);
+		height: var(--st-field-height);
 		border-radius: var(--st-field-border-radius);
 		background-color: var(--st-field-bg-color);
 		padding: var(--st-field-padding);

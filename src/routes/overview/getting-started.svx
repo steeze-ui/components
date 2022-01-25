@@ -1,3 +1,19 @@
 # Getting Started
 
-## TODO
+### Install the package using pnpm (or npm, yarn)
+
+```bash
+pnpm i -D @steeze-ui/components
+```
+
+## Import Base Styles
+
+If you want a solid foundation of styles that can be easily overriden using CSS Custom Components:
+
+```svelte
+<script>
+  import "@steeze-ui/components/base.css"
+</script>
+```
+
+Check out the [Styling Guide](/overview/styling) to learn more about how styling works.

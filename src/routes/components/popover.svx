@@ -1,5 +1,6 @@
 ---
-id: 2
+id: 1
+type: 2
 title: Popover
 description: Display Content that floats around a trigger
 ---
@@ -14,12 +15,12 @@ description: Display Content that floats around a trigger
 	
 </script>
 
-<Title {title} {description} />
+<Title {title} {type} {description} />
 
 <Demo id={id}>
 	<Popover>
 		<Button slot="trigger" let:toggleOpened on:click={toggleOpened}>open</Button>
-		<div>
+		<div slot="content">
 			<p style:color="white">Content</p>
 		</div>
 	</Popover>
@@ -56,3 +57,21 @@ description: Display Content that floats around a trigger
 | `position`<Help text="Prefered initial position of the floating content" />          | <code hl>FloatingPosition</code> | <code hl>"bottom"</code> |
 | `showClose`<Help text="Show the close Button of the floating content" />             | <code hl>Boolean</code>          | <code hl>false</code>    |
 | `*`<Help text="Everything else will be applied to the Content Wrapper" />            | <code hl>\*</code>               | <code hl>-</code>        |
+
+### Slots
+
+| Slot name | Props                                                                  | Description                                    |
+| --------- | ---------------------------------------------------------------------- | ---------------------------------------------- |
+| `trigger` | <code hl>id</code> <code hl>opened</code> <code hl>toggleOpened</code> | The trigger that initiates the popover content |
+| `content` | -                                                                      | The content to display in the popover          |
+
+### Styles
+
+| Custom Propery               | Default                                    |
+| ---------------------------- | ------------------------------------------ |
+| `--st-popover-padding`       | <code hl>1rem</code>                       |
+| `--st-popover-box-shadow`    | <code hl>--st-overlay-box-shadow</code>    |
+| `--st-popover-bg-color`      | <code hl>--st-overlay-bg-color</code>      |
+| `--st-popover-border-radius` | <code hl>--st-overlay-border-radius</code> |
+| `--st-popover-border-width`  | <code hl>--st-overlay-border-width</code>  |
+| `--st-popover-border-color`  | <code hl>--st-overlay-border-color</code>  |

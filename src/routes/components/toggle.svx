@@ -1,4 +1,5 @@
 ---
+type: 1
 id: 3
 title: Toggle
 description: Switch a value betwenn two states
@@ -13,7 +14,7 @@ description: Switch a value betwenn two states
 
 </script>
 
-<Title {title} {description} />
+<Title {title} {type} {description} />
 
 <Demo id={id}>
 	<Toggle checked />
@@ -39,6 +40,17 @@ description: Switch a value betwenn two states
 | `disabled`<Help text="If the user can change the value" /> | <code hl>Boolean</code> | <code hl>false</code> |
 | `name`<Help text="Name attribute for forms" />             | <code hl>String</code>  | <code hl>""</code>    |
 | `value`<Help text="Value attribute for forms" />           | <code hl>String</code>  | <code hl>"on"</code>  |
+
+### Styles
+
+| Custom Propery                       | Default                              | Description                   |
+| ------------------------------------ | ------------------------------------ | ----------------------------- |
+| `--st-toggle-size`                   | <code hl>20px</code>                 | Diameter of the Thumb         |
+| `--st-toggle-offset`                 | <code hl>4px</code>                  | Offset between Root and Thumb |
+| `--st-toggle-bg-color`               | <code hl>--st-colors-dark2</code>    | BG of Root when unchecked     |
+| `--st-toggle-checked-bg-color`       | <code hl>--st-colors-primary5</code> | BG of Root when checked       |
+| `--st-toggle-thumb-bg-color`         | <code hl>--st-colors-dark8</code>    | BG of Thumb when unchecked    |
+| `--st-toggle-thumb-checked-bg-color` | <code hl>--st-colors-light3</code>   | BG of Thumb when checked      |
 
 ## Examples
 

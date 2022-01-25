@@ -7,8 +7,8 @@
 
 <style>
 	span {
-		font-weight: var(--st-helper-font-weight);
-		font-size: var(--st-helper-font-size);
-		color: var(--st-helper-color);
+		font-weight: var(--st-label-font-weight, var(--st-font-weight-normal));
+		font-size: var(--st-label-font-size, var(--st-font-size-xs));
+		color: var(--st-label-color);
 	}
 </style>

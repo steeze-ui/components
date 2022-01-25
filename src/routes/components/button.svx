@@ -1,5 +1,6 @@
 ---
-id: 1
+id: 0
+type: 2
 title: Button
 description: Click for Action
 ---
@@ -15,7 +16,7 @@ description: Click for Action
 	
 </script>
 
-<Title {title} {description} />
+<Title {title} {type} {description} />
 
 <Demo id={id}>
 	<Button theme="primary" style="width:8rem">Primary</Button>
@@ -50,7 +51,38 @@ description: Click for Action
 | `disabled`                                              | <code hl>Boolean</code>    | <code hl>false</code>       |
 | `icon`<Help text="Icon Source from @steeze-ui/icons" /> | <code hl>IconSource</code> | <code hl>null</code>        |
 | `iconTheme`<Help text="Icon Theme used for the icon" /> | <code hl>String</code>     | <code hl>"default"</code>   |
-| `theme`<Help text="Appearance of the button" />         | <code hl>ButtonSize</code> | <code hl>"secondary"</code> |
+| `iconSize`<Help text="Size of the Icon" />              | <code hl>String</code>     | <code hl>"20px"</code>      |
+| `theme`<Help text="Appearance of the button" />         | <code hl>String</code>     | <code hl>"secondary"</code> |
+
+### Slots
+
+| Slot name | Props | Description                                   |
+| --------- | ----- | --------------------------------------------- |
+| `default` | -     | Button Content                                |
+| `prefix`  | -     | What to render before the button default slot |
+
+### Styles
+
+| Custom Propery              | Default                                  |
+| --------------------------- | ---------------------------------------- |
+| `--st-button-height`        | <code hl>--st-field-height</code>        |
+| `--st-button-padding`       | <code hl>--st-field-padding</code>       |
+| `--st-button-font-size`     | <code hl>--st-field-font-size</code>     |
+| `--st-button-font-weight`   | <code hl>--st-field-font-weight</code>   |
+| `--st-button-color`         | <code hl>--st-body-text-color</code>     |
+| `--st-button-bg-color`      | <code hl>transparent</code>              |
+| `--st-button-border-radius` | <code hl>--st-field-border-radius</code> |
+| `--st-button-border-color`  | <code hl>transparent</code>              |
+| `--st-button-border-width`  | <code hl>--st-field-border-field</code>  |
+| `--st-button-transition`    | <code hl>--st-hover-transition</code>    |
+
+### Themes
+
+| Theme Name  | Notes                         |
+| ----------- | ----------------------------- |
+| `primary`   | A theme for important buttons |
+| `secondary` |                               |
+| `tertiary`  |                               |
 
 ## Examples
 

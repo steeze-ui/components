@@ -50,6 +50,21 @@
 </div>
 
 <style>
+	:root {
+		--st-colors-emerald8: hsl(163, 94%, 24%);
+		--st-colors-teal8: hsl(175, 77%, 26%);
+		--st-colors-cyan8: hsl(193, 82%, 31%);
+		--st-colors-sky8: hsl(201, 96%, 32%);
+		--st-colors-blue8: hsl(224, 76%, 48%);
+		--st-colors-violet8: hsl(263, 70%, 50%);
+		--st-colors-purple8: hsl(272, 72%, 47%);
+		--st-colors-fuchsia8: hsl(295, 72%, 40%);
+		--st-colors-pink8: hsl(335, 78%, 42%);
+		--st-colors-rose8: hsl(345, 83%, 41%);
+		--st-colors-orange8: rgb(194, 65, 12);
+		--st-colors-yellow8: hsl(35, 92%, 33%);
+		--st-colors-lime8: hsl(86, 78%, 27%);
+	}
 	[part='grid'] {
 		/* background-size: 60px 60px;
 		background-image: linear-gradient(to right, rgba(148, 163, 184, 0.1) 1px, transparent 1px),

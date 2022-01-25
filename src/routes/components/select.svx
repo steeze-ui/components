@@ -1,5 +1,6 @@
 ---
-id: 0
+type: 1
+id: 2
 title: Select
 description: Choose a Single Item from a Set of Items
 ---
@@ -27,7 +28,7 @@ description: Choose a Single Item from a Set of Items
 	
 </script>
 
-<Title {title} {description} />
+<Title {title} {type} {description} />
 
 <Demo id={id}>
 	<Select width="12rem" placeholder="Filter.." items={items} />
@@ -87,6 +88,19 @@ description: Choose a Single Item from a Set of Items
 | `label`   | -                                                                                                                                                               | Place a custom label above the field  |
 | `helper`  | -                                                                                                                                                               | Place a custom helper below the field |
 | `item`    | <code hl>id</code> <code hl>item</code> <code hl>label</code> <code hl>focused</code> <code hl>selected</code> <code hl>onFocus</code> <code hl>onSelect</code> | Replaces the default menu item        |
+
+### Styles
+
+_incomplete_
+
+| Custom Propery                | Default                                    | Description            |
+| ----------------------------- | ------------------------------------------ | ---------------------- |
+| `--st-select-active-bg-color` | <code hl>--st-colors-gray10</code>         | hover or open selector |
+| `--st-select-font-size`       | <code hl>--st-field-font-size</code>       |
+| `--st-select-font-weight`     | <code hl>--st-field-font-weight</code>     |
+| `--st-select-color`           | <code hl>--st-field-color</code>           |
+| `--st-tooltip-bg-color`       | <code hl>--st-overlay-bg-color</code>      |
+| `--st-tooltip-border-radius`  | <code hl>--st-overlay-border-radius</code> |
 
 ## Examples
 

@@ -35,7 +35,7 @@
 	part="switch"
 	{value}
 	{id}
-	tabindex="0"
+	tabindex={disabled ? -1 : 0}
 	style={$$props.style}
 	aria-checked={checked}
 	aria-disabled={disabled}

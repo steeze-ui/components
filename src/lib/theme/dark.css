@@ -2,38 +2,38 @@
 	/* ! Primitives */
 
 	/* Colors */
-	--st-colors-dark1: hsl(234, 4%, 29%);
-	--st-colors-dark2: hsl(234, 7%, 24%);
-	--st-colors-dark3: hsl(235, 10%, 20%);
-	--st-colors-dark4: hsl(236, 13%, 18%);
-	--st-colors-dark5: hsl(238, 13%, 13%);
+	--st-colors-dark1: hsl(240, 4%, 29%);
+	--st-colors-dark2: hsl(240, 7%, 24%);
+	--st-colors-dark3: hsl(240, 10%, 20%);
+	--st-colors-dark4: hsl(240, 13%, 18%);
+	--st-colors-dark5: hsl(240, 13%, 13%);
 	--st-colors-dark6: hsl(240, 15%, 12%);
-	--st-colors-dark7: hsl(241, 18%, 11%);
-	--st-colors-dark8: hsl(243, 21%, 11%);
-	--st-colors-dark9: hsl(246, 24%, 9%);
-	--st-colors-dark10: hsl(248, 27%, 6%);
+	--st-colors-dark7: hsl(240, 18%, 11%);
+	--st-colors-dark8: hsl(240, 21%, 11%);
+	--st-colors-dark9: hsl(240, 24%, 9%);
+	--st-colors-dark10: hsl(240, 27%, 6%);
 
 	--st-colors-gray1: hsl(240, 6%, 98%);
 	--st-colors-gray2: hsl(240, 6%, 95%);
-	--st-colors-gray3: hsl(243, 6%, 87%);
-	--st-colors-gray4: hsl(243, 6%, 78%);
-	--st-colors-gray5: hsl(243, 6%, 65%);
-	--st-colors-gray6: hsl(243, 6%, 55%);
-	--st-colors-gray7: hsl(244, 7%, 45%);
-	--st-colors-gray8: hsl(244, 8%, 35%);
-	--st-colors-gray9: hsl(246, 11%, 22%);
-	--st-colors-gray10: hsl(246, 18%, 15%);
+	--st-colors-gray3: hsl(240, 6%, 87%);
+	--st-colors-gray4: hsl(240, 6%, 78%);
+	--st-colors-gray5: hsl(240, 6%, 65%);
+	--st-colors-gray6: hsl(240, 6%, 55%);
+	--st-colors-gray7: hsl(240, 7%, 45%);
+	--st-colors-gray8: hsl(240, 8%, 35%);
+	--st-colors-gray9: hsl(240, 11%, 22%);
+	--st-colors-gray10: hsl(240, 18%, 15%);
 
 	--st-colors-light1: hsl(240, 6%, 99%);
 	--st-colors-light2: hsl(240, 6%, 99%);
-	--st-colors-light3: hsl(243, 6%, 98%);
-	--st-colors-light4: hsl(243, 6%, 98%);
-	--st-colors-light5: hsl(243, 6%, 96%);
-	--st-colors-light6: hsl(243, 6%, 95%);
-	--st-colors-light7: hsl(244, 7%, 95%);
-	--st-colors-light8: hsl(244, 8%, 93%);
-	--st-colors-light9: hsl(246, 11%, 89%);
-	--st-colors-light10: hsl(246, 18%, 88%);
+	--st-colors-light3: hsl(240, 6%, 98%);
+	--st-colors-light4: hsl(240, 6%, 98%);
+	--st-colors-light5: hsl(240, 6%, 96%);
+	--st-colors-light6: hsl(240, 6%, 95%);
+	--st-colors-light7: hsl(240, 7%, 95%);
+	--st-colors-light8: hsl(240, 8%, 93%);
+	--st-colors-light9: hsl(240, 11%, 89%);
+	--st-colors-light10: hsl(240, 18%, 88%);
 
 	--st-colors-primary1: hsl(240, 70%, 95%);
 	--st-colors-primary2: hsl(240, 70%, 85%);
@@ -45,19 +45,7 @@
 	--st-colors-primary8: hsl(240, 45%, 28%);
 	--st-colors-primary9: hsl(240, 40%, 16%);
 
-	--st-colors-emerald8: hsl(163, 94%, 24%);
-	--st-colors-teal8: hsl(175, 77%, 26%);
-	--st-colors-cyan8: hsl(193, 82%, 31%);
-	--st-colors-sky8: hsl(201, 96%, 32%);
-	--st-colors-blue8: hsl(224, 76%, 48%);
-	--st-colors-violet8: hsl(263, 70%, 50%);
-	--st-colors-purple8: hsl(272, 72%, 47%);
-	--st-colors-fuchsia8: hsl(295, 72%, 40%);
-	--st-colors-pink8: hsl(335, 78%, 42%);
-	--st-colors-rose8: hsl(345, 83%, 41%);
-	--st-colors-orange8: rgb(194, 65, 12);
-	--st-colors-yellow8: hsl(35, 92%, 33%);
-	--st-colors-lime8: hsl(86, 78%, 27%);
+	--st-colors-primary5-80pct: hsla(240, 60%, 52%, 0.8);
 
 	/* Border Radius */
 	--st-border-radius-none: 0;
@@ -109,27 +97,16 @@
 	--st-box-shadow-focus: 0 0 0 calc(2px) var(--st-primary-color);
 
 	/* Primary color */
-	--st-primary-light-color: var(--st-colors-primary3);
 	--st-primary-color: var(--st-colors-primary5);
-	--st-primary-dark-color: var(--st-colors-primary7);
 
 	/* Overlay */
 	--st-overlay-box-shadow: var(--st-box-shadow-lg);
 	--st-overlay-border-width: 1px;
 	--st-overlay-border-radius: var(--st-border-radius);
 
-	/* Item */
-	--st-item-font-size: var(--st-field-font-size);
-	--st-item-font-weight: var(--st-field-font-weight);
-	--st-item-border-radius: var(--st-border-radius-sm);
-	--st-item-padding: 0.2rem 0.75rem 0.2rem 0.5rem;
-	--st-item-group-font-size: var(--st-font-size-xs);
-	--st-item-group-font-weight: var(--st-font-weight-medium);
-	--st-item-group-margin: 0 0 0 0.5rem;
-
 	/* Field */
-	--st-field-size-sm: 28px;
-	--st-field-size-md: 42px;
+	--st-field-height-sm: 28px;
+	--st-field-height-md: 42px;
 
 	--st-field-padding-sm: 0.3rem 0.5rem;
 	--st-field-padding-md: 0.5rem 0.75rem;
@@ -141,33 +118,12 @@
 	--st-field-border-radius-md: var(--st-border-radius-md);
 
 	/* Field medium */
-	--st-field-size: var(--st-field-size-md);
+	--st-field-height: var(--st-field-height-md);
 	--st-field-padding: var(--st-field-padding-md);
 	--st-field-border-radius: var(--st-field-border-radius-md);
 	--st-field-font-size: var(--st-field-font-size-md);
 	--st-field-font-weight: var(--st-font-weight-normal);
 	--st-field-border-width: 1px;
-
-	/* Button */
-	--st-button-size: var(--st-field-size);
-	--st-button-font-weight: var(--st-field-font-weight);
-	--st-button-font-size: var(--st-field-font-size);
-	--st-button-border-radius: var(--st-field-border-radius);
-	--st-button-padding: var(--st-field-padding);
-
-	/* Label */
-	--st-label-font-size: var(--st-font-size-xs);
-	--st-label-font-weight: var(--st-font-weight-semibold);
-	--st-label-color: var(--st-colors-gray4);
-
-	/* Helper */
-	--st-helper-font-size: var(--st-font-size-xs);
-	--st-helper-font-weight: var(--st-font-weight-normal);
-	--st-helper-color: var(--st-colors-gray5);
-
-	/* Toggle */
-	--st-toggle-size: 20px;
-	--st-toggle-offset: 4px;
 }
 
 /* ! Dark Theme */
@@ -180,22 +136,16 @@
 	/* Text Color */
 	--st-body-text-color: var(--st-colors-gray3);
 	--st-secondary-text-color: var(--st-colors-gray6);
-	--st-tertiary-text-color: var(--st-colors-gray6);
-	--st-disabled-text-color: var(--st-colors-gray6);
+	--st-helper-color: var(--st-colors-gray5);
+	--st-label-color: var(--st-colors-gray4);
 
 	/* Field */
 	--st-field-bg-color: var(--st-colors-dark8);
 	--st-field-color: var(--st-body-text-color);
 	--st-field-placeholder-color: var(--st-secondary-text-color);
 	--st-field-border-color: var(--st-border-color);
-	--st-field-button-bg-color: var(--st-colors-dark4);
-	--st-field-button-hover-bg-color: var(--st-colors-dark3);
-
-	/* Button */
-	--st-button-bg-color: var(--st-colors-dark5);
-	--st-button-color: var(--st-field-color);
-	--st-button-border-color: var(--st-colors-dark1);
-	--st-button-hover-bg-color: var(--st-colors-dark4);
+	--st-field-secondary-bg-color: var(--st-colors-dark4);
+	--st-field-secondary-hover-bg-color: var(--st-colors-dark3);
 
 	/* Overlay */
 	--st-overlay-border-color: var(--st-colors-dark4);
@@ -204,9 +154,9 @@
 	/* Item */
 	--st-item-bg-color: transparent;
 	--st-item-focus-bg-color: var(--st-primary-color);
-	--st-item-text-color: var(--st-field-color);
+	--st-item-color: var(--st-field-color);
 	--st-item-focus-text-color: var(--st-colors-light2);
 	--st-item-icon-color: var(--st-primary-color);
 	--st-item-focus-icon-color: var(--st-colors-light2);
-	--st-item-group-text-color: var(--st-secondary-text-color);
+	--st-item-group-color: var(--st-secondary-text-color);
 }

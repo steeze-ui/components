@@ -46,7 +46,7 @@
 			<MenuItem label="Select" href="/components/select" />
 			<MenuItem tag="Planned" disabled label="Tabs" href="/components/tabs" />
 			<MenuItem label="Toggle" href="/components/toggle" />
-			<MenuItem tag="Planned" disabled label="Tooltip" href="/components/tooltip" />
+			<MenuItem label="Tooltip" href="/components/tooltip" />
 		</MenuSection>
 		<MenuSection label="Icons">
 			<MenuItem label="About" href="/icons" />

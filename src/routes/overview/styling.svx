@@ -1,3 +1,59 @@
 # Styling
 
-## TODO
+## Base Styles
+
+All components are prestyled when importing the predefined [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) from `@steeze-ui/components/base.css` as seen in the documentation examples. The properties deliver most tokens a design system should have like `color`, `font size`, `shadow` which are used throughout the components.
+
+Every component also defines their own properties which at first extend from the base properties but are globally overridable.
+
+All tokens of the steeze design system are prefixed with `st` ( e.g --st-field-size )
+
+## Dark Theme
+
+Steeze UI provides a dark and light variant of all components just add `.light-theme` or `.dark-theme` to the html or body tag (with dark theme as the default if not provided)
+
+## Base Overrides
+
+Some properties are used in many places, like the `--st-field-border-radius` property which is used to define the border radius of all input fields (e.g Select or TextField). These can be used to quickly change the overall look of the components.
+
+Define them in the `root` of your stylesheet or wherever you want to apply them (e.g only a part of your app should have rounded borders).
+
+## Component Overrides
+
+Whenever a component would use something from the design system like `background-color`, it will be availabe for you to override it with a prefix of the component. For example if you want to change the background color of the Button component, you can override the base bg with: `--st-button-bg-color` or the font size with: `--st-button-font-size`
+
+## Component Parts
+
+When a component isn't as simple as the Button component and has multiple parts, they are marked as such. E.g the label of a Select component always has the attribute `part="label"`, so you can access it like:
+
+```css
+:global([part='select'] [part='label']) {
+	color: var(--st-colors-gray4);
+}
+```
+
+Every Component also defines its name as a part in Kebab case.
+
+## Theming
+
+All components have access to the `theme` property, so you can define multiple variants of a component.
+
+For example if we want to add a borderless variant to our select components, simply add this global style:
+
+```css
+:global([part='select'][data-theme*='borderless'] [part='input-field']) {
+	border: none;
+}
+```
+
+Now you can use the theme like this:
+
+```svelte
+<Select {items} theme="borderless" />
+```
+
+It is also possible to add multiple themes, just split the names with a space like:
+
+```svelte
+<Select {items} theme="borderless dimmed small" />
+```
