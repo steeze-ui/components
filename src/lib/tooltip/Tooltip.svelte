@@ -32,7 +32,7 @@
 </script>
 
 <div
-	part="tooltip-trigger"
+	part="trigger-wrapper"
 	bind:this={refTrigger}
 	on:pointerenter={handleEnter}
 	on:pointerleave={handleLeave}
@@ -43,7 +43,7 @@
 {#if opened}
 	<Portal>
 		<Floating bind:this={refFloating} {position} trigger={refTrigger}>
-			<div part="tooltip" data-theme={theme}>
+			<div data-component="tooltip" data-theme={theme}>
 				<slot name="content" />
 			</div>
 		</Floating>
@@ -51,7 +51,7 @@
 {/if}
 
 <style>
-	[part='tooltip'] {
+	[data-component='tooltip'] {
 		font-size: var(--st-tooltip-font-size, var(--st-font-size-sm));
 		font-weight: var(--st-tooltip-font-weight, var(--st-font-weight-normal));
 		color: var(--st-tooltip-color, var(--st-body-text-color));

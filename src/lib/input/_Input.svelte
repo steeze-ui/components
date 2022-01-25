@@ -1,21 +1,20 @@
 <script lang="ts">
-	import { css } from '$stitches';
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import type { IconSource } from '@steeze-ui/svelte-icon/types';
-	import { onMount } from 'svelte';
+	import { Icon } from '@steeze-ui/svelte-icon'
+	import type { IconSource } from '@steeze-ui/svelte-icon/types'
+	import { onMount } from 'svelte'
 
-	export let name: string;
-	export let placeholder = '';
-	export let focus = false;
-	export let value = '';
-	export let required = false;
-	export let icon: IconSource = null;
+	export let name: string
+	export let placeholder = ''
+	export let focus = false
+	export let value = ''
+	export let required = false
+	export let icon: IconSource = null
 
-	let input: HTMLInputElement;
+	let input: HTMLInputElement
 
 	onMount(() => {
-		focus && input.focus();
-	});
+		focus && input.focus()
+	})
 </script>
 
 <div

@@ -294,7 +294,7 @@
 	}}
 />
 
-<div part="select" style:width data-theme={theme} {...$$restProps}>
+<div data-component="select" style:width data-theme={theme} {...$$restProps}>
 	<slot name="label">
 		{#if label}
 			<Label for={name}>{label}</Label>
@@ -425,12 +425,13 @@
 {/if}
 
 <style>
-	:global([part='select'] [part='input-field'][data-expanded='true'], [part='select']
+	:global([data-component='select']
+			[part='input-field'][data-expanded='true'], [data-component='select']
 			[part='input-field']:hover) {
 		background-color: var(--st-colors-gray10);
 	}
 
-	[part='select'] {
+	[data-component='select'] {
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
@@ -505,14 +506,14 @@
 	}
 
 	/* Theme */
-	[part='select'][data-theme*='small'] {
+	[data-component='select'][data-theme*='small'] {
 		--st-select-font-size: var(--st-font-size-xs);
 		--st-field-padding: var(--st-field-padding-sm);
 		--st-field-height: var(--st-field-size-sm);
 		--st-select-toggle-margin: 0;
 		--st-select-toggle-size: 12px;
 	}
-	[part='select'][data-theme*='transparent'] {
+	[data-component='select'][data-theme*='transparent'] {
 		--st-field-bg-color: transparent;
 	}
 </style>

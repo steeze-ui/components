@@ -23,7 +23,7 @@
 	{...props}
 	{...$$restProps}
 	{disabled}
-	part="button"
+	data-component="button"
 	data-theme={theme}
 	style:width
 	on:click

@@ -44,7 +44,7 @@
 			clickOutsideEnabled
 			clickOutsideCallback={setClosed}
 		>
-			<div part="popover" data-theme={theme} role="dialog" id={contentId} tabindex="-1">
+			<div data-component="popover" data-theme={theme} role="dialog" id={contentId} tabindex="-1">
 				{#if showClose}
 					<div style="position:absolute; color:white; top:0rem; right:0rem">
 						<button
@@ -63,8 +63,7 @@
 {/if}
 
 <style>
-	/* Overlay */
-	[part='popover'] {
+	[data-component='popover'] {
 		overflow: auto;
 		z-index: 100;
 		padding: var(--st-popover-padding, 1rem);

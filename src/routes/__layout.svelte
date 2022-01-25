@@ -26,7 +26,7 @@
 				'Combo Box': '_/components/combo-box',
 				'Radio Group': '_/components/radio-group',
 				Checkbox: '_/components/checkbox',
-				'Text Field': '_/components/text-field',
+				'Text Field': '/components/text-field',
 				'Number Field': '_/components/number-field',
 				'Text Area': '_/components/text-area',
 				Toggle: '/components/toggle'

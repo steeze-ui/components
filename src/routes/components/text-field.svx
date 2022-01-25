@@ -1,12 +1,12 @@
 ---
-id: 0
-type: 0
-title: ?
-description: Click for Action
+id: 6
+type: 1
+title: TextField
+description: User Input as Simple Text
 ---
 
 <script lang="ts">
-	import ? from '$lib/?.svelte'
+	import TextField from '$lib/text-field/TextField.svelte'
 	import Demo from './../_components/Demo.svelte'
 	import Title from './../_components/Title.svelte'
 	import Help from './../_components/Help.svelte'
@@ -16,7 +16,7 @@ description: Click for Action
 <Title {title} {type} {description} />
 
 <Demo id={id}>
-	<? />
+	<TextField />
 </Demo>
 
 <Features features={[
@@ -27,10 +27,10 @@ description: Click for Action
 
 ```svelte
 <script>
-	import {?} from '@steeze-ui/components'
+	import {TextField} from '@steeze-ui/components'
 </script>
 
-<? />
+<TextField />
 ```
 
 ## API Reference
@@ -65,7 +65,7 @@ This demonstrates the usage
 
 ```svelte
 <script>
-	import { ? } from '@steeze-ui/components'
+	import { TextField } from '@steeze-ui/components'
 </script>
 
 <Button />

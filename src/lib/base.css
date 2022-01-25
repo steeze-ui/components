@@ -160,3 +160,10 @@
 	--st-item-focus-icon-color: var(--st-colors-light2);
 	--st-item-group-color: var(--st-secondary-text-color);
 }
+
+.st-focus-ring:focus {
+	outline: none;
+}
+.st-focus-ring:focus-visible {
+	outline: var(--st-outline-width) solid var(--st-outline-color);
+}
