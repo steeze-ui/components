@@ -318,8 +318,6 @@
 		aria-expanded={opened}
 		data-expanded={opened}
 		aria-controls={itemsId}
-		{label}
-		{name}
 	>
 		<slot name="prefix" />
 
@@ -509,7 +507,7 @@
 	[data-component='select'][data-theme*='small'] {
 		--st-select-font-size: var(--st-font-size-xs);
 		--st-field-padding: var(--st-field-padding-sm);
-		--st-field-height: var(--st-field-size-sm);
+		--st-field-height: var(--st-field-height-sm);
 		--st-select-toggle-margin: 0;
 		--st-select-toggle-size: 12px;
 	}

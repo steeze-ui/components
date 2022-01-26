@@ -124,10 +124,7 @@
 		</MenuSection>
 	</Menu>
 	<main class="flex flex-col flex-grow max-w-full flex-1 py-16 items-center md:pl-64">
-		<div
-			style="max-width:700px"
-			class="mx-auto flex-shrink-0 w-full px-8 text-indigo-400 prose relative"
-		>
+		<div style="max-width:700px" class="mx-auto flex-shrink-0 w-full px-8  prose relative">
 			<slot />
 		</div>
 	</main>

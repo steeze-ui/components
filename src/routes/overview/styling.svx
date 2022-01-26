@@ -6,7 +6,7 @@ All components are prestyled when importing the predefined [CSS custom propertie
 
 Every component also defines their own properties which at first extend from the base properties but are globally overridable.
 
-All tokens of the steeze design system are prefixed with `st` ( e.g --st-field-size )
+All tokens of the steeze design system are prefixed with `st` ( e.g --st-field-font-size )
 
 ## Dark Theme
 

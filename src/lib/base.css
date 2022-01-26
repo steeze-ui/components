@@ -78,8 +78,16 @@
 	--st-font-weight-bold: 700;
 	--st-font-weight-extrabold: 800;
 
+	/* Line Height */
+	--st-line-height-none: 1;
+	--st-line-height-tight: 1.25;
+	--st-line-height-snug: 1.375;
+	--st-line-height-normal: 1.5;
+	--st-line-height-loose: 2;
+
 	/* Transitions */
-	--st-hover-transition: transform, background-color 0.15s ease-in-out;
+	--st-hover-transition: transform, background-color 0.15s ease-in;
+	--st-field-transition-duration: 100ms;
 
 	/* Focus */
 	--st-outline-width: 2px;
@@ -108,8 +116,8 @@
 	--st-field-height-sm: 28px;
 	--st-field-height-md: 42px;
 
-	--st-field-padding-sm: 0.3rem 0.5rem;
-	--st-field-padding-md: 0.5rem 0.75rem;
+	--st-field-padding-sm: 0rem 0.5rem;
+	--st-field-padding-md: 0rem 0.75rem;
 
 	--st-field-font-size-sm: var(--st-font-size-sm);
 	--st-field-font-size-md: var(--st-font-size-base);
@@ -136,8 +144,12 @@
 	/* Text Color */
 	--st-body-text-color: var(--st-colors-gray3);
 	--st-secondary-text-color: var(--st-colors-gray6);
-	--st-helper-color: var(--st-colors-gray5);
+
+	/* Label */
 	--st-label-color: var(--st-colors-gray4);
+
+	/* Helper */
+	--st-helper-color: var(--st-colors-gray5);
 
 	/* Field */
 	--st-field-bg-color: var(--st-colors-dark8);
@@ -146,6 +158,23 @@
 	--st-field-border-color: var(--st-border-color);
 	--st-field-secondary-bg-color: var(--st-colors-dark4);
 	--st-field-secondary-hover-bg-color: var(--st-colors-dark3);
+	--st-field-button-bg-color: var(--st-colors-gray5);
+	--st-field-button-hover-bg-color: var(--st-colors-gray2);
+
+	/* Field Disabled */
+	--st-field-disabled-bg-color: var(--st-field-bg-color);
+	--st-field-disabled-border-color: var(--st-colors-gray6);
+	--st-field-label-disabled-color: var(--st-colors-gray3);
+
+	/* Field Hover */
+	--st-field-hover-bg-color: var(--st-field-bg-color);
+	--st-field-hover-border-color: var(--st-colors-gray6);
+	--st-field-label-hover-color: var(--st-colors-gray3);
+
+	/* Field Focus */
+	--st-field-focus-bg-color: var(--st-field-bg-color);
+	--st-field-focus-border-color: var(--st-outline-color);
+	--st-field-label-focus-color: var(--st-outline-color);
 
 	/* Overlay */
 	--st-overlay-border-color: var(--st-colors-dark4);

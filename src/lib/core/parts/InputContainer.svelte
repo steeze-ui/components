@@ -1,12 +1,9 @@
 <script lang="ts">
-	import Label from '$lib/core/parts/Label.svelte'
-
 	export let disabled = false
 	export let ref = null
 </script>
 
 <div data-disabled={disabled} on:click on:focus bind:this={ref} part="input-field" {...$$restProps}>
-	<slot name="prefix" />
 	<slot />
 </div>
 
@@ -21,6 +18,7 @@
 		border-radius: var(--st-field-border-radius);
 		background-color: var(--st-field-bg-color);
 		padding: var(--st-field-padding);
+		align-items: center;
 	}
 
 	[part='input-field'][data-disabled='true'] {
@@ -36,7 +34,8 @@
 	[part='input-field']:focus {
 		outline: none;
 	}
-	[part='input-field']:focus-visible {
+	[part='input-field']:focus-visible,
+	[data-focused='true']:focus-visible {
 		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}
 </style>
