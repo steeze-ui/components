@@ -1,3 +1,5 @@
 # Icons
 
-## TODO
+## Work in Progress
+
+While this page is in development check out the [GitHub Readme](https://github.com/steeze-ui/icons)

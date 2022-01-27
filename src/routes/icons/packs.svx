@@ -1,3 +1,5 @@
 # Icon Packs
 
-## TODO
+## Work in Progress
+
+While this page is in development check out the [Icon Packs](https://github.com/steeze-ui/icons#icon-packs) section in the GitHub Readme

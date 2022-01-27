@@ -1,3 +1,5 @@
 # Icon Components
 
-## TODO
+## Work in Progress
+
+While this page is in development check out the [Icon Components](https://github.com/steeze-ui/icons#icon-components) section in the GitHub Readme
