@@ -67,7 +67,7 @@
 		cursor: not-allowed;
 	}
 	button:disabled {
-		opacity: 0.5;
+		opacity: var(--st-field-disabled-opacity);
 	}
 	button:focus {
 		outline: none;

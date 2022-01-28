@@ -119,6 +119,10 @@
 	--st-field-padding-sm: 0rem 0.5rem;
 	--st-field-padding-md: 0rem 0.75rem;
 
+	--st-field-font-weight: var(--st-font-weight-normal);
+	--st-field-border-width: 1px;
+	--st-field-disabled-opacity: 0.7;
+
 	--st-field-font-size-sm: var(--st-font-size-sm);
 	--st-field-font-size-md: var(--st-font-size-base);
 
@@ -130,8 +134,6 @@
 	--st-field-padding: var(--st-field-padding-md);
 	--st-field-border-radius: var(--st-field-border-radius-md);
 	--st-field-font-size: var(--st-field-font-size-md);
-	--st-field-font-weight: var(--st-font-weight-normal);
-	--st-field-border-width: 1px;
 }
 
 /* ! Dark Theme */
@@ -144,6 +146,7 @@
 	/* Text Color */
 	--st-body-text-color: var(--st-colors-gray3);
 	--st-secondary-text-color: var(--st-colors-gray6);
+	--st-placeholder-text-color: var(--st-colors-gray7);
 
 	/* Label */
 	--st-label-color: var(--st-colors-gray4);
@@ -160,6 +163,8 @@
 	--st-field-secondary-hover-bg-color: var(--st-colors-dark3);
 	--st-field-button-bg-color: var(--st-colors-gray5);
 	--st-field-button-hover-bg-color: var(--st-colors-gray2);
+	--st-field-button-color: var(--st-colors-gray5);
+	--st-field-button-hover-color: var(--st-colors-gray2);
 
 	/* Field Disabled */
 	--st-field-disabled-bg-color: var(--st-field-bg-color);

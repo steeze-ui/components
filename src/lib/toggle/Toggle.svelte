@@ -47,7 +47,7 @@
 
 	:global([data-component='toggle'][data-disabled='true'] [part='switch']) {
 		cursor: not-allowed;
-		opacity: 0.5;
+		opacity: var(--st-field-disabled-opacity);
 	}
 
 	:global([part='switch']:focus) {

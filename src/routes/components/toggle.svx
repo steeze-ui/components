@@ -6,10 +6,10 @@ description: Switch a value betwenn two states
 ---
 
 <script lang="ts">
-	import Demo from './../_components/Demo.svelte'
-	import Title from './../_components/Title.svelte'
-	import Help from './../_components/Help.svelte'
-	import Features from './../_components/Features.svelte'
+	import Demo from '$lib/internal/Demo.svelte'
+	import Title from '$lib/internal/Title.svelte'
+	import Help from '$lib/internal/Help.svelte'
+	import Features from '$lib/internal/Features.svelte'
 	import Toggle from "$lib/toggle/Toggle.svelte"
 
 </script>

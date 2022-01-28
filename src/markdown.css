@@ -24,7 +24,8 @@
 	padding: 0.2rem 0.4rem;
 	border-radius: var(--st-border-radius-sm);
 }
-.prose code[hl] {
+.prose code[hl],
+.prose code[data-hl] {
 	color: var(--st-colors-gray5);
 	background-color: var(--st-colors-dark6);
 	font-weight: var(--st-font-weight-normal);

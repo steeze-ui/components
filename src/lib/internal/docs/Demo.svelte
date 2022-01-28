@@ -21,7 +21,7 @@
 	import { Moon, Sun } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 
-	import { lightTheme } from '../_stores/theme'
+	import { lightTheme } from '../stores/theme'
 
 	export let id: number
 

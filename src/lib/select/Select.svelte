@@ -424,8 +424,8 @@
 
 <style>
 	:global([data-component='select']
-			[part='input-field'][data-expanded='true'], [data-component='select']
-			[part='input-field']:hover) {
+			[part='input-container'][data-expanded='true'], [data-component='select']
+			[part='input-container']:hover) {
 		background-color: var(--st-colors-gray10);
 	}
 

@@ -10,7 +10,7 @@
 </script>
 
 {#if disabled}
-	<li data-disabled class="mx-2 text-sm py-1.25 pl-8 text-gray-500 flex gap-2 items-center">
+	<li data-disabled class="mx-2 text-sm py-1.25 pl-8 text-gray-600 flex gap-2 items-center">
 		{label}
 		{#if tag}
 			<div part="tag">

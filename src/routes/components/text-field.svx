@@ -7,29 +7,13 @@ description: User Input as Simple Text
 
 <script lang="ts">
 	import TextField from '$lib/text-field/TextField.svelte'
-	import Demo from './../_components/Demo.svelte'
-	import Title from './../_components/Title.svelte'
-	import Help from './../_components/Help.svelte'
-	import Features from './../_components/Features.svelte'
-	import {Icon} from "@steeze-ui/svelte-icon"
-	import {Heart,Pencil} from "@steeze-ui/heroicons"
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/text-field.svelte'
+	import {api, styling} from './_data/text-field.svelte'
 
-	let value = ""
-	$: theme = value.length > 0 ? "solid" : "default"
 </script>
 
-<Title {title} {type} {description} />
-
-<Demo id={id}>
-	<TextField clearable width="12rem" label="Favorite Fliptrick" bind:value helper="A Fliptrick rotates the board around its own axis">
-		<Icon {theme} slot="prefix" src={Heart} size="16px" style="flex-shrink:0"/>
-		<Icon slot="suffix" src={Pencil} size="14px" style="flex-shrink:0"  color="var(--st-colors-gray8)" />
-	</TextField> 
-</Demo>
-
-<Features features={[
-""
-]} />
+<Component {id} {type} {title} {description}></Component>
 
 ## Quickstart
 
@@ -43,35 +27,11 @@ description: User Input as Simple Text
 
 ## API Reference
 
-| Property      | Type                    | Default               |
-| ------------- | ----------------------- | --------------------- |
-| `label`       | <code hl>Boolean</code> | <code hl>false</code> |
-| `width`       | <code hl>Boolean</code> | <code hl>false</code> |
-| `helper`      | <code hl>Boolean</code> | <code hl>false</code> |
-| `name`        | <code hl>Boolean</code> | <code hl>false</code> |
-| `value`       | <code hl>Boolean</code> | <code hl>false</code> |
-| `placeholder` | <code hl>Boolean</code> | <code hl>false</code> |
-| `disabled`    | <code hl>Boolean</code> | <code hl>false</code> |
-| `required`    | <code hl>Boolean</code> | <code hl>false</code> |
-| `autoselect`  | <code hl>Boolean</code> | <code hl>false</code> |
+<TableTabs data={api} />
 
-### Slots
+## Styling Reference
 
-| Name      | Props | Notes |
-| --------- | ----- | ----- |
-| `default` | -     |       |
-
-### Styles
-
-| Custom Propery     | Default                           |
-| ------------------ | --------------------------------- |
-| `--st-item-height` | <code hl>--st-field-height</code> |
-
-### Themes
-
-| Name    | Notes |
-| ------- | ----- |
-| `small` |       |
+<TableTabs data={styling} />
 
 ## Examples
 

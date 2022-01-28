@@ -3,6 +3,7 @@
 	import { getId } from '$lib/core/utils/id'
 	import { X } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
+	import { createEventDispatcher } from 'svelte'
 
 	export let label = null
 	export let width = '12rem'
@@ -14,16 +15,18 @@
 	export let required = false
 	export let autoselect = false
 	export let clearable = false
+	export let theme = false
 
 	let refInput: HTMLInputElement
 
 	let focused = false
 
-	const id = () => console.log('For a happy compiler')
-	const htmlFor = () => console.log('For a happy compiler')
+	const dispatch = createEventDispatcher()
 
 	export function clear() {
+		const old = value
 		value = ''
+		dispatch('clear', { old })
 	}
 </script>
 
@@ -36,12 +39,18 @@
 	{disabled}
 	{focused}
 	{required}
+	{theme}
 	{...$$restProps}
 >
-	<slot name="label" slot="label" let:id {id} let:htmlFor {htmlFor} />
-	<slot name="prefix" slot="prefix" />
+	<svelte:fragment slot="label" let:htmlfor let:id>
+		<slot name="label" {id} {htmlfor} />
+	</svelte:fragment>
+
+	<svelte:fragment slot="prefix">
+		<slot name="prefix" />
+	</svelte:fragment>
+
 	<input
-		tabindex="-1"
 		slot="default"
 		part="value"
 		bind:this={refInput}
@@ -51,6 +60,7 @@
 		let:ariaDescribedby
 		let:ariaLabelledby
 		{id}
+		type="text"
 		aria-labelledby={ariaLabelledby}
 		aria-describedby={ariaDescribedby}
 		bind:value
@@ -63,18 +73,25 @@
 			if (autoselect) {
 				refInput.select()
 			}
+			dispatch('focus')
 		}}
-		on:blur={() => (focused = false)}
+		on:blur={() => {
+			focused = false
+			dispatch('blur')
+		}}
 	/>
-	<div part="suffix" slot="suffix">
+	<svelte:fragment slot="suffix">
 		<slot name="suffix" />
 		{#if clearable && value}
-			<button on:click={clear}>
+			<button part="clear-button" aria-label="clear value of text input" on:click={clear}>
 				<Icon src={X} size="16px" />
 			</button>
 		{/if}
-	</div>
-	<slot name="helper" slot="helper" let:id {id} let:htmlFor {htmlFor} />
+	</svelte:fragment>
+
+	<svelte:fragment slot="helper" let:id let:htmlfor>
+		<slot name="helper" {id} {htmlfor} />
+	</svelte:fragment>
 </FieldContainer>
 
 <style>
@@ -88,18 +105,16 @@
 		outline: none;
 		height: var(--st-field-height);
 	}
-
-	[part='suffix'] {
-		display: flex;
-		gap: 0.25rem;
-		align-items: center;
+	[part='value']::placeholder {
+		color: var(--st-placeholder-text-color);
 	}
-	[part='suffix'] button {
+
+	[part='clear-button'] {
 		height: 16px;
 		line-height: 1;
 		color: var(--st-field-button-bg-color);
 	}
-	[part='suffix'] button:hover {
+	[part='clear-button']:hover {
 		color: var(--st-field-button-hover-bg-color);
 		transition: color 100ms ease-in;
 	}

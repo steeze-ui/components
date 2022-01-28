@@ -3,12 +3,19 @@
 	export let ref = null
 </script>
 
-<div data-disabled={disabled} on:click on:focus bind:this={ref} part="input-field" {...$$restProps}>
+<div
+	data-disabled={disabled}
+	on:click
+	on:focus
+	bind:this={ref}
+	part="input-container"
+	{...$$restProps}
+>
 	<slot />
 </div>
 
 <style>
-	[part='input-field'] {
+	[part='input-container'] {
 		display: flex;
 		position: relative;
 		overflow: hidden;
@@ -21,20 +28,20 @@
 		align-items: center;
 	}
 
-	[part='input-field'][data-disabled='true'] {
+	[part='input-container'][data-disabled='true'] {
 		border-style: dashed;
 		overflow: hidden;
 		cursor: not-allowed;
 		opacity: 0.7;
 	}
-	[part='input-field'][data-disabled='true']:hover {
+	[part='input-container'][data-disabled='true']:hover {
 		background-color: var(--st-field-bg-color);
 	}
 
-	[part='input-field']:focus {
+	[part='input-container']:focus {
 		outline: none;
 	}
-	[part='input-field']:focus-visible,
+	[part='input-container']:focus-visible,
 	[data-focused='true']:focus-visible {
 		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}

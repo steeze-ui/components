@@ -41,7 +41,7 @@ All components have access to the `theme` property, so you can define multiple v
 For example if we want to add a borderless variant to our select components, simply add this global style:
 
 ```css
-:global([part='select'][data-theme*='borderless'] [part='input-field']) {
+:global([part='select'][data-theme*='borderless'] [part='input-container']) {
 	border: none;
 }
 ```
