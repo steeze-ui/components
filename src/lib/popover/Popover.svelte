@@ -6,7 +6,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { getId } from '../core/utils/id'
 
-	export let position: FloatingPosition
+	export let position: FloatingPosition = 'bottom'
 	export let showClose = false
 	export let opened = false
 	export let theme = ''

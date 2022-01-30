@@ -39,7 +39,7 @@
 				Carousel: '_/components/carousel',
 				Details: '_/components/details',
 				'Dropdown Menu': '_/components/dropdown-menu',
-				Tabs: '_/components/tabs',
+				Tabs: '/components/tabs',
 				Accordion: '_/components/accordion',
 				Notification: '_/components/notification',
 				Dialog: '_/components/dialog'

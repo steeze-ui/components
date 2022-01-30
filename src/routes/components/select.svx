@@ -6,42 +6,12 @@ description: Choose a Single Item from a Set of Items
 ---
 
 <script lang="ts">
-	import Select from '$lib/select/Select.svelte'
-	import Demo from '$lib/internal/Demo.svelte'
-	import Title from '$lib/internal/Title.svelte'
-	import Help from '$lib/internal/Help.svelte'
-	import Features from '$lib/internal/Features.svelte'
-
-	const items = [
-		{ id: '1', label: 'Hot', },
-		{ id: '2', label: 'New' }
-	]
-	const itemsWithGroup = [	
-		{id:"1",label:"Flatrail",group:"Rails"},
-		{id:"2",label:"Handrail",group:"Rails"},
-		{id:"3",label:"Wallbank",group:"Bank"},
-		{id:"4",label:"Speedbank",group:"Bank"},
-		{id:"5",label:"A-Frame",group:"Funbox"},
-		{id:"6",label:"Pyramid",group:"Funbox"},
-	]
-	const itemsMap = { '1': {label: 'First Item'},'2': {label: 'Second Item'}, }
-	
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/select.svelte'
+	import {api, styling} from './_data/select.svelte'
 </script>
 
-<Title {title} {type} {description} />
-
-<Demo id={id}>
-	<Select width="12rem" placeholder="Filter.." items={items} />
-	<Select width="12rem" loop searchable clearable groupBy={e=>e.group} placeholder="Choose Obstacle.." items={itemsWithGroup} />
-</Demo>
-
-<Features features={[
-"Keyboard support",
-"Screen Reader capable",
-"Searchable",
-"Groupable",
-"Custom Renderers"
-]} />
+<Component {id} {type} {title} {description}></Component>
 
 ## Quickstart
 
@@ -60,53 +30,11 @@ description: Choose a Single Item from a Set of Items
 
 ## API Reference
 
-### Props
+<TableTabs data={api} />
 
-| Property                                                                                  | Type                                     | Default                             |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------- |
-| `identifier`<Help text="Unique identifier of the item, used for internal calculations" /> | <code hl>String</code>                   | <code hl>"id"</code>                |
-| `items`<Help text="The values to choose from" />                                          | <code hl>SelectItem[]</code>             | <code hl>[]</code>                  |
-| `value`<Help text="The selected value" />                                                 | <code hl>SelectItem</code>               | <code hl>null</code>                |
-| `groupBy`<Help text="Group Items by a given key" />                                       | <code hl>(e:SelectItem) => string</code> | <code hl>null</code>                |
-| `searchable`<Help text="Allow the user to search for items " />                           | <code hl>Boolean</code>                  | <code hl>false</code>               |
-| `clearable`<Help text="Allow the user to clear the selected value " />                    | <code hl>Boolean</code>                  | <code hl>false</code>               |
-| `loop`<Help text="Allow to loop when using the Arrows to navigate through the items" />   | <code hl>Boolean</code>                  | <code hl>false</code>               |
-| `label`<Help text="Label above the field" />                                              | <code hl>String</code>                   | <code hl>""</code>                  |
-| `helper`<Help text="Helper Text below the field" />                                       | <code hl>String</code>                   | <code hl>""</code>                  |
-| `placeholder`<Help text="What to show when no value is selected" />                       | <code hl>String</code>                   | <code hl>""</code>                  |
-| `itemLabelRenderer`<Help text="How to represent the value" />                             | <code hl>(e:SelectItem) => string</code> | <code hl>e => e?.label ?? ""</code> |
-| `position`<Help text="Prefered initial position of the floating menu" />                  | <code hl>FloatingPosition</code>         | <code hl>"bottom"</code>            |
-| `width`<Help text="Width of the container" />                                             | <code hl>String</code>                   | <code hl>"12rem"</code>             |
-| `focus`<Help text="Focus when the component mounts" />                                    | <code hl>Boolean</code>                  | <code hl>false</code>               |
-| `name`<Help text="Name property for forms" />                                             | <code hl>String</code>                   | <code hl>""</code>                  |
-| `disabled`<Help text="If the user can change the value" />                                | <code hl>Boolean</code>                  | <code hl>false</code>               |
+## Styling Reference
 
-### Slots
-
-| Name     | Props                                                                                                                                                           | Notes                                 |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| `label`  | -                                                                                                                                                               | Place a custom label above the field  |
-| `helper` | -                                                                                                                                                               | Place a custom helper below the field |
-| `item`   | <code hl>id</code> <code hl>item</code> <code hl>label</code> <code hl>focused</code> <code hl>selected</code> <code hl>onFocus</code> <code hl>onSelect</code> | Replaces the default menu item        |
-
-### Styles
-
-_incomplete_
-
-| Custom Propery                | Default                                    | Notes                  |
-| ----------------------------- | ------------------------------------------ | ---------------------- |
-| `--st-select-active-bg-color` | <code hl>--st-colors-gray10</code>         | hover or open selector |
-| `--st-select-font-size`       | <code hl>--st-field-font-size</code>       |
-| `--st-select-font-weight`     | <code hl>--st-field-font-weight</code>     |
-| `--st-select-color`           | <code hl>--st-field-color</code>           |
-| `--st-tooltip-bg-color`       | <code hl>--st-overlay-bg-color</code>      |
-| `--st-tooltip-border-radius`  | <code hl>--st-overlay-border-radius</code> |
-
-### Themes
-
-| Name    | Notes                         |
-| ------- | ----------------------------- |
-| `small` | display a smaller input field |
+<TableTabs data={styling} />
 
 ## Examples
 

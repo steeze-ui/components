@@ -39,8 +39,8 @@
 	style={$$props.style}
 	aria-checked={checked}
 	aria-disabled={disabled}
-	data-checked={checked}
-	data-disabled={disabled}
+	data-checked={checked ? '' : null}
+	data-disabled={disabled ? '' : null}
 >
 	<slot {checked} {disabled} />
 </button>

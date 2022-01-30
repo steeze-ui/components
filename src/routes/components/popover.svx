@@ -6,32 +6,13 @@ description: Display Content that floats around a trigger
 ---
 
 <script lang="ts">
-	import Popover from '$lib/popover/Popover.svelte'
-	import Button from '$lib/button/Button.svelte'
-	import Demo from '$lib/internal/Demo.svelte'
-	import Title from '$lib/internal/Title.svelte'
-	import Help from '$lib/internal/Help.svelte'
-	import Features from '$lib/internal/Features.svelte'
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/popover.svelte'
+	import {api, styling} from './_data/popover.svelte'
 	
 </script>
 
-<Title {title} {type} {description} />
-
-<Demo id={id}>
-	<Popover>
-		<Button slot="trigger" let:toggleOpened on:click={toggleOpened}>open</Button>
-		<div slot="content">
-			<p style:color="white">Content</p>
-		</div>
-	</Popover>
-</Demo>
-
-<Features features={[
-"Keyboard support",
-"Screen Reader capable",
-"Smart Floating Content",
-"Custom Content"
-]} />
+<Component {id} {type} {title} {description}></Component>
 
 ## Quickstart
 
@@ -51,27 +32,8 @@ description: Display Content that floats around a trigger
 
 ## API Reference
 
-| Property                                                                             | Type                             | Default                  |
-| ------------------------------------------------------------------------------------ | -------------------------------- | ------------------------ |
-| `opened`<Help text="Bind to read value if content is opened or set it explicitly" /> | <code hl>Boolean</code>          | <code hl>false</code>    |
-| `position`<Help text="Prefered initial position of the floating content" />          | <code hl>FloatingPosition</code> | <code hl>"bottom"</code> |
-| `showClose`<Help text="Show the close Button of the floating content" />             | <code hl>Boolean</code>          | <code hl>false</code>    |
-| `*`<Help text="Everything else will be applied to the Content Wrapper" />            | <code hl>\*</code>               | <code hl>-</code>        |
+<TableTabs data={api} />
 
-### Slots
+## Styling Reference
 
-| Name      | Props                                                                  | Notes                                          |
-| --------- | ---------------------------------------------------------------------- | ---------------------------------------------- |
-| `trigger` | <code hl>id</code> <code hl>opened</code> <code hl>toggleOpened</code> | The trigger that initiates the popover content |
-| `content` | -                                                                      | The content to display in the popover          |
-
-### Styles
-
-| Custom Propery               | Default                                    |
-| ---------------------------- | ------------------------------------------ |
-| `--st-popover-padding`       | <code hl>1rem</code>                       |
-| `--st-popover-box-shadow`    | <code hl>--st-overlay-box-shadow</code>    |
-| `--st-popover-bg-color`      | <code hl>--st-overlay-bg-color</code>      |
-| `--st-popover-border-radius` | <code hl>--st-overlay-border-radius</code> |
-| `--st-popover-border-width`  | <code hl>--st-overlay-border-width</code>  |
-| `--st-popover-border-color`  | <code hl>--st-overlay-border-color</code>  |
+<TableTabs data={styling} />

@@ -1,27 +1,18 @@
 ---
 id: 0
-type: 0
-title: ?
-description: 
+type: 1
+title: '?'
+description: '?'
 ---
 
 <script lang="ts">
-	import ? from '$lib/?.svelte'
-	import Demo from '$lib/internal/Demo.svelte'
-	import Title from '$lib/internal/Title.svelte'
-	import Help from '$lib/internal/Help.svelte'
-	import Features from '$lib/internal/Features.svelte'
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/text-field.svelte'
+	import {api, styling} from './_data/?.svelte'
+
 </script>
 
-<Title {title} {type} {description} />
-
-<Demo id={id}>
-	<? />
-</Demo>
-
-<Features features={[
-""
-]} />
+<Component {id} {type} {title} {description}></Component>
 
 ## Quickstart
 
@@ -35,27 +26,11 @@ description:
 
 ## API Reference
 
-| Property   | Type                    | Default               |
-| ---------- | ----------------------- | --------------------- |
-| `disabled` | <code hl>Boolean</code> | <code hl>false</code> |
+<TableTabs data={api} />
 
-### Slots
+## Styling Reference
 
-| Name      | Props | Notes |
-| --------- | ----- | ----- |
-| `default` | -     |       |
-
-### Styles
-
-| Custom Propery     | Default                           |
-| ------------------ | --------------------------------- |
-| `--st-item-height` | <code hl>--st-field-height</code> |
-
-### Themes
-
-| Name    | Notes |
-| ------- | ----- |
-| `small` |       |
+<TableTabs data={styling} />
 
 ## Examples
 
@@ -68,5 +43,5 @@ This demonstrates the usage
 	import { ? } from '@steeze-ui/components'
 </script>
 
-<Button />
+<? />
 ```

@@ -6,21 +6,13 @@ description: Switch a value betwenn two states
 ---
 
 <script lang="ts">
-	import Demo from '$lib/internal/Demo.svelte'
-	import Title from '$lib/internal/Title.svelte'
-	import Help from '$lib/internal/Help.svelte'
-	import Features from '$lib/internal/Features.svelte'
-	import Toggle from "$lib/toggle/Toggle.svelte"
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/toggle.svelte'
+	import {api, styling} from './_data/toggle.svelte'
 
 </script>
 
-<Title {title} {type} {description} />
-
-<Demo id={id}>
-	<Toggle checked />
-</Demo>
-
-<Features features={[]} />
+<Component {id} {type} {title} {description}></Component>
 
 ## Quickstart
 
@@ -34,23 +26,11 @@ description: Switch a value betwenn two states
 
 ## API Reference
 
-| Property                                                   | Type                    | Default               |
-| ---------------------------------------------------------- | ----------------------- | --------------------- |
-| `checked`<Help text="The value of the Toggle" />           | <code hl>Boolean</code> | <code hl>false</code> |
-| `disabled`<Help text="If the user can change the value" /> | <code hl>Boolean</code> | <code hl>false</code> |
-| `name`<Help text="Name attribute for forms" />             | <code hl>String</code>  | <code hl>""</code>    |
-| `value`<Help text="Value attribute for forms" />           | <code hl>String</code>  | <code hl>"on"</code>  |
+<TableTabs data={api} />
 
-### Styles
+## Styling Reference
 
-| Custom Propery                       | Default                              | Notes                         |
-| ------------------------------------ | ------------------------------------ | ----------------------------- |
-| `--st-toggle-size`                   | <code hl>20px</code>                 | Diameter of the Thumb         |
-| `--st-toggle-offset`                 | <code hl>4px</code>                  | Offset between Root and Thumb |
-| `--st-toggle-bg-color`               | <code hl>--st-colors-dark2</code>    | BG of Root when unchecked     |
-| `--st-toggle-checked-bg-color`       | <code hl>--st-colors-primary5</code> | BG of Root when checked       |
-| `--st-toggle-thumb-bg-color`         | <code hl>--st-colors-dark8</code>    | BG of Thumb when unchecked    |
-| `--st-toggle-thumb-checked-bg-color` | <code hl>--st-colors-light3</code>   | BG of Thumb when checked      |
+<TableTabs data={styling} />
 
 ## Examples
 

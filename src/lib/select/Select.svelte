@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FieldContainer from '$lib/core/parts/FieldContainer.svelte'
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Helper from '$lib/core/parts/Helper.svelte'
 	import InputContainer from '$lib/core/parts/InputContainer.svelte'
@@ -12,26 +13,29 @@
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { createEventDispatcher, onMount } from 'svelte'
 
+	type T = $$Generic
+
 	export let identifier = 'id'
-	export let items: SelectValue[] | SelectValueMap
-	export let value: SelectValue | string = null
+	export let items: T[] | SelectValueMap
+	export let value: T | string = null
 	//functionality
-	export let groupBy: (e: SelectValue) => string = null
+	export let groupBy: (e: T) => string = null
 	export let searchable = false
 	export let clearable = false
 	export let loop = false
 	//display
-	export let label = ''
-	export let helper = ''
-	export let placeholder = ''
-	export let itemLabelRenderer = (e: SelectValue) => e?.label ?? ''
+	export let label = null
+	export let helper = null
+	export let placeholder = null
+	export let itemLabelRenderer = (e: T) => e?.['label'] ?? ''
 	export let position: FloatingPosition = 'bottom-end'
 	export let width: string = '12rem'
 	//form
 	export let disabled = false
-	export let name = ''
+	export let required = false
+	export let name = null
 	export let focus = false
-	export let theme = ''
+	export let theme = null
 
 	let refTrigger: HTMLElement
 	let refFloating: any
@@ -41,6 +45,7 @@
 	let itemsId = getId()
 	let dispatch = createEventDispatcher()
 
+	let focused = false
 	// let refArrow: HTMLElement
 	// let arrowX = 0
 	// let arrowY = 0
@@ -54,13 +59,13 @@
 
 	// create items Map from items
 	interface ItemsMap {
-		[group: string]: SelectValue[]
+		[group: string]: T[]
 	}
 	const itemsMap: ItemsMap = {}
 
 	if (items.constructor.name === 'Object') {
 		for (const id of Object.keys(items)) {
-			const item = { ...items[id], [identifier]: id } as SelectValue
+			const item = { ...items[id], [identifier]: id } as T
 			const group = groupBy ? groupBy(item) : ''
 			if (!itemsMap[group]) {
 				itemsMap[group] = []
@@ -68,7 +73,7 @@
 			itemsMap[group].push(item)
 		}
 	} else {
-		for (const item of items as SelectValue[]) {
+		for (const item of items as T[]) {
 			const group = groupBy ? groupBy(item) : ''
 			if (!itemsMap[group]) {
 				itemsMap[group] = []
@@ -108,7 +113,7 @@
 	$: isSelected = value != null
 	$: {
 		if (isSelected) {
-			shownValue = itemLabelRenderer(value as SelectValue)
+			shownValue = itemLabelRenderer(value as T)
 		} else {
 			shownValue = ''
 		}
@@ -143,7 +148,7 @@
 		opened = false
 	}
 
-	function selectItem(item: SelectValue) {
+	function selectItem(item: T) {
 		if (clearable && item?.[identifier] === value?.[identifier]) {
 			value = null
 		} else {
@@ -153,7 +158,7 @@
 		closeSelector()
 	}
 
-	function clearItem() {
+	export function clear() {
 		value = null
 		dispatch('select', null)
 		lastCleared = true
@@ -269,6 +274,9 @@
 						openSelector()
 					}
 					break
+				case 'Tab':
+					closeSelector()
+
 				default:
 					refInput?.focus()
 					break
@@ -294,71 +302,93 @@
 	}}
 />
 
-<div data-component="select" style:width data-theme={theme} {...$$restProps}>
-	<slot name="label">
-		{#if label}
-			<Label for={name}>{label}</Label>
-		{/if}
-	</slot>
-	<InputContainer
-		on:click={() => {
-			if (lastCleared) {
-				lastCleared = false
-			}
-			openSelector()
-			refInput?.focus()
-		}}
-		bind:ref={refTrigger}
-		{disabled}
-		on:focus
-		id={buttonId}
-		role="button"
-		tabindex={disabled ? '-1' : 0}
-		aria-haspopup="true"
-		aria-expanded={opened}
-		data-expanded={opened}
-		aria-controls={itemsId}
-	>
+<FieldContainer
+	data-component="select"
+	{label}
+	{helper}
+	{width}
+	{disabled}
+	{focused}
+	{theme}
+	{...$$restProps}
+	on:click={() => {
+		if (lastCleared) {
+			lastCleared = false
+		}
+		openSelector()
+		refInput?.focus()
+	}}
+	bind:ref={refTrigger}
+	on:focus
+	data-expanded={opened ? '' : null}
+>
+	<svelte:fragment slot="label" let:htmlfor let:id>
+		<slot name="label" {id} {htmlfor} />
+	</svelte:fragment>
+
+	<svelte:fragment slot="prefix">
 		<slot name="prefix" />
+	</svelte:fragment>
 
-		<div part="value-container" title={shownValue ? shownValue : placeholder}>
-			<input
-				title="bla"
-				readonly
-				tabindex="-1"
-				aria-hidden="true"
-				part="value"
-				type="text"
+	<button
+		slot="default"
+		part="value"
+		title={shownValue}
+		on:focus={() => {
+			focused = true
+		}}
+		on:blur={() => {
+			focused = false
+		}}
+		role="listbox"
+		type="button"
+		{disabled}
+		{required}
+		id={buttonId}
+		aria-controls={itemsId}
+		aria-haspopup="true"
+		aria-expanded={opened ? true : false}
+	>
+		{#if isSelected}
+			<span>
+				{shownValue}
+			</span>
+		{:else}
+			<span part="placeholder">
 				{placeholder}
-				value={shownValue}
-				{name}
-				{disabled}
-			/>
-
-			{#if isSelected && clearable}
-				<button
-					aria-label="Clear Select"
-					on:pointerdown={clearItem}
-					part="clear-button"
-					type="button"
-				>
-					<!-- Clear Icon -->
-					<Icon src={X} size="9" />
-				</button>
-			{:else}
-				<button part="toggle-button" tabindex="-1" type="button">
-					<!-- Select Icon -->
-					<Icon src={ChevronDown} size="9" />
-				</button>
-			{/if}
-		</div>
-	</InputContainer>
-	<slot name="helper">
-		{#if helper}
-			<Helper>{helper}</Helper>
+			</span>
 		{/if}
-	</slot>
-</div>
+	</button>
+
+	<svelte:fragment slot="suffix">
+		<slot name="suffix" />
+		{#if isSelected && clearable}
+			<button
+				aria-label="clear value of the select"
+				on:pointerdown={clear}
+				part="clear-button"
+				type="button"
+			>
+				<!-- Clear Icon -->
+				<Icon src={X} size="16px" />
+			</button>
+		{:else}
+			<button
+				part="toggle-button"
+				aria-label="toggle the selector open"
+				tabindex="-1"
+				type="button"
+			>
+				<!-- Select Icon -->
+				<Icon src={ChevronDown} size="16px" />
+			</button>
+		{/if}
+	</svelte:fragment>
+
+	<svelte:fragment slot="helper" let:id let:htmlfor>
+		<slot name="helper" {id} {htmlfor} />
+	</svelte:fragment>
+</FieldContainer>
 
 <!-- Selector -->
 
@@ -423,37 +453,35 @@
 {/if}
 
 <style>
-	:global([data-component='select']
-			[part='input-container'][data-expanded='true'], [data-component='select']
-			[part='input-container']:hover) {
-		background-color: var(--st-colors-gray10);
+	:global([data-component='select'][data-expanded]) {
+		--st-field-bg-color: var(--st-colors-gray10);
+	}
+	:global([data-component='select']) {
+		--st-field-hover-border-color: var(--st-field-border-color);
+		--st-field-hover-bg-color: var(--st-colors-gray10);
 	}
 
-	[data-component='select'] {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-
-	[part='value-container'] {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		flex-grow: 1;
-		justify-content: space-between;
-		align-items: center;
-		overflow: hidden;
+	[part='value']:focus {
+		outline: none;
 	}
 	[part='value'] {
+		display: flex;
+		width: 100%;
+		flex: auto;
+		background-color: transparent;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		font-size: var(--st-select-font-size, var(--st-field-font-size));
 		font-weight: var(--st-select-font-weight, var(--st-field-font-weight));
 		color: var(--st-select-color, var(--st-field-color));
-		padding: 0;
+		padding: 0 0.25rem;
 		cursor: pointer;
 		pointer-events: none;
+	}
+
+	[part='placeholder'] {
+		color: var(--st-placeholder-text-color);
 	}
 
 	[part='clear-button'],
@@ -462,37 +490,11 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: var(--st-select-toggle-size, var(--st-icon-size-sm));
-		height: var(--st-select-toggle-size, var(--st-icon-size-sm));
-		color: var(--st-select-toggle-color, var(--st-secondary-text-color));
+		width: var(--st-select-button-size, var(--st-field-button-size));
+		height: var(--st-select-button-size, var(--st-field-button-size));
+		color: var(--st-select-button-color, var(--st-field-button-color));
 		transition: var(--st-hover-transition);
 		padding: 0;
-		margin-left: var(--st-select-toggle-margin, 0 0 0 0.5rem);
-		outline: none;
-	}
-	[part='clear-button']:focus-visible {
-		outline: var(--st-outline-width) solid var(--st-outline-color);
-	}
-	[part='clear-button']:hover {
-		background-color: var(
-			--st-select-clear-hover-bg-color,
-			var(--st-field-secondary-hover-bg-color)
-		);
-	}
-	[part='clear-button'] {
-		border-radius: var(--st-select-clear-border-radius, var(--st-border-radius-full));
-		background-color: var(--st-select-clear-bg-color, var(--st-field-secondary-bg-color));
-	}
-
-	input {
-		background-color: transparent;
-		color: var(--st-select-search-text-color, var(--st-field-color));
-		font-size: var(--st-select-search-font-size, var(--st-font-size-xs));
-		padding: 0.5rem 1rem;
-		outline: none;
-	}
-
-	input:focus {
 		outline: none;
 	}
 
@@ -501,17 +503,5 @@
 		font-size: var(--st-select-group-font-size, var(--st-font-size-xs));
 		font-weight: var(--st-select-group-font-weight, var(--st-font-weight-medium));
 		margin: var(--st-select-group-margin, 0 0 0 0.5rem);
-	}
-
-	/* Theme */
-	[data-component='select'][data-theme*='small'] {
-		--st-select-font-size: var(--st-font-size-xs);
-		--st-field-padding: var(--st-field-padding-sm);
-		--st-field-height: var(--st-field-height-sm);
-		--st-select-toggle-margin: 0;
-		--st-select-toggle-size: 12px;
-	}
-	[data-component='select'][data-theme*='transparent'] {
-		--st-field-bg-color: transparent;
 	}
 </style>

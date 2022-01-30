@@ -7,6 +7,7 @@
 	export let label = ''
 	export let helper = ''
 	export let theme = null
+	export let ref = null
 
 	export let disabled = false
 	export let focused = false
@@ -23,6 +24,7 @@
 	{...$$restProps}
 	data-disabled={disabled ? '' : null}
 	data-focused={focused ? '' : null}
+	bind:this={ref}
 >
 	<slot name="label" id={labelId} htmlfor={fieldId} />
 	{#if label}
@@ -44,7 +46,7 @@
 </div>
 
 <style>
-	div:first-child {
+	[data-component] {
 		gap: 0.25rem;
 		display: flex;
 		flex-direction: column;
@@ -86,11 +88,11 @@
 	}
 
 	/* Hover */
-	div:first-child:not([data-focused]):hover {
+	[data-component]:not([data-focused]):hover {
 		--st-label-color: var(--st-field-label-hover-color);
 	}
 
-	div:first-child:not([data-focused]):hover [part='input-container'] {
+	[data-component]:not([data-focused]):hover [part='input-container'] {
 		--st-field-border-color: var(--st-field-hover-border-color);
 		--st-field-bg-color: var(--st-field-hover-bg-color);
 	}
@@ -100,8 +102,8 @@
 		outline: none;
 	}
 	[part='input-container']:focus-visible,
-	div:first-child[data-focused],
-	div:first-child[data-focused]:hover {
+	[data-component][data-focused],
+	[data-component][data-focused]:hover {
 		--st-field-border-color: var(--st-field-focus-border-color);
 		--st-label-color: var(--st-field-label-focus-color);
 		--st-field-bg-color: var(--st-field-focus-bg-color);
@@ -114,5 +116,12 @@
 
 	[data-theme*='transparent'] [part='input-container'] {
 		background-color: transparent;
+	}
+
+	[data-theme*='small'] {
+		--st-field-font-size: var(--st-font-size-xs);
+		--st-field-padding: var(--st-field-padding-sm);
+		--st-field-height: var(--st-field-height-sm);
+		--st-field-button-size: var(--st-field-button-size-sm);
 	}
 </style>

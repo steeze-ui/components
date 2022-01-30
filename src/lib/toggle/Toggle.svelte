@@ -3,12 +3,17 @@
 
 	export let checked = false
 	export let disabled = false
-	export let name = ''
+	export let name = null
 	export let value = 'on'
-	export let theme = ''
+	export let theme = null
 </script>
 
-<div data-component="toggle" data-disabled={disabled} data-theme={theme} {...$$restProps}>
+<div
+	data-component="toggle"
+	data-disabled={disabled ? '' : null}
+	data-theme={theme}
+	{...$$restProps}
+>
 	<Switch on:change let:checked {checked} {disabled} {name} {value}>
 		<div aria-hidden="true" part="thumb" />
 	</Switch>
@@ -37,15 +42,15 @@
 		background-color: var(--st-toggle-thumb-bg-color, var(--st-colors-dark8));
 		border-radius: 9999px;
 	}
-	:global([data-component='toggle'] [part='switch'][data-checked='true']) {
+	:global([data-component='toggle'] [part='switch'][data-checked]) {
 		background-color: var(--st-toggle-checked-bg-color, var(--st-colors-primary5));
 	}
-	:global([data-component='toggle'] [part='switch'][data-checked='true'] [part='thumb']) {
+	:global([data-component='toggle'] [part='switch'][data-checked] [part='thumb']) {
 		background-color: var(--st-toggle-thumb-checked-bg-color, var(--st-colors-light3));
 		transform: translateX(calc(1.5 * var(--st-toggle-size-i) - 3 * var(--st-toggle-offset-i)));
 	}
 
-	:global([data-component='toggle'][data-disabled='true'] [part='switch']) {
+	:global([data-component='toggle'][data-disabled] [part='switch']) {
 		cursor: not-allowed;
 		opacity: var(--st-field-disabled-opacity);
 	}

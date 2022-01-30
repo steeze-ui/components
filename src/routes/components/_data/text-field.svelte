@@ -76,7 +76,6 @@
 	>
 		<Icon {theme} slot="prefix" src={Heart} size="16px" />
 	</TextField>
-	<TextField label="Label" value="Iam disabled :(" />
 </Demo>
 
 <Features {features} />

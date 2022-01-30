@@ -116,7 +116,10 @@
 	--st-field-height-sm: 28px;
 	--st-field-height-md: 42px;
 
-	--st-field-padding-sm: 0rem 0.5rem;
+	--st-field-button-size-sm: 12px;
+	--st-field-button-size-md: 16px;
+
+	--st-field-padding-sm: 0rem 0.35rem;
 	--st-field-padding-md: 0rem 0.75rem;
 
 	--st-field-font-weight: var(--st-font-weight-normal);
@@ -134,10 +137,12 @@
 	--st-field-padding: var(--st-field-padding-md);
 	--st-field-border-radius: var(--st-field-border-radius-md);
 	--st-field-font-size: var(--st-field-font-size-md);
+	--st-field-button-size: var(--st-field-button-size-md);
 }
 
 /* ! Dark Theme */
-.dark-theme {
+.dark-theme,
+html {
 	/* Background Color */
 	--st-bg-color: var(--st-colors-dark9);
 	--st-secondary-bg-color: var(--st-colors-dark8);
@@ -155,15 +160,74 @@
 	--st-helper-color: var(--st-colors-gray5);
 
 	/* Field */
+	--st-field-placeholder-color: var(--st-secondary-text-color);
 	--st-field-bg-color: var(--st-colors-dark8);
 	--st-field-color: var(--st-body-text-color);
-	--st-field-placeholder-color: var(--st-secondary-text-color);
 	--st-field-border-color: var(--st-border-color);
 	--st-field-secondary-bg-color: var(--st-colors-dark4);
 	--st-field-secondary-hover-bg-color: var(--st-colors-dark3);
 	--st-field-button-bg-color: var(--st-colors-gray5);
 	--st-field-button-hover-bg-color: var(--st-colors-gray2);
-	--st-field-button-color: var(--st-colors-gray5);
+	--st-field-button-color: var(--st-colors-gray6);
+	--st-field-button-hover-color: var(--st-colors-gray2);
+
+	/* Field Disabled */
+	--st-field-disabled-bg-color: var(--st-field-bg-color);
+	--st-field-disabled-border-color: var(--st-colors-gray6);
+	--st-field-label-disabled-color: var(--st-colors-gray3);
+
+	/* Field Hover */
+	--st-field-hover-bg-color: var(--st-field-bg-color);
+	--st-field-hover-border-color: var(--st-colors-gray6);
+	--st-field-label-hover-color: var(--st-colors-gray3);
+
+	/* Field Focus */
+	--st-field-focus-bg-color: var(--st-field-bg-color);
+	--st-field-focus-border-color: var(--st-outline-color);
+	--st-field-label-focus-color: var(--st-outline-color);
+
+	/* Overlay */
+	--st-overlay-border-color: var(--st-colors-dark4);
+	--st-overlay-bg-color: var(--st-colors-dark6);
+
+	/* Item */
+	--st-item-bg-color: transparent;
+	--st-item-focus-bg-color: var(--st-primary-color);
+	--st-item-color: var(--st-field-color);
+	--st-item-focus-text-color: var(--st-colors-light2);
+	--st-item-icon-color: var(--st-primary-color);
+	--st-item-focus-icon-color: var(--st-colors-light2);
+	--st-item-group-color: var(--st-secondary-text-color);
+}
+
+/* ! Dark Theme */
+.light-theme {
+	/* Background Color */
+	--st-bg-color: var(--st-colors-dark9);
+	--st-secondary-bg-color: var(--st-colors-dark8);
+	--st-border-color: var(--st-colors-gray9);
+
+	/* Text Color */
+	--st-body-text-color: var(--st-colors-gray8);
+	--st-secondary-text-color: var(--st-colors-gray6);
+	--st-placeholder-text-color: var(--st-colors-gray7);
+
+	/* Label */
+	--st-label-color: var(--st-colors-gray4);
+
+	/* Helper */
+	--st-helper-color: var(--st-colors-gray5);
+
+	/* Field */
+	--st-field-placeholder-color: var(--st-secondary-text-color);
+	--st-field-bg-color: var(--st-colors-dark8);
+	--st-field-color: var(--st-body-text-color);
+	--st-field-border-color: var(--st-border-color);
+	--st-field-secondary-bg-color: var(--st-colors-dark4);
+	--st-field-secondary-hover-bg-color: var(--st-colors-dark3);
+	--st-field-button-bg-color: var(--st-colors-gray5);
+	--st-field-button-hover-bg-color: var(--st-colors-gray2);
+	--st-field-button-color: var(--st-colors-gray6);
 	--st-field-button-hover-color: var(--st-colors-gray2);
 
 	/* Field Disabled */

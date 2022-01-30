@@ -1,5 +1,11 @@
+<script lang="ts" context="module">
+	export type TableData = { [key: string]: string | string[] | { text: string; help: string } }[]
+</script>
+
 <script lang="ts">
-	export let data: { [key: string]: string | string[] }[] = []
+	import Help from './Help.svelte'
+
+	export let data: TableData = []
 </script>
 
 <table>
@@ -19,13 +25,17 @@
 					{#if data.length > 0}
 						{#each Object.values(item) as td, i}
 							{@const isArray = Array.isArray(td)}
-							{@const isUnformatted = !isArray && td.startsWith('_')}
+							{@const isString = typeof td === 'string'}
+							{@const isUnformatted = !isArray && isString && td.startsWith('_')}
 							{#if isArray}
 								<td>
 									{#each td as key}
 										<code data-hl>{key}</code>
 									{/each}
 								</td>
+							{:else if !isString}
+								<code data-hl>{td.text}</code>
+								<Help text={td.help} />
 							{:else}
 								<td>
 									{#if i == 0}

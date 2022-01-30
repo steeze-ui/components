@@ -6,7 +6,6 @@ description: User Input as Simple Text
 ---
 
 <script lang="ts">
-	import TextField from '$lib/text-field/TextField.svelte'
 	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
 	import Component from './_data/text-field.svelte'
 	import {api, styling} from './_data/text-field.svelte'

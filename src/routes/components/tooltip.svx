@@ -6,31 +6,14 @@ description: Display Content when hovering over a Trigger
 ---
 
 <script lang="ts">
-	import Button from '$lib/button/Button.svelte'
-	import Tooltip from '$lib/tooltip/Tooltip.svelte'
-	import Demo from '$lib/internal/Demo.svelte'
-	import Title from '$lib/internal/Title.svelte'
-	import Help from '$lib/internal/Help.svelte'
-	import Features from '$lib/internal/Features.svelte'
-	import { Moon, Sun } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/tooltip.svelte'
+	import {api, styling} from './_data/tooltip.svelte'
+	
 	
 </script>
 
-<Title {title} {type} {description} />
-
-<Demo id={id}>
-	<Tooltip>
-		<Button slot="trigger">Hover Me</Button>
-		<span slot="content">Hi There! Iam Content.</span>
-	</Tooltip>
-</Demo>
-
-<Features features={[
-"Custom Trigger",
-"Custom Content",
-"Smart Floating Content"
-]} />
+<Component {id} {type} {title} {description}></Component>
 
 ## Quickstart
 
@@ -47,27 +30,8 @@ description: Display Content when hovering over a Trigger
 
 ## API Reference
 
-### Props
+<TableTabs data={api} />
 
-| Property                                                                                                             | Type                             | Default                  |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ------------------------ |
-| `position`<Help text="Prefered Position of the tooltip" />                                                           | <code hl>FloatingPosition</code> | <code hl>"bottom"</code> |
-| `delay`<Help text="Delay in ms of how long the cursor needs to touch the trigger in order to display the tooltip" /> | <code hl>Number</code>           | <code hl>500</code>      |
+## Styling Reference
 
-### Slots
-
-| Name      | Props              | Notes                                          |
-| --------- | ------------------ | ---------------------------------------------- |
-| `trigger` | <code hl>id</code> | The trigger that initiates the tooltip content |
-| `content` | -                  | The content to display in the tooltip          |
-
-### Styles
-
-| Custom Propery               | Default                                    |
-| ---------------------------- | ------------------------------------------ |
-| `--st-tooltip-padding`       | <code hl>--st-field-padding-sm</code>      |
-| `--st-tooltip-font-size`     | <code hl>--st-font-size-sm</code>          |
-| `--st-tooltip-font-weight`   | <code hl>--st-font-weight-normal</code>    |
-| `--st-tooltip-color`         | <code hl>--st-body-text-color</code>       |
-| `--st-tooltip-bg-color`      | <code hl>--st-overlay-bg-color</code>      |
-| `--st-tooltip-border-radius` | <code hl>--st-overlay-border-radius</code> |
+<TableTabs data={styling} />

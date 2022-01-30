@@ -99,8 +99,13 @@
 		width: 100%;
 		flex: auto;
 		background-color: transparent;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 		color: var(--st-text-field-text-color, var(--st-field-color));
 		font-size: var(--st-text-field-font-size, var(--st-field-font-size));
+		font-weight: var(--st-text-field-font-weight, var(--st-field-font-weight));
+
 		padding: 0 0.25rem;
 		outline: none;
 		height: var(--st-field-height);

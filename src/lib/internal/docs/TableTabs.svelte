@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getId } from '$lib/core/utils/id'
 
-	import Table from './Table.svelte'
+	import Table, { type TableData } from './Table.svelte'
 
-	export let data: { [section: string]: { [key: string]: string | string[] }[] } = {}
+	export let data: { [section: string]: TableData } = {}
 
 	const id = getId()
 
