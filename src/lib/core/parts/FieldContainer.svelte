@@ -18,7 +18,6 @@
 </script>
 
 <div
-	data-component="field-container"
 	data-theme={theme}
 	style:width
 	{...$$restProps}
@@ -50,6 +49,7 @@
 		gap: 0.25rem;
 		display: flex;
 		flex-direction: column;
+		height: fit-content;
 	}
 
 	[part='input-container'] {
@@ -83,18 +83,16 @@
 		overflow: hidden;
 		cursor: not-allowed;
 	}
-	[data-disabled]:hover [part='input-container'] {
-		background-color: var(--st-field-bg-color);
-	}
 
 	/* Hover */
-	[data-component]:not([data-focused]):hover {
+	[data-component]:not([data-focused]):not([data-disabled]):hover {
 		--st-label-color: var(--st-field-label-hover-color);
 	}
 
-	[data-component]:not([data-focused]):hover [part='input-container'] {
-		--st-field-border-color: var(--st-field-hover-border-color);
-		--st-field-bg-color: var(--st-field-hover-bg-color);
+	[data-component]:not([data-focused]):not([data-disabled]):hover [part='input-container'] {
+		border-color: var(--st-field-hover-border-color);
+		background-color: var(--st-field-hover-bg-color);
+		color: var(--st-field-hover-color);
 	}
 
 	/* Focus */

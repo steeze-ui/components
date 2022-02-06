@@ -23,11 +23,11 @@
 		Components: {
 			'Form Input': {
 				Select: '/components/select',
-				'Combo Box': '_/components/combo-box',
+				'Combo Box': '__/components/combo-box',
 				'Radio Group': '_/components/radio-group',
 				Checkbox: '_/components/checkbox',
 				'Text Field': '/components/text-field',
-				'Number Field': '_/components/number-field',
+				'Number Field': '__/components/number-field',
 				'Text Area': '_/components/text-area',
 				Toggle: '/components/toggle'
 			},
@@ -35,19 +35,19 @@
 				Button: '/components/button',
 				Tooltip: '/components/tooltip',
 				Popover: '/components/popover',
-				Grid: '_/components/grid',
-				Carousel: '_/components/carousel',
-				Details: '_/components/details',
-				'Dropdown Menu': '_/components/dropdown-menu',
-				Tabs: '/components/tabs',
-				Accordion: '_/components/accordion',
+				Grid: '__/components/grid',
+				Carousel: '__/components/carousel',
+				Details: '__/components/details',
+				'Dropdown Menu': '__/components/dropdown-menu',
+				Tabs: '_/components/tabs',
+				Accordion: '__/components/accordion',
 				Notification: '_/components/notification',
 				Dialog: '_/components/dialog'
 			},
 			Layouts: {
 				Flex: '_/components/flex',
-				Split: '_/components/split',
-				Scrollable: '_/components/scrollable'
+				Split: '__/components/split',
+				Scrollable: '__/components/scrollable'
 			}
 		},
 		Icons: {
@@ -114,7 +114,10 @@
 			/>
 			{#each sortedItems as [label, href]}
 				{@const isPlanned = href.startsWith('_')}
-				<MenuItem disabled={isPlanned} tag={isPlanned ? 'Planned' : ''} {label} {href} />
+				{@const isHidden = href.startsWith('__')}
+				{#if !isHidden}
+					<MenuItem disabled={isPlanned} tag={isPlanned ? 'Planned' : ''} {label} {href} />
+				{/if}
 			{/each}
 		</MenuSection>
 		<MenuSection label="Icons">

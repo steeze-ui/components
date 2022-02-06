@@ -150,8 +150,8 @@
 <Title {title} {type} {description} />
 
 <Demo {id}>
-	<Select label="lol" width="12rem" placeholder="Filter.." {items} />
-	<Select
+	<Select label="Filter by" width="12rem" {items} />
+	<!-- <Select
 		width="12rem"
 		loop
 		searchable
@@ -159,7 +159,7 @@
 		groupBy={(e) => e.group}
 		placeholder="Choose Obstacle.."
 		items={itemsWithGroup}
-	/>
+	/> -->
 </Demo>
 
 <Features

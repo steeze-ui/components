@@ -24,3 +24,10 @@ html {
 	border-radius: 10px;
 	background-color: var(--st-colors-dark2);
 }
+
+.st-focus-ring:focus {
+	outline: none;
+}
+.st-focus-ring:focus-visible {
+	outline: var(--st-outline-width) solid var(--st-outline-color);
+}

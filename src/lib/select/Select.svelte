@@ -33,13 +33,14 @@
 	//form
 	export let disabled = false
 	export let required = false
-	export let name = null
+	// export let name = null
 	export let focus = false
 	export let theme = null
 
 	let refTrigger: HTMLElement
 	let refFloating: any
 	let refInput: HTMLElement
+	let refButton: HTMLElement
 
 	let buttonId = getId()
 	let itemsId = getId()
@@ -139,6 +140,9 @@
 				opened = true
 				searchText = ''
 				focusItem(0, 0)
+				if (!focused) {
+					refButton.focus()
+				}
 			}
 		}
 	}
@@ -217,25 +221,6 @@
 
 	// Key Events
 	function handleKeydown(event: KeyboardEvent) {
-		if (document.activeElement.isSameNode(refInput)) {
-			switch (event.key) {
-				case 'ArrowUp':
-					event.preventDefault()
-					focusPrevItem()
-					return
-				case 'ArrowDown':
-					event.preventDefault()
-					focusNextItem()
-					return
-				case 'Enter':
-					event.preventDefault()
-					selectItem(
-						selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
-					)
-					return
-			}
-		}
-
 		if (refTrigger.contains(document.activeElement)) {
 			switch (event.key) {
 				case 'ArrowUp':
@@ -251,6 +236,7 @@
 					}
 					break
 				case 'Enter':
+					event.preventDefault()
 					if (opened) {
 						selectItem(
 							selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
@@ -304,6 +290,7 @@
 
 <FieldContainer
 	data-component="select"
+	title={shownValue}
 	{label}
 	{helper}
 	{width}
@@ -333,7 +320,6 @@
 	<button
 		slot="default"
 		part="value"
-		title={shownValue}
 		on:focus={() => {
 			focused = true
 		}}
@@ -348,6 +334,7 @@
 		aria-controls={itemsId}
 		aria-haspopup="true"
 		aria-expanded={opened ? true : false}
+		bind:this={refButton}
 	>
 		{#if isSelected}
 			<span>
@@ -355,7 +342,7 @@
 			</span>
 		{:else}
 			<span part="placeholder">
-				{placeholder}
+				{placeholder || ''}
 			</span>
 		{/if}
 	</button>
@@ -407,7 +394,13 @@
 				aria-activedescendant={focusedItemAriaId}
 				showPrefix={searchable}
 			>
-				<input slot="prefix" bind:this={refInput} bind:value={searchText} placeholder="Search.." />
+				<input
+					part="search-field"
+					slot="prefix"
+					bind:this={refInput}
+					bind:value={searchText}
+					placeholder="Search.."
+				/>
 
 				{#each Object.keys(selectorItems) as group, groupIndex (group)}
 					{#if groupBy}
@@ -454,30 +447,36 @@
 
 <style>
 	:global([data-component='select'][data-expanded]) {
-		--st-field-bg-color: var(--st-colors-gray10);
+		--st-field-bg-color: var(--st-select-hover-bg-color);
 	}
+
 	:global([data-component='select']) {
 		--st-field-hover-border-color: var(--st-field-border-color);
-		--st-field-hover-bg-color: var(--st-colors-gray10);
+		--st-field-hover-bg-color: var(--st-select-hover-bg-color);
 	}
 
 	[part='value']:focus {
 		outline: none;
 	}
+
 	[part='value'] {
 		display: flex;
-		width: 100%;
 		flex: auto;
 		background-color: transparent;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
 		font-size: var(--st-select-font-size, var(--st-field-font-size));
 		font-weight: var(--st-select-font-weight, var(--st-field-font-weight));
 		color: var(--st-select-color, var(--st-field-color));
 		padding: 0 0.25rem;
 		cursor: pointer;
 		pointer-events: none;
+		overflow: hidden;
+	}
+
+	[part='value'] span {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		/* width: 100%; */
 	}
 
 	[part='placeholder'] {
@@ -503,5 +502,17 @@
 		font-size: var(--st-select-group-font-size, var(--st-font-size-xs));
 		font-weight: var(--st-select-group-font-weight, var(--st-font-weight-medium));
 		margin: var(--st-select-group-margin, 0 0 0 0.5rem);
+	}
+
+	[part='search-field'] {
+		background-color: transparent;
+		padding: 0.5rem;
+		font-size: var(--st-select-search-font-size, var(--st-font-size-xs));
+		font-weight: var(--st-select-search-font-weight, var(--st-font-weight-normal));
+		color: var(--st-select-search-color, var(--st-field-color));
+		outline: none;
+	}
+	[part='search-field']::placeholder {
+		color: var(--st-placeholder-text-color);
 	}
 </style>
