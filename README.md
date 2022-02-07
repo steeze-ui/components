@@ -1,38 +1,56 @@
-# create-svelte
+# Steeze UI
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+Components for SvelteKit Apps. Check out the [documentation](https://steeze-ui.com) for more info!
 
-## Creating a project
+- Accessible
+- Prestyled
+- Themable
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Getting Started
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+### Installing
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install the package as dev dependency via pnpm, npm or yarn
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm i -D @steeze-ui/components
 ```
 
-## Building
+### Base Styles
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+Once you've installed the package, you can import the base styles which consists of basic normalization and custom properties that most components are using (e.g `colors` or `font sizes`)
 
-```bash
-npm run build
+```html
+<script>
+	import '@steeze-ui/components/base.css'
+</script>
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+> You can easily override the custom properties and define your own design system
+
+### Use Components
+
+```svelte
+<script>
+  import {Select, TextField, Button, Toggle} from "@steeze-ui/components"
+</script>
+
+<Select items={[{id:1,label:"Label 1"}]}>
+<TextField label="Text Field" value="Text" />
+<Toggle checked />
+<Button theme="primary" type="submit">Submit</Button>
+```
+
+### Use Underlying Parts
+
+Some components share the same parts, like both the `Select` and `TextField` use the `Label` Component, or the `Toggle` Component is just a styled and more user-friendly version of the `Switch` Component. By design you can use these parts via deep imports from the core folder:
+
+```svelte
+<script>
+  import Switch from "@steeze-ui/components/core/parts/Switch.svelte"
+  import Label from "@steeze-ui/components/core/parts/Label.svelte"
+</script>
+
+<Label for="switch">Switch me!</Label>
+<Switch id="switch" checked />
+```
