@@ -2,7 +2,7 @@
 	import Button from '$lib/button/Button.svelte'
 	import Toggle from '$lib/toggle/Toggle.svelte'
 	import Select from '$lib/select/Select.svelte'
-	import Form from '$lib/core/form/Form.svelte'
+	import Form from '$lib/core/form/_Form.svelte'
 	import TextField from '$lib/text-field/TextField.svelte'
 
 	const colors = {
@@ -56,6 +56,7 @@
 	</div>
 	<div class="flex gap-4">
 		<Toggle
+			theme="light small"
 			on:change={(e) => {
 				console.log(e)
 			}}
@@ -67,7 +68,7 @@
 		<Toggle name="toggle4" checked disabled value="on" />
 	</div>
 	<div class="flex gap-4">
-		<TextField placeholder="Fill me out!" label="With Placeholder" />
+		<TextField placeholder="Fill me out!" label="With Placeholder" clearable />
 		<TextField placeholder="Fill me out!" value="Some Text" label="Already Filled" />
 	</div>
 	<div class="flex gap-4">

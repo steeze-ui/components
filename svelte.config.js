@@ -18,6 +18,9 @@ const config = {
 
 		vite: {
 			plugins: [WindiCSS({ config: 'windi.config.js' })]
+		},
+		package: {
+			files: (file) => !file.includes('_')
 		}
 	}
 }

@@ -25,7 +25,7 @@ description: Choose a Single Item from a Set of Items
 	]
 </script>
 
-<Select {items} selectedItem={items[0]} />
+<Select {items} value={items[0]} />
 ```
 
 ## API Reference

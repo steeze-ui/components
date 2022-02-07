@@ -87,11 +87,8 @@
 		--st-button-color: var(--st-colors-light5);
 		--st-button-border-color: transparent;
 	}
-	[data-theme*='primary']:hover {
+	[data-theme*='primary']:not([disabled]):hover {
 		--st-button-hover-bg-color: var(--st-colors-primary5-80pct);
-	}
-	[data-theme*='primary']:disabled:hover {
-		--st-button-hover-bg-color: var(--st-button-bg-color);
 	}
 
 	/* Secondary */
@@ -100,11 +97,8 @@
 		--st-button-color: var(--st-field-color);
 		--st-button-border-color: var(--st-colors-primary8);
 	}
-	[data-theme*='secondary']:hover {
+	[data-theme*='secondary']:not([disabled]):hover {
 		--st-button-hover-bg-color: var(--st-colors-primary9);
-	}
-	[data-theme*='secondary']:disabled:hover {
-		--st-button-hover-bg-color: var(--st-button-bg-color);
 	}
 
 	/* Tertiary */
@@ -113,10 +107,19 @@
 		--st-button-bg-color: transparent;
 		--st-button-border-color: transparent;
 	}
-	[data-theme*='tertiary']:hover {
+	[data-theme*='tertiary']:not([disabled]):hover {
 		--st-button-hover-bg-color: var(--st-colors-primary9);
 	}
-	[data-theme*='tertiary']:disabled:hover {
-		--st-button-hover-bg-color: var(--st-button-bg-color);
+
+	/* Theme */
+	:global(.st-theme-light [data-component='button'][data-theme*='secondary']) {
+		--st-button-border-color: var(--st-colors-primary2);
+	}
+	:global(.st-theme-light
+			[data-component='button'][data-theme*='secondary']:not([disabled]):hover) {
+		--st-button-hover-bg-color: var(--st-colors-primary1);
+	}
+	:global(.st-theme-light [data-component='button'][data-theme*='tertiary']:not([disabled]):hover) {
+		--st-button-hover-bg-color: var(--st-colors-primary1);
 	}
 </style>

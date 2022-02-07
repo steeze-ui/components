@@ -111,9 +111,14 @@
 			{ Name: '--st-tooltip-border-radius', Default: '--st-overlay-border-radius' }
 		],
 		Themes: [
-			{ Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' },
-			{ Name: 'borderless', Notes: 'Renders without a border', Global: 'true' },
-			{ Name: 'transparent', Notes: 'Renders without a background color', Global: 'true' }
+			{ Name: 'light', Notes: 'Light Appearance of the Component' },
+			{ Name: 'small', Notes: 'Smaller Appearance of the Component' },
+			{ Name: 'borderless', Notes: 'Renders without a border' },
+			{ Name: 'transparent', Notes: 'Renders without a background color' }
+		],
+		Globals: [
+			{ Classname: 'st-theme-light', Notes: 'Light Appearance of the Component' },
+			{ Classname: 'st-size-small', Notes: 'Smaller Appearance of the Component' }
 		]
 	}
 </script>
@@ -151,7 +156,7 @@
 
 <Demo {id}>
 	<Select label="Filter by" width="12rem" {items} />
-	<!-- <Select
+	<Select
 		width="12rem"
 		loop
 		searchable
@@ -159,7 +164,7 @@
 		groupBy={(e) => e.group}
 		placeholder="Choose Obstacle.."
 		items={itemsWithGroup}
-	/> -->
+	/>
 </Demo>
 
 <Features

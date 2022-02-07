@@ -24,9 +24,9 @@
 	export let clearable = false
 	export let loop = false
 	//display
-	export let label = null
-	export let helper = null
-	export let placeholder = null
+	export let label: string = null
+	export let helper: string = null
+	export let placeholder: string = null
 	export let itemLabelRenderer = (e: T) => e?.['label'] ?? ''
 	export let position: FloatingPosition = 'bottom-end'
 	export let width: string = '12rem'
@@ -35,7 +35,7 @@
 	export let required = false
 	// export let name = null
 	export let focus = false
-	export let theme = null
+	export let theme: string = null
 
 	let refTrigger: HTMLElement
 	let refFloating: any

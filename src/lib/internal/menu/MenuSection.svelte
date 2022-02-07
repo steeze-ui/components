@@ -11,3 +11,13 @@
 		<slot />
 	</ul>
 </li>
+
+<style>
+	h5 {
+		color: var(--st-colors-gray4);
+	}
+
+	:global(.st-theme-light h5) {
+		color: var(--st-colors-gray6);
+	}
+</style>

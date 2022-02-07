@@ -10,7 +10,7 @@ All tokens of the steeze design system are prefixed with `st` ( e.g --st-field-f
 
 ## Dark Theme
 
-Steeze UI provides a dark and light variant of all components just add `.light-theme` or `.dark-theme` to the html or body tag (with dark theme as the default if not provided)
+Steeze UI provides a dark and light variant of all components just add `.st-theme-light` or `.st-theme-dark` to the html or body tag (with dark theme as the default if not provided)
 
 ## Base Overrides
 

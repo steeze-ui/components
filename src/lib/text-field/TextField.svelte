@@ -5,17 +5,17 @@
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { createEventDispatcher } from 'svelte'
 
-	export let label = null
+	export let label: string = null
 	export let width = '12rem'
-	export let helper = null
-	export let name = null
+	export let helper: string = null
+	export let name: string = null
 	export let value = ''
-	export let placeholder = null
+	export let placeholder: string = null
 	export let disabled = false
 	export let required = false
 	export let autoselect = false
 	export let clearable = false
-	export let theme = false
+	export let theme: string = null
 
 	let refInput: HTMLInputElement
 
@@ -117,10 +117,10 @@
 	[part='clear-button'] {
 		height: 16px;
 		line-height: 1;
-		color: var(--st-field-button-bg-color);
+		color: var(--st-field-button-color);
 	}
 	[part='clear-button']:hover {
-		color: var(--st-field-button-hover-bg-color);
+		color: var(--st-field-button-hover-color);
 		transition: color 100ms ease-in;
 	}
 </style>

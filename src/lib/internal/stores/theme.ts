@@ -1,12 +1,18 @@
+import { browser } from '$app/env'
 import { writable } from 'svelte/store'
 
 function createLightThemeStore() {
-	const { subscribe, update } = writable(false)
+	const isLight = (browser && localStorage.getItem('theme') === 'light') || false
+	const { subscribe, update } = writable(isLight)
 
 	return {
 		subscribe,
-		toggle: () => update((v) => !v),
-		set: (v) => update(() => v)
+		toggle: () =>
+			update((v) => {
+				const value = !v
+				localStorage.setItem('theme', value ? 'light' : 'dark')
+				return value
+			})
 	}
 }
 

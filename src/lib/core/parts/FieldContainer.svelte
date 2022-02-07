@@ -6,7 +6,7 @@
 	export let width = '12rem'
 	export let label = ''
 	export let helper = ''
-	export let theme = null
+	export let theme: string = null
 	export let ref = null
 
 	export let disabled = false
@@ -18,6 +18,7 @@
 </script>
 
 <div
+	data-field-container
 	data-theme={theme}
 	style:width
 	{...$$restProps}
@@ -116,6 +117,7 @@
 		background-color: transparent;
 	}
 
+	:global(.st-size-small [data-field-container]),
 	[data-theme*='small'] {
 		--st-field-font-size: var(--st-font-size-xs);
 		--st-field-padding: var(--st-field-padding-sm);

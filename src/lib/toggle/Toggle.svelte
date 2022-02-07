@@ -61,4 +61,17 @@
 	:global([part='switch']:focus-visible) {
 		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}
+
+	/* Themes */
+	:global(.st-theme-light
+			[data-component='toggle'], [data-component='toggle'][data-theme*='light']) {
+		--st-toggle-bg-color: var(--st-colors-gray3);
+		--st-toggle-thumb-bg-color: white;
+	}
+
+	:global(.st-size-small
+			[data-component='toggle'], [data-component='toggle'][data-theme*='small']) {
+		--st-toggle-size-i: var(--st-toggle-size, 14px);
+		--st-toggle-offset-i: var(--st-toggle-offset, 3px);
+	}
 </style>

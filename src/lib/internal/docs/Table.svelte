@@ -34,8 +34,10 @@
 									{/each}
 								</td>
 							{:else if !isString}
-								<code data-hl>{td.text}</code>
-								<Help text={td.help} />
+								<td>
+									<code>{td.text}</code>
+									<Help text={td.help} />
+								</td>
 							{:else}
 								<td>
 									{#if i == 0}

@@ -24,14 +24,14 @@
 	--st-colors-gray9: hsl(240, 11%, 22%);
 	--st-colors-gray10: hsl(240, 18%, 15%);
 
-	--st-colors-light1: hsl(240, 6%, 99%);
-	--st-colors-light2: hsl(240, 6%, 99%);
-	--st-colors-light3: hsl(240, 6%, 98%);
-	--st-colors-light4: hsl(240, 6%, 98%);
-	--st-colors-light5: hsl(240, 6%, 96%);
-	--st-colors-light6: hsl(240, 6%, 95%);
-	--st-colors-light7: hsl(240, 7%, 95%);
-	--st-colors-light8: hsl(240, 8%, 93%);
+	--st-colors-light1: hsl(240, 3%, 99%);
+	--st-colors-light2: hsl(240, 6%, 98%);
+	--st-colors-light3: hsl(240, 6%, 97%);
+	--st-colors-light4: hsl(240, 6%, 96%);
+	--st-colors-light5: hsl(240, 6%, 95%);
+	--st-colors-light6: hsl(240, 6%, 94%);
+	--st-colors-light7: hsl(240, 7%, 93%);
+	--st-colors-light8: hsl(240, 8%, 92%);
 	--st-colors-light9: hsl(240, 11%, 89%);
 	--st-colors-light10: hsl(240, 18%, 88%);
 
@@ -84,6 +84,10 @@
 	--st-line-height-snug: 1.375;
 	--st-line-height-normal: 1.5;
 	--st-line-height-loose: 2;
+
+	/* Font Family */
+	--st-font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
 	/* Transitions */
 	--st-hover-transition: transform, background-color 0.15s ease-in;
@@ -141,10 +145,10 @@
 }
 
 /* ! Dark Theme */
-.dark-theme,
+.st-theme-dark,
 html {
 	/* Background Color */
-	--st-bg-color: var(--st-colors-dark9);
+	--st-primary-bg-color: var(--st-colors-dark9);
 	--st-secondary-bg-color: var(--st-colors-dark8);
 	--st-border-color: var(--st-colors-gray9);
 
@@ -164,17 +168,8 @@ html {
 	--st-field-bg-color: var(--st-colors-dark8);
 	--st-field-color: var(--st-body-text-color);
 	--st-field-border-color: var(--st-border-color);
-	--st-field-secondary-bg-color: var(--st-colors-dark4);
-	--st-field-secondary-hover-bg-color: var(--st-colors-dark3);
-	--st-field-button-bg-color: var(--st-colors-gray5);
-	--st-field-button-hover-bg-color: var(--st-colors-gray2);
 	--st-field-button-color: var(--st-colors-gray6);
 	--st-field-button-hover-color: var(--st-colors-gray2);
-
-	/* Field Disabled */
-	--st-field-disabled-bg-color: var(--st-field-bg-color);
-	--st-field-disabled-border-color: var(--st-colors-gray6);
-	--st-field-label-disabled-color: var(--st-colors-gray3);
 
 	/* Field Hover */
 	--st-field-hover-bg-color: var(--st-field-bg-color);
@@ -201,4 +196,57 @@ html {
 
 	/* Select */
 	--st-select-hover-bg-color: var(--st-colors-gray10);
+}
+
+/* ! Light Theme */
+.st-theme-light {
+	/* Background Color */
+	--st-primary-bg-color: var(--st-colors-light1);
+	--st-secondary-bg-color: white;
+	--st-border-color: var(--st-colors-light5);
+
+	/* Text Color */
+	--st-body-text-color: var(--st-colors-gray9);
+	--st-secondary-text-color: var(--st-colors-gray5);
+	--st-placeholder-text-color: var(--st-colors-gray6);
+
+	/* Label */
+	--st-label-color: var(--st-colors-gray5);
+
+	/* Helper */
+	--st-helper-color: var(--st-colors-gray6);
+
+	/* Field */
+	--st-field-placeholder-color: var(--st-secondary-text-color);
+	--st-field-bg-color: white;
+	--st-field-color: var(--st-body-text-color);
+	--st-field-border-color: var(--st-colors-light10);
+	--st-field-button-color: var(--st-colors-gray6);
+	--st-field-button-hover-color: var(--st-colors-gray2);
+
+	/* Field Hover */
+	--st-field-hover-bg-color: var(--st-field-bg-color);
+	--st-field-hover-border-color: var(--st-colors-gray5);
+	--st-field-label-hover-color: var(--st-colors-gray6);
+
+	/* Field Focus */
+	--st-field-focus-bg-color: var(--st-field-bg-color);
+	--st-field-focus-border-color: var(--st-outline-color);
+	--st-field-label-focus-color: var(--st-outline-color);
+
+	/* Overlay */
+	--st-overlay-border-color: var(--st-colors-light8);
+	--st-overlay-bg-color: var(--st-colors-light2);
+
+	/* Item */
+	--st-item-bg-color: transparent;
+	--st-item-focus-bg-color: var(--st-primary-color);
+	--st-item-color: var(--st-field-color);
+	--st-item-focus-text-color: var(--st-colors-light2);
+	--st-item-icon-color: var(--st-primary-color);
+	--st-item-focus-icon-color: var(--st-colors-light2);
+	--st-item-group-color: var(--st-secondary-text-color);
+
+	/* Select */
+	--st-select-hover-bg-color: var(--st-colors-light5);
 }

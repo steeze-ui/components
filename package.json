@@ -13,10 +13,10 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^0.1.10",
+		"@steeze-ui/heroicons": "^1.0.2",
 		"@steeze-ui/svelte-icon": "^1.2.2"
 	},
 	"devDependencies": {
-		"@steeze-ui/heroicons": "^1.0.2",
 		"@steeze-ui/radix-icons": "^1.0.4",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",

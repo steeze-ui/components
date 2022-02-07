@@ -86,9 +86,9 @@
 	$: {
 		if (browser) {
 			if ($lightTheme) {
-				document.body.className = 'light-theme'
+				document.body.className = 'st-theme-light'
 			} else {
-				document.body.className = 'dark-theme'
+				document.body.className = 'st-theme-dark'
 			}
 		}
 	}

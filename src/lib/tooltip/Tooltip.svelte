@@ -7,6 +7,7 @@
 	export let position: FloatingPosition = 'bottom'
 	export let delay = 500
 	export let theme = ''
+	export let maxWidth: string = null
 
 	let opened = false
 	const triggerId = getId()
@@ -36,6 +37,7 @@
 	bind:this={refTrigger}
 	on:pointerenter={handleEnter}
 	on:pointerleave={handleLeave}
+	{...$$restProps}
 >
 	<slot name="trigger" id={triggerId} />
 </div>
@@ -43,7 +45,7 @@
 {#if opened}
 	<Portal>
 		<Floating bind:this={refFloating} {position} trigger={refTrigger}>
-			<div data-component="tooltip" data-theme={theme}>
+			<div data-component="tooltip" data-theme={theme} style:max-width={maxWidth}>
 				<slot name="content" />
 			</div>
 		</Floating>
