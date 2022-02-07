@@ -78,9 +78,8 @@
 
 <Demo {id}>
 	<Popover>
-		<svelte:fragment slot="trigger" let:toggleOpened>
-			<Button on:click={toggleOpened}>open</Button>
-		</svelte:fragment>
+		<Button slot="trigger" let:toggleOpened on:click={toggleOpened}>open</Button>
+
 		<div slot="content">
 			<p style:color="white">Content</p>
 		</div>

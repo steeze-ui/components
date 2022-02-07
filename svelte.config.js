@@ -20,10 +20,10 @@ const config = {
 			plugins: [WindiCSS({ config: 'windi.config.js' })]
 		},
 		package: {
-			files: (file) => !file.includes('_'),
-			exports: (file) => {
-				return (file === 'index.ts') | (file === 'base.css')
-			}
+			files: (file) => !file.includes('_')
+			// exports: (file) => {
+			// 	return (file === 'index.ts') | (file === 'base.css')
+			// }
 		}
 	}
 }
