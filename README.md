@@ -22,7 +22,7 @@ Once you've installed the package, you can import the base styles which consists
 
 ```html
 <script>
-	import '@steeze-ui/components/base.css'
+  import '@steeze-ui/components/base.css'
 </script>
 ```
 
@@ -43,7 +43,7 @@ Once you've installed the package, you can import the base styles which consists
 
 ### Use Underlying Parts
 
-Some components share the same parts, like both the `Select` and `TextField` use the `Label` Component, or the `Toggle` Component is just a styled and more user-friendly version of the `Switch` Component. By design you can use these parts via deep imports from the core folder:
+Some components share the same parts, like both `Select` and `TextField` use the `Label` Component or the `Toggle` Component is just a styled and more user-friendly version of the `Switch` Component. By design you can use these parts via deep imports from the core/parts folder:
 
 ```svelte
 <script>
