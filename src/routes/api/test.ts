@@ -1,8 +1,6 @@
-import type { RequestHandler } from '@sveltejs/kit'
-
-export const post: RequestHandler<unknown> = async ({ request }) => {
+export const post: unknown = async ({ request }) => {
 	const data = await request.formData()
-	data.forEach((e, i) => {
+	data.forEach((e: unknown, i: number) => {
 		console.log(`${i}: ${e}`)
 	})
 

@@ -55,9 +55,9 @@
 </script>
 
 <script lang="ts">
-	import Demo from '$lib/internal/docs/Demo.svelte'
-	import Features from '$lib/internal/docs/Features.svelte'
-	import Title from '$lib/internal/docs/Title.svelte'
+	import Demo from '$lib/_internal/docs/Demo.svelte'
+	import Features from '$lib/_internal/docs/Features.svelte'
+	import Title from '$lib/_internal/docs/Title.svelte'
 	import Button from '$lib/button/Button.svelte'
 	import { Moon, Sun } from '@steeze-ui/heroicons'
 
@@ -72,11 +72,15 @@
 <Title {title} {type} {description} />
 
 <Demo {id}>
-	<Button theme="primary" style="width:8rem">Primary</Button>
-	<Button style="width:8rem">Secondary</Button>
-	<Button theme="tertiary" style="width:8rem">Tertiary</Button>
-	<Button theme="secondary" icon={Moon}>Dark</Button>
-	<Button theme="secondary" icon={Sun} />
+	<div class="flex gap-3">
+		<Button theme="primary" style="width:8rem">Primary</Button>
+		<Button style="width:8rem">Secondary</Button>
+		<Button theme="tertiary" style="width:8rem">Tertiary</Button>
+	</div>
+	<div class="flex gap-3">
+		<Button theme="secondary" icon={Moon}>Icon</Button>
+		<Button theme="secondary" icon={Sun} />
+	</div>
 </Demo>
 
 <Features {features} />

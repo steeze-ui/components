@@ -47,9 +47,9 @@
 
 <script lang="ts">
 	import Button from '$lib/button/Button.svelte'
-	import Demo from '$lib/internal/docs/Demo.svelte'
-	import Features from '$lib/internal/docs/Features.svelte'
-	import Title from '$lib/internal/docs/Title.svelte'
+	import Demo from '$lib/_internal/docs/Demo.svelte'
+	import Features from '$lib/_internal/docs/Features.svelte'
+	import Title from '$lib/_internal/docs/Title.svelte'
 	import Tooltip from '$lib/tooltip/Tooltip.svelte'
 
 	export let id: number

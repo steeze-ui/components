@@ -1,11 +1,8 @@
 <script lang="ts">
 	import FieldContainer from '$lib/core/parts/FieldContainer.svelte'
 	import Floating from '$lib/core/parts/Floating.svelte'
-	import Helper from '$lib/core/parts/Helper.svelte'
-	import InputContainer from '$lib/core/parts/InputContainer.svelte'
-	import Label from '$lib/core/parts/Label.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
-	import type { FloatingPosition, SelectValue, SelectValueMap } from '$lib/core/types'
+	import type { FloatingPosition, SelectValueMap } from '$lib/core/types'
 	import { getId } from '$lib/core/utils/id'
 	import Item from '$lib/listbox/Item.svelte'
 	import ListBox from '$lib/listbox/ListBox.svelte'
@@ -169,7 +166,7 @@
 	}
 
 	// Focus
-	let focusedItemAriaId
+	let focusedItemAriaId: string
 	let focusedItemGroupIndex = 0
 	let focusedItemIndex = 0
 

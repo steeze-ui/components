@@ -18,11 +18,6 @@
 </script>
 
 <script lang="ts">
-	import { Moon, Sun } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
-
-	import { lightTheme } from '../stores/theme'
-
 	export let id: number
 
 	const first = colors[id % colors.length]

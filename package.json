@@ -1,6 +1,8 @@
 {
 	"name": "@steeze-ui/components",
-	"version": "1.0.0-next.0",
+	"version": "1.0.0-next.1",
+	"type": "module",
+	"main": "./index.js",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -40,5 +42,32 @@
 	"peerDependencies": {
 		"svelte": ">= ^3.46.3"
 	},
-	"type": "module"
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/steeze-ui/components.git"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"keywords": [
+		"svelte",
+		"components",
+		"library",
+		"component library",
+		"design system",
+		"steeze",
+		"dark mode",
+		"select",
+		"popover",
+		"tooltip",
+		"toggle",
+		"button"
+	],
+	"author": "Justin Voitel <mail@justinv.me>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/steeze-ui/components/issues"
+	},
+	"homepage": "https://github.com/steeze-ui/components#readme"
 }

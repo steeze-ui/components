@@ -2,16 +2,16 @@
 	import { Check } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 
-	export let focused
-	export let selected
+	export let focused: boolean
+	export let selected: boolean
 </script>
 
 <li
 	part="item"
 	role="menuitem"
 	aria-checked={selected}
-	data-focused={focused}
-	data-selected={selected}
+	data-focused={focused ? true : null}
+	data-selected={selected ? true : null}
 	tabindex={focused ? 0 : -1}
 	on:pointerover
 	on:click
@@ -41,7 +41,7 @@
 		padding: var(--st-item-padding, 0.2rem 0.75rem 0.2rem 0.5rem);
 		gap: 0.25rem;
 	}
-	[part='item'][data-focused='true'] {
+	[part='item'][data-focused] {
 		background-color: var(--st-item-focus-bg-color);
 		color: var(--st-item-focus-text-color);
 	}
@@ -50,7 +50,7 @@
 		height: 1rem;
 		color: var(--st-item-icon-color);
 	}
-	[part='item'][data-focused='true'] [part='selected-icon'] {
+	[part='item'][data-focused] [part='selected-icon'] {
 		color: var(--st-item-focus-icon-color);
 	}
 </style>

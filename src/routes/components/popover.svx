@@ -6,7 +6,7 @@ description: Display Content that floats around a trigger
 ---
 
 <script lang="ts">
-	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/popover.svelte'
 	import {api, styling} from './_data/popover.svelte'
 	

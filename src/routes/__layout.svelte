@@ -4,12 +4,12 @@
 	import '$lib/base.css'
 	import 'virtual:windi.css'
 	import './../markdown.css'
-	import Header from '$lib/internal/header/Header.svelte'
-	import Menu from '$lib/internal/menu/Menu.svelte'
-	import MenuItem from '$lib/internal/menu/MenuItem.svelte'
-	import MenuSection from '$lib/internal/menu/MenuSection.svelte'
+	import Header from '$lib/_internal/header/Header.svelte'
+	import Menu from '$lib/_internal/menu/Menu.svelte'
+	import MenuItem from '$lib/_internal/menu/MenuItem.svelte'
+	import MenuSection from '$lib/_internal/menu/MenuSection.svelte'
 	import Select from '$lib/select/Select.svelte'
-	import { lightTheme } from '$lib/internal/stores/theme'
+	import { lightTheme } from '$lib/_internal/stores/theme'
 
 	let menuOpen = false
 

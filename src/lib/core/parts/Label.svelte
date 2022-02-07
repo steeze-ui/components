@@ -1,5 +1,5 @@
 <script lang="ts">
-	let htmlFor
+	let htmlFor: string
 	export { htmlFor as for }
 </script>
 

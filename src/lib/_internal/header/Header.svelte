@@ -5,7 +5,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { lightTheme } from '../stores/theme'
 
-	export let menuOpen
+	export let menuOpen: boolean
 </script>
 
 <header

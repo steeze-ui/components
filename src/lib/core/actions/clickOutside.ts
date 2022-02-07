@@ -1,4 +1,4 @@
-import type { Action } from '$lib/core/typestypes'
+import type { Action } from '$lib/core/types'
 
 /**
  *

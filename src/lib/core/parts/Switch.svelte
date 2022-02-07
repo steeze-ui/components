@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env'
-	import { createEventDispatcher, onMount } from 'svelte'
-
+	import { createEventDispatcher } from 'svelte'
 	import { getId } from '../utils/id'
 
 	export let checked = false

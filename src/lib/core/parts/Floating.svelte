@@ -18,9 +18,9 @@
 		if (trigger && ref) {
 			const {
 				x,
-				y,
-				middlewareData,
-				placement: pl
+				y
+				// middlewareData,
+				// placement: pl
 			} = await computePosition(trigger, ref, {
 				placement: position,
 				middleware: [

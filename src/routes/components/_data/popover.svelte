@@ -61,9 +61,9 @@
 </script>
 
 <script lang="ts">
-	import Demo from '$lib/internal/docs/Demo.svelte'
-	import Features from '$lib/internal/docs/Features.svelte'
-	import Title from '$lib/internal/docs/Title.svelte'
+	import Demo from '$lib/_internal/docs/Demo.svelte'
+	import Features from '$lib/_internal/docs/Features.svelte'
+	import Title from '$lib/_internal/docs/Title.svelte'
 
 	import Popover from '$lib/popover/Popover.svelte'
 	import Button from '$lib/button/Button.svelte'

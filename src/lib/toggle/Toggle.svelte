@@ -14,7 +14,7 @@
 	data-theme={theme}
 	{...$$restProps}
 >
-	<Switch on:change let:checked {checked} {disabled} {name} {value}>
+	<Switch on:change {checked} {disabled} {name} {value}>
 		<div aria-hidden="true" part="thumb" />
 	</Switch>
 </div>

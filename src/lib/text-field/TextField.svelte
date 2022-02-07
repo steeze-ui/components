@@ -1,6 +1,5 @@
 <script lang="ts">
 	import FieldContainer from '$lib/core/parts/FieldContainer.svelte'
-	import { getId } from '$lib/core/utils/id'
 	import { X } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { createEventDispatcher } from 'svelte'

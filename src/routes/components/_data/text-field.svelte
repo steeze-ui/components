@@ -50,10 +50,10 @@
 </script>
 
 <script lang="ts">
-	import Demo from '$lib/internal/docs/Demo.svelte'
-	import Features from '$lib/internal/docs/Features.svelte'
+	import Demo from '$lib/_internal/docs/Demo.svelte'
+	import Features from '$lib/_internal/docs/Features.svelte'
 
-	import Title from '$lib/internal/docs/Title.svelte'
+	import Title from '$lib/_internal/docs/Title.svelte'
 	import TextField from '$lib/text-field/TextField.svelte'
 	import { Heart } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'

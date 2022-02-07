@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 
-	export let label
-	export let href
+	export let label: string
+	export let href: string
 	export let disabled = false
 	export let tag = ''
 

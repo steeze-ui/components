@@ -6,7 +6,7 @@ description: Click for Action
 ---
 
 <script lang="ts">
-	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/button.svelte'
 	import {api, styling} from './_data/button.svelte'
 	

@@ -7,8 +7,8 @@
 </script>
 
 <script lang="ts">
-	export let title
-	export let description
+	export let title: string
+	export let description: string
 	export let type: number
 </script>
 

@@ -6,7 +6,7 @@ description: Display Content when hovering over a Trigger
 ---
 
 <script lang="ts">
-	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/tooltip.svelte'
 	import {api, styling} from './_data/tooltip.svelte'
 	
