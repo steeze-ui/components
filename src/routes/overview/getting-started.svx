@@ -1,3 +1,7 @@
+<svelte:head>
+<title>Getting Started — Steeze UI</title>
+</svelte:head>
+
 # Getting Started
 
 ### Install the package using pnpm (or npm, yarn)

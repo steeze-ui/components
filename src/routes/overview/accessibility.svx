@@ -1,3 +1,7 @@
+<svelte:head>
+<title>Accessibility — Steeze UI</title>
+</svelte:head>
+
 # Accessibility
 
 As explained in [Introduction](/) I had a course about Accessibility in my Uni and here I want to collect some of the most important

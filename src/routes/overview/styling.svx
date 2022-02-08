@@ -1,3 +1,7 @@
+<svelte:head>
+<title>Styling — Steeze UI</title>
+</svelte:head>
+
 # Styling
 
 ## Base Styles

@@ -1,3 +1,7 @@
+<svelte:head>
+<title>Introduction — Steeze UI</title>
+</svelte:head>
+
 # Introduction
 
 ## Accessible Components for Svelte

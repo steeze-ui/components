@@ -12,6 +12,10 @@
 	export let type: number
 </script>
 
+<svelte:head>
+	<title>{title} — Steeze UI</title>
+</svelte:head>
+
 <div part="docs-title" style="display:flex; flex-direction:column; gap:0.25rem; margin-bottom:2rem">
 	<div class="flex items-center gap-4">
 		<h1>{title}</h1>

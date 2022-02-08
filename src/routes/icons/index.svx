@@ -1,3 +1,7 @@
+<svelte:head>
+<title>Icons — Steeze UI</title>
+</svelte:head>
+
 # Icons
 
 ## Work in Progress
