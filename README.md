@@ -1,3 +1,5 @@
+> Need Icons for your next SvelteKit project (heroicons, feather icons and more) ? Check out [@steeze-ui/icons](https://github.com/steeze-ui/icons)!
+
 # Steeze UI
 
 Components for SvelteKit Apps. Check out the [documentation](https://steeze-ui.com) for more info!
@@ -22,7 +24,7 @@ Once you've installed the package, you can import the base styles which consists
 
 ```html
 <script>
-  import '@steeze-ui/components/base.css'
+	import '@steeze-ui/components/base.css'
 </script>
 ```
 
