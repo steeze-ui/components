@@ -5,6 +5,10 @@ title: Select
 description: Choose a Single Item from a Set of Items
 ---
 
+<script context="module">
+	export const prerender = true
+</script>
+
 <script lang="ts">
 	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/select.svelte'

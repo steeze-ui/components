@@ -5,11 +5,15 @@ title: Popover
 description: Display Content that floats around a trigger
 ---
 
+<script context="module">
+		export const prerender = true
+</script>
+
 <script lang="ts">
 	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/popover.svelte'
 	import {api, styling} from './_data/popover.svelte'
-	  import Footer from "$lib/_internal/docs/Footer.svelte"
+	import Footer from "$lib/_internal/docs/Footer.svelte"
 
 	
 </script>

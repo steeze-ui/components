@@ -22,6 +22,7 @@
 	"devDependencies": {
 		"@steeze-ui/radix-icons": "^1.0.4",
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-node": "^1.0.0-next.67",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^4.33.0",
 		"@typescript-eslint/parser": "^4.33.0",

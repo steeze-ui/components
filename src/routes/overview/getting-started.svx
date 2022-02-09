@@ -1,3 +1,7 @@
+<script context="module">
+		export const prerender = true
+</script>
+
 <script>
   import Footer from "$lib/_internal/docs/Footer.svelte"
 </script>

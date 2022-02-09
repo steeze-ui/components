@@ -6,6 +6,7 @@ specifiers:
   '@steeze-ui/radix-icons': ^1.0.4
   '@steeze-ui/svelte-icon': ^1.2.2
   '@sveltejs/adapter-auto': next
+  '@sveltejs/adapter-node': ^1.0.0-next.67
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^4.33.0
   '@typescript-eslint/parser': ^4.33.0
@@ -32,6 +33,7 @@ dependencies:
 devDependencies:
   '@steeze-ui/radix-icons': 1.0.4
   '@sveltejs/adapter-auto': 1.0.0-next.17
+  '@sveltejs/adapter-node': 1.0.0-next.67
   '@sveltejs/kit': 1.0.0-next.260_svelte@3.46.4
   '@typescript-eslint/eslint-plugin': 4.33.0_959502c0ea240e86d4d2ba8b8c0fee45
   '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.5.5
@@ -184,6 +186,12 @@ packages:
     dependencies:
       '@iarna/toml': 2.2.5
       esbuild: 0.13.15
+      tiny-glob: 0.2.9
+    dev: true
+
+  /@sveltejs/adapter-node/1.0.0-next.67:
+    resolution: {integrity: sha512-+LuLn91xARZsRANiQNIIDpMMncUTnP2pJc8tyL+FdpVvs5UtlvkYJpeCBPFqjjseRpIIbi8Slu89GCdrRXBDUg==}
+    dependencies:
       tiny-glob: 0.2.9
     dev: true
 

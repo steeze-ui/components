@@ -60,6 +60,9 @@
 	import Title from '$lib/_internal/docs/Title.svelte'
 	import Button from '$lib/button/Button.svelte'
 	import { Moon, Sun } from '@steeze-ui/heroicons'
+	import { browser } from '$app/env'
+	// import Prism from 'prismjs'
+	// import 'prism-svelte'
 
 	export let id: number
 	export let type: number
@@ -67,9 +70,19 @@
 	export let description: string
 
 	const features = ['Icon Support', '3 Color Themes', 'Form Ready']
+
+	// $: console.log(Prism)
+
+	// const source = `
+	// console.log("lol")
+	// `
+
+	// const highlighted = Prism.highlight(source, Prism.languages.svelte, 'svelte')
 </script>
 
 <Title {title} {type} {description} />
+
+<!-- {@html highlighted} -->
 
 <Demo {id}>
 	<div class="flex gap-3">

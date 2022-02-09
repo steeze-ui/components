@@ -5,10 +5,16 @@ title: '?'
 description: '?'
 ---
 
+<script context="module">
+		export const prerender = true
+</script>
+
 <script lang="ts">
 	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/text-field.svelte'
 	import {api, styling} from './_data/?.svelte'
+	import Footer from "$lib/_internal/docs/Footer.svelte"
+
 
 </script>
 
@@ -45,3 +51,5 @@ This demonstrates the usage
 
 <? />
 ```
+
+<Footer current={title} />
