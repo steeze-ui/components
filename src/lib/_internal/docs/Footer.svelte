@@ -118,20 +118,24 @@
 		background-color: var(--st-colors-gray9);
 	}
 
-	:global(.st-theme-dark [part='vercel-logo'], .st-theme-dark
-			.prose
-			[part='vercel-logo']
-			a, .st-theme-dark span[part='license']) {
-		color: var(--st-colors-gray8);
+	:global(.st-theme-dark [part='vercel-logo']) {
+		color: var(--st-colors-gray7);
 	}
-	:global(.st-theme-light [part='vercel-logo'], .st-theme-light .prose [part='vercel-logo'] a) {
-		color: var(--st-colors-gray4);
+	:global(.st-theme-light [part='vercel-logo']) {
+		color: var(--st-colors-gray5);
+	}
+
+	:global(.st-theme-dark .prose [part='vercel-logo'] a) {
+		color: white;
+	}
+	:global(.st-theme-light .prose [part='vercel-logo'] a) {
+		color: black;
 	}
 
 	:global(.st-theme-dark span[part='license']) {
-		color: var(--st-colors-gray8);
+		color: var(--st-colors-gray7);
 	}
 	:global(.st-theme-light span[part='license']) {
-		color: var(--st-colors-gray4);
+		color: var(--st-colors-gray5);
 	}
 </style>

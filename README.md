@@ -56,3 +56,9 @@ Some components share the same parts, like both `Select` and `TextField` use the
 <Label for="switch">Switch me!</Label>
 <Switch id="switch" checked />
 ```
+
+## Sponsors
+
+## License
+
+Distributed under the [MIT License](/LICENSE).
