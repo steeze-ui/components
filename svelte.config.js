@@ -15,7 +15,14 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		// hydrate the <div id="svelte"> element in src/app.html
-
+		csp: {
+			mode: 'auto',
+			directives: {
+				'script-src': ['self', 'unsafe-inline'],
+				'object-src': ['none'],
+				'base-uri': ['self']
+			}
+		},
 		vite: {
 			plugins: [WindiCSS({ config: 'windi.config.js' })]
 		},
