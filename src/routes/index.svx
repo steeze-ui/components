@@ -1,3 +1,7 @@
+<script>
+  import Footer from "$lib/_internal/docs/Footer.svelte"
+</script>
+
 <svelte:head>
 
 <title>Introduction — Steeze UI</title>
@@ -23,3 +27,5 @@ Some API and Design decisions are inspired by [Radix UI](https://radix-ui.com), 
 ## Contribution
 
 This Project is licensed under MIT and you can do whatever you want with it. If you find bugs or want to add certain features/components, feel free to open an issue or PR on [GitHub](https://github.com/steeze-ui/components)
+
+<Footer current="Introduction" />

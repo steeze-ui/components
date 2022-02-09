@@ -9,6 +9,8 @@ description: Display Content that floats around a trigger
 	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/popover.svelte'
 	import {api, styling} from './_data/popover.svelte'
+	  import Footer from "$lib/_internal/docs/Footer.svelte"
+
 	
 </script>
 
@@ -37,3 +39,5 @@ description: Display Content that floats around a trigger
 ## Styling Reference
 
 <TableTabs data={styling} />
+
+<Footer current={title} />

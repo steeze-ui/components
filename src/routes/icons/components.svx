@@ -1,5 +1,10 @@
+<script>
+  import Footer from "$lib/_internal/docs/Footer.svelte"
+</script>
+
 <svelte:head>
-<title>Icon Components — Steeze UI</title>
+
+  <title>Icon Components — Steeze UI</title>
 </svelte:head>
 
 # Icon Components
@@ -7,3 +12,5 @@
 ## Work in Progress
 
 While this page is in development check out the [Icon Components](https://github.com/steeze-ui/icons#icon-components) section in the GitHub Readme
+
+<Footer current="Icon Components" />

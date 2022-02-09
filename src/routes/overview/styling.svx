@@ -1,3 +1,7 @@
+<script>
+  import Footer from "$lib/_internal/docs/Footer.svelte"
+</script>
+
 <svelte:head>
 
 <title>Styling — Steeze UI</title>
@@ -81,3 +85,5 @@ Additionally to the predefined Themes, some you can apply globally via classes. 
 ```
 
 Now every all components inside the div have the `small` theme applied. This can be useful to control different sizes for different devices.
+
+<Footer current="Styling" />

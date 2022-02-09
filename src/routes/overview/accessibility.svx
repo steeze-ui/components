@@ -1,6 +1,10 @@
+<script>
+  import Footer from "$lib/_internal/docs/Footer.svelte"
+</script>
+
 <svelte:head>
 
-<title>Accessibility — Steeze UI</title>
+  <title>Accessibility — Steeze UI</title>
 </svelte:head>
 
 # Accessibility
@@ -30,3 +34,5 @@ In contrast to SR's, a proper Keyboard handling can benefit anyone and should th
 ## Color / Contrast Radio
 
 Contrast can be easily checked by calculating the [Contrast Ratio](https://web.dev/color-and-contrast-accessibility/#:~:text=The%20WebAIM%20guidelines%20recommend%20an,go%20down%20to%203%3A1.) and also plays an important role for visually impaired people.
+
+<Footer current="Accessibility" />

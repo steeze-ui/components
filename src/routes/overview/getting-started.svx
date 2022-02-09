@@ -1,6 +1,10 @@
+<script>
+  import Footer from "$lib/_internal/docs/Footer.svelte"
+</script>
+
 <svelte:head>
 
-<title>Getting Started — Steeze UI</title>
+  <title>Getting Started — Steeze UI</title>
 </svelte:head>
 
 # Getting Started
@@ -22,3 +26,5 @@ If you want a solid foundation of styles that can be easily overriden using CSS 
 ```
 
 Check out the [Styling Guide](/overview/styling) to learn more about how styling works.
+
+<Footer current="Getting Started" />

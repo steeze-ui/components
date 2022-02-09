@@ -1,4 +1,9 @@
+<script>
+  import Footer from "$lib/_internal/docs/Footer.svelte"
+</script>
+
 <svelte:head>
+
 <title>Icons — Steeze UI</title>
 </svelte:head>
 
@@ -7,3 +12,5 @@
 ## Work in Progress
 
 While this page is in development check out the [GitHub Readme](https://github.com/steeze-ui/icons)
+
+<Footer current="About" />

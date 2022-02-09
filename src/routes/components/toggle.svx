@@ -9,6 +9,7 @@ description: Switch a value betwenn two states
 	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/toggle.svelte'
 	import {api, styling} from './_data/toggle.svelte'
+	import Footer from "$lib/_internal/docs/Footer.svelte"
 
 </script>
 
@@ -58,3 +59,5 @@ Your backend will receive the associated `formData`
 	/>
 </form>
 ```
+
+<Footer current={title} />

@@ -9,6 +9,7 @@ description: User Input as Simple Text
 	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
 	import Component from './_data/text-field.svelte'
 	import {api, styling} from './_data/text-field.svelte'
+	import Footer from "$lib/_internal/docs/Footer.svelte"
 
 </script>
 
@@ -45,3 +46,5 @@ This demonstrates the usage
 
 <Button />
 ```
+
+<Footer current={title} />

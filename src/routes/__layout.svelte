@@ -10,61 +10,18 @@
 	import MenuSection from '$lib/_internal/menu/MenuSection.svelte'
 	import Select from '$lib/select/Select.svelte'
 	import { lightTheme } from '$lib/_internal/stores/theme'
+	import { menu } from '$lib/_internal/stores/menu'
 
 	let menuOpen = false
-
-	const menu = {
-		Overview: {
-			Introduction: '/',
-			'Getting Started': '/overview/getting-started',
-			Styling: '/overview/styling',
-			Accessibility: '/overview/accessibility'
-		},
-		Components: {
-			'Form Input': {
-				Select: '/components/select',
-				'Combo Box': '__/components/combo-box',
-				'Radio Group': '_/components/radio-group',
-				Checkbox: '_/components/checkbox',
-				'Text Field': '/components/text-field',
-				'Number Field': '__/components/number-field',
-				'Text Area': '_/components/text-area',
-				Toggle: '/components/toggle'
-			},
-			'Visualization & Interaction': {
-				Button: '/components/button',
-				Tooltip: '/components/tooltip',
-				Popover: '/components/popover',
-				Grid: '__/components/grid',
-				Carousel: '__/components/carousel',
-				Details: '__/components/details',
-				'Dropdown Menu': '__/components/dropdown-menu',
-				Tabs: '_/components/tabs',
-				Accordion: '__/components/accordion',
-				Notification: '_/components/notification',
-				Dialog: '_/components/dialog'
-			},
-			Layouts: {
-				Flex: '_/components/flex',
-				Split: '__/components/split',
-				Scrollable: '__/components/scrollable'
-			}
-		},
-		Icons: {
-			About: '/icons',
-			'Icon Packs': '/icons/packs',
-			'Icon Components': '/icons/components'
-		}
-	}
 
 	$: filteredItems = (
 		!selectedFilter || selectedFilter.id === '0'
 			? [].concat(
-					Object.entries(menu['Components']['Form Input']),
-					Object.entries(menu['Components']['Visualization & Interaction']),
-					Object.entries(menu['Components']['Layouts'])
+					Object.entries($menu['Components']['Form Input']),
+					Object.entries($menu['Components']['Visualization & Interaction']),
+					Object.entries($menu['Components']['Layouts'])
 			  )
-			: Object.entries(menu['Components'][selectedFilter?.label])
+			: Object.entries($menu['Components'][selectedFilter?.label])
 	) as [string, string][]
 
 	$: sortedItems = filteredItems.sort(([firstLabel], [secondLabel]) =>
@@ -77,7 +34,7 @@
 		}
 	})
 
-	let filterItems = ['All', ...Object.keys(menu['Components'])].map((e, i) => ({
+	let filterItems = ['All', ...Object.keys($menu['Components'])].map((e, i) => ({
 		id: i.toString(),
 		label: e
 	}))
@@ -98,8 +55,8 @@
 <div class="flex flex-grow relative">
 	<Menu bind:menuOpen>
 		<MenuSection label="Overview">
-			{#each Object.keys(menu['Overview']) as label}
-				<MenuItem {label} href={menu['Overview'][label]} />
+			{#each Object.keys($menu['Overview']) as label}
+				<MenuItem {label} href={$menu['Overview'][label]} />
 			{/each}
 		</MenuSection>
 		<MenuSection label="Components">
@@ -120,8 +77,8 @@
 			{/each}
 		</MenuSection>
 		<MenuSection label="Icons">
-			{#each Object.keys(menu['Icons']) as label}
-				<MenuItem {label} href={menu['Icons'][label]} />
+			{#each Object.keys($menu['Icons']) as label}
+				<MenuItem {label} href={$menu['Icons'][label]} />
 			{/each}
 		</MenuSection>
 	</Menu>
