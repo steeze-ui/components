@@ -38,12 +38,12 @@
 		outline-color: var(--st-colors-primary7);
 		outline-width: var(--st-outline-width);
 	}
-	:global(.st-theme-light a[data-active]) {
-		outline-width: 0;
+	:global(.st-theme-light [data-active] a) {
+		outline-width: 0 !important;
 	}
-	:global(.st-theme-light a[data-active]:focus-visible) {
-		outline-color: var(--st-outline-color);
-		outline-width: var(--st-outline-width);
+	:global(.st-theme-light [data-active] a:focus-visible) {
+		outline-color: var(--st-outline-color) !important;
+		outline-width: var(--st-outline-width) !important;
 	}
 
 	a {
@@ -65,37 +65,37 @@
 		padding: 0 0.3rem;
 	}
 	:global(.st-theme-light [part='tag']) {
-		background-color: var(--st-colors-light3);
-		color: var(--st-colors-gray4);
+		background-color: var(--st-colors-light3) !important;
+		color: var(--st-colors-gray4) !important;
 	}
 
 	[part='menu-item'] {
 		color: var(--st-colors-gray4);
 	}
-	:global(.st-theme-light [part='menu-item']) {
-		color: var(--st-colors-gray9);
+	:global(.st-theme-light [part='menu-item'] a) {
+		color: var(--st-colors-gray9) !important;
 	}
 
-	[part='menu-item'][data-active] {
+	[part='menu-item'][data-active] a {
 		color: white;
 		background-color: var(--st-colors-primary9);
 	}
-	:global(.st-theme-light [part='menu-item'][data-active]) {
-		color: var(--st-colors-primary5);
-		background-color: var(--st-colors-primary1);
+	:global(.st-theme-light [part='menu-item'][data-active] a) {
+		color: var(--st-colors-primary5) !important;
+		background-color: var(--st-colors-primary1) !important;
 	}
 
 	[part='menu-item']:not([data-active]):not([data-disabled]) a:hover {
 		background-color: var(--st-colors-primary9);
 	}
 	:global(.st-theme-light [part='menu-item']:not([data-active]):not([data-disabled]) a:hover) {
-		background-color: var(--st-colors-primary1);
+		background-color: var(--st-colors-primary1) !important;
 	}
 
 	[part='menu-item'][data-disabled] {
 		color: var(--st-colors-gray7);
 	}
 	:global(.st-theme-light [part='menu-item'][data-disabled]) {
-		color: var(--st-colors-gray4);
+		color: var(--st-colors-gray4) !important;
 	}
 </style>
