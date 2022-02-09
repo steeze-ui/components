@@ -1,4 +1,5 @@
 <svelte:head>
+
 <title>Introduction — Steeze UI</title>
 </svelte:head>
 
@@ -6,7 +7,7 @@
 
 ## Accessible Components for Svelte
 
-This project is a small set of customizable UI components for the [Svelte](https://svelte.dev) framework. Svelte is a rather new framework and comparable to `react`, `vue` or `lit` for building modern UI's but in a more elegant and performant way.
+This project is a small set of customizable UI components for the [Svelte](https://svelte.dev) framework. Svelte is a upcoming framework and comparable to `react`, `vue` or `lit` for building modern UI's but in a more elegant and performant way.
 
 See for yourself and try their [awesome interactive tutorial](https://svelte.dev/tutorial/basics)
 

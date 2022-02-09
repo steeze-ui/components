@@ -1,13 +1,32 @@
 <svelte:head>
+
 <title>Accessibility — Steeze UI</title>
 </svelte:head>
 
 # Accessibility
 
-As explained in [Introduction](/) I had a course about Accessibility in my Uni and here I want to collect some of the most important
+As explained in [Introduction](/) I had a course about Accessibility in my Uni and here I want to collect some of the most important keynotes.
+
+## Screen Reader
+
+A Screen Reader(SR) is a software used by visually handicapped people to describe what you would see on a website. Here it is most needed to make use of the html aria-\* attributes by [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/), so the SR can make sense on how to correctl traverse the dom.
+
+For example the [Select](https://www.steeze-ui.com/components/select) component uses a custom listbox that pops up somewhere in the body when the trigger is clicked. Without certain aria attributes the SR couldn't make sense of this and simply wouldn't notify the user about the popped up listbox.
+
+Another example are accessible names for the native html button element. They need the `aria-label` property defined in order to be correctly announced by the SR.
+
+Aria Attributes for SR are comepletly invisible for the normal user, but urgently necessary for visually impaired people since they can only use the web via a SR.
+
+### Tools
+
+There are a lot of awesome tools like [Axe DevTools](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd) or [ARC Toolkit](https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce) which you can use to detect accessibility errors.
+
+Probably the easiest would be the Lighthouse report which every Chromium based browser can use directly in the devtools without installing anything. There you can generate a report with a score of how accessible (and some more tests) your website is and directly shows you where it finds a error and how to improve it.
 
 ## Keyboard Handling
 
+In contrast to SR's, a proper Keyboard handling can benefit anyone and should therefore have a high priority to invest time in. HTML has already keyboard support built-in for its native elements. Components like the [Select](https://www.steeze-ui.com/components/select) are highly custom and therefore need its own implementation of keyboard inputs. Luckily [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) provides us a list of required [keyboard interactions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role#keyboard_interactions) for the listbox role.
+
 ## Color / Contrast Radio
 
-## Screen Reader
+Contrast can be easily checked by calculating the [Contrast Ratio](https://web.dev/color-and-contrast-accessibility/#:~:text=The%20WebAIM%20guidelines%20recommend%20an,go%20down%20to%203%3A1.) and also plays an important role for visually impaired people.
