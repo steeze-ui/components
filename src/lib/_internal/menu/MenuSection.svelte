@@ -4,7 +4,7 @@
 
 <li class="flex flex-col gap-1">
 	<div class="flex gap-4 items-center justify-between mx-2">
-		<h5 class="font-medium py-1 pl-4 text-gray-300">{label}</h5>
+		<span class="font-medium py-1 pl-4 text-gray-300">{label}</span>
 		<slot name="label-suffix" />
 	</div>
 	<ul class="flex flex-col gap-1">
@@ -13,7 +13,7 @@
 </li>
 
 <style>
-	h5 {
+	span {
 		color: var(--st-colors-gray4);
 	}
 

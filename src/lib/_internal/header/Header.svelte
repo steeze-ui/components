@@ -39,7 +39,11 @@
 <div
 	class="rounded-full flex bg-primary-900/20 h-12 top-[92vh] left-5 w-12 z-40 fixed items-center justify-center backdrop-filter backdrop-blur-md"
 >
-	<button class="flex items-center justify-center" on:click={() => (menuOpen = true)}>
+	<button
+		class="flex items-center justify-center"
+		on:click={() => (menuOpen = true)}
+		aria-label="toggle menu"
+	>
 		<Icon src={Menu} size="22" color="white" />
 	</button>
 </div>

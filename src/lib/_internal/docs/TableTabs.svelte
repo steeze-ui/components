@@ -22,44 +22,45 @@
 
 <div
 	part="tabs"
+	style="outline: none;"
 	role="tablist"
-	aria-orientation="horizontal"
 	dir="ltr"
 	aria-label="Manage your account"
 	tabindex="0"
+	aria-orientation="horizontal"
 	data-orientation="horizontal"
-	style="outline: none;"
 >
 	{#each sections as section, i}
 		{@const isActive = i === index}
-		<div part="wrapper" data-active={isActive ? true : null}>
-			<button
-				part="tab"
-				on:click={() => (index = i)}
-				type="button"
-				role="tab"
-				aria-selected={isActive}
-				aria-controls="steeze-{id}-content-tab{i}"
-				id="steeze-{id}-trigger-tab{i}"
-				tabindex={isActive ? 0 : -1}
-				data-orientation="horizontal">{section}</button
-			>
+		<button
+			part="tab"
+			type="button"
+			role="tab"
+			data-active={isActive ? true : null}
+			aria-label="{section} Tab"
+			on:click={() => (index = i)}
+			aria-selected={isActive}
+			id="{id}-trigger-tab{i}"
+			tabindex={isActive ? 0 : -1}
+			data-orientation="horizontal"
+		>
+			<div part="wrapper">{section}</div>
 			{#if isActive}
 				<div part="line" in:receive={{ key: 'tab-active' }} out:send={{ key: 'tab-active' }} />
 			{/if}
-		</div>
+		</button>
 	{/each}
 </div>
 
 <Table data={current} />
 
 <style>
-	[part='wrapper']:not([data-active]) {
+	[part='tab']:not([data-active]) {
 		border-bottom-width: 2px;
 		border-bottom-style: solid;
 		border-bottom-color: transparent;
 	}
-	[part='wrapper'] {
+	[part='tab'] {
 		position: relative;
 	}
 
@@ -73,14 +74,14 @@
 		border-color: var(--st-colors-light8) !important;
 	}
 
-	[part='tab'] {
+	[part='wrapper'] {
 		padding: 1rem 0;
 		font-weight: var(--st-font-weight-medium);
 		border-bottom-width: 2px;
 		border-bottom-style: solid;
 		border-bottom-color: transparent;
 	}
-	:global(.st-theme-light [part='tab']) {
+	:global(.st-theme-light [part='wrapper']) {
 		color: var(--st-colors-dark1);
 	}
 
@@ -92,16 +93,16 @@
 		height: 2px;
 	}
 
-	[part='wrapper']:not([data-active]):hover {
+	[part='tab']:not([data-active]):hover {
 		border-color: var(--st-colors-gray9);
 	}
-	:global(.st-theme-light [part='wrapper']:hover) {
+	:global(.st-theme-light [part='tab']:hover) {
 		border-color: var(--st-colors-light10) !important;
 	}
 
 	/* Active */
-	[data-active] [part='tab'] {
-		color: var(--st-colors-primary4);
+	[data-active] [part='wrapper'] {
+		color: var(--st-colors-primary3);
 	}
 	[data-active] [part='line'] {
 		background-color: var(--st-colors-primary4);

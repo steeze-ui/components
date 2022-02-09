@@ -33,6 +33,7 @@
 	// export let name = null
 	export let focus = false
 	export let theme: string = null
+	export let ariaLabel: string = null
 
 	let refTrigger: HTMLElement
 	let refFloating: any
@@ -315,6 +316,7 @@
 	</svelte:fragment>
 
 	<button
+		aria-label={ariaLabel}
 		slot="default"
 		part="value"
 		on:focus={() => {
@@ -323,7 +325,6 @@
 		on:blur={() => {
 			focused = false
 		}}
-		role="listbox"
 		type="button"
 		{disabled}
 		{required}

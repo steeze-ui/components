@@ -73,13 +73,17 @@
 
 <Demo {id}>
 	<div class="flex gap-3">
-		<Button theme="primary" style="width:8rem">Primary</Button>
-		<Button style="width:8rem">Secondary</Button>
-		<Button theme="tertiary" style="width:8rem">Tertiary</Button>
+		<Button theme="primary" style="width:8rem" aria-label="Primary Button Theme Example"
+			>Primary</Button
+		>
+		<Button style="width:8rem" aria-label="Secondary Button Theme Example">Secondary</Button>
+		<Button theme="tertiary" style="width:8rem" aria-label="Tertiary Button Theme Example"
+			>Tertiary</Button
+		>
 	</div>
 	<div class="flex gap-3">
-		<Button theme="secondary" icon={Moon}>Icon</Button>
-		<Button theme="secondary" icon={Sun} />
+		<Button theme="secondary" icon={Moon} aria-label="Icon Button with Label">Icon</Button>
+		<Button theme="secondary" icon={Sun} aria-label="Icon Only Button" />
 	</div>
 </Demo>
 

@@ -94,8 +94,6 @@
 	}
 </script>
 
-<svelte:body />
-
 <Header bind:menuOpen />
 <div class="flex flex-grow relative">
 	<Menu bind:menuOpen>
@@ -106,6 +104,7 @@
 		</MenuSection>
 		<MenuSection label="Components">
 			<Select
+				ariaLabel="Filter Menu Items by Type"
 				width="6rem"
 				slot="label-suffix"
 				theme="small transparent"

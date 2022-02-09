@@ -8,7 +8,7 @@
 
 <li
 	part="item"
-	role="menuitem"
+	role="option"
 	aria-checked={selected}
 	data-focused={focused ? true : null}
 	data-selected={selected ? true : null}

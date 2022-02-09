@@ -24,20 +24,15 @@
 		{/if}
 	</li>
 {:else}
-	<a
-		part="menu-item"
-		{href}
-		data-active={active ? true : null}
-		class="st-focus-ring rounded mx-2 text-sm py-1.25 pl-8"
-	>
-		<li>
+	<li part="menu-item" data-active={active ? true : null}>
+		<a {href} class="st-focus-ring rounded mx-2 text-sm py-1.25 pl-8">
 			{label}
-		</li>
-	</a>
+		</a>
+	</li>
 {/if}
 
 <style>
-	a[data-active] {
+	[data-active] a {
 		outline-style: solid;
 		outline-offset: 0;
 		outline-color: var(--st-colors-primary7);
@@ -52,9 +47,11 @@
 	}
 
 	a {
+		display: flex;
 		text-decoration-color: transparent;
 		border: 0;
 		border-color: transparent;
+		height: 100%;
 	}
 
 	li[data-disabled] {
@@ -88,10 +85,10 @@
 		background-color: var(--st-colors-primary1);
 	}
 
-	[part='menu-item']:not([data-active]):not([data-disabled]):hover {
+	[part='menu-item']:not([data-active]):not([data-disabled]) a:hover {
 		background-color: var(--st-colors-primary9);
 	}
-	:global(.st-theme-light [part='menu-item']:not([data-active]):not([data-disabled]):hover) {
+	:global(.st-theme-light [part='menu-item']:not([data-active]):not([data-disabled]) a:hover) {
 		background-color: var(--st-colors-primary1);
 	}
 

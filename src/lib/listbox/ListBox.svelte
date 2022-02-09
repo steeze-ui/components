@@ -2,18 +2,18 @@
 	export let showPrefix = false
 </script>
 
-<div part="list-box" role="menu" aria-orientation="vertical" tabindex="-1" {...$$restProps}>
+<ul part="listbox" role="listbox" aria-orientation="vertical" tabindex="-1" {...$$restProps}>
 	{#if showPrefix}
 		<slot name="prefix" />
 	{/if}
-	<ul part="items">
+	<div part="items">
 		<slot />
-	</ul>
+	</div>
 	<slot name="suffix" />
-</div>
+</ul>
 
 <style>
-	[part='list-box'] {
+	[part='listbox'] {
 		overflow: auto;
 		box-shadow: var(--st-overlay-box-shadow);
 		border: var(--st-overlay-border-width) solid var(--st-overlay-border-color);

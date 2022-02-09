@@ -20,10 +20,10 @@
 	<div class="flex items-center gap-4">
 		<h1>{title}</h1>
 		<div class="flex items-center gap-4">
-			<p data-type={type}>{types[type]}</p>
+			<span data-type={type}>{types[type]}</span>
 		</div>
 	</div>
-	<h3>{description}</h3>
+	<p>{description}</p>
 </div>
 
 <style>
@@ -50,12 +50,12 @@
 	}
 
 	h1,
-	h3,
-	p {
+	p,
+	span {
 		margin: 0 !important;
 	}
 
-	p {
+	span {
 		width: auto;
 		padding: 0 0.5rem;
 		border-radius: var(--st-border-radius);
@@ -65,17 +65,23 @@
 		color: var(--st-colors-primary5);
 	}
 
-	p[data-type='1'] {
+	span[data-type='1'] {
 		background-color: var(--st-colors-primary-o);
 		color: var(--st-colors-primary-i);
 	}
 
-	p[data-type='2'] {
+	span[data-type='2'] {
 		background-color: var(--st-colors-yellow-o);
 		color: var(--st-colors-yellow-i);
 	}
-	p[data-type='3'] {
+	span[data-type='3'] {
 		background-color: var(--st-colors-pink-o);
 		color: var(--st-colors-pink-i);
+	}
+
+	p {
+		color: var(--st-colors-gray5);
+		font-weight: 500;
+		font-size: var(--st-font-size-xl);
 	}
 </style>

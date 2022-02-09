@@ -8,7 +8,7 @@
 </script>
 
 <Tooltip class="inline-block" position={'right'} maxWidth="12rem">
-	<button slot="trigger">
+	<button slot="trigger" aria-label="Info Tooltip">
 		<Icon src={ExclamationCircle} size="16" color="var(--st-colors-gray5)" class="-mb-1 ml-1" />
 	</button>
 
