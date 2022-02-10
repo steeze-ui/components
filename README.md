@@ -58,7 +58,10 @@ Some components share the same parts, like both `Select` and `TextField` use the
 ```
 
 ## Sponsors
+
+<a href="https://www.vercel.com?utm_source=steeze-ui&utm_campaign=oss">
 <img width="150px" src="https://user-images.githubusercontent.com/30449535/153277500-232b04f0-f636-42b1-aa08-1cd09d8e9086.svg" />
+</a>
 
 ## License
 
