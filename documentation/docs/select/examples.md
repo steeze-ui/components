@@ -1,59 +1,14 @@
----
-type: 1
-id: 2
-title: Select
-description: Choose a Single Item from a Set of Items
----
-
-<script context="module">
-	export const prerender = true
-</script>
-
-<script lang="ts">
-	import TableTabs from '$lib/_internal/docs/TableTabs.svelte'
-	import Component from './_data/select.svelte'
-	import {api, styling} from './_data/select.svelte'
-	import Footer from "$lib/_internal/docs/Footer.svelte"
-</script>
-
-<Component {id} {type} {title} {description}></Component>
-
-## Quickstart
-
-```svelte
-<script>
-	import {Select} from '@steeze-ui/components'
-
-	const items = [
-		{ id: '1', label: 'First Item' },
-		{ id: '2', label: 'Second Item' }
-	]
-</script>
-
-<Select {items} value={items[0]} />
-```
-
-## API Reference
-
-<TableTabs data={api} />
-
-## Styling Reference
-
-<TableTabs data={styling} />
-
-## Examples
-
 ### Custom Value Renderer
 
 Changes how the label will be rendered for the Input and Selector Items. This is needed in case where your item object has no `label` property
 
-````svelte
+```svelte
 <script>
 	const items = [{id:"1",value:"value 1"}]
 </script>
 
 <Select {items} itemLabelRenderer={(e)=>`Item: ${e.value}`} />
-	```
+```
 
 ### Custom Identifier
 
@@ -65,7 +20,7 @@ In case your item object comes with a different identifier you can change the de
 </script>
 
 <Select {items} identifier="key" />
-````
+```
 
 ### Custom Label Renderer
 
@@ -104,5 +59,3 @@ Sort items by Grouping them together.
 
 <Select {items} groupBy={(e)=>e.group} />
 ```
-
-<Footer current={title} />

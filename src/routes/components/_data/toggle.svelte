@@ -39,7 +39,7 @@
 	}
 
 	export const styling = {
-		'Custom Properties': [
+		'CSS variables': [
 			{ Name: '--st-toggle-size', Default: '20px', Notes: 'Diameter of the Thumb' },
 			{ Name: '--st-toggle-offset', Default: '4px', Notes: 'Offset between Root and Thumb' },
 			{

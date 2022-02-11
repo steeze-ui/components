@@ -19,7 +19,7 @@
 	}
 
 	export const styling = {
-		'Custom Properties': [{ Name: '--st-text-field-color', Default: '--st-field-color' }],
+		'CSS variables': [{ Name: '--st-text-field-color', Default: '--st-field-color' }],
 		Themes: [
 			{ Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' },
 			{ Name: 'borderless', Notes: 'Renders without a border', Global: 'true' }

@@ -28,7 +28,7 @@
 	}
 
 	export const styling = {
-		'Custom Properties': [
+		'CSS variables': [
 			{ Name: '--st-text-field-color', Default: '--st-field-color' },
 			{ Name: '--st-text-field-font-size', Default: '--st-field-font-size' },
 			{ Name: '--st-field-height', Default: '--st-field-height-md' },

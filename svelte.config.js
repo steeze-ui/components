@@ -1,6 +1,8 @@
 import { mdsvex } from 'mdsvex'
 import mdsvexConfig from './mdsvex.config.js'
 import adapter from '@sveltejs/adapter-auto'
+// import adapter from '@sveltejs/adapter-vercel'
+// import adapter from '@sveltejs/adapter-node'
 import preprocess from 'svelte-preprocess'
 import WindiCSS from 'vite-plugin-windicss'
 
@@ -13,8 +15,11 @@ const config = {
 	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 
 	kit: {
-		adapter: adapter({ precompress: true }),
+		adapter: adapter(),
 		// hydrate the <div id="svelte"> element in src/app.html
+		prerender: {
+			entries: ['*']
+		},
 		csp: {
 			mode: 'auto',
 			directives: {

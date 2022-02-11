@@ -80,7 +80,7 @@
 	}
 
 	p {
-		color: var(--st-colors-gray5);
+		color: var(--st-colors-gray5) !important;
 		font-weight: 500;
 		font-size: var(--st-font-size-xl);
 	}
