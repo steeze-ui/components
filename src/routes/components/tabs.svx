@@ -1,0 +1,48 @@
+---
+id: 7
+type: 2
+title: Tabs
+description: Connect content to a tab
+---
+
+<script lang="ts">
+	import TableTabs from '$lib/internal/docs/TableTabs.svelte'
+	import Component from './_data/tabs.svelte'
+	import {api, styling} from './_data/tabs.svelte'
+
+
+</script>
+
+<Component {id} {type} {title} {description}></Component>
+
+## Quickstart
+
+```svelte
+<script>
+	import {Tabs} from '@steeze-ui/components'
+</script>
+
+<Tabs />
+```
+
+## API Reference
+
+<TableTabs data={api} />
+
+## Styling Reference
+
+<TableTabs data={styling} />
+
+## Examples
+
+### Example usage
+
+This demonstrates the usage
+
+```svelte
+<script>
+	import { Tabs } from '@steeze-ui/components'
+</script>
+
+<Tabs />
+```
