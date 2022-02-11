@@ -2,16 +2,13 @@
 </script>
 
 <script lang="ts">
-	import _ from 'prismjs'
-	import 'prism-svelte'
+	import type { ComponentData, ComponentExample } from '../types/docs'
+	import Code from './Code.svelte'
 	import Demo from './Demo.svelte'
 	import Feats from './Features.svelte'
 	import Footer from './Footer.svelte'
 	import TableTabs from './TableTabs.svelte'
 	import Title from './Title.svelte'
-	import type { ComponentData, ComponentExample } from '../types/docs'
-	import Code from './Code.svelte'
-	import { getHighlighted } from '../utils/code'
 
 	export let quickstart: string
 	export let examples: ComponentExample[]
@@ -29,7 +26,7 @@
 
 {#if quickstart}
 	<h2>Quickstart</h2>
-	<Code content={getHighlighted(quickstart)} />
+	<Code content={quickstart} />
 {/if}
 
 {#each Object.keys(data.docs) as section}
@@ -42,7 +39,7 @@
 	{#each examples as { description, source, title }}
 		<h3>{title}</h3>
 		<p>{description}</p>
-		<Code content={getHighlighted(source)} />
+		<Code content={source} />
 	{/each}
 {/if}
 

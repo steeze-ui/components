@@ -3,9 +3,10 @@
 </script>
 
 <script lang="ts">
-	import Tabs from '$lib/tabs/Tabs.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
 	import { data, quickstart, examples } from './_data/text-area'
+
+	import Tabs from '$lib/tabs/Tabs.svelte'
 </script>
 
 <Component {data} {quickstart} {examples}>
