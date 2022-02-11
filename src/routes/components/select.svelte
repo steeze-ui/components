@@ -1,28 +1,12 @@
 <script context="module" lang="ts">
-	import Select from '$lib/select/Select.svelte'
-	import Component from '$lib/_internal/docs/Component.svelte'
-	import type { Load } from '@sveltejs/kit'
 	export const prerender = true
-
-	export const load: Load = async ({ fetch }) => {
-		const res = await fetch('/docs/select')
-		if (res.ok) {
-			const { examples, data, quickstart } = await res.json()
-			return {
-				props: {
-					examples,
-					quickstart,
-					data
-				}
-			}
-		}
-	}
 </script>
 
 <script lang="ts">
-	export let examples
-	export let quickstart = ''
-	export let data
+	import Component from '$lib/_internal/docs/Component.svelte'
+	import { data, quickstart, examples } from './_data/select'
+
+	import Select from '$lib/select/Select.svelte'
 
 	const items = [
 		{ id: '1', label: 'Hot' },
@@ -38,7 +22,7 @@
 	]
 </script>
 
-<Component meta={data.meta} features={data.features} docs={data.docs} {quickstart} {examples}>
+<Component {data} {quickstart} {examples}>
 	<Select label="Filter by" width="12rem" {items} />
 	<Select
 		width="12rem"

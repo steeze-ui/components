@@ -1,55 +1,49 @@
 <script context="module" lang="ts">
-	export interface Meta {
-		title: string
-		color: number
-		type: 1 | 2 | 3
-		description: string
-	}
-
-	export type Feature = string
-
-	export interface Docs {
-		[section: string]: { [tab: string]: { [column: string]: any }[] }
-	}
 </script>
 
 <script lang="ts">
-	// import _ from 'prismjs'
-	// import 'prism-svelte'
+	import _ from 'prismjs'
+	import 'prism-svelte'
 	import Demo from './Demo.svelte'
 	import Feats from './Features.svelte'
 	import Footer from './Footer.svelte'
 	import TableTabs from './TableTabs.svelte'
 	import Title from './Title.svelte'
+	import type { ComponentData, ComponentExample } from '../types/docs'
+	import Code from './Code.svelte'
+	import { getHighlighted } from '../utils/code'
 
-	export let meta: Meta
-	export let features: Feature[]
 	export let quickstart: string
-	export let docs: Docs
-	export let examples: string
+	export let examples: ComponentExample[]
+
+	export let data: ComponentData
 </script>
 
-<Title title={meta.title} description={meta.description} type={meta.type} />
+<Title title={data.meta.title} description={data.meta.description} type={data.meta.type} />
 
-<Demo id={meta.color}>
+<Demo id={data.meta.color}>
 	<slot />
 </Demo>
 
-<Feats {features} />
+<Feats features={data.features} />
 
 {#if quickstart}
 	<h2>Quickstart</h2>
-	{@html quickstart}
+	<Code content={getHighlighted(quickstart)} />
 {/if}
 
-{#each Object.keys(docs) as section}
+{#each Object.keys(data.docs) as section}
 	<h2>{section}</h2>
-	<TableTabs data={docs[section]} />
+	<TableTabs data={data.docs[section]} />
 {/each}
 
-{#if examples}
+{#if examples.length > 0}
 	<h2>Examples</h2>
-	{@html examples}
+	{#each examples as { description, source, title }}
+		<h3>{title}</h3>
+		<p>{description}</p>
+		<Code content={getHighlighted(source)} />
+	{/each}
 {/if}
 
-<Footer current={meta.title} />
+<Footer current={data.meta.title} />
