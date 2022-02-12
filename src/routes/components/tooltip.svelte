@@ -12,7 +12,7 @@
 
 <Component {data} {quickstart} {examples}>
 	<Tooltip>
-		<Button slot="trigger">Hover Me</Button>
+		<Button slot="trigger" style="user-select: none;">Hover Me</Button>
 		<span slot="content">Hi There! Iam Content.</span>
 	</Tooltip>
 </Component>

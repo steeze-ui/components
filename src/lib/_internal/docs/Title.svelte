@@ -20,7 +20,7 @@
 	<div class="flex items-center gap-4">
 		<h1>{title}</h1>
 		<div class="flex items-center gap-4">
-			<span data-type={type}>{types[type]}</span>
+			<span data-type={type} class="text-xs sm:text-sm">{types[type]}</span>
 		</div>
 	</div>
 	<p>{description}</p>

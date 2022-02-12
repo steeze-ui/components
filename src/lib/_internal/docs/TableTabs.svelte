@@ -51,7 +51,9 @@
 	{/each}
 </div>
 
-<Table data={current} />
+<div class="overflow-auto">
+	<Table data={current} />
+</div>
 
 <style>
 	[part='tab']:not([data-active]) {

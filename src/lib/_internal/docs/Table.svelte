@@ -29,9 +29,11 @@
 							{@const isUnformatted = !isArray && isString && td.startsWith('_')}
 							{#if isArray}
 								<td>
-									{#each td as key}
-										<code data-hl>{key}</code>
-									{/each}
+									<div class="flex gap-1 flex-wrap">
+										{#each td as key}
+											<code data-hl>{key}</code>
+										{/each}
+									</div>
 								</td>
 							{:else if !isString}
 								<td>
@@ -60,5 +62,9 @@
 <style>
 	td code:not(:last-child) {
 		margin-right: 0.25rem;
+	}
+
+	td {
+		max-width: 500px;
 	}
 </style>
