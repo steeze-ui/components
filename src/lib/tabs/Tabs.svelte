@@ -65,7 +65,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div
-	part="tabs"
+	data-component="tabs"
 	role="tablist"
 	dir="ltr"
 	tabindex="0"
@@ -114,7 +114,7 @@
 		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}
 
-	[part='tabs'] {
+	[data-component='tabs'] {
 		display: flex;
 		gap: 2rem;
 		/* border-bottom: 1px solid var(--st-colors-gray10); */
