@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { highlight, languages } from 'prismjs'
+	import PrismJS from 'prismjs'
 	import 'prism-svelte'
 	import { ClipboardCopy } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 
 	export function getHighlighted(source: string) {
-		return highlight(source, languages.svelte, 'svelte')
+		return PrismJS.highlight(source, PrismJS.languages.svelte, 'svelte')
 	}
 
 	export let content
