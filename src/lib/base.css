@@ -137,6 +137,7 @@
 	--st-field-border-radius-md: var(--st-border-radius-md);
 
 	/* Field medium */
+	--st-field-width: 12rem;
 	--st-field-height: var(--st-field-height-md);
 	--st-field-padding: var(--st-field-padding-md);
 	--st-field-border-radius: var(--st-field-border-radius-md);

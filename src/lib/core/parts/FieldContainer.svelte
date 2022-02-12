@@ -3,7 +3,9 @@
 	import Label from '$lib/core/parts/Label.svelte'
 	import { getId } from '$lib/core/utils/id'
 
-	export let width = '12rem'
+	export let width = 'var(--st-field-width)'
+	export let height = 'var(--st-field-height)'
+
 	export let label = ''
 	export let helper = ''
 	export let theme: string = null
@@ -20,7 +22,6 @@
 <div
 	data-field-container
 	data-theme={theme}
-	style:width
 	{...$$restProps}
 	data-disabled={disabled ? '' : null}
 	data-focused={focused ? '' : null}
@@ -30,7 +31,7 @@
 	{#if label}
 		<Label for={fieldId} id={labelId}>{label}</Label>
 	{/if}
-	<div part="input-container" on:click on:focus>
+	<div part="input-container" on:click on:focus style:width style:height>
 		<div part="prefix">
 			<slot name="prefix" />
 		</div>
@@ -59,12 +60,11 @@
 		overflow: hidden;
 		outline: none;
 		border: var(--st-field-border-width) solid var(--st-field-border-color);
-		height: var(--st-field-height);
 		border-radius: var(--st-field-border-radius);
 		background-color: var(--st-field-bg-color);
 		padding: var(--st-field-padding);
 		align-items: center;
-		gap: 0.25rem;
+
 		transition: border-color var(--st-field-transition-duration) ease-in;
 	}
 

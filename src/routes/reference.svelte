@@ -3,7 +3,7 @@
 	import Toggle from '$lib/toggle/Toggle.svelte'
 	import Select from '$lib/select/Select.svelte'
 	import Form from '$lib/core/form/_Form.svelte'
-	import TextField from '$lib/text-field/TextField.svelte'
+	import TextField from '$lib/fields/TextField.svelte'
 
 	const colors = {
 		light: 10,

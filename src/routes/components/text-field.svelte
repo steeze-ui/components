@@ -6,7 +6,7 @@
 	import Component from '$lib/_internal/docs/Component.svelte'
 	import { data, quickstart, examples } from './_data/text-field'
 
-	import TextField from '$lib/text-field/TextField.svelte'
+	import TextField from '$lib/fields/TextField.svelte'
 	import { Heart } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 
@@ -23,6 +23,6 @@
 		bind:value
 		helper="A Fliptrick rotates the board around its own axis"
 	>
-		<Icon {theme} slot="prefix" src={Heart} size="16px" />
+		<Icon {theme} slot="prefix" src={Heart} size="16px" style="margin-right:0.25rem" />
 	</TextField>
 </Component>

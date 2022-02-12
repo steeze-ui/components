@@ -15,7 +15,7 @@ const menuMap = {
 			Checkbox: '_/components/checkbox',
 			'Text Field': '/components/text-field',
 			'Number Field': '__/components/number-field',
-			'Text Area': '_/components/text-area',
+			'Text Area': '/components/text-area',
 			Toggle: '/components/toggle'
 		},
 		'Visualization & Interaction': {
