@@ -4,31 +4,37 @@ export const data: ComponentData = {
 	meta: {
 		title: 'Tabs',
 		description: 'Display content depending on the selected Tab',
-		color: 19,
+		color: 13,
 		type: 2
 	},
 	features: [],
 	docs: {
 		'API Reference': {
 			Properties: [
-				{ Property: 'name', Type: 'String', Default: 'null' },
-				{ Property: 'value', Type: 'String', Default: '""' }
+				{ Property: 'items', Type: 'Tab[]', Default: '-' },
+				{ Property: 'selected', Type: 'Number', Default: '0' }
 			],
 			Slots: [
-				{ Name: 'label', Props: ['id', 'htmlfor'], Notes: '_-' },
-				{ Name: 'helper', Props: ['id', 'htmlfor'], Notes: '_-' }
+				{
+					Name: 'default',
+					Props: ['id', 'tabindex', 'isActive', 'item', 'setSelected()'],
+					Notes: '_-'
+				}
 			],
 			Events: [
-				{ Name: 'focus', Type: '-', Notes: '_Listen when input gets focus' },
-				{ Name: 'blur', Type: '-', Notes: '_Listen when input loses focus' },
-				{ Name: 'clear', Type: '{details: {old: String}}', Notes: '_Listen when input clears' }
+				{ Name: 'selectedChange', Type: 'Tab', Notes: '_Listen when selected tab change' },
+				{ Name: 'selectedIndexChange', Type: 'Number', Notes: '_Listen when selected tab change' }
 			]
 		},
 		Styling: {
-			'CSS variables': [{ Name: '--st-text-field-color', Default: '--st-field-color' }],
+			'CSS variables': [
+				{ Name: '--st-tabs-hover-border-color', Default: '--st-colors-gray9' },
+				{ Name: '--st-tabs-active-color', Default: '--st-colors-primary3' },
+				{ Name: '--st-tabs-active-line-color', Default: '--st-colors-primary4' }
+			],
 			Themes: [
-				{ Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' },
-				{ Name: 'borderless', Notes: 'Renders without a border', Global: 'true' }
+				// { Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' },
+				// { Name: 'borderless', Notes: 'Renders without a border', Global: 'true' }
 			]
 		}
 	}
@@ -38,17 +44,28 @@ export const quickstart = `<script>
   import {Tabs} from "@steeze-ui/components"
 </script>
 
-<Tabs />`
+<Tabs items={[ {title: "Tab 2"}, {title: "Tab 2"} ]} />`
 
 export const examples: ComponentExample[] = [
 	{
-		title: 'Use with icon',
-		description: 'You can use any Icon from any Icon Pack',
+		title: 'Use with custom Tab',
+		description: 'You can use a completly custom tab instead of the default one',
 		source: `<script>
-  import { Moon } from '@steeze-ui/heroicons'
-  import { Button } from '@steeze-ui/components'
-</script>
+	import { Tabs } from '@steeze-ui/components'
+</script>	
 
-<Button icon={Moon} iconTheme="solid" />`
+<Tabs items={[ {title: "Tab 2"}, {title: "Tab 2"} ]}>
+	<button 
+		slot="tab" 
+		role="tab" 
+		let:id let:item let:isActive let:setSelected 
+		{id} aria-selected={isActive} 
+		tabindex={isActive ? 0 : -1} 
+		on:click={setSelected} 
+		style:color={isActive ? "blue" : "black"}
+	>
+		{item.title}
+	</button>
+</Tabs>`
 	}
 ]

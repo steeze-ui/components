@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getId } from '$lib/core/utils/id'
 	import { crossfade, scale } from 'svelte/transition'
-
 	import Table, { type TableData } from './Table.svelte'
 
 	export let data: { [section: string]: TableData } = {}

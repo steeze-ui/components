@@ -26,7 +26,7 @@ const menuMap = {
 			Carousel: '__/components/carousel',
 			Details: '__/components/details',
 			'Dropdown Menu': '__/components/dropdown-menu',
-			Tabs: '_/components/tabs',
+			Tabs: '/components/tabs',
 			Accordion: '__/components/accordion',
 			Notification: '_/components/notification',
 			Dialog: '_/components/dialog'
