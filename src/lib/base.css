@@ -115,6 +115,8 @@
 	--st-overlay-box-shadow: var(--st-box-shadow-lg);
 	--st-overlay-border-width: 1px;
 	--st-overlay-border-radius: var(--st-border-radius);
+	--st-overlay-padding: 1rem;
+	--st-overlay-backdrop-bg-color: rgba(0, 0, 0, 0.3);
 
 	/* Field */
 	--st-field-height-sm: 28px;

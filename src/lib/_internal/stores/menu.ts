@@ -29,7 +29,7 @@ const menuMap = {
 			Tabs: '/components/tabs',
 			Accordion: '__/components/accordion',
 			Notification: '_/components/notification',
-			Dialog: '_/components/dialog'
+			Dialog: '/components/dialog'
 		},
 		Layouts: {
 			Flex: '_/components/flex',

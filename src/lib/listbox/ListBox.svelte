@@ -2,7 +2,13 @@
 	export let showPrefix = false
 </script>
 
-<ul part="listbox" role="listbox" aria-orientation="vertical" tabindex="-1" {...$$restProps}>
+<ul
+	data-component="listbox"
+	role="listbox"
+	aria-orientation="vertical"
+	tabindex="-1"
+	{...$$restProps}
+>
 	{#if showPrefix}
 		<slot name="prefix" />
 	{/if}
@@ -13,13 +19,14 @@
 </ul>
 
 <style>
-	[part='listbox'] {
+	[data-component] {
 		overflow: auto;
-		box-shadow: var(--st-overlay-box-shadow);
-		border: var(--st-overlay-border-width) solid var(--st-overlay-border-color);
-		background-color: var(--st-overlay-bg-color);
-		border-radius: var(--st-overlay-border-radius);
-		padding: 0.25rem;
+		box-shadow: var(--st-listbox-box-shadow, var(--st-overlay-box-shadow));
+		border: var(--st-overlay-border-width) solid
+			var(--st-listbox-border-color, var(--st-overlay-border-color));
+		background-color: var(--st-listbox-bg-color, var(--st-overlay-bg-color));
+		border-radius: var(--st-listbox-border-radius, var(--st-overlay-border-radius));
+		padding: var(--st-listbox-padding, 0.25rem);
 	}
 
 	[part='items'] {

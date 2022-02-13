@@ -66,7 +66,7 @@
 	[data-component='popover'] {
 		overflow: auto;
 		z-index: 100;
-		padding: var(--st-popover-padding, 1rem);
+		padding: var(--st-popover-padding, var(--st-overlay-padding));
 		box-shadow: var(--st-popover-box-shadow, var(--st-overlay-box-shadow));
 		background-color: var(--st-popover-bg-color, var(--st-overlay-bg-color));
 		border: var(--st-popover-border-width, var(--st-overlay-border-width)) solid
