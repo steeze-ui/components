@@ -12,6 +12,10 @@
 
 	type T = $$Generic
 
+	interface $$Events {
+		select: CustomEvent<T>
+	}
+
 	export let identifier = 'id'
 	export let items: T[] | SelectValueMap
 	export let value: T | string = null

@@ -10,7 +10,7 @@ const menuMap = {
 	Components: {
 		'Form Input': {
 			Select: '/components/select',
-			'Combo Box': '__/components/combo-box',
+			'Combo Box': '_/components/combo-box',
 			'Radio Group': '_/components/radio-group',
 			Checkbox: '_/components/checkbox',
 			'Text Field': '/components/text-field',
@@ -24,16 +24,16 @@ const menuMap = {
 			Popover: '/components/popover',
 			Grid: '__/components/grid',
 			Carousel: '__/components/carousel',
-			Details: '__/components/details',
+			Details: '_/components/details',
 			'Dropdown Menu': '__/components/dropdown-menu',
 			Tabs: '/components/tabs',
-			Accordion: '__/components/accordion',
+			Accordion: '_/components/accordion',
 			Notification: '/components/notification',
 			Dialog: '/components/dialog'
 		},
 		Layouts: {
-			Flex: '_/components/flex',
-			Split: '__/components/split',
+			Flex: '/components/flex',
+			Split: '_/components/split',
 			Scrollable: '__/components/scrollable'
 		}
 	},

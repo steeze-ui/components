@@ -18,7 +18,7 @@
 
 <Title title={data.meta.title} description={data.meta.description} type={data.meta.type} />
 
-<Demo id={data.meta.color}>
+<Demo id={data.meta.color} {...$$restProps}>
 	<slot />
 </Demo>
 

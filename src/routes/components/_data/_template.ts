@@ -10,13 +10,32 @@ export const data: ComponentData = {
 	features: [],
 	docs: {
 		'API Reference': {
-			Properties: [{ Property: 'name', Type: 'String', Default: 'null' }],
-			Slots: [{ Name: 'label', Props: ['id', 'htmlfor'], Notes: '_-' }],
-			Events: [{ Name: 'focus', Type: '-', Notes: '_Listen when input gets focus' }]
+			Properties: [
+				{ Property: '', Type: '', Default: '' },
+				{
+					Property: {
+						text: '',
+						help: ''
+					},
+					Type: '',
+					Default: ''
+				}
+			],
+			Slots: [
+				{ Name: '', Props: [], Notes: '_-' },
+				{ Name: '', Props: [], Notes: '_-' }
+			],
+			Events: [
+				{ Name: '', Type: '', Notes: '' },
+				{ Name: '', Type: '', Notes: '' }
+			]
 		},
 		Styling: {
-			'CSS variables': [{ Name: '--st-text-field-color', Default: '--st-field-color' }],
-			Themes: [{ Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' }]
+			'CSS variables': [
+				{ Name: '', Default: '' },
+				{ Name: '', Default: '' }
+			],
+			Themes: [{ Name: '', Notes: '', Global: '' }]
 		}
 	}
 }
