@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Portal from '$lib/core/parts/Portal.svelte'
-	import { getId } from '$lib/core/utils/id'
+	import { getId } from '$lib/core/stores/id'
 	import { focus } from 'focus-svelte'
 	import { createEventDispatcher } from 'svelte'
 	import { scale, ScaleParams } from 'svelte/transition'

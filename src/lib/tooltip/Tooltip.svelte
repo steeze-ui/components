@@ -2,7 +2,7 @@
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition } from '$lib/core/types'
-	import { getId } from '$lib/core/utils/id'
+	import { getId } from '$lib/core/stores/id'
 
 	export let position: FloatingPosition = 'bottom'
 	export let delay = 500

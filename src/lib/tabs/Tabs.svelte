@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getId } from '$lib/core/utils/id'
+	import { getId } from '$lib/core/stores/id'
 	import { crossfade, scale } from 'svelte/transition'
 	import { createEventDispatcher } from 'svelte'
 

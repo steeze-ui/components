@@ -3,7 +3,7 @@
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition, SelectValueMap } from '$lib/core/types'
-	import { getId } from '$lib/core/utils/id'
+	import { getId } from '$lib/core/stores/id'
 	import Item from '$lib/listbox/Item.svelte'
 	import ListBox from '$lib/listbox/ListBox.svelte'
 	import { ChevronDown, X } from '@steeze-ui/heroicons'

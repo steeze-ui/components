@@ -4,7 +4,7 @@
 	import type { FloatingPosition } from '$lib/core/types'
 	import { X } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
-	import { getId } from '../core/utils/id'
+	import { getId } from '../core/stores/id'
 
 	export let position: FloatingPosition = 'bottom'
 	export let showClose = false

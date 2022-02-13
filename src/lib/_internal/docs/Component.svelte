@@ -38,7 +38,9 @@
 	<h2>Examples</h2>
 	{#each examples as { description, source, title }}
 		<h3>{title}</h3>
-		<p>{description}</p>
+		{#if description}
+			<p>{description}</p>
+		{/if}
 		<Code content={source} />
 	{/each}
 {/if}

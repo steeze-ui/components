@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Helper from '$lib/core/parts/Helper.svelte'
 	import Label from '$lib/core/parts/Label.svelte'
-	import { getId } from '$lib/core/utils/id'
+	import { getId } from '$lib/core/stores/id'
 
 	export let width = 'var(--st-field-width)'
 	export let height = 'var(--st-field-height)'

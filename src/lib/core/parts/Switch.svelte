@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-	import { getId } from '../utils/id'
+	import { getId } from '../stores/id'
 
 	export let checked = false
 	export let disabled = false
