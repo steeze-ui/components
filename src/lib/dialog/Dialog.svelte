@@ -178,6 +178,7 @@
 	<Portal>
 		<div
 			{id}
+			data-component="dialog"
 			part="dialog"
 			role="dialog"
 			aria-modal="true"

@@ -11,7 +11,7 @@ const menuMap = {
 		'Form Input': {
 			Select: '/components/select',
 			'Combo Box': '_/components/combo-box',
-			'Radio Group': '_/components/radio-group',
+			'Radio Group': '/components/radio-group',
 			Checkbox: '_/components/checkbox',
 			'Text Field': '/components/text-field',
 			'Number Field': '__/components/number-field',

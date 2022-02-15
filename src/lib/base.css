@@ -145,20 +145,41 @@
 	--st-field-border-radius: var(--st-field-border-radius-md);
 	--st-field-font-size: var(--st-field-font-size-md);
 	--st-field-button-size: var(--st-field-button-size-md);
+
+	--st-field-focus-border-color: var(--st-outline-color);
+	--st-field-label-focus-color: var(--st-outline-color);
+
+	/* Item */
+	--st-item-bg-color: transparent;
+	--st-item-focus-bg-color: var(--st-primary-color);
+
+	/* Boxes */
+	--st-box-size-md: 1.125rem;
+	--st-box-size-sm: 0.9375;
+	--st-box-size: var(--st-box-size-md);
+	--st-box-selected-bg-color: var(--st-primary-color);
+	--st-box-inner-selected-bg-color: var(--st-colors-light1);
 }
 
 /* ! Dark Theme */
-.st-theme-dark,
-html {
+.st-theme-dark {
 	/* Background Color */
 	--st-primary-bg-color: var(--st-colors-dark9);
 	--st-secondary-bg-color: var(--st-colors-dark8);
+
+	/* Border */
 	--st-border-color: var(--st-colors-gray9);
 
 	/* Text Color */
 	--st-body-text-color: var(--st-colors-gray3);
 	--st-secondary-text-color: var(--st-colors-gray6);
 	--st-placeholder-text-color: var(--st-colors-gray7);
+
+	/* Boxes */
+	--st-box-bg-color: var(--st-colors-dark1);
+	--st-box-border-color: transparent;
+
+	/* * Components */
 
 	/* Label */
 	--st-label-color: var(--st-colors-gray4);
@@ -167,35 +188,29 @@ html {
 	--st-helper-color: var(--st-colors-gray5);
 
 	/* Field */
+	--st-field-color: var(--st-body-text-color);
 	--st-field-placeholder-color: var(--st-secondary-text-color);
 	--st-field-bg-color: var(--st-colors-dark8);
-	--st-field-color: var(--st-body-text-color);
 	--st-field-border-color: var(--st-border-color);
 	--st-field-button-color: var(--st-colors-gray6);
 	--st-field-button-hover-color: var(--st-colors-gray2);
 
-	/* Field Hover */
-	--st-field-hover-bg-color: var(--st-field-bg-color);
 	--st-field-hover-border-color: var(--st-colors-gray6);
 	--st-field-label-hover-color: var(--st-colors-gray3);
 
-	/* Field Focus */
+	--st-field-hover-bg-color: var(--st-field-bg-color);
 	--st-field-focus-bg-color: var(--st-field-bg-color);
-	--st-field-focus-border-color: var(--st-outline-color);
-	--st-field-label-focus-color: var(--st-outline-color);
 
 	/* Overlay */
 	--st-overlay-border-color: var(--st-colors-dark4);
 	--st-overlay-bg-color: var(--st-colors-dark6);
 
 	/* Item */
-	--st-item-bg-color: transparent;
-	--st-item-focus-bg-color: var(--st-primary-color);
 	--st-item-color: var(--st-field-color);
-	--st-item-focus-text-color: var(--st-colors-light2);
 	--st-item-icon-color: var(--st-field-color);
-	--st-item-focus-icon-color: var(--st-colors-light2);
 	--st-item-group-color: var(--st-secondary-text-color);
+	--st-item-focus-text-color: var(--st-colors-light2);
+	--st-item-focus-icon-color: var(--st-colors-light2);
 
 	/* Select */
 	--st-select-hover-bg-color: var(--st-colors-gray10);
@@ -206,6 +221,8 @@ html {
 	/* Background Color */
 	--st-primary-bg-color: var(--st-colors-light1);
 	--st-secondary-bg-color: white;
+
+	/* Border */
 	--st-border-color: var(--st-colors-light5);
 
 	/* Text Color */
@@ -213,37 +230,37 @@ html {
 	--st-secondary-text-color: var(--st-colors-gray5);
 	--st-placeholder-text-color: var(--st-colors-gray6);
 
+	/* Boxes */
+	--st-box-bg-color: var(--st-colors-light9);
+	--st-box-border-color: transparent;
+
+	/** Components */
+
 	/* Label */
-	--st-label-color: var(--st-colors-gray5);
+	--st-label-color: var(--st-colors-gray6);
 
 	/* Helper */
 	--st-helper-color: var(--st-colors-gray6);
 
 	/* Field */
+	--st-field-color: var(--st-body-text-color);
 	--st-field-placeholder-color: var(--st-secondary-text-color);
 	--st-field-bg-color: white;
-	--st-field-color: var(--st-body-text-color);
 	--st-field-border-color: var(--st-colors-light10);
 	--st-field-button-color: var(--st-colors-gray6);
 	--st-field-button-hover-color: var(--st-colors-gray2);
 
-	/* Field Hover */
-	--st-field-hover-bg-color: var(--st-field-bg-color);
 	--st-field-hover-border-color: var(--st-colors-gray5);
 	--st-field-label-hover-color: var(--st-colors-gray6);
 
-	/* Field Focus */
+	--st-field-hover-bg-color: var(--st-field-bg-color);
 	--st-field-focus-bg-color: var(--st-field-bg-color);
-	--st-field-focus-border-color: var(--st-outline-color);
-	--st-field-label-focus-color: var(--st-outline-color);
 
 	/* Overlay */
 	--st-overlay-border-color: var(--st-colors-light8);
 	--st-overlay-bg-color: var(--st-colors-light2);
 
 	/* Item */
-	--st-item-bg-color: transparent;
-	--st-item-focus-bg-color: var(--st-primary-color);
 	--st-item-color: var(--st-field-color);
 	--st-item-focus-text-color: var(--st-colors-light2);
 	--st-item-icon-color: var(--st-field-color);
@@ -252,146 +269,4 @@ html {
 
 	/* Select */
 	--st-select-hover-bg-color: var(--st-colors-light5);
-}
-
-/*! Normalize */
-*,
-::before,
-::after {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	border-width: 0;
-	border-style: solid;
-	border-color: var(--st-colors-gray3);
-}
-:root {
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
-}
-:-moz-focusring {
-	outline: 1px dotted ButtonText;
-}
-:-moz-ui-invalid {
-	box-shadow: none;
-}
-::moz-focus-inner {
-	border-style: none;
-	padding: 0;
-}
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-	height: auto;
-}
-::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-	-webkit-appearance: button;
-	font: inherit;
-}
-[type='search'] {
-	-webkit-appearance: textfield;
-	outline-offset: -2px;
-}
-abbr[title] {
-	-webkit-text-decoration: underline dotted;
-	text-decoration: underline dotted;
-}
-a {
-	color: inherit;
-	text-decoration: inherit;
-}
-body {
-	margin: 0;
-	font-family: inherit;
-	line-height: inherit;
-}
-button,
-input {
-	font-family: inherit;
-	font-size: 100%;
-	line-height: 1.15;
-	margin: 0;
-	padding: 0;
-	line-height: inherit;
-	color: inherit;
-}
-button {
-	text-transform: none;
-	background-color: transparent;
-	background-image: none;
-}
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-	-webkit-appearance: button;
-}
-button,
-[role='button'] {
-	cursor: pointer;
-}
-code {
-	font-size: 1em;
-	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-		'Courier New', monospace;
-}
-html {
-	-webkit-text-size-adjust: 100%;
-	font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', 'Noto Color Emoji';
-	line-height: 1.5;
-}
-h1,
-p,
-h3,
-h5,
-h2 {
-	margin: 0;
-}
-h1,
-h3,
-h5,
-h2 {
-	font-size: inherit;
-	font-weight: inherit;
-}
-img {
-	border-style: solid;
-	display: block;
-	vertical-align: middle;
-	max-width: 100%;
-	height: auto;
-}
-input::placeholder {
-	opacity: 1;
-	color: var(--st-colors-gray5);
-}
-input::webkit-input-placeholder {
-	opacity: 1;
-	color: var(--st-colors-gray5);
-}
-input::-moz-placeholder {
-	opacity: 1;
-	color: var(--st-colors-gray5);
-}
-input:-ms-input-placeholder {
-	opacity: 1;
-	color: var(--st-colors-gray5);
-}
-input::-ms-input-placeholder {
-	opacity: 1;
-	color: var(--st-colors-gray5);
-}
-table {
-	text-indent: 0;
-	border-color: inherit;
-	border-collapse: collapse;
-}
-ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
 }

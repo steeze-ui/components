@@ -37,7 +37,7 @@ export const data: ComponentData = {
 		Styling: {
 			'CSS variables': [
 				{ Name: '--st-notification-container-padding', Default: '0.75rem' },
-				{ Name: '--st-notification-spacing', Default: '0.25rem' },
+				{ Name: '--st-notification-gap', Default: '0.25rem' },
 				{ Name: '--st-notification-padding', Default: '1rem' },
 				{ Name: '--st-notification-border-radius', Default: '--st-border-radius-lg' },
 				{ Name: '--st-notification-bg-color', Default: '--st-overlay-bg-color' },

@@ -64,14 +64,7 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div
-	data-component="tabs"
-	role="tablist"
-	dir="ltr"
-	tabindex="0"
-	aria-orientation="horizontal"
-	{...$$restProps}
->
+<div data-component="tabs" role="tablist" dir="ltr" aria-orientation="horizontal" {...$$restProps}>
 	{#each items as item, i}
 		{@const isActive = i === selected}
 		{@const tabindex = isActive ? 0 : -1}

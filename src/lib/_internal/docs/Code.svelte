@@ -9,7 +9,16 @@
 	}
 
 	export let content
+	const handleKeydown = (e: KeyboardEvent) => {
+		switch (e.key) {
+			case 'Tab':
+				console.log(document.activeElement)
+				break
+		}
+	}
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <div part="code">
 	<button
@@ -21,7 +30,7 @@
 	>
 		<Icon src={ClipboardCopy} size="22" />
 	</button>
-	{@html `<pre class="language-svelte"><code>${getHighlighted(content)}</code></pre>`}
+	{@html `<pre class="language-svelte" tabindex="-1"><code>${getHighlighted(content)}</code></pre>`}
 </div>
 
 <style>

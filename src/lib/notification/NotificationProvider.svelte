@@ -15,7 +15,7 @@
 
 {#if $Notification.items.length > 0}
 	<Portal>
-		<div part="notification-container" data-position={position}>
+		<div part="notification-provider" data-position={position}>
 			<div part="area">
 				{#each $Notification.items as item (item.id)}
 					<slot {item} {closable}>
@@ -28,13 +28,13 @@
 {/if}
 
 <style>
-	[part='notification-container'] {
+	[part='notification-provider'] {
 		position: fixed;
 		z-index: 1000;
-		top: var(--st-notification-container-padding, 0.75rem);
-		left: var(--st-notification-container-padding, 0.75rem);
-		bottom: var(--st-notification-container-padding, 0.75rem);
-		right: var(--st-notification-container-padding, 0.75rem);
+		top: var(--st-notification-provider-padding, 0.75rem);
+		left: var(--st-notification-provider-padding, 0.75rem);
+		bottom: var(--st-notification-provider-padding, 0.75rem);
+		right: var(--st-notification-provider-padding, 0.75rem);
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
@@ -60,6 +60,6 @@
 	[part='area'] {
 		display: flex;
 		flex-direction: column;
-		gap: var(--st-notification-spacing, 0.25rem);
+		gap: var(--st-notification-gap, 0.25rem);
 	}
 </style>

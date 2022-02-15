@@ -64,8 +64,6 @@
 		background-color: var(--st-field-bg-color);
 		padding: var(--st-field-padding);
 		align-items: center;
-
-		transition: border-color var(--st-field-transition-duration) ease-in;
 	}
 
 	[part='prefix'],

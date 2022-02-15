@@ -40,6 +40,7 @@
 	in:fly={flyInParams}
 	out:fly={flyOutParams}
 	part="notification"
+	data-component="notification-card"
 	role="alert"
 	aria-live="polite"
 	data-type={item?.type ?? 'info'}

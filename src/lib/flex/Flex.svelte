@@ -21,6 +21,7 @@
 </script>
 
 <div
+	data-component="flex"
 	{...$$restProps}
 	style:display
 	style:justify-content={justify}
