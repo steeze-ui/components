@@ -14,7 +14,7 @@
 </script>
 
 <Component {data} {quickstart} {examples}>
-	<div part="option-group-demo" class="p-4 rounded-lg container">
+	<div class="demo-container">
 		<RadioGroup label="Stance">
 			<RadioButton bind:group={stance} label="Goofy" value="goofy" />
 			<RadioButton bind:group={stance} label="Switch" value="switch" />
@@ -25,18 +25,3 @@
 		</RadioGroup>
 	</div>
 </Component>
-
-<style>
-	[part='option-group-demo'] {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		background: hsl(240, 21%, 11%, 0.8);
-		width: min-content;
-	}
-
-	:global(.light [part='option-group-demo']) {
-		background: hsl(240, 18%, 88%, 0.8);
-		width: min-content;
-	}
-</style>

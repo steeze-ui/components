@@ -47,3 +47,16 @@ html.light body ::-webkit-scrollbar-thumb {
 .st-focus-ring:focus-visible {
 	outline: var(--st-outline-width) solid var(--st-outline-color);
 }
+
+.demo-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	background: hsl(240, 21%, 11%, 0.8);
+	padding: 1rem;
+	border-radius: var(--st-border-radius-lg);
+}
+
+.light .demo-container {
+	background: hsl(240, 18%, 88%, 0.8);
+}

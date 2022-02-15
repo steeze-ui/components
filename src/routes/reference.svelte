@@ -55,17 +55,17 @@
 		/>
 	</div>
 	<div class="flex gap-4">
+		<Toggle name="toggle2" checked value="on" />
+		<Toggle name="toggle3" disabled value="on" />
+		<Toggle name="toggle4" checked disabled value="on" />
 		<Toggle
-			theme="light small"
+			theme="small"
 			on:change={(e) => {
 				console.log(e)
 			}}
 			name="toggle1"
 			value="on"
 		/>
-		<Toggle name="toggle2" checked value="on" />
-		<Toggle name="toggle3" disabled value="on" />
-		<Toggle name="toggle4" checked disabled value="on" />
 	</div>
 	<div class="flex gap-4">
 		<TextField placeholder="Fill me out!" label="With Placeholder" clearable />

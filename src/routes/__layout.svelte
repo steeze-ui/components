@@ -2,6 +2,7 @@
 	import { browser } from '$app/env'
 	import { afterNavigate } from '$app/navigation'
 	import '$lib/base.css'
+	import '$lib/normalize.css'
 	import 'virtual:windi.css'
 	import './../markdown.css'
 	import Header from '$lib/_internal/header/Header.svelte'

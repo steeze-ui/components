@@ -10,6 +10,7 @@
 
 	export let items: Tab[]
 	export let selected = 0
+	export let theme = null
 
 	const tabsId = getId()
 
@@ -64,7 +65,14 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div data-component="tabs" role="tablist" dir="ltr" aria-orientation="horizontal" {...$$restProps}>
+<div
+	data-component="tabs"
+	role="tablist"
+	dir="ltr"
+	aria-orientation="horizontal"
+	data-theme={theme}
+	{...$$restProps}
+>
 	{#each items as item, i}
 		{@const isActive = i === selected}
 		{@const tabindex = isActive ? 0 : -1}
@@ -83,9 +91,11 @@
 				data-orientation="horizontal"
 				bind:this={refs[i]}
 			>
-				<div part="wrapper">{item.title}</div>
+				{item.title}
 				{#if isActive}
 					<div part="line" in:receive={{ key: 'tab-active' }} out:send={{ key: 'tab-active' }} />
+				{:else}
+					<div part="line" />
 				{/if}
 			</button>
 		</slot>
@@ -93,39 +103,26 @@
 </div>
 
 <style>
-	[part='tab']:not([data-active]) {
-		border-bottom-width: 2px;
-		border-bottom-style: solid;
-		border-bottom-color: transparent;
+	/* Tabs */
+	[data-component] {
+		--sti-tab-line-width: var(--st-tab-line-width, 2px);
+		--sti-tabs-line-width: var(--st-tabs-line-width, 1px);
+
+		display: flex;
+		gap: var(--st-tabs-gap, 2rem);
+		border-bottom: var(--sti-tabs-line-width) solid var(--st-tabs-line-color, transparent);
+		width: fit-content;
 	}
+
+	/* Tab */
 	[part='tab'] {
 		position: relative;
 		outline: none;
-		border-radius: var(--st-border-radius-sm);
-	}
-	[part='tab']:focus-visible {
-		outline: var(--st-outline-width) solid var(--st-outline-color);
-	}
-
-	[data-component='tabs'] {
-		display: flex;
-		gap: 2rem;
-		/* border-bottom: 1px solid var(--st-colors-gray10); */
-		width: fit-content;
-	}
-	/* :global(.light [part='tabs']) {
-		border-color: var(--st-colors-light8) !important;
-	} */
-
-	[part='wrapper'] {
-		padding: 0.5rem 0;
-		font-weight: var(--st-font-weight-medium);
-		border-bottom-width: 2px;
-		border-bottom-style: solid;
-		border-bottom-color: transparent;
-	}
-	:global(.light [part='wrapper']) {
-		color: var(--st-colors-dark1);
+		padding: var(--st-tab-padding, 0.5rem 0);
+		color: var(--st-tab-color, var(--st-body-text-color));
+		font-weight: var(--st-tab-font-weight, var(--st-font-weight-medium));
+		border-radius: var(--st-tab-border-radius, var(--st-border-radius-sm));
+		background-color: var(--st-tab-bg-color, transparent);
 	}
 
 	[part='line'] {
@@ -133,21 +130,27 @@
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 2px;
+		height: var(--sti-tab-line-width);
 	}
 
-	[part='tab']:not([data-active]):hover {
-		border-color: var(--st-tabs-hover-border-color, var(--st-colors-gray9));
+	/* Hover */
+	[part='tab']:not([data-active]):hover [part='line'] {
+		background-color: var(--st-tab-line-hover-color, var(--st-tabs-border-color));
 	}
-	:global(.light [part='tab']:hover) {
-		border-color: var(--st-colors-light10) !important;
+	/* Focus */
+	[part='tab']:focus-visible {
+		outline: var(--st-outline-width) solid var(--st-outline-color);
 	}
-
 	/* Active */
-	[data-active] [part='wrapper'] {
-		color: var(--st-tabs-active-color, var(--st-colors-primary3));
+	[data-active][part='tab'] {
+		--st-tab-color: var(--st-tab-active-color, var(--st-primary-color));
 	}
 	[data-active] [part='line'] {
-		background-color: var(--st-tabs-active-line-color, var(--st-colors-primary4));
+		background-color: var(--st-tab-line-active-color, var(--st-colors-primary4));
+	}
+
+	/* Themes */
+	[data-theme*='line'] {
+		border-bottom-color: var(--st-tabs-line-color, var(--st-tabs-border-color));
 	}
 </style>

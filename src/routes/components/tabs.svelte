@@ -12,6 +12,14 @@
 </script>
 
 <Component {data} {quickstart} {examples}>
-	<Tabs items={[{ title: 'Tab 1' }, { title: 'Tab 2' }, { title: 'Tab 3' }]} bind:selected />
-	{selected}
+	<div class="demo-container">
+		<Tabs
+			items={[{ title: 'Tab 1' }, { title: 'Tab 2' }, { title: 'Tab 3' }]}
+			bind:selected
+			theme="line"
+		/>
+		<span>
+			Content: {selected + 1}
+		</span>
+	</div>
 </Component>

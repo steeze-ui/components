@@ -28,9 +28,20 @@ export const data: ComponentData = {
 		},
 		Styling: {
 			'CSS variables': [
-				{ Name: '--st-tabs-hover-border-color', Default: '--st-colors-gray9' },
-				{ Name: '--st-tabs-active-color', Default: '--st-colors-primary3' },
-				{ Name: '--st-tabs-active-line-color', Default: '--st-colors-primary4' }
+				{ Name: '--st-tabs-gap', Default: '2rem' },
+				{ Name: '--st-tabs-line-width', Default: '1px' },
+				{ Name: '--st-tabs-line-color', Default: 'transparent' },
+
+				{ Name: '--st-tab-bg-color', Default: 'transparent' },
+				{ Name: '--st-tab-padding', Default: '0.5rem 0' },
+				{ Name: '--st-tab-line-width', Default: '2px' },
+				{ Name: '--st-tab-color', Default: '--st-body-text-color' },
+				{ Name: '--st-tab-font-weight', Default: '--st-font-weight-medium' },
+				{ Name: '--st-tab-border-radius', Default: '--st-border-radius-sm' },
+
+				{ Name: '--st-tab-active-color', Default: '--st-primary-color' },
+				{ Name: '--st-tab-line-hover-color', Default: '--st-tabs-border-color' },
+				{ Name: '--st-tab-line-active-color', Default: '--st-colors-primary4' }
 			],
 			Themes: [
 				// { Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' },
