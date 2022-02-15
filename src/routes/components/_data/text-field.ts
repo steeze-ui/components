@@ -50,7 +50,7 @@ export const data: ComponentData = {
 				{ Name: 'transparent', Notes: 'Renders without a background color' }
 			],
 			Globals: [
-				{ Classname: 'st-theme-light', Notes: 'Light Appearance of the Component' },
+				{ Classname: 'light', Notes: 'Light Appearance of the Component' },
 				{ Classname: 'st-size-small', Notes: 'Smaller Appearance of the Component' }
 			]
 		}

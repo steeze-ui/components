@@ -162,7 +162,7 @@
 }
 
 /* ! Dark Theme */
-.st-theme-dark {
+.dark {
 	/* Background Color */
 	--st-primary-bg-color: var(--st-colors-dark9);
 	--st-secondary-bg-color: var(--st-colors-dark8);
@@ -217,7 +217,7 @@
 }
 
 /* ! Light Theme */
-.st-theme-light {
+.light {
 	/* Background Color */
 	--st-primary-bg-color: var(--st-colors-light1);
 	--st-secondary-bg-color: white;

@@ -232,7 +232,7 @@ export const data: ComponentData = {
 			],
 			Globals: [
 				{
-					Classname: 'st-theme-light',
+					Classname: 'light',
 					Notes: 'Light Appearance of the Component'
 				},
 				{

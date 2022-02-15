@@ -63,8 +63,7 @@
 	}
 
 	/* Themes */
-	:global(.st-theme-light
-			[data-component='toggle'], [data-component='toggle'][data-theme*='light']) {
+	:global(.light [data-component='toggle'], [data-component='toggle'][data-theme*='light']) {
 		--st-toggle-bg-color: var(--st-colors-gray3);
 		--st-toggle-thumb-bg-color: white;
 	}

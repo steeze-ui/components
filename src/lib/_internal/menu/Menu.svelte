@@ -27,7 +27,7 @@
 		border-color: var(--st-colors-dark4);
 	}
 
-	:global(.st-theme-light aside) {
+	:global(.light aside) {
 		border-color: var(--st-colors-light8);
 	}
 </style>

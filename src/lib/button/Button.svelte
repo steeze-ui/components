@@ -112,14 +112,13 @@
 	}
 
 	/* Theme */
-	:global(.st-theme-light [data-component='button'][data-theme*='secondary']) {
+	:global(.light [data-component='button'][data-theme*='secondary']) {
 		--st-button-border-color: var(--st-colors-primary2);
 	}
-	:global(.st-theme-light
-			[data-component='button'][data-theme*='secondary']:not([disabled]):hover) {
+	:global(.light [data-component='button'][data-theme*='secondary']:not([disabled]):hover) {
 		--st-button-hover-bg-color: var(--st-colors-primary1);
 	}
-	:global(.st-theme-light [data-component='button'][data-theme*='tertiary']:not([disabled]):hover) {
+	:global(.light [data-component='button'][data-theme*='tertiary']:not([disabled]):hover) {
 		--st-button-hover-bg-color: var(--st-colors-primary1);
 	}
 </style>

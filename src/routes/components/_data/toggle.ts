@@ -76,7 +76,7 @@ export const data: ComponentData = {
 				{ Name: 'borderless', Notes: 'Renders without a border' }
 			],
 			Globals: [
-				{ Classname: 'st-theme-light', Notes: 'Light Appearance of the Component' },
+				{ Classname: 'light', Notes: 'Light Appearance of the Component' },
 				{ Classname: 'st-size-small', Notes: 'Smaller Appearance of the Component' }
 			]
 		}

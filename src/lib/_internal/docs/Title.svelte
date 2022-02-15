@@ -38,7 +38,7 @@
 		--st-colors-pink-i: hsl(290, 60%, 52%);
 	}
 
-	:global(.st-theme-light [part='docs-title']) {
+	:global(.light [part='docs-title']) {
 		--st-colors-primary-o: var(--st-colors-primary1);
 		--st-colors-primary-i: var(--st-colors-primary5);
 

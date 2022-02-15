@@ -35,7 +35,7 @@
 		width: min-content;
 	}
 
-	:global(.st-theme-light [part='option-group-demo']) {
+	:global(.light [part='option-group-demo']) {
 		background: hsl(240, 18%, 88%, 0.8);
 		width: min-content;
 	}

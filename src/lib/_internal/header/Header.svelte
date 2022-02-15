@@ -54,12 +54,12 @@
 		border-color: var(--st-colors-dark5);
 	}
 
-	:global(.st-theme-light header) {
+	:global(.light header) {
 		background-color: hsla(240, 3%, 99%, 0.8);
 		border-color: var(--st-colors-light8);
 	}
 
-	:global(.st-theme-light [part='logo']) {
+	:global(.light [part='logo']) {
 		background-color: var(--st-colors-dark8);
 		padding: 4px;
 		width: 30px;
@@ -71,7 +71,7 @@
 		color: var(--st-colors-light10);
 	}
 
-	:global(.st-theme-light [part='name']) {
+	:global(.light [part='name']) {
 		color: var(--st-colors-dark6);
 	}
 
@@ -79,7 +79,7 @@
 		color: var(--st-colors-light1);
 	}
 
-	:global(.st-theme-light [part='github-link']) {
+	:global(.light [part='github-link']) {
 		color: var(--st-colors-dark6);
 	}
 
@@ -87,7 +87,7 @@
 		color: var(--st-colors-light1);
 	}
 
-	:global(.st-theme-light [part='theme-toggle']) {
+	:global(.light [part='theme-toggle']) {
 		color: var(--st-colors-dark6);
 	}
 </style>

@@ -32,11 +32,11 @@ body {
 	background-color: var(--st-colors-dark2);
 }
 
-body.st-theme-light ::-webkit-scrollbar-track {
+html.light body ::-webkit-scrollbar-track {
 	background-color: var(--st-colors-light3);
 }
 
-body.st-theme-light ::-webkit-scrollbar-thumb {
+html.light body ::-webkit-scrollbar-thumb {
 	background-color: var(--st-colors-gray3);
 	border-color: var(--st-colors-light5);
 }

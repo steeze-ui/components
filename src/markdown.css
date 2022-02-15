@@ -62,65 +62,65 @@ table {
 }
 
 /* Light */
-.st-theme-light .prose p {
+.light .prose p {
 	color: var(--st-colors-dark7);
 }
-.st-theme-light .prose h1 {
+.light .prose h1 {
 	color: var(--st-colors-dark9);
 }
-.st-theme-light .prose h2 {
+.light .prose h2 {
 	color: var(--st-colors-gray8);
 	font-weight: 500;
 }
-.st-theme-light .prose h3 {
+.light .prose h3 {
 	color: var(--st-colors-gray7);
 	font-weight: 500;
 }
-.st-theme-light .prose h4 {
+.light .prose h4 {
 	color: var(--st-colors-gray6);
 }
-.st-theme-light .prose a {
+.light .prose a {
 	color: var(--st-colors-primary4);
 }
-.st-theme-light .prose code {
+.light .prose code {
 	color: var(--st-colors-primary4);
 	background-color: hsl(240, 70%, 95%);
 	padding: 0.2rem 0.4rem;
 	border-radius: var(--st-border-radius-sm);
 }
-.st-theme-light .prose pre code {
+.light .prose pre code {
 	color: inherit;
 	background-color: transparent;
 	padding: 0;
 	border-radius: 0;
 }
 .prose code[hl],
-.st-theme-light .prose code[data-hl] {
+.light .prose code[data-hl] {
 	color: var(--st-colors-gray8);
 	background-color: var(--st-colors-light6);
 	font-weight: var(--st-font-weight-normal);
 }
 
 .prose code::before,
-.st-theme-light .prose code::after {
+.light .prose code::after {
 	content: '';
 }
-.st-theme-light .prose blockquote {
+.light .prose blockquote {
 	color: var(--st-colors-primary3);
 }
-.st-theme-light .prose th {
+.light .prose th {
 	color: var(--st-colors-gray7);
 }
-.st-theme-light .prose td {
+.light .prose td {
 	color: var(--st-colors-gray5);
 }
-.st-theme-light .prose thead {
+.light .prose thead {
 	border-bottom-color: var(--st-colors-light8) !important;
 }
-.st-theme-light .prose tr {
+.light .prose tr {
 	border-bottom-color: var(--st-colors-light8) !important;
 }
 
-.st-theme-light .prose pre {
+.light .prose pre {
 	background: var(--st-md-code-pre);
 }
