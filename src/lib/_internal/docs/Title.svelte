@@ -45,8 +45,8 @@
 		--st-colors-yellow-o: hsla(55, 97%, 88%, 0.66);
 		--st-colors-yellow-i: hsla(35, 92%, 33%, 0.94);
 
-		--st-colors-pink-o: hsl(290, 60%, 52%);
-		--st-colors-pink-i: hsl(290, 40%, 16%);
+		--st-colors-pink-o: hsla(290, 97%, 88%, 0.66);
+		--st-colors-pink-i: hsla(290, 92%, 33%, 0.94);
 	}
 
 	h1,

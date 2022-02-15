@@ -23,14 +23,16 @@
 </script>
 
 <Component {data} {quickstart} {examples}>
-	<Select label="Filter by" width="12rem" {items} />
-	<Select
-		width="12rem"
-		loop
-		searchable
-		clearable
-		groupBy={(e) => e.group}
-		placeholder="Choose Obstacle.."
-		items={itemsWithGroup}
-	/>
+	<div class="demo-container">
+		<Select label="Filter by" width="12rem" {items} />
+		<Select
+			width="12rem"
+			loop
+			searchable
+			clearable
+			groupBy={(e) => e.group}
+			placeholder="Choose Obstacle.."
+			items={itemsWithGroup}
+		/>
+	</div>
 </Component>

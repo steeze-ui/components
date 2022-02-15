@@ -22,7 +22,7 @@
 				description: 'This text can give you hints!',
 				type: 'info'
 			})
-		}}>Show</Button
+		}}>Notify me</Button
 	>
 
 	<NotificationProvider position="bottom-end" duration={3000} />

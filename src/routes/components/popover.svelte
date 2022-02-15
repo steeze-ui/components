@@ -13,11 +13,11 @@
 <Component {data} {quickstart} {examples}>
 	<Popover>
 		<svelte:fragment slot="trigger" let:toggleOpened>
-			<Button on:click={toggleOpened}>open</Button>
+			<Button aria-label="popover demo trigger" on:click={toggleOpened}>Click me</Button>
 		</svelte:fragment>
 
 		<div slot="content">
-			<p style:color="white">Content</p>
+			<p style:color="white">Click outside to close me!</p>
 		</div>
 	</Popover>
 </Component>

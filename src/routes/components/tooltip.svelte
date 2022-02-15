@@ -12,7 +12,9 @@
 
 <Component {data} {quickstart} {examples}>
 	<Tooltip>
-		<Button slot="trigger" style="user-select: none;">Hover Me</Button>
-		<span slot="content">Hi There! Iam Content.</span>
+		<Button slot="trigger" aria-label="hover demo trigger" style="user-select: none;"
+			>Hover me</Button
+		>
+		<span slot="content">Stop hovering and Iam gone!</span>
 	</Tooltip>
 </Component>

@@ -15,14 +15,16 @@
 </script>
 
 <Component {data} {quickstart} {examples}>
-	<TextField
-		placeholder="e.g Tre Flip"
-		clearable
-		width="12rem"
-		label="Favorite Fliptrick"
-		bind:value
-		helper="A Fliptrick rotates the board around its own axis"
-	>
-		<Icon {theme} slot="prefix" src={Heart} size="16px" style="margin-right:0.25rem" />
-	</TextField>
+	<div class="demo-container">
+		<TextField
+			placeholder="e.g Tre Flip"
+			clearable
+			width="14rem"
+			label="Favorite Fliptrick"
+			bind:value
+			helper="A Fliptrick rotates the board around its own axis"
+		>
+			<Icon {theme} slot="prefix" src={Heart} size="16px" style="margin-right:0.25rem" />
+		</TextField>
+	</div>
 </Component>

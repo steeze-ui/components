@@ -16,5 +16,7 @@
 </script>
 
 <Component {data} {quickstart} {examples}>
-	<TextArea label="Comment" helper="{len}/{maxlength}" {maxlength} bind:value />
+	<div class="demo-container">
+		<TextArea label="Comment" width="14rem" helper="{len}/{maxlength}" {maxlength} bind:value />
+	</div>
 </Component>

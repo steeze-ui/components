@@ -26,12 +26,13 @@
 	data-disabled={disabled ? '' : null}
 	data-focused={focused ? '' : null}
 	bind:this={ref}
+	style:width
 >
 	<slot name="label" id={labelId} htmlfor={fieldId} />
 	{#if label}
 		<Label for={fieldId} id={labelId}>{label}</Label>
 	{/if}
-	<div part="input-container" on:click on:focus style:width style:height>
+	<div part="input-container" on:click on:focus style:height>
 		<div part="prefix">
 			<slot name="prefix" />
 		</div>
