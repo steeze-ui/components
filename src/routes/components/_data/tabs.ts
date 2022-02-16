@@ -44,7 +44,7 @@ export const data: ComponentData = {
 				{ Name: '--st-tab-line-active-color', Default: '--st-colors-primary4' }
 			],
 			Themes: [
-				// { Name: 'small', Notes: 'Smaller Appearance of the Component', Global: 'true' },
+				{ Name: 'line', Notes: '_Display a line under the tabs', Global: 'false' }
 				// { Name: 'borderless', Notes: 'Renders without a border', Global: 'true' }
 			]
 		}
