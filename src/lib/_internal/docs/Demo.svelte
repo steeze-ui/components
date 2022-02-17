@@ -31,15 +31,6 @@
 	class="relative rounded-xl p-4 flex flex-col min-h-64 gap-4 overflow-hidden items-center relative justify-center lg:-mx-11 {classExtend}"
 >
 	<slot name="prefix" />
-	<!-- <button
-		aria-label="toggle dark/light theme"
-		class="absolute top-3 right-3 z-50"
-		on:click={() => {
-			lightTheme.toggle()
-		}}
-	>
-		<Icon src={$lightTheme ? Moon : Sun} size="24px" />
-	</button> -->
 	<div part="grid" class="relative flex flex-col h-full w-full gap-4 items-center justify-center">
 		<slot />
 	</div>

@@ -17,7 +17,7 @@
 		color: var(--st-colors-gray4);
 	}
 
-	:global(.light h5) {
-		color: var(--st-colors-gray6);
+	:global(.light span) {
+		color: var(--st-colors-gray5);
 	}
 </style>

@@ -10,8 +10,8 @@
 	import MenuItem from '$lib/_internal/menu/MenuItem.svelte'
 	import MenuSection from '$lib/_internal/menu/MenuSection.svelte'
 	import Select from '$lib/select/Select.svelte'
-	import { lightTheme } from '$lib/_internal/stores/theme'
 	import { menu } from '$lib/_internal/stores/menu'
+	import ThemeProvider from '$lib/theme/ThemeProvider.svelte'
 
 	let menuOpen = false
 
@@ -40,18 +40,9 @@
 		label: e
 	}))
 	let selectedFilter = filterItems[0]
-
-	$: {
-		if (browser) {
-			if ($lightTheme) {
-				document.documentElement.className = 'light'
-			} else {
-				document.documentElement.className = 'dark'
-			}
-		}
-	}
 </script>
 
+<ThemeProvider fromSystem />
 <Header bind:menuOpen />
 <div class="flex flex-grow relative">
 	<Menu bind:menuOpen>

@@ -1,3 +1,4 @@
+import type { NotificationItem, NotificationOptions } from '$lib/types'
 import { writable } from 'svelte/store'
 
 function createNotificationStore() {
@@ -25,14 +26,3 @@ function createNotificationStore() {
 }
 
 export const Notification = createNotificationStore()
-
-export interface NotificationItem {
-	title?: string
-	description?: string
-	type?: 'error' | 'success' | 'warning' | 'info'
-	[key: string]: unknown
-}
-
-export interface NotificationOptions {
-	duration?: number
-}

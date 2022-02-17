@@ -1,9 +1,9 @@
 <script lang="ts">
+	import ThemeToggle from '$lib/theme/ThemeToggle.svelte'
 	import { Menu, Moon, Sun } from '@steeze-ui/heroicons'
 
 	import { GithubLogo } from '@steeze-ui/radix-icons'
 	import { Icon } from '@steeze-ui/svelte-icon'
-	import { lightTheme } from '../stores/theme'
 
 	export let menuOpen: boolean
 </script>
@@ -16,16 +16,7 @@
 		<h1 part="name" class="font-semibold text-xl">Steeze UI</h1>
 	</div>
 	<div class="flex gap-6 items-center">
-		<button
-			part="theme-toggle"
-			class="flex items-center"
-			aria-label="toggle dark/light theme"
-			on:click={() => {
-				lightTheme.toggle()
-			}}
-		>
-			<Icon src={$lightTheme ? Moon : Sun} size="22" />
-		</button>
+		<ThemeToggle />
 		<a
 			part="github-link"
 			href="https://github.com/steeze-ui/components"
@@ -68,26 +59,10 @@
 	}
 
 	[part='name'] {
-		color: var(--st-colors-light10);
-	}
-
-	:global(.light [part='name']) {
-		color: var(--st-colors-dark6);
+		color: var(--st-body-text-color);
 	}
 
 	[part='github-link'] {
-		color: var(--st-colors-light1);
-	}
-
-	:global(.light [part='github-link']) {
-		color: var(--st-colors-dark6);
-	}
-
-	[part='theme-toggle'] {
-		color: var(--st-colors-light1);
-	}
-
-	:global(.light [part='theme-toggle']) {
-		color: var(--st-colors-dark6);
+		color: var(--st-body-text-color);
 	}
 </style>
