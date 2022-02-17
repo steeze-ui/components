@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getId } from '$lib/core/stores/id'
-	import { crossfade, scale } from 'svelte/transition'
 	import { createEventDispatcher } from 'svelte'
+	import { crossfade, scale } from 'svelte/transition'
 
 	interface Tab {
 		title: string
@@ -21,7 +21,7 @@
 		fallback: scale
 	})
 
-	function setSelected(index) {
+	function setSelected(index: number) {
 		selected = index
 		dispatch('selectedChange', items[index])
 		dispatch('selectedIndexChange', index)

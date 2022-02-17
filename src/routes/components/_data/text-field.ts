@@ -63,13 +63,4 @@ export const quickstart = `<script>
 
 <TextField />`
 
-export const examples: ComponentExample[] = [
-	{
-		title: 'Example usage',
-		source: `<script>
-	import { TextField } from '@steeze-ui/components'
-</script>
-
-<Button />`
-	}
-]
+export const examples: ComponentExample[] = []

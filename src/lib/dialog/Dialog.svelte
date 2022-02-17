@@ -29,11 +29,7 @@
 	}
 
 	// Keyboard
-	const handleKeydown = (
-		e: KeyboardEvent & {
-			currentTarget: EventTarget & Window
-		}
-	) => {
+	const handleKeydown = (e: KeyboardEvent) => {
 		if (opened) {
 			switch (e.key) {
 				case 'Escape':
@@ -73,7 +69,7 @@
 
 	// DND
 	const dragging = (node: HTMLDivElement, overlay: HTMLDivElement) => {
-		const onMousedown = (e) => {
+		const onMousedown = (e: MouseEvent) => {
 			let shiftX = e.clientX - node.getBoundingClientRect().left
 			let shiftY = e.clientY - node.getBoundingClientRect().top
 
@@ -81,12 +77,12 @@
 
 			// moves the node at (pageX, pageY) coordinates
 			// taking initial shifts into account
-			function moveAt(pageX, pageY) {
+			function moveAt(pageX: number, pageY: number) {
 				overlay.style.left = pageX - shiftX + 'px'
 				overlay.style.top = pageY - shiftY + 'px'
 			}
 
-			function onMouseMove(e) {
+			function onMouseMove(e: MouseEvent) {
 				moveAt(e.pageX, e.pageY)
 			}
 
@@ -108,7 +104,7 @@
 		node.addEventListener('dragstart', onDragstart)
 
 		return {
-			update(prop) {
+			update(prop: HTMLDivElement) {
 				overlay = prop
 			},
 
@@ -123,14 +119,14 @@
 		node: HTMLDivElement,
 		props: { direction: 'e' | 's' | 'se'; target: HTMLElement }
 	) => {
-		const onMousedown = (e) => {
+		const onMousedown = (e: MouseEvent) => {
 			const targetBounds = props.target.getBoundingClientRect()
 			const startX = e.clientX
 			const startY = e.clientY
 			const startWidth = targetBounds.width
 			const startHeight = targetBounds.height
 
-			function onMouseMove(e) {
+			function onMouseMove(e: MouseEvent) {
 				// moveAt(e.pageX, e.pageY)
 				if (props.direction === 's') {
 					props.target.style.height = startHeight + e.clientY - startY + 'px'
@@ -146,7 +142,7 @@
 			document.addEventListener('mousemove', onMouseMove)
 
 			// drop the node, remove unneeded handlers
-			node.onmouseup = function () {
+			node.onmouseup = () => {
 				document.removeEventListener('mousemove', onMouseMove)
 				node.onmouseup = null
 			}
@@ -160,7 +156,7 @@
 		node.addEventListener('dragstart', onDragstart)
 
 		return {
-			update(prop) {
+			update(prop: { direction: 'e' | 's' | 'se'; target: HTMLElement }) {
 				props.target = prop.target
 			},
 

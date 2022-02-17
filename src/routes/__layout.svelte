@@ -1,17 +1,16 @@
 <script lang="ts">
-	import { browser } from '$app/env'
 	import { afterNavigate } from '$app/navigation'
 	import '$lib/base.css'
 	import '$lib/normalize.css'
-	import 'virtual:windi.css'
-	import './../markdown.css'
+	import Select from '$lib/select/Select.svelte'
+	import ThemeProvider from '$lib/theme/ThemeProvider.svelte'
 	import Header from '$lib/_internal/header/Header.svelte'
 	import Menu from '$lib/_internal/menu/Menu.svelte'
 	import MenuItem from '$lib/_internal/menu/MenuItem.svelte'
 	import MenuSection from '$lib/_internal/menu/MenuSection.svelte'
-	import Select from '$lib/select/Select.svelte'
 	import { menu } from '$lib/_internal/stores/menu'
-	import ThemeProvider from '$lib/theme/ThemeProvider.svelte'
+	import 'virtual:windi.css'
+	import './../markdown.css'
 
 	let menuOpen = false
 

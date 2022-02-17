@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NotificationItem } from '$lib/core/stores/notification'
+	import type { NotificationItem } from '$lib/types'
 	import {
 		CheckCircle,
 		Exclamation,

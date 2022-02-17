@@ -8,7 +8,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon'
 	import { menu } from '../stores/menu'
 
-	export let current
+	export let current: string
 
 	// const nextUrl = next && traverseMap(next)
 	// const prevUrl = prev && traverseMap(prev)

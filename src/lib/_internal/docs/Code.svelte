@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PrismJS from 'prismjs'
-	import 'prism-svelte'
+	import '$lib/_internal/utils/prism'
 	import { ClipboardCopy } from '@steeze-ui/heroicons'
 	import { Icon } from '@steeze-ui/svelte-icon'
 
@@ -8,7 +8,7 @@
 		return PrismJS.highlight(source, PrismJS.languages.svelte, 'svelte')
 	}
 
-	export let content
+	export let content: string
 	const handleKeydown = (e: KeyboardEvent) => {
 		switch (e.key) {
 			case 'Tab':

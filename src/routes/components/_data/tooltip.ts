@@ -64,15 +64,4 @@ export const quickstart = `<script>
   <span slot="content">Hi There! Iam Content.</span>
 </Tooltip>`
 
-export const examples: ComponentExample[] = [
-	{
-		title: 'Use with icon',
-		description: 'You can use any Icon from any Icon Pack',
-		source: `<script>
-  import { Moon } from '@steeze-ui/heroicons'
-  import { Button } from '@steeze-ui/components'
-</script>
-
-<Button icon={Moon} iconTheme="solid" />`
-	}
-]
+export const examples: ComponentExample[] = []
