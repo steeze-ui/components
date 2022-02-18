@@ -46,7 +46,7 @@
 	data-type={item?.type ?? 'info'}
 >
 	<div part="icon">
-		<Icon src={iconSrc} size="1.5rem" />
+		<Icon src={iconSrc} size="24px" />
 	</div>
 	<div part="text-container">
 		<p part="title">{item.title}</p>
@@ -62,7 +62,7 @@
 				Notification.close(item)
 			}}
 		>
-			<Icon src={X} size="1.25rem" />
+			<Icon src={X} size="20px" />
 		</button>
 	{/if}
 </div>
