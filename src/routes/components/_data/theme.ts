@@ -2,10 +2,10 @@ import type { ComponentData, ComponentExample } from '$lib/_internal/types/docs'
 
 export const data: ComponentData = {
 	meta: {
-		title: '?',
-		description: '',
-		color: 1,
-		type: 1
+		title: 'Theme',
+		description: 'Manage light/dark theme in your application',
+		color: 5,
+		type: 2
 	},
 	features: [],
 	docs: {
@@ -14,25 +14,27 @@ export const data: ComponentData = {
 				{
 					Property: {
 						text: 'fromSystem',
-						help: 'reads the initial theme from the system'
+						help: 'Reads the initial theme from the OS'
 					},
 					Type: 'boolean',
 					Default: 'false'
 				}
 			],
 			Stores: [
-				{ Name: 'theme', Type: 'ThemeStore', functions: ['toggle(boolean)', 'fromSystem()'] }
+				{ Name: 'Theme', Type: 'ThemeStore', functions: ['toggle(boolean)', 'fromSystem()'] }
 			]
 		}
 	}
 }
 
 export const quickstart = `<script>
-  import { ThemeProvider, ThemeToggle, Theme } from "@steeze-ui/components"
+  import { ThemeProvider, ThemeToggle } from "@steeze-ui/components"
 </script>
 
+<!-- sets the theme class reactively using the Theme store -->
 <ThemeProvider fromSystem />
-<ThemeToggle />
-{$Theme.isDark ? 'Dark' : 'Light'}`
+
+<!-- button component to toggle the theme (can be used anywhere) -->
+<ThemeToggle />`
 
 export const examples: ComponentExample[] = []

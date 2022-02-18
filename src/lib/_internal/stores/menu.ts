@@ -27,6 +27,7 @@ const menuMap = {
 			Details: '_/components/details',
 			'Dropdown Menu': '__/components/dropdown-menu',
 			Tabs: '/components/tabs',
+			Theme: '/components/theme',
 			Accordion: '_/components/accordion',
 			Notification: '/components/notification',
 			Dialog: '/components/dialog'
