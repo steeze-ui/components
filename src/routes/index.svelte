@@ -21,7 +21,6 @@
 				<li>Accessible</li>
 				<span> • </span>
 				<li>Prestyled</li>
-
 				<span> • </span>
 				<li>Customizable</li>
 			</ul>

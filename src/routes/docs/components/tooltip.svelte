@@ -15,6 +15,6 @@
 		<Button slot="trigger" aria-label="hover demo trigger" style="user-select: none;"
 			>Hover me</Button
 		>
-		<span slot="content">Stop hovering and Iam gone!</span>
+		<p slot="content" class="p-1">Stop hovering and Iam gone!</p>
 	</Tooltip>
 </Component>

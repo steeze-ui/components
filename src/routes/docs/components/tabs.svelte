@@ -18,8 +18,14 @@
 			bind:selected
 			theme="line"
 		/>
-		<span>
+		<p>
 			Content: {selected + 1}
-		</span>
+		</p>
 	</div>
 </Component>
+
+<style>
+	p {
+		margin: 0;
+	}
+</style>

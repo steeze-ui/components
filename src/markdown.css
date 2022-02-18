@@ -1,5 +1,4 @@
-.prose p,
-.prose span {
+.prose p {
 	color: var(--st-colors-light5);
 }
 .prose h1 {
@@ -63,8 +62,7 @@ table {
 }
 
 /* Light */
-.light .prose p,
-.light .prose span {
+.light .prose p {
 	color: var(--st-colors-dark7);
 }
 .light .prose h1 {
