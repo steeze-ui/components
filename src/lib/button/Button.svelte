@@ -27,6 +27,9 @@
 	data-theme={theme}
 	style:width
 	on:click
+	on:pointerdown
+	on:focus
+	on:blur
 >
 	<slot name="prefix">
 		{#if icon}
