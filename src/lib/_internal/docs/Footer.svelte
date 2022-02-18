@@ -33,7 +33,7 @@
 		{/if}
 	</div>
 	<div part="info">
-		<div part="vercel-logo" class="text-sm sm:text-base">
+		<!-- <div part="vercel-logo" class="text-sm sm:text-base">
 			Sponsored by&nbsp;&nbsp;<span
 				><a href="https://www.vercel.com?utm_source=steeze-ui&utm_campaign=oss">
 					<svg
@@ -51,7 +51,7 @@
 				</a></span
 			>&nbsp;&nbsp;
 		</div>
-		<div part="seperator" />
+		<div part="seperator" /> -->
 		<div>
 			<span part="license" class="text-sm sm:text-base">MIT Licensed</span>
 		</div>

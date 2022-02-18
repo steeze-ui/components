@@ -43,14 +43,6 @@
 		border-color: var(--st-colors-light8);
 	}
 
-	:global(.light [part='logo']) {
-		background-color: var(--st-colors-dark8);
-		padding: 4px;
-		width: 30px;
-		height: 30px;
-		border-radius: var(--st-border-radius-md);
-	}
-
 	[part='name'] {
 		color: var(--st-body-text-color);
 	}

@@ -3,10 +3,14 @@
 	import Logo from '$lib/_internal/header/Logo.svelte'
 </script>
 
+<svelte:head>
+	<title>Home — Steeze UI</title>
+</svelte:head>
+
 <div class="flex flex-grow w-full h-full items-center justify-center">
 	<div class="max-w-md w-full flex-col items-center justify-center">
 		<div class="flex justify-center w-full p-6">
-			<Logo size="100px" />
+			<Logo theme="large" size="100px" />
 		</div>
 		<div class="flex flex-col items-center gap-4">
 			<h1 class="text-6xl  font-bold">Steeze UI</h1>
