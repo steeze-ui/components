@@ -8,6 +8,7 @@
 	export let delay = 500
 	export let theme = ''
 	export let maxWidth: string = null
+	export let manualOpened = false
 
 	let opened = false
 	const triggerId = getId()
@@ -17,7 +18,7 @@
 
 	let timer: NodeJS.Timeout
 
-	$: opened && refTrigger && refFloating && refFloating.updatePosition()
+	$: (opened || manualOpened) && refTrigger && refFloating && refFloating.updatePosition()
 
 	function handleEnter() {
 		timer = setTimeout(() => {
@@ -28,7 +29,6 @@
 	function handleLeave() {
 		clearTimeout(timer)
 		opened = false
-		console.log('close')
 	}
 </script>
 
@@ -42,7 +42,7 @@
 	<slot name="trigger" id={triggerId} />
 </div>
 
-{#if opened}
+{#if opened || manualOpened}
 	<Portal>
 		<Floating bind:this={refFloating} {position} trigger={refTrigger}>
 			<div data-component="tooltip" data-theme={theme} style:max-width={maxWidth}>

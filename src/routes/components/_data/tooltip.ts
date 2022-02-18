@@ -26,6 +26,14 @@ export const data: ComponentData = {
 					},
 					Type: 'Number',
 					Default: '500'
+				},
+				{
+					Property: {
+						text: 'manualOpened',
+						help: 'In case you want to control the tooltip manually (e.g. when you want to open it on focus)'
+					},
+					Type: 'Boolean',
+					Default: 'false'
 				}
 			],
 			Slots: [
@@ -64,4 +72,27 @@ export const quickstart = `<script>
   <span slot="content">Hi There! Iam Content.</span>
 </Tooltip>`
 
-export const examples: ComponentExample[] = []
+export const examples: ComponentExample[] = [
+	{
+		title: 'Manually Open Tooltip',
+		description:
+			'In some cases you may want to control the tooltip manually e.g. open it on focus for mobile experiences',
+		source: `<script>
+	import { Tooltip } from '@steeze-ui/components'
+
+	let focused = false
+</script>
+
+<Tooltip bind:manualOpened={focused}>
+	<button
+		slot="trigger"
+		on:focus={() => (focused = true)}
+		on:blur={() => (focused = false)}
+	>
+	Show Tooltip on mobile!
+	</button>
+
+	<span slot="content">Content</span>
+</Tooltip>`
+	}
+]
