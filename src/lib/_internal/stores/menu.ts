@@ -1,47 +1,47 @@
-import { readable } from 'svelte/store'
+import { writable } from 'svelte/store'
 
 const menuMap = {
 	Overview: {
-		Introduction: '/',
-		'Getting Started': '/overview/getting-started',
-		Styling: '/overview/styling',
-		Accessibility: '/overview/accessibility'
+		Introduction: '/docs/overview/introduction',
+		'Getting Started': '/docs/overview/getting-started',
+		Styling: '/docs/overview/styling',
+		Accessibility: '/docs/overview/accessibility'
 	},
 	Components: {
 		'Form Input': {
-			Select: '/components/select',
-			'Combo Box': '_/components/combo-box',
-			'Radio Group': '/components/radio-group',
-			Checkbox: '_/components/checkbox',
-			'Text Field': '/components/text-field',
-			'Number Field': '__/components/number-field',
-			'Text Area': '/components/text-area',
-			Toggle: '/components/toggle'
+			Select: '/docs/components/select',
+			'Combo Box': '_/docs/components/combo-box',
+			'Radio Group': '/docs/components/radio-group',
+			Checkbox: '_/docs/components/checkbox',
+			'Text Field': '/docs/components/text-field',
+			'Number Field': '__/docs/components/number-field',
+			'Text Area': '/docs/components/text-area',
+			Toggle: '/docs/components/toggle'
 		},
 		'Visualization & Interaction': {
-			Button: '/components/button',
-			Tooltip: '/components/tooltip',
-			Popover: '/components/popover',
-			Grid: '__/components/grid',
-			Carousel: '__/components/carousel',
-			Details: '_/components/details',
-			'Dropdown Menu': '__/components/dropdown-menu',
-			Tabs: '/components/tabs',
-			Theme: '/components/theme',
-			Accordion: '_/components/accordion',
-			Notification: '/components/notification',
-			Dialog: '/components/dialog'
+			Button: '/docs/components/button',
+			Tooltip: '/docs/components/tooltip',
+			Popover: '/docs/components/popover',
+			Grid: '__/docs/components/grid',
+			Carousel: '__/docs/components/carousel',
+			Details: '_/docs/components/details',
+			'Dropdown Menu': '__/docs/components/dropdown-menu',
+			Tabs: '/docs/components/tabs',
+			Theme: '/docs/components/theme',
+			Accordion: '_/docs/components/accordion',
+			Notification: '/docs/components/notification',
+			Dialog: '/docs/components/dialog'
 		},
 		Layouts: {
-			Flex: '/components/flex',
-			Split: '_/components/split',
-			Scrollable: '__/components/scrollable'
+			Flex: '/docs/components/flex',
+			Split: '_/docs/components/split',
+			Scrollable: '__/docs/components/scrollable'
 		}
 	},
 	Icons: {
-		About: '/icons',
-		'Icon Packs': '/icons/packs',
-		'Icon Components': '/icons/components'
+		About: '/docs/icons',
+		'Icon Packs': '/docs/icons/packs',
+		'Icon Components': '/docs/icons/components'
 	}
 }
 
@@ -66,11 +66,16 @@ const menuFlat = {
 }
 
 const createMenuStore = () => {
-	const store = readable(menuMap)
+	const { subscribe, update } = writable({
+		map: menuMap,
+		opened: false
+	})
 
 	return {
-		subscribe: store.subscribe,
-		flat: () => menuFlat
+		subscribe: subscribe,
+		flat: () => menuFlat,
+		setOpened: (value: boolean) => update((state) => ({ ...state, opened: value })),
+		toggleOpened: () => update((state) => ({ ...state, opened: !state.opened }))
 	}
 }
 

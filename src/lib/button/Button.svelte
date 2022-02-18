@@ -41,6 +41,10 @@
 
 <style>
 	button {
+		--sti-bg-color: transparent;
+		--sti-border-color: transparent;
+		--sti-color: var(--st-body-text-color);
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -55,10 +59,10 @@
 		border-radius: var(--st-button-border-radius, var(--st-field-border-radius));
 		transition: var(--st-button-transition, var(--st-hover-transition));
 
-		color: var(--st-button-color, var(--st-body-text-color));
+		color: var(--st-button-color, var(--sti-color));
 		border-width: var(--st-button-border-width, 1px);
-		border-color: var(--st-button-border-color, transparent);
-		background-color: var(--st-button-bg-color, transparent);
+		border-color: var(--st-button-border-color, var(--sti-border-color));
+		background-color: var(--st-button-bg-color, var(--sti-bg-color));
 	}
 	button:hover {
 		background-color: var(--st-button-hover-bg-color);
@@ -86,9 +90,9 @@
 
 	/* Primary */
 	[data-theme*='primary'] {
-		--st-button-bg-color: var(--st-primary-color);
-		--st-button-color: var(--st-colors-light5);
-		--st-button-border-color: transparent;
+		--sti-bg-color: var(--st-primary-color);
+		--sti-color: var(--st-colors-light5);
+		--sti-border-color: transparent;
 	}
 	[data-theme*='primary']:not([disabled]):hover {
 		--st-button-hover-bg-color: var(--st-colors-primary5-80pct);
@@ -96,9 +100,9 @@
 
 	/* Secondary */
 	[data-theme*='secondary'] {
-		--st-button-bg-color: var(--st-field-bg-color);
-		--st-button-color: var(--st-field-color);
-		--st-button-border-color: var(--st-colors-primary8);
+		--sti-bg-color: var(--st-field-bg-color);
+		--sti-color: var(--st-field-color);
+		--sti-border-color: var(--st-colors-primary8);
 	}
 	[data-theme*='secondary']:not([disabled]):hover {
 		--st-button-hover-bg-color: var(--st-colors-primary9);
@@ -106,9 +110,9 @@
 
 	/* Tertiary */
 	[data-theme*='tertiary'] {
-		--st-button-color: var(--st-field-color);
-		--st-button-bg-color: transparent;
-		--st-button-border-color: transparent;
+		--sti-color: var(--st-field-color);
+		--sti-bg-color: transparent;
+		--sti-border-color: transparent;
 	}
 	[data-theme*='tertiary']:not([disabled]):hover {
 		--st-button-hover-bg-color: var(--st-colors-primary9);
@@ -116,7 +120,7 @@
 
 	/* Theme */
 	:global(.light [data-component='button'][data-theme*='secondary']) {
-		--st-button-border-color: var(--st-colors-primary2);
+		--sti-border-color: var(--st-colors-primary2);
 	}
 	:global(.light [data-component='button'][data-theme*='secondary']:not([disabled]):hover) {
 		--st-button-hover-bg-color: var(--st-colors-primary1);

@@ -31,4 +31,14 @@ If you want a solid foundation of styles that can be easily overriden using CSS 
 
 Check out the [Styling Guide](/overview/styling) to learn more about how styling works.
 
+## Optional: Import Preflight
+
+To solve browser inconsistencies you can directly import [modern-normalize](https://github.com/sindresorhus/modern-normalize) from this package:
+
+```svelte
+<script>
+  import "@steeze-ui/components/normalize.css"
+</script>
+```
+
 <Footer current="Getting Started" />

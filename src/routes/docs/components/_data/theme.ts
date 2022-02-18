@@ -3,7 +3,7 @@ import type { ComponentData, ComponentExample } from '$lib/_internal/types/docs'
 export const data: ComponentData = {
 	meta: {
 		title: 'Theme',
-		description: 'Manage light/dark theme in your application',
+		description: 'Manage light/dark theme in your Application',
 		color: 5,
 		type: 2
 	},

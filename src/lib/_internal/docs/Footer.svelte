@@ -10,23 +10,6 @@
 
 	export let current: string
 
-	// const nextUrl = next && traverseMap(next)
-	// const prevUrl = prev && traverseMap(prev)
-
-	// function traverseMap(list: string[]): string {
-	// 	let current
-	// 	if (next) {
-	// 		for (const n of list) {
-	// 			if (!current) {
-	// 				current = $menu?.[n] ?? ''
-	// 			} else {
-	// 				current = current?.[n] ?? ''
-	// 			}
-	// 		}
-	// 	}
-	// 	return current
-	// }
-
 	const currentIndex = keys.findIndex((e) => e === current)
 
 	const nextKey = keys?.[currentIndex + 1]
