@@ -1,8 +1,7 @@
 import { mdsvex } from 'mdsvex'
 import mdsvexConfig from './mdsvex.config.js'
-import adapter from '@sveltejs/adapter-auto'
-// import adapter from '@sveltejs/adapter-vercel'
-// import adapter from '@sveltejs/adapter-node'
+// import adapter from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
 import WindiCSS from 'vite-plugin-windicss'
 

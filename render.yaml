@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: steeze-ui
+    env: static
+    buildCommand: pnpm install && pnpm run build
+    staticPublishPath: build
