@@ -55,6 +55,8 @@
 
 .prose pre {
 	background: rgba(49, 46, 129, 0.25);
+	border: 1px solid hsla(240, 45%, 28%, 0.8);
+	border-radius: var(--st-border-radius-lg);
 }
 
 table {
