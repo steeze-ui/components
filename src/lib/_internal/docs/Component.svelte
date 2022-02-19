@@ -7,6 +7,8 @@
 	import Demo from './Demo.svelte'
 	import Feats from './Features.svelte'
 	import Footer from './Footer.svelte'
+	import Scroller from '$lib/scroller/Scroller.svelte'
+	import Section from '$lib/scroller/Section.svelte'
 	import SectionTitle from './SectionTitle.svelte'
 	import TableTabs from './TableTabs.svelte'
 	import Title from './Title.svelte'
@@ -21,53 +23,57 @@
 	}
 </script>
 
-<div id="title" class="section">
-	<Title title={data.meta.title} description={data.meta.description} type={data.meta.type} />
-</div>
-
-<div id="demo" class="section">
-	<Demo id={data.meta.color} {...$$restProps}>
-		<slot />
-	</Demo>
-</div>
-
-{#if data.features.length > 0}
-	<div id="features" class="section">
-		<Feats features={data.features} />
+<Scroller threshold={0.7}>
+	<div id="title" class="section">
+		<Title title={data.meta.title} description={data.meta.description} type={data.meta.type} />
 	</div>
-{/if}
 
-{#if quickstart}
-	<div id="quickstart" class="section">
-		<SectionTitle title="Quickstart" />
-		<Code content={quickstart} />
-	</div>
-{/if}
+	<Section id="demo">
+		<Demo id={data.meta.color} {...$$restProps}>
+			<slot />
+		</Demo>
+	</Section>
 
-{#each Object.keys(data.docs) as section}
-	{@const id = getId(section)}
-	<div {id} class="section">
-		<SectionTitle title={section} href="#{id}" />
+	{#if data.features.length > 0}
+		<Section id="features">
+			<Feats features={data.features} />
+		</Section>
+	{/if}
 
-		<TableTabs data={data.docs[section]} />
-	</div>
-{/each}
+	{#if quickstart}
+		<Section id="quickstart">
+			<SectionTitle title="Quickstart" />
+			<Code content={quickstart} />
+		</Section>
+	{/if}
 
-{#if examples.length > 0}
-	<div id="examples" class="section">
-		<SectionTitle title="examples" />
+	{#each Object.keys(data.docs) as section}
+		{@const id = getId(section)}
+		<div {id} class="section">
+			<SectionTitle title={section} href="#{id}" />
 
-		{#each examples as { description, source, title }}
-			<h3>{title}</h3>
-			{#if description}
-				<p>{description}</p>
-			{/if}
-			<Code content={source} />
-		{/each}
-	</div>
-{/if}
+			<Section lazyload id="docs">
+				<TableTabs data={data.docs[section]} />
+			</Section>
+		</div>
+	{/each}
 
-<Footer current={data.meta.title} />
+	{#if examples.length > 0}
+		<Section id="examples">
+			<SectionTitle title="Examples" />
+
+			{#each examples as { description, source, title }}
+				<h3>{title}</h3>
+				{#if description}
+					<p>{description}</p>
+				{/if}
+				<Code content={source} />
+			{/each}
+		</Section>
+	{/if}
+
+	<Footer current={data.meta.title} />
+</Scroller>
 
 <style>
 	.section {

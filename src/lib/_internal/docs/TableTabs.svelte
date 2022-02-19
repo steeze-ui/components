@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getId } from '$lib/core/stores/id'
-	import { crossfade, scale } from 'svelte/transition'
+	import { crossfade, fade, scale } from 'svelte/transition'
 	import Table, { type TableData } from './Table.svelte'
 
 	export let data: { [section: string]: TableData } = {}
@@ -20,6 +20,7 @@
 </script>
 
 <div
+	in:fade={{ duration: 250 }}
 	part="tabs"
 	style="outline: none;"
 	role="tablist"

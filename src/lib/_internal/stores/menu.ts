@@ -20,17 +20,18 @@ const menuMap = {
 		},
 		'Visualization & Interaction': {
 			Button: '/docs/components/button',
-			Tooltip: '/docs/components/tooltip',
 			Popover: '/docs/components/popover',
-			Grid: '__/docs/components/grid',
-			Carousel: '__/docs/components/carousel',
-			Details: '_/docs/components/details',
-			'Dropdown Menu': '__/docs/components/dropdown-menu',
+			Tooltip: '/docs/components/tooltip',
 			Tabs: '/docs/components/tabs',
-			Theme: '/docs/components/theme',
-			Accordion: '_/docs/components/accordion',
+			Dialog: '/docs/components/dialog',
 			Notification: '/docs/components/notification',
-			Dialog: '/docs/components/dialog'
+			Theme: '/docs/components/theme',
+			Scroller: '/docs/components/scroller',
+			Accordion: '_/docs/components/accordion',
+			Carousel: '__/docs/components/carousel',
+			Grid: '__/docs/components/grid',
+			Details: '_/docs/components/details',
+			'Dropdown Menu': '__/docs/components/dropdown-menu'
 		},
 		Layouts: {
 			Flex: '/docs/components/flex',
