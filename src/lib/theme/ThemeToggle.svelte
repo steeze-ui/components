@@ -1,6 +1,6 @@
 <script>
 	import { Theme } from '$lib/core/stores/theme'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { Moon, Sun } from '@steeze-ui/heroicons'
 </script>
 

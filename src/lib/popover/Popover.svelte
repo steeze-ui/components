@@ -3,7 +3,7 @@
 	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition } from '$lib/core/types'
 	import { X } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { getId } from '../core/stores/id'
 
 	export let position: FloatingPosition = 'bottom'

@@ -7,7 +7,7 @@
 	import Item from '$lib/listbox/Item.svelte'
 	import ListBox from '$lib/listbox/ListBox.svelte'
 	import { ChevronDown, X } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { createEventDispatcher, onMount } from 'svelte'
 
 	type T = $$Generic
@@ -17,7 +17,7 @@
 	}
 
 	export let identifier = 'id'
-	export let items: T[] | SelectValueMap
+	export let items: T[] | SelectValueMap = []
 	export let value: T | string = null
 	//functionality
 	export let groupBy: (e: T) => string = null

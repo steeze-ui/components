@@ -1,7 +1,7 @@
 <script>
 	import { Menu, X } from '@steeze-ui/heroicons'
 
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { menu } from '../stores/menu'
 </script>
 

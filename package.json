@@ -16,25 +16,32 @@
 		"release:patch": "pnpm version patch --force && pnpm publish:npm",
 		"release:minor": "pnpm version minor --force && pnpm publish:npm",
 		"release:major": "pnpm version major --force && pnpm publish:npm",
-		"release": "pnpm release:patch"
+		"release": "pnpm release:patch",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"coverage": "vitest --coverage"
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^0.1.10",
 		"@steeze-ui/heroicons": "^1.1.1",
-		"@steeze-ui/svelte-icon": "^1.3.1",
+		"@steeze-ui/svelte-icon": "^1.3.2-next.0",
 		"focus-svelte": "^0.3.4"
 	},
 	"devDependencies": {
 		"@steeze-ui/radix-icons": "^1.1.0",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-static": "^1.0.0-next.28",
+		"@sveltejs/adapter-static": "next",
 		"@sveltejs/kit": "next",
+		"@sveltejs/vite-plugin-svelte": "1.0.0-next.37",
+		"@testing-library/jest-dom": "^5.16.2",
+		"@testing-library/svelte": "^3.0.3",
 		"@types/prismjs": "^1.26.0",
 		"@typescript-eslint/eslint-plugin": "^4.33.0",
 		"@typescript-eslint/parser": "^4.33.0",
 		"eslint": "^7.32.0",
-		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-prettier": "^8.4.0",
 		"eslint-plugin-svelte3": "^3.4.0",
+		"jsdom": "^19.0.0",
 		"mdsvex": "^0.10.5",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.6.0",
@@ -45,7 +52,9 @@
 		"svelte2tsx": "^0.5.5",
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.5",
+		"vite": "^2.8.4",
 		"vite-plugin-windicss": "^1.7.1",
+		"vitest": "^0.1.27",
 		"windicss": "^3.4.3"
 	},
 	"peerDependencies": {

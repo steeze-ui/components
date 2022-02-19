@@ -2,7 +2,7 @@
 	import PrismJS from 'prismjs'
 	import '$lib/_internal/utils/prism'
 	import { ClipboardCopy } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 
 	export function getHighlighted(source: string) {
 		return PrismJS.highlight(source, PrismJS.languages.svelte, 'svelte')

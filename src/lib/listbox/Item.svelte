@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Check } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 
 	export let focused: boolean
 	export let selected: boolean

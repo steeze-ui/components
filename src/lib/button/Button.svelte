@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import type { IconSource } from '@steeze-ui/svelte-icon/types'
 	import { onMount } from 'svelte'
 

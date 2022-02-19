@@ -5,7 +5,7 @@
 <script lang="ts">
 	import { ArrowLeft, ArrowRight } from '@steeze-ui/heroicons'
 
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { menu } from '../stores/menu'
 
 	export let current: string

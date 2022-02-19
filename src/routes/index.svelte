@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Button } from '$lib'
 	import Logo from '$lib/_internal/header/Logo.svelte'
 </script>

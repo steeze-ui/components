@@ -2,7 +2,7 @@
 	import Tooltip from '$lib/tooltip/Tooltip.svelte'
 	import { ExclamationCircle } from '@steeze-ui/heroicons'
 
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 
 	export let text
 	let focused = false

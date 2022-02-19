@@ -8,7 +8,7 @@
 
 	import TextField from '$lib/fields/TextField.svelte'
 	import { Heart } from '@steeze-ui/heroicons'
-	import { Icon } from '@steeze-ui/svelte-icon'
+	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 
 	let value = ''
 	$: theme = value.length > 0 ? 'solid' : 'default'
