@@ -17,8 +17,7 @@
 	const dispatch = createEventDispatcher()
 
 	const [send, receive] = crossfade({
-		duration: 200,
-		fallback: scale
+		duration: 200
 	})
 
 	function setSelected(index: number) {
