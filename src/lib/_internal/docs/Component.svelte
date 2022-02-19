@@ -7,6 +7,7 @@
 	import Demo from './Demo.svelte'
 	import Feats from './Features.svelte'
 	import Footer from './Footer.svelte'
+	import SectionTitle from './SectionTitle.svelte'
 	import TableTabs from './TableTabs.svelte'
 	import Title from './Title.svelte'
 
@@ -14,35 +15,62 @@
 	export let examples: ComponentExample[]
 
 	export let data: ComponentData
+
+	const getId = (title: string): string => {
+		return title.replace(/\s/g, '-').toLowerCase()
+	}
 </script>
 
-<Title title={data.meta.title} description={data.meta.description} type={data.meta.type} />
+<div id="title" class="section">
+	<Title title={data.meta.title} description={data.meta.description} type={data.meta.type} />
+</div>
 
-<Demo id={data.meta.color} {...$$restProps}>
-	<slot />
-</Demo>
+<div id="demo" class="section">
+	<Demo id={data.meta.color} {...$$restProps}>
+		<slot />
+	</Demo>
+</div>
 
-<Feats features={data.features} />
+{#if data.features.length > 0}
+	<div id="features" class="section">
+		<Feats features={data.features} />
+	</div>
+{/if}
 
 {#if quickstart}
-	<h2>Quickstart</h2>
-	<Code content={quickstart} />
+	<div id="quickstart" class="section">
+		<SectionTitle title="Quickstart" />
+		<Code content={quickstart} />
+	</div>
 {/if}
 
 {#each Object.keys(data.docs) as section}
-	<h2>{section}</h2>
-	<TableTabs data={data.docs[section]} />
+	{@const id = getId(section)}
+	<div {id} class="section">
+		<SectionTitle title={section} href="#{id}" />
+
+		<TableTabs data={data.docs[section]} />
+	</div>
 {/each}
 
 {#if examples.length > 0}
-	<h2>Examples</h2>
-	{#each examples as { description, source, title }}
-		<h3>{title}</h3>
-		{#if description}
-			<p>{description}</p>
-		{/if}
-		<Code content={source} />
-	{/each}
+	<div id="examples" class="section">
+		<SectionTitle title="examples" />
+
+		{#each examples as { description, source, title }}
+			<h3>{title}</h3>
+			{#if description}
+				<p>{description}</p>
+			{/if}
+			<Code content={source} />
+		{/each}
+	</div>
 {/if}
 
 <Footer current={data.meta.title} />
+
+<style>
+	.section {
+		scroll-margin-top: 100px;
+	}
+</style>
