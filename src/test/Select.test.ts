@@ -7,39 +7,91 @@ import { describe, it, expect, afterEach } from 'vitest'
 describe('Select.svelte', () => {
 	afterEach(() => cleanup())
 
+	const itemsMap = [
+		{ id: '1', label: 'Label 1' },
+		{ id: '2', label: 'Label 2' }
+	]
+
 	it('Mounted', () => {
 		const { container } = render(Select)
 		expect(container).toBeTruthy()
 	})
-	it('get Select', () => {
-		const { container } = render(Select, { items: [] })
-		// expect(container.innerHTML).toContain('With Prop')
-		expect(container.querySelector('#paragraph').innerHTML).toContain('With Prop')
+
+	it('get Select', async () => {
+		const { container } = render(Select, { placeholder: 'test' })
+		expect(container.querySelector('[part="value"]').innerHTML).toContain('test')
 	})
-	// it('with icon', () => {
-	// 	const { container } = render(Select, { text: 'With Prop' })
-	// 	expect(container.innerHTML).toContain('With Prop')
-	// 	expect(container.querySelector('#paragraph').innerHTML).toContain('With Prop')
-	// })
 
-	// it('pass props text', () => {
-	//     const { container } = render(SvelteText, { text: 'svelte-vitest' })
-	//     expect(container.innerHTML).toContain('svelte-vitest')
-	// })
-	// it('getTextByTestId', () => {
-	//     const { getByTestId } = render(SvelteText, { text: 'svelte-vitest' })
-	//     const text = getByTestId('text')
-	//     expect(text?.innerHTML).toContain('svelte-vitest')
-	// })
+	it('render items from map', async () => {
+		const { container } = render(Select, {
+			placeholder: 'items',
+			items: itemsMap
+		})
 
-	// it('click button && getCount', async () => {
-	//     const { getByRole, container } = render(SvelteText, { text: 'svelte-vitest' })
-	//     const btn = getByRole('button')
-	//     expect(container?.innerHTML).toContain('0')
+		const btn = container.querySelector('[part="value"]')
 
-	//     await fireEvent.click(btn)
-	//     expect(container?.innerHTML).toContain('1')
-	//     await fireEvent.click(btn)
+		expect(container.querySelector(`[data-component="listbox"]`)).toBeFalsy()
 
-	// })
+		await fireEvent.click(btn)
+
+		const listbox = container.querySelector(`[data-component="listbox"]`)
+
+		expect(listbox).toBeTruthy()
+
+		expect(listbox.querySelectorAll('[part="item"]').length).toBe(itemsMap.length)
+	})
+
+	it('select value from listbox', async () => {
+		const { container } = render(Select, {
+			placeholder: 'items',
+			items: itemsMap
+		})
+
+		const btn = container.querySelector('[part="value"]')
+
+		await fireEvent.click(btn)
+
+		expect(container.querySelector(`[data-component="listbox"]`)).toBeTruthy()
+
+		const listbox = container.querySelector(`[data-component="listbox"]`)
+
+		const firstItem = listbox.querySelectorAll('[part="item"]')[0]
+
+		await fireEvent.click(firstItem)
+
+		expect(container.querySelector(`[data-component="listbox"]`)).toBeFalsy()
+
+		expect(container.querySelector('[part="selected"]').innerHTML).toContain(itemsMap[0].label)
+	})
+
+	it('selected value from prop', async () => {
+		const { container } = render(Select, {
+			placeholder: 'items',
+			items: itemsMap,
+			value: itemsMap[1]
+		})
+
+		expect(container.querySelector(`[data-component="listbox"]`)).toBeFalsy()
+
+		expect(container.querySelector('[part="selected"]').innerHTML).toContain(itemsMap[1].label)
+	})
+
+	it('searchable', async () => {
+		//TODO:
+	})
+	it('groupable', async () => {
+		//TODO:
+	})
+	it('multiple', async () => {
+		//TODO:
+	})
+	it('closeOnSelect', async () => {
+		//TODO:
+	})
+	it('filterBy', async () => {
+		//TODO:
+	})
+	it('taggable', async () => {
+		//TODO:
+	})
 })

@@ -3,7 +3,7 @@ import type { ComponentData, ComponentExample } from '$lib/_internal/types/docs'
 export const data: ComponentData = {
 	meta: {
 		title: 'Select',
-		description: 'Choose a single item from a set of items',
+		description: 'Choose from a set of items',
 		color: 2,
 		type: 1
 	},
@@ -46,7 +46,15 @@ export const data: ComponentData = {
 						text: 'groupBy',
 						help: 'Group Items by a given key'
 					},
-					Type: '(e:T) => string',
+					Type: '(item:T) => string',
+					Default: 'null'
+				},
+				{
+					Property: {
+						text: 'filterBy',
+						help: 'When searchable, define a custom filter function. By default it uses the label.'
+					},
+					Type: '(item:T, searchText:string) => boolean',
 					Default: 'null'
 				},
 				{
@@ -59,8 +67,40 @@ export const data: ComponentData = {
 				},
 				{
 					Property: {
+						text: 'multiple',
+						help: 'Allow the user to select multiple items'
+					},
+					Type: 'Boolean',
+					Default: 'false'
+				},
+				{
+					Property: {
 						text: 'clearable',
 						help: 'Allow the user to clear the selected value'
+					},
+					Type: 'Boolean',
+					Default: 'false'
+				},
+				{
+					Property: {
+						text: 'taggable',
+						help: 'Allow input that is not present within the items'
+					},
+					Type: '(value: string) => T',
+					Default: 'null'
+				},
+				{
+					Property: {
+						text: 'pushTags',
+						help: 'Push created Tags into the items'
+					},
+					Type: 'Boolean',
+					Default: 'false'
+				},
+				{
+					Property: {
+						text: 'retainOnSelect',
+						help: 'Retains the Selector open when an item is selected. Useful when multiple is true'
 					},
 					Type: 'Boolean',
 					Default: 'false'
@@ -128,14 +168,6 @@ export const data: ComponentData = {
 					},
 					Type: 'Boolean',
 					Default: 'false'
-				},
-				{
-					Property: {
-						text: 'name',
-						help: 'Name property for forms'
-					},
-					Type: 'String',
-					Default: "''"
 				},
 				{
 					Property: {

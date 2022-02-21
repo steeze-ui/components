@@ -2,8 +2,8 @@
 	import { Check } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 
-	export let focused: boolean
-	export let selected: boolean
+	export let focused: boolean = false
+	export let selected: boolean = false
 </script>
 
 <li

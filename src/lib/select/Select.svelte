@@ -2,50 +2,56 @@
 	import FieldContainer from '$lib/core/parts/FieldContainer.svelte'
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
-	import type { FloatingPosition, SelectValueMap } from '$lib/core/types'
+	import type { FloatingPosition } from '$lib/core/types'
 	import { getId } from '$lib/core/stores/id'
 	import Item from '$lib/listbox/Item.svelte'
 	import ListBox from '$lib/listbox/ListBox.svelte'
 	import { ChevronDown, X } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
-	import { createEventDispatcher, onMount } from 'svelte'
+	import { createEventDispatcher, onMount, tick } from 'svelte'
 
 	type T = $$Generic
 
 	interface $$Events {
-		select: CustomEvent<T>
+		select: CustomEvent<T | T[]>
 	}
 
 	export let identifier = 'id'
-	export let items: T[] | SelectValueMap = []
-	export let value: T | string = null
+	export let items: T[] = []
+	export let value: (T[] | T | string) & { includes?: (item: T) => boolean } = null
+
 	//functionality
-	export let groupBy: (e: T) => string = null
+	export let groupBy: (item: T) => string = null
+	export let filterBy: (item: T, searchText: string) => boolean = null
+	export let multiple = false
 	export let searchable = false
 	export let clearable = false
+	export let taggable: (value: string) => T = null
+	export let pushTags = false
 	export let loop = false
 	//display
+	export let theme: string = null
 	export let label: string = null
 	export let helper: string = null
 	export let placeholder: string = null
+	export let emptyText = 'No options found'
 	export let itemLabelRenderer = (e: T) => e?.['label'] ?? ''
 	export let position: FloatingPosition = 'bottom-end'
 	export let width: string = '12rem'
+	export let retainOnSelect = false
 	//form
 	export let disabled = false
-	export let required = false
-	// export let name = null
 	export let focus = false
-	export let theme: string = null
-	export let ariaLabel: string = null
+	// export let required = false
+	// export let name = null
 
 	let refTrigger: HTMLElement
 	let refFloating: any
 	let refInput: HTMLElement
-	let refButton: HTMLElement
+	let refField: HTMLElement
 
 	let buttonId = getId()
-	let itemsId = getId()
+	let listboxId = getId()
 	let dispatch = createEventDispatcher()
 
 	let focused = false
@@ -60,28 +66,41 @@
 		}
 	})
 
-	// create items Map from items
+	// init items
 	interface ItemsMap {
 		[group: string]: T[]
 	}
-	const itemsMap: ItemsMap = {}
 
-	if (items.constructor.name === 'Object') {
-		for (const id of Object.keys(items)) {
-			const item = { ...items[id], [identifier]: id } as T
-			const group = groupBy ? groupBy(item) : ''
-			if (!itemsMap[group]) {
-				itemsMap[group] = []
+	let itemsMap: ItemsMap
+	$: {
+		itemsMap = {}
+
+		if (items.constructor.name === 'Object') {
+			for (const id of Object.keys(items)) {
+				const item = { ...items[id], [identifier]: id } as T
+				const group = groupBy ? groupBy(item) : ''
+				if (!itemsMap[group]) {
+					itemsMap[group] = []
+				}
+				itemsMap[group].push(item)
 			}
-			itemsMap[group].push(item)
+		} else {
+			for (const item of items as T[]) {
+				const group = groupBy ? groupBy(item) : ''
+				if (!itemsMap[group]) {
+					itemsMap[group] = []
+				}
+				itemsMap[group].push(item)
+			}
 		}
-	} else {
-		for (const item of items as T[]) {
-			const group = groupBy ? groupBy(item) : ''
-			if (!itemsMap[group]) {
-				itemsMap[group] = []
-			}
-			itemsMap[group].push(item)
+	}
+
+	// init value
+	if (multiple) {
+		if (value === null) {
+			value = []
+		} else if (items.constructor.name === 'Object') {
+			value = [value as T]
 		}
 	}
 
@@ -95,78 +114,116 @@
 		}
 	}
 
-	// Value
-	let shownValue: string
-	$: selectorItems = !searchable ? itemsMap : getItemsBySearch(searchText)
+	// Selector Items
+	$: selectorItems = searchable && searchValue.length > 0 ? getItemsBySearch(searchValue) : itemsMap
+
+	// Selector Search
+	let searchValue = ''
+	$: {
+		//reset focused index when searchValue changes
+		searchValue
+		focusedItemGroupIndex = 0
+		focusedItemIndex = 0
+	}
 
 	function getItemsBySearch(searchText: string): ItemsMap {
 		const map: ItemsMap = {}
 		for (const [group, items] of Object.entries(itemsMap)) {
-			const found = items.filter((e) =>
-				itemLabelRenderer(e).toLowerCase().includes(searchText.toLowerCase())
-			)
+			const found = items.filter((e) => {
+				if (filterBy) {
+					return filterBy(e, searchText)
+				} else {
+					return itemLabelRenderer(e).toLowerCase().includes(searchText.toLowerCase())
+				}
+			})
 			if (found.length > 0) {
 				map[group] = found
 			}
 		}
 
+		if (taggable && searchText.length > 0) {
+			const tag = taggable(searchText)
+
+			map[''] = map[''] ? [tag, ...map['']] : [tag]
+		}
+
 		return map
 	}
 
-	$: isSelected = value != null
-	$: {
-		if (isSelected) {
-			shownValue = itemLabelRenderer(value as T)
-		} else {
-			shownValue = ''
-		}
-	}
-
-	// Search
-	let searchText = ''
-	$: {
-		searchText
-		focusedItemGroupIndex = 0
-		focusedItemIndex = 0
-	}
-
-	// Selector
-	let opened = false
+	// Selector Expanded
+	let expanded = false
 	let lastCleared = false
 
 	function openSelector() {
 		if (!disabled) {
-			if (opened) {
+			if (expanded) {
 				closeSelector()
 			} else {
-				opened = true
-				searchText = ''
+				expanded = true
 				focusItem(0, 0)
 				if (!focused) {
-					refButton.focus()
+					refInput.focus()
 				}
 			}
 		}
 	}
 
 	function closeSelector() {
-		searchText = ''
-		opened = false
+		searchValue = ''
+		expanded = false
+		refInput.blur()
 	}
 
-	function selectItem(item: T) {
-		if (clearable && item?.[identifier] === value?.[identifier]) {
-			value = null
+	// Value
+	let singleValue: string
+	let multiValue: string[] = []
+
+	$: isSelected = multiple ? (value as T[]).length > 0 : value != null
+	$: {
+		if (multiple) {
+			multiValue = (value as T[])?.map((e) => itemLabelRenderer(e)) ?? []
 		} else {
-			value = item
+			singleValue = isSelected ? itemLabelRenderer(value as T) : ''
 		}
-		dispatch('select', item)
-		closeSelector()
+	}
+
+	async function selectItem(item: T) {
+		searchValue = ''
+		if (pushTags && !items.includes(item)) {
+			items = [...items, item]
+		}
+
+		if (multiple) {
+			const exists = (value as T[])?.includes(item)
+			if (!exists) {
+				value = [...(value as T[]), item]
+			}
+			if (clearable && exists) {
+				value = (value as T[]).filter((e) => e !== item)
+			}
+		} else {
+			if (clearable && item?.[identifier] === value?.[identifier]) {
+				value = null
+			} else {
+				value = item
+			}
+			dispatch('select', item)
+		}
+		if (!retainOnSelect) {
+			closeSelector()
+		} else {
+			//keep focus in input field
+			refInput.focus()
+		}
 	}
 
 	export function clear() {
-		value = null
-		dispatch('select', null)
+		if (multiple) {
+			value = []
+		} else {
+			value = null
+		}
+		dispatch('select', value as T | T[])
 		lastCleared = true
 	}
 
@@ -178,7 +235,7 @@
 	function focusItem(groupIndex: number, itemIndex: number) {
 		focusedItemGroupIndex = groupIndex
 		focusedItemIndex = itemIndex
-		focusedItemAriaId = `${itemsId}-menu-item-${groupIndex}-${itemIndex}`
+		focusedItemAriaId = `${listboxId}-menu-item-${groupIndex}-${itemIndex}`
 	}
 
 	function focusNextItem() {
@@ -231,7 +288,7 @@
 					break
 				case 'ArrowDown':
 					event.preventDefault()
-					if (!opened) {
+					if (!expanded) {
 						openSelector()
 					} else {
 						focusNextItem()
@@ -239,11 +296,11 @@
 					break
 				case 'Enter':
 					event.preventDefault()
-					if (opened) {
-						selectItem(
-							selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
-						)
-						refTrigger?.focus()
+					if (expanded) {
+						const group = Object.keys(selectorItems)[focusedItemGroupIndex]
+						if (group != undefined) {
+							selectItem(selectorItems[group][focusedItemIndex])
+						}
 					} else {
 						openSelector()
 					}
@@ -252,47 +309,44 @@
 					closeSelector()
 					break
 				case ' ':
-					event.preventDefault()
-					if (opened) {
-						selectItem(
-							selectorItems[Object.keys(selectorItems)[focusedItemGroupIndex]][focusedItemIndex]
-						)
-						refTrigger?.focus()
-					} else {
-						openSelector()
+					if (searchValue.length === 0) {
+						event.preventDefault()
+						if (expanded) {
+							const group = Object.keys(selectorItems)[focusedItemGroupIndex]
+							if (group != undefined) {
+								selectItem(selectorItems[group][focusedItemIndex])
+							}
+						} else {
+							openSelector()
+						}
 					}
 					break
 				case 'Tab':
 					closeSelector()
 
 				default:
-					refInput?.focus()
 					break
-			}
-		} else {
-			if (event.key === 'Tab') {
-				closeSelector()
 			}
 		}
 	}
 
 	//* Position
-	$: opened && refTrigger && refFloating && refFloating.updatePosition()
+	$: expanded && refTrigger && refFloating && refFloating.updatePosition()
 </script>
 
 <svelte:window
 	on:keydown={handleKeydown}
 	on:resize={() => {
-		opened && refFloating.updatePosition()
+		expanded && refFloating.updatePosition()
 	}}
 	on:scroll={() => {
-		opened && refFloating.updatePosition()
+		expanded && refFloating.updatePosition()
 	}}
 />
 
 <FieldContainer
 	data-component="select"
-	title={shownValue}
+	title={singleValue}
 	{label}
 	{helper}
 	{width}
@@ -304,12 +358,16 @@
 		if (lastCleared) {
 			lastCleared = false
 		}
+
 		openSelector()
-		refInput?.focus()
 	}}
 	bind:ref={refTrigger}
-	on:focus
-	data-expanded={opened ? '' : null}
+	{expanded}
+	id={buttonId}
+	aria-controls={listboxId}
+	aria-haspopup="true"
+	aria-expanded={expanded ? true : false}
+	bind:refField
 >
 	<svelte:fragment slot="label" let:htmlfor let:id>
 		<slot name="label" {id} {htmlfor} />
@@ -319,43 +377,63 @@
 		<slot name="prefix" />
 	</svelte:fragment>
 
-	<button
-		aria-label={ariaLabel}
-		slot="default"
-		part="value"
-		on:focus={() => {
-			focused = true
-		}}
-		on:blur={() => {
-			focused = false
-		}}
-		type="button"
-		{disabled}
-		{required}
-		id={buttonId}
-		aria-controls={itemsId}
-		aria-haspopup="true"
-		aria-expanded={opened ? true : false}
-		bind:this={refButton}
-	>
+	<div slot="default" part="value">
 		{#if isSelected}
-			<span>
-				{shownValue}
-			</span>
-		{:else}
-			<span part="placeholder">
-				{placeholder || ''}
-			</span>
+			{#if multiple}
+				<div part="multiple-value">
+					{#each multiValue ?? [] as item}
+						<span part="selected" data-multiple-value>
+							{item}
+						</span>
+					{/each}
+				</div>
+			{:else}
+				<span part="selected" data-single-value>
+					{singleValue}
+				</span>
+			{/if}
 		{/if}
-	</button>
+
+		<input
+			bind:this={refInput}
+			placeholder={isSelected ? null : placeholder}
+			autocapitalize="none"
+			autocomplete="off"
+			autocorrect="off"
+			spellcheck="false"
+			type="text"
+			aria-autocomplete="list"
+			aria-expanded={expanded ? 'true' : 'false'}
+			aria-haspopup="true"
+			aria-controls={listboxId}
+			aria-owns={listboxId}
+			bind:value={searchValue}
+			readonly={!searchable}
+			on:focus={() => {
+				focused = true
+				if (!expanded) {
+					openSelector()
+				}
+			}}
+			on:blur={() => {
+				focused = false
+			}}
+			on:input={() => {
+				if (!expanded) {
+					openSelector()
+				}
+			}}
+		/>
+	</div>
 
 	<svelte:fragment slot="suffix">
 		<slot name="suffix" />
 		{#if isSelected && clearable}
 			<button
 				aria-label="clear value of the select"
-				on:pointerdown={clear}
+				on:click={clear}
 				part="clear-button"
+				tabindex="-1"
 				type="button"
 			>
 				<!-- Clear Icon -->
@@ -381,7 +459,7 @@
 
 <!-- Selector -->
 
-{#if opened}
+{#if expanded}
 	<Portal>
 		<Floating
 			{position}
@@ -390,32 +468,21 @@
 			bind:this={refFloating}
 			clickOutsideCallback={closeSelector}
 		>
-			<ListBox
-				id={itemsId}
-				aria-labelledby={buttonId}
-				aria-activedescendant={focusedItemAriaId}
-				showPrefix={searchable}
-			>
-				<input
-					part="search-field"
-					slot="prefix"
-					bind:this={refInput}
-					bind:value={searchText}
-					placeholder="Search.."
-				/>
-
+			<ListBox id={listboxId} aria-labelledby={buttonId} aria-activedescendant={focusedItemAriaId}>
 				{#each Object.keys(selectorItems) as group, groupIndex (group)}
 					{#if groupBy}
 						<span part="group-label">
 							{group}
 						</span>
 					{/if}
-					{#each selectorItems[group] as item, itemIndex (item[identifier])}
+					{#each selectorItems[group] as item, itemIndex}
 						{@const id = item[identifier]}
 						{@const focused =
 							groupIndex === focusedItemGroupIndex && itemIndex === focusedItemIndex}
-						{@const selected = value?.[identifier] === id ?? false}
-						{@const ariaId = `${itemsId}-menu-item-${groupIndex}-${itemIndex}`}
+						{@const selected = multiple
+							? value.includes(item)
+							: value?.[identifier] === id ?? false}
+						{@const ariaId = `${listboxId}-menu-item-${groupIndex}-${itemIndex}`}
 						{@const label = itemLabelRenderer(item)}
 
 						<slot
@@ -435,12 +502,16 @@
 								on:pointerover={() => {
 									focusItem(groupIndex, itemIndex)
 								}}
-								on:pointerdown={() => selectItem(item)}
+								on:click={() => selectItem(item)}
 							>
 								{itemLabelRenderer(item)}
 							</Item>
 						</slot>
 					{/each}
+				{:else}
+					{#if !taggable}
+						<span part="empty-text">{emptyText}</span>
+					{/if}
 				{/each}
 			</ListBox>
 		</Floating>
@@ -463,12 +534,11 @@
 
 	[part='value'] {
 		display: flex;
+		gap: 0.5rem;
 		flex: auto;
-		background-color: transparent;
 		font-size: var(--st-select-font-size, var(--st-field-font-size));
 		font-weight: var(--st-select-font-weight, var(--st-field-font-weight));
 		color: var(--st-select-color, var(--st-field-color));
-		padding: 0 0.25rem;
 		cursor: pointer;
 		pointer-events: none;
 		overflow: hidden;
@@ -479,10 +549,6 @@
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		/* width: 100%; */
-	}
-
-	[part='placeholder'] {
-		color: var(--st-placeholder-text-color);
 	}
 
 	[part='clear-button'],
@@ -506,15 +572,30 @@
 		margin: var(--st-select-group-margin, 0 0 0 0.5rem);
 	}
 
-	[part='search-field'] {
-		background-color: transparent;
-		padding: 0.5rem;
-		font-size: var(--st-select-search-font-size, var(--st-font-size-xs));
-		font-weight: var(--st-select-search-font-weight, var(--st-font-weight-normal));
-		color: var(--st-select-search-color, var(--st-field-color));
+	input {
+		color: var(--vs-search-input-color);
+		appearance: none;
+		line-height: var(--vs-line-height);
+		font-size: var(--vs-font-size);
+		border: 1px solid transparent;
+		border-left: none;
 		outline: none;
+		background: none;
+		box-shadow: none;
+		width: 0;
+		max-width: 100%;
+		flex-grow: 1;
+		z-index: 1;
 	}
-	[part='search-field']::placeholder {
+
+	input::placeholder {
 		color: var(--st-placeholder-text-color);
+	}
+
+	[part='empty-text'] {
+		font-size: var(--st-item-font-size, var(--st-field-font-size));
+		font-weight: var(--st-item-font-weight, var(--st-field-font-weight));
+		color: var(--st-item-text-color, var(--st-body-text-color));
+		padding: var(--st-item-padding, 0.2rem 0.75rem 0.2rem 0.5rem);
 	}
 </style>

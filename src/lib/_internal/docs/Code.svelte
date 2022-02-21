@@ -9,16 +9,7 @@
 	}
 
 	export let content: string
-	const handleKeydown = (e: KeyboardEvent) => {
-		switch (e.key) {
-			case 'Tab':
-				console.log(document.activeElement)
-				break
-		}
-	}
 </script>
-
-<svelte:window on:keydown={handleKeydown} />
 
 <div part="code">
 	<button

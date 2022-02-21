@@ -10,9 +10,11 @@
 	export let helper = ''
 	export let theme: string = null
 	export let ref = null
+	export let refField = null
 
 	export let disabled = false
 	export let focused = false
+	export let expanded = false
 
 	const fieldId = getId()
 	const labelId = getId()
@@ -22,9 +24,9 @@
 <div
 	data-field-container
 	data-theme={theme}
-	{...$$restProps}
 	data-disabled={disabled ? '' : null}
 	data-focused={focused ? '' : null}
+	data-expanded={expanded ? '' : null}
 	bind:this={ref}
 	style:width
 >
@@ -32,7 +34,15 @@
 	{#if label}
 		<Label for={fieldId} id={labelId}>{label}</Label>
 	{/if}
-	<div part="input-container" on:click on:focus style:height>
+	<div
+		data-input-container
+		{...$$restProps}
+		bind:this={refField}
+		on:click
+		on:focus
+		on:blur
+		style:height
+	>
 		<div part="prefix">
 			<slot name="prefix" />
 		</div>
@@ -48,14 +58,14 @@
 </div>
 
 <style>
-	[data-component] {
+	[data-field-container] {
 		gap: 0.25rem;
 		display: flex;
 		flex-direction: column;
 		height: fit-content;
 	}
 
-	[part='input-container'] {
+	[data-input-container] {
 		display: flex;
 		position: relative;
 		overflow: hidden;
@@ -78,41 +88,41 @@
 	[data-disabled] {
 		opacity: var(--st-field-disabled-opacity);
 	}
-	[data-disabled] [part='input-container'] {
+	[data-disabled] [data-input-container] {
 		border-style: dashed;
 		overflow: hidden;
 		cursor: not-allowed;
 	}
 
 	/* Hover */
-	[data-component]:not([data-focused]):not([data-disabled]):hover {
+	[data-field-container]:not([data-focused]):not([data-disabled]):hover {
 		--st-label-color: var(--st-field-label-hover-color);
 	}
 
-	[data-component]:not([data-focused]):not([data-disabled]):hover [part='input-container'] {
+	[data-field-container]:not([data-focused]):not([data-disabled]):hover [data-input-container] {
 		border-color: var(--st-field-hover-border-color);
 		background-color: var(--st-field-hover-bg-color);
 		color: var(--st-field-hover-color);
 	}
 
 	/* Focus */
-	[part='input-container']:focus {
+	[data-input-container]:focus {
 		outline: none;
 	}
-	[part='input-container']:focus-visible,
-	[data-component][data-focused],
-	[data-component][data-focused]:hover {
+	[data-input-container]:focus-visible,
+	[data-field-container][data-focused],
+	[data-field-container][data-focused]:hover {
 		--st-field-border-color: var(--st-field-focus-border-color);
 		--st-label-color: var(--st-field-label-focus-color);
 		--st-field-bg-color: var(--st-field-focus-bg-color);
 	}
 
 	/* Themes */
-	[data-theme*='borderless'] [part='input-container'] {
+	[data-theme*='borderless'] [data-input-container] {
 		border-color: transparent;
 	}
 
-	[data-theme*='transparent'] [part='input-container'] {
+	[data-theme*='transparent'] [data-input-container] {
 		background-color: transparent;
 	}
 

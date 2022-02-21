@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { browser } from '$app/env'
+
 	import { computePosition, flip, offset, shift, size } from '@floating-ui/dom'
 	import { scale } from 'svelte/transition'
 	import { clickOutside } from '../actions/clickOutside'
@@ -15,7 +17,7 @@
 	export let clickOutsideEnabled = false
 
 	export async function updatePosition() {
-		if (trigger && ref) {
+		if (browser && trigger && ref) {
 			const {
 				x,
 				y

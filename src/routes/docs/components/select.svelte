@@ -9,8 +9,8 @@
 	import Select from '$lib/select/Select.svelte'
 
 	const items = [
-		{ id: '1', label: 'Hot' },
-		{ id: '2', label: 'New' }
+		{ id: '1', label: 'Hot', meta: 'black' },
+		{ id: '2', label: 'New', meta: 'white' }
 	]
 	const itemsWithGroup = [
 		{ id: '1', label: 'Flatrail', group: 'Rails' },
@@ -24,8 +24,28 @@
 
 <Component {data} {quickstart} {examples}>
 	<div class="demo-container">
-		<Select label="Filter by" width="12rem" {items} />
+		<!-- <Select searchable clearable label="Single" width="12rem" placeholder="Select.." {items} /> -->
 		<Select
+			searchable
+			clearable
+			label="Multiple"
+			width="12rem"
+			placeholder="Select.."
+			retainOnSelect
+			filterBy={(item, text) => {
+				return (
+					item.label.toLowerCase().includes(text.toLowerCase()) ||
+					item.meta.toLowerCase().includes(text.toLowerCase())
+				)
+			}}
+			taggable={(v) => {
+				return { id: v.toLowerCase(), label: v, meta: '' }
+			}}
+			pushTags
+			multiple
+			{items}
+		/>
+		<!-- <Select
 			width="12rem"
 			loop
 			searchable
@@ -33,6 +53,6 @@
 			groupBy={(e) => e.group}
 			placeholder="Choose Obstacle.."
 			items={itemsWithGroup}
-		/>
+		/> -->
 	</div>
 </Component>
