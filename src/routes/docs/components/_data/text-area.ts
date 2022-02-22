@@ -46,7 +46,7 @@ export const data: ComponentData = {
 			],
 			Globals: [
 				{ Classname: 'light', Notes: 'Light Appearance of the Component' },
-				{ Classname: 'st-size-small', Notes: 'Smaller Appearance of the Component' }
+				{ Classname: 'st-small', Notes: 'Smaller Appearance of the Component' }
 			]
 		}
 	}

@@ -75,6 +75,7 @@
 		background-color: var(--st-field-bg-color);
 		padding: var(--st-field-padding);
 		align-items: center;
+		min-height: var(--st-field-min-height);
 	}
 
 	[part='prefix'],
@@ -126,7 +127,7 @@
 		background-color: transparent;
 	}
 
-	:global(.st-size-small [data-field-container]),
+	:global(.st-small [data-field-container]),
 	[data-theme*='small'] {
 		--st-field-font-size: var(--st-font-size-xs);
 		--st-field-padding: var(--st-field-padding-sm);

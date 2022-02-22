@@ -19,7 +19,7 @@
 <Component {data} {quickstart} {examples}>
 	<Button on:click={() => (opened = true)}>Open Dialog</Button>
 	<Dialog bind:opened {draggable} {resizable} {unclosable}>
-		<div class="prose st-size-small flex gap-2 flex-col">
+		<div class="prose st-small flex gap-2 flex-col">
 			<h2 class="">Options</h2>
 			<div class="flex gap-4 items-center">
 				<Label for="draggable">Draggable</Label>

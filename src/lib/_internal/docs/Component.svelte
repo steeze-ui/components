@@ -6,6 +6,7 @@
 	import Code from './Code.svelte'
 	import Demo from './Demo.svelte'
 	import Feats from './Features.svelte'
+	import Footer from './Footer.svelte'
 	import SectionTitle from './SectionTitle.svelte'
 	import TableTabs from './TableTabs.svelte'
 	import Title from './Title.svelte'
@@ -66,6 +67,8 @@
 		{/each}
 	</div>
 {/if}
+
+<Footer current={data.meta.title} />
 
 <style>
 	.section {

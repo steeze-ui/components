@@ -68,8 +68,7 @@
 		--st-toggle-thumb-bg-color: white;
 	}
 
-	:global(.st-size-small
-			[data-component='toggle'], [data-component='toggle'][data-theme*='small']) {
+	:global(.st-small [data-component='toggle'], [data-component='toggle'][data-theme*='small']) {
 		--st-toggle-size-i: var(--st-toggle-size, 14px);
 		--st-toggle-offset-i: var(--st-toggle-offset, 3px);
 	}

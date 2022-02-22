@@ -24,7 +24,13 @@
 			bind:value
 			helper="A Fliptrick rotates the board around its own axis"
 		>
-			<Icon {theme} slot="prefix" src={Heart} size="16px" style="margin-right:0.25rem" />
+			<Icon
+				{theme}
+				slot="prefix"
+				src={Heart}
+				size="16px"
+				style="margin-right:0.25rem; color: var(--st-secondary-text-color)"
+			/>
 		</TextField>
 	</div>
 </Component>

@@ -218,6 +218,9 @@
 	/* Tabs */
 	--st-tabs-border-color: var(--st-border-color);
 	--st-tab-active-color: var(--st-colors-primary3);
+
+	/* Tag */
+	--st-tag-bg-color: var(--st-colors-dark3);
 }
 
 /* ! Light Theme */
@@ -241,10 +244,10 @@
 	/** Components */
 
 	/* Label */
-	--st-label-color: var(--st-colors-gray6);
+	--st-label-color: var(--st-colors-gray8);
 
 	/* Helper */
-	--st-helper-color: var(--st-colors-gray6);
+	--st-helper-color: var(--st-colors-gray7);
 
 	/* Field */
 	--st-field-color: var(--st-body-text-color);
@@ -277,4 +280,7 @@
 	/* Tabs */
 	--st-tabs-border-color: var(--st-border-color);
 	--st-tab-active-color: var(--st-colors-primary5);
+
+	/* Tag */
+	--st-tag-bg-color: var(--st-colors-light9);
 }

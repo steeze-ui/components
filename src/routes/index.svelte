@@ -19,9 +19,9 @@
 			</h2>
 			<ul class="flex gap-3">
 				<li>Accessible</li>
-				<span> • </span>
+				<span aria-hidden="true"> • </span>
 				<li>Prestyled</li>
-				<span> • </span>
+				<span aria-hidden="true"> • </span>
 				<li>Customizable</li>
 			</ul>
 		</div>

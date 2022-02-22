@@ -82,7 +82,7 @@ Some components have already defined themes. (which you can always lookup in the
 Additionally to the predefined Themes, some you can apply globally via classes. (`Styling Reference` -> `Globals`)
 
 ```svelte
-<div class="st-size-small">
+<div class="st-small">
 	<Select {items} />
 	<TextField />
 </div>

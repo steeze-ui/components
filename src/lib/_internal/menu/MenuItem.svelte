@@ -18,7 +18,7 @@
 	>
 		{label}
 		{#if tag}
-			<div part="tag">
+			<div part="menu-tag">
 				{tag}
 			</div>
 		{/if}
@@ -58,13 +58,13 @@
 		user-select: none;
 	}
 
-	[part='tag'] {
+	[part='menu-tag'] {
 		font-size: var(--st-font-size-xs);
 		border-radius: var(--st-border-radius);
 		background-color: var(--st-colors-dark5);
 		padding: 0 0.3rem;
 	}
-	:global(.light [part='tag']) {
+	:global(.light [part='menu-tag']) {
 		background-color: var(--st-colors-light3) !important;
 		color: var(--st-colors-gray4) !important;
 	}

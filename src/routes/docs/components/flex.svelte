@@ -39,7 +39,7 @@
 
 <Component {data} {quickstart} {examples} classExtend="h-16">
 	<Flex
-		class="st-size-small w-full h-full"
+		class="st-small w-full h-full"
 		bind:direction={direction.id}
 		bind:justify={justify.id}
 		bind:align={align.id}
