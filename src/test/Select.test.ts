@@ -9,7 +9,9 @@ describe('Select.svelte', () => {
 
 	const itemsMap = [
 		{ id: '1', label: 'Label 1' },
-		{ id: '2', label: 'Label 2' }
+		{ id: '2', label: 'Label 2' },
+		{ id: '3', label: 'Label 3' },
+		{ id: '4', label: 'Label 4' }
 	]
 
 	it('Mounted', () => {
@@ -77,7 +79,26 @@ describe('Select.svelte', () => {
 	})
 
 	it('searchable', async () => {
-		//TODO:
+		const { container } = render(Select, {
+			placeholder: 'items',
+			items: itemsMap,
+			searchable: true
+		})
+
+		const btn = container.querySelector('[part="value"]')
+		await fireEvent.click(btn)
+
+		const input = container.querySelector('input')
+		await fireEvent.input(input, { target: { value: '1' } })
+
+		expect(input.value).toBe('1')
+
+		const listbox = container.querySelector(`[data-component="listbox"]`)
+		const items = listbox.querySelectorAll('[part="item"]')
+		console.log(items)
+
+		expect(items.length).toBe(1)
+		expect(items[0].innerHTML).toContain(itemsMap[0].label)
 	})
 	it('groupable', async () => {
 		//TODO:
@@ -85,7 +106,7 @@ describe('Select.svelte', () => {
 	it('multiple', async () => {
 		//TODO:
 	})
-	it('closeOnSelect', async () => {
+	it('retainOnSelect=true', async () => {
 		//TODO:
 	})
 	it('filterBy', async () => {
