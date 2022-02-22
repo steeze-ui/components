@@ -10,6 +10,7 @@ const menuMap = {
 	Components: {
 		'Form Input': {
 			Select: '/docs/components/select',
+			'Native Select': '/docs/components/native-select',
 			'Radio Group': '/docs/components/radio-group',
 			Checkbox: '/docs/components/checkbox',
 			'Text Field': '/docs/components/text-field',

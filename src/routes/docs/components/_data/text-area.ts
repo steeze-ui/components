@@ -19,7 +19,15 @@ export const data: ComponentData = {
 				{ Property: 'disabled', Type: 'Boolean', Default: 'false' },
 				{ Property: 'autoselect', Type: 'Boolean', Default: 'false' },
 				{ Property: 'width', Type: 'String', Default: 'var(--st-field-width)' },
-				{ Property: 'height', Type: 'String', Default: 'auto' }
+				{ Property: 'height', Type: 'String', Default: 'auto' },
+				{
+					Property: {
+						text: '*',
+						help: 'All the rest is applied to the textarea element'
+					},
+					Type: '*',
+					Default: '-'
+				}
 			],
 			Slots: [
 				{ Name: 'label', Props: ['id', 'htmlfor'], Notes: '_-' },

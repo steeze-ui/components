@@ -8,11 +8,13 @@ export const data: ComponentData = {
 		type: 1
 	},
 	features: [
-		'Keyboard support',
-		'Screen Reader capable',
+		'Multiple Select',
 		'Searchable',
 		'Groupable',
-		'Custom Renderers'
+		'Taggable',
+		'Screen Reader enhanced',
+		'Keyboard support',
+		'Customizable'
 	],
 	docs: {
 		'API Reference': {
@@ -168,18 +170,36 @@ export const data: ComponentData = {
 					},
 					Type: 'Boolean',
 					Default: 'false'
+				},
+				{
+					Property: {
+						text: '*',
+						help: 'All the rest is applied to the input container'
+					},
+					Type: '*',
+					Default: '-'
 				}
 			],
 			Slots: [
 				{
 					Name: 'label',
-					Props: '-',
+					Props: ['htmlFor', 'id'],
 					Notes: '_Place a custom label above the field'
 				},
 				{
 					Name: 'helper',
-					Props: '-',
+					Props: ['htmlFor', 'id'],
 					Notes: '_Place a custom helper below the field'
+				},
+				{
+					Name: 'prefix',
+					Props: '-',
+					Notes: '_Place custom content in the field but before the input'
+				},
+				{
+					Name: 'suffix',
+					Props: '-',
+					Notes: '_Place custom content in the field but after the input'
 				},
 				{
 					Name: 'item',
@@ -208,12 +228,8 @@ export const data: ComponentData = {
 		Styling: {
 			'CSS variables': [
 				{
-					Name: '--st-text-field-color',
+					Name: '--st-select-color',
 					Default: '--st-field-color'
-				},
-				{
-					Name: '--st-select-active-bg-color',
-					Default: '--st-colors-gray10'
 				},
 				{
 					Name: '--st-select-font-size',
@@ -224,16 +240,52 @@ export const data: ComponentData = {
 					Default: '--st-field-font-weight'
 				},
 				{
-					Name: '--st-select-color',
+					Name: '--st-select-search-color',
 					Default: '--st-field-color'
 				},
 				{
-					Name: '--st-tooltip-bg-color',
-					Default: '--st-overlay-bg-color'
+					Name: '--st-select-search-font-size',
+					Default: '--st-field-font-size'
 				},
 				{
-					Name: '--st-tooltip-border-radius',
-					Default: '--st-overlay-border-radius'
+					Name: '--st-select-search-font-weight',
+					Default: '--st-field-font-weight'
+				},
+				{
+					Name: '--st-select-button-size',
+					Default: '--st-field-button-size'
+				},
+				{
+					Name: '--st-select-button-color',
+					Default: '--st-field-button-color'
+				},
+				{
+					Name: '--st-select-tags-gap',
+					Default: '0.325rem'
+				},
+				{
+					Name: '--st-select-tag-padding',
+					Default: '0 0.325rem'
+				},
+				{
+					Name: '--st-select-tag-border-radius',
+					Default: '--st-border-radius-sm'
+				},
+				{
+					Name: '--st-select-tag-font-size',
+					Default: '--st-font-size-sm'
+				},
+				{
+					Name: '--st-select-tag-font-weight',
+					Default: '--st-field-font-weight'
+				},
+				{
+					Name: '--st-select-tag-color',
+					Default: '--st-field-color'
+				},
+				{
+					Name: '--st-select-tag-bg-color',
+					Default: '--st-tag-bg-color'
 				}
 			],
 			Themes: [
@@ -274,7 +326,7 @@ export const quickstart = `<script>
   const items = [
     { label: 'First' },
     { label: 'Second' }
-  ]
+  ] 
 </script>
 
 <Select {items} value="{items[0]}" />`

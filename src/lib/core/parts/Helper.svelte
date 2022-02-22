@@ -1,7 +1,8 @@
 <script lang="ts">
+	export let ref = null
 </script>
 
-<span {...$$restProps}>
+<span bind:this={ref} {...$$restProps}>
 	<slot />
 </span>
 

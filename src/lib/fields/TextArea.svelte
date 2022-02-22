@@ -22,7 +22,7 @@
 </script>
 
 <FieldContainer
-	data-component="text-area"
+	component="text-area"
 	on:focus={() => refInput.select()}
 	{label}
 	{helper}
@@ -38,7 +38,6 @@
 	</svelte:fragment>
 
 	<textarea
-		{...$$restProps}
 		slot="default"
 		part="value"
 		bind:this={refInput}
@@ -55,6 +54,7 @@
 		{required}
 		{disabled}
 		{name}
+		{...$$restProps}
 		on:focus={() => {
 			focused = true
 			if (autoselect) {

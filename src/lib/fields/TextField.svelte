@@ -30,7 +30,7 @@
 </script>
 
 <FieldContainer
-	data-component="text-field"
+	component="text-field"
 	on:focus={() => refInput.select()}
 	{label}
 	{helper}
@@ -39,7 +39,6 @@
 	{focused}
 	{required}
 	{theme}
-	{...$$restProps}
 >
 	<svelte:fragment slot="label" let:htmlfor let:id>
 		<slot name="label" {id} {htmlfor} />
@@ -67,6 +66,7 @@
 		{required}
 		{disabled}
 		{name}
+		{...$$restProps}
 		on:focus={() => {
 			focused = true
 			if (autoselect) {

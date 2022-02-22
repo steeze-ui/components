@@ -31,7 +31,7 @@
 								<td>
 									<div class="flex gap-1 flex-wrap">
 										{#each td as key}
-											<code data-hl>{key}</code>
+											<code data-hl data-tag>{key}</code>
 										{/each}
 									</div>
 								</td>

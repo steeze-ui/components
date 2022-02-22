@@ -8,7 +8,7 @@
 	import ListBox from '$lib/listbox/ListBox.svelte'
 	import { ChevronDown, X } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
-	import { createEventDispatcher, onMount, tick } from 'svelte'
+	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte'
 
 	type T = $$Generic
 
@@ -47,8 +47,9 @@
 	let refTrigger: HTMLElement
 	let refFloating: any
 	let refInput: HTMLElement
+	let refLabel: HTMLElement
 
-	let buttonId = getId()
+	let fieldId
 	let listboxId = getId()
 	let dispatch = createEventDispatcher()
 
@@ -62,7 +63,17 @@
 		if (focus) {
 			refTrigger.focus()
 		}
+
+		refLabel?.addEventListener('click', onLabelClick)
 	})
+
+	onDestroy(() => {
+		refLabel?.removeEventListener('click', onLabelClick)
+	})
+
+	function onLabelClick() {
+		openSelector()
+	}
 
 	// init items
 	interface ItemsMap {
@@ -318,6 +329,8 @@
 
 	//* Position
 	$: expanded && refTrigger && refFloating && refFloating.updatePosition()
+
+	$: searchValue && refFloating.updatePosition()
 </script>
 
 <svelte:window
@@ -331,16 +344,9 @@
 />
 
 <FieldContainer
-	data-component="select"
+	component="select"
 	title={singleValue}
-	{label}
-	{helper}
-	{width}
-	{disabled}
-	data-multiple={multiple ? '' : null}
-	{focused}
-	{theme}
-	{...$$restProps}
+	bind:ref={refTrigger}
 	on:click={() => {
 		if (lastCleared) {
 			lastCleared = false
@@ -348,12 +354,22 @@
 
 		openSelector()
 	}}
-	bind:ref={refTrigger}
+	{label}
+	{helper}
+	{width}
+	{disabled}
+	{multiple}
+	{focused}
+	{theme}
 	{expanded}
-	id={buttonId}
-	aria-controls={listboxId}
+	role="combobox"
 	aria-haspopup="true"
 	aria-expanded={expanded ? true : false}
+	aria-controls={listboxId}
+	aria-owns={listboxId}
+	bind:fieldId
+	bind:refLabel
+	{...$$restProps}
 >
 	<svelte:fragment slot="label" let:htmlfor let:id>
 		<slot name="label" {id} {htmlfor} />
@@ -387,10 +403,8 @@
 			spellcheck="false"
 			type="text"
 			aria-autocomplete="list"
-			aria-expanded={expanded ? 'true' : 'false'}
-			aria-haspopup="true"
+			aria-labelledby={fieldId}
 			aria-controls={listboxId}
-			aria-owns={listboxId}
 			bind:value={searchValue}
 			readonly={!searchable}
 			on:focus={() => {
@@ -452,7 +466,7 @@
 			bind:this={refFloating}
 			clickOutsideCallback={closeSelector}
 		>
-			<ListBox id={listboxId} aria-labelledby={buttonId} aria-activedescendant={focusedItemAriaId}>
+			<ListBox id={listboxId} aria-labelledby={fieldId} aria-activedescendant={focusedItemAriaId}>
 				{#each Object.keys(selectorItems) as group, groupIndex (group)}
 					{#if groupBy}
 						<span part="group-label">
@@ -500,19 +514,13 @@
 {/if}
 
 <style>
-	:global([data-component='select'][data-expanded]) {
-		--st-field-bg-color: var(--st-select-hover-bg-color);
-	}
-
-	:global([data-component='select'][data-multiple]) {
-		--st-field-height: auto;
-		--st-field-min-height: var(--st-field-height-md);
-		--st-field-padding: 0.325rem 0.75rem;
+	:global([data-component='select'] [data-input-container]) {
+		cursor: pointer;
 	}
 
 	:global([data-component='select']) {
 		--st-field-hover-border-color: var(--st-field-border-color);
-		--st-field-hover-bg-color: var(--st-select-hover-bg-color);
+		--st-field-hover-bg-color: var(--st-field-expanded-bg-color);
 	}
 
 	[part='value']:focus {
@@ -563,10 +571,11 @@
 	}
 
 	input {
-		color: var(--vs-search-input-color);
+		color: var(--st-select-search-color, var(--st-field-color));
+		font-size: var(--st-select-search-font-size, var(--st-field-font-size));
+		font-weight: var(--st-select-search-font-weight, var(--st-field-font-weight));
 		appearance: none;
-		line-height: var(--vs-line-height);
-		font-size: var(--vs-font-size);
+		line-height: 1;
 		border: 1px solid transparent;
 		border-left: none;
 		outline: none;

@@ -3,37 +3,54 @@
 	import Label from '$lib/core/parts/Label.svelte'
 	import { getId } from '$lib/core/stores/id'
 
-	export let width = 'var(--st-field-width)'
-	export let height = 'var(--st-field-height)'
-
-	export let label = ''
-	export let helper = ''
-	export let theme: string = null
+	//refs
 	export let ref = null
 	export let refField = null
 
+	//appearance
+	export let component = 'field-container'
+	export let theme: string = null
+	export let width = 'var(--st-field-width)'
+	export let height = 'var(--st-field-height)'
+	export let label = ''
+	export let helper = ''
+
+	// states
 	export let disabled = false
+	export let required = false
 	export let focused = false
 	export let expanded = false
+	export let multiple = false
 
-	const fieldId = getId()
+	// ids
+	export const fieldId = getId()
 	const labelId = getId()
 	const helperId = getId()
+
+	export let refLabel = null
 </script>
 
 <div
 	data-field-container
+	data-component={component}
 	data-theme={theme}
 	data-disabled={disabled ? '' : null}
+	data-required={required ? '' : null}
 	data-focused={focused ? '' : null}
 	data-expanded={expanded ? '' : null}
+	data-multiple={multiple ? '' : null}
 	bind:this={ref}
 	style:width
 >
-	<slot name="label" id={labelId} htmlfor={fieldId} />
 	{#if label}
-		<Label for={fieldId} id={labelId}>{label}</Label>
+		<div part="label">
+			<Label bind:ref={refLabel} for={fieldId} id={labelId}>{label}</Label>
+			{#if required}
+				<span part="required-indicator" aria-hidden="true" />
+			{/if}
+		</div>
 	{/if}
+	<slot name="label" id={labelId} htmlfor={fieldId} />
 	<div
 		data-input-container
 		{...$$restProps}
@@ -78,11 +95,35 @@
 		min-height: var(--st-field-min-height);
 	}
 
+	[part='label'] {
+		display: flex;
+		gap: 0.25rem;
+		position: relative;
+		align-items: center;
+		justify-content: flex-start;
+		line-height: 1;
+	}
+
+	[data-field-container][data-required] [part='required-indicator']::after {
+		content: var(--st-field-required-indicator, '•');
+		color: var(--st-field-required-indicator-color);
+	}
+
 	[part='prefix'],
 	[part='suffix'] {
 		display: flex;
 		gap: 0.25rem;
 		align-items: center;
+	}
+
+	/* [data-field-container][data-expanded] {
+		--st-field-bg-color: var(--st-field-expanded-bg-color);
+	} */
+
+	[data-field-container][data-multiple] {
+		--st-field-height: auto;
+		--st-field-min-height: var(--st-field-height-md);
+		--st-field-padding: 0.325rem 0.75rem;
 	}
 
 	/* Disabled */

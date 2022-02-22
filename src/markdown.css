@@ -30,6 +30,9 @@
 	background-color: var(--st-colors-dark6);
 	font-weight: var(--st-font-weight-normal);
 }
+.prose code[data-hl][data-tag] {
+	line-height: 1.4;
+}
 
 .prose code::before,
 .prose code::after {

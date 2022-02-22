@@ -11,14 +11,21 @@ export const data: ComponentData = {
 	docs: {
 		'API Reference': {
 			Properties: [
-				// ...fieldContainerApi['Properties'],
 				{ Property: 'name', Type: 'String', Default: 'null' },
 				{ Property: 'value', Type: 'String', Default: '""' },
 				{ Property: 'placeholder', Type: 'String', Default: 'null' },
 				{ Property: 'required', Type: 'Boolean', Default: 'false' },
 				{ Property: 'disabled', Type: 'Boolean', Default: 'false' },
 				{ Property: 'autoselect', Type: 'Boolean', Default: 'false' },
-				{ Property: 'clearable', Type: 'Boolean', Default: 'false' }
+				{ Property: 'clearable', Type: 'Boolean', Default: 'false' },
+				{
+					Property: {
+						text: '*',
+						help: 'All the rest is applied to the input element'
+					},
+					Type: '*',
+					Default: '-'
+				}
 			],
 			Slots: [
 				{ Name: 'label', Props: ['id', 'htmlfor'], Notes: '_-' },
