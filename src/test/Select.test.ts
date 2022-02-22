@@ -22,7 +22,7 @@ describe('Select.svelte', () => {
 		expect(container.querySelector('[part="value"]').innerHTML).toContain('test')
 	})
 
-	it('render items from map', async () => {
+	it('render items ', async () => {
 		const { container } = render(Select, {
 			placeholder: 'items',
 			items: itemsMap

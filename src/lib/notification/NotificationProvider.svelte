@@ -42,16 +42,16 @@
 	}
 
 	[data-position='bottom-end'] {
-		justify-content: end;
-		align-items: end;
+		justify-content: flex-end;
+		align-items: flex-end;
 	}
 	[data-position='bottom-center'] {
-		justify-content: end;
+		justify-content: flex-end;
 		align-items: center;
 	}
 	[data-position='bottom-start'] {
-		justify-content: end;
-		align-items: start;
+		justify-content: flex-end;
+		align-items: flex-start;
 	}
 	[data-position*='bottom'] [part='area'] {
 		flex-direction: column-reverse;
@@ -59,6 +59,8 @@
 
 	[part='area'] {
 		display: flex;
+		flex-grow: 1;
+
 		flex-direction: column;
 		gap: var(--st-notification-gap, 0.25rem);
 	}
