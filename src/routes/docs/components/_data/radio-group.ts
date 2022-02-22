@@ -21,7 +21,7 @@ export const data: ComponentData = {
 				},
 				{ Property: 'value', Type: 'String', Default: 'null' },
 				{ Property: 'label', Type: 'String', Default: 'null' },
-				{ Property: 'orientation', Type: 'RadioGroupOrientation', Default: "'horizontal'" }
+				{ Property: 'orientation', Type: 'GroupOrientation', Default: "'horizontal'" }
 			],
 			Slots: [{ Name: 'default', Props: '-', Notes: "_The related RadioButton's" }]
 		},

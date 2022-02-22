@@ -6,10 +6,10 @@
 	import { setContext } from 'svelte'
 	import { writable } from 'svelte/store'
 
-	export let name: string = null
+	export let name = null
 	export let orientation: GroupOrientation = 'horizontal'
 	export let label: string = null
-	export let value: string = null
+	export let value: string[] = null
 
 	const id = getId()
 
@@ -17,18 +17,17 @@
 	if (!name) {
 		name = id
 	}
-	setContext('ST_RADIO_NAME', name)
+	setContext('ST_CHECKBOX_NAME', name)
 
 	//value
 	const valueStore = writable(value)
-	setContext('ST_RADIO_VALUE', valueStore)
-
+	setContext('ST_CHECKBOX_VALUE', valueStore)
 	$: {
 		value = $valueStore
 	}
 </script>
 
-<div data-component="radio-group">
+<div data-component="checkbox">
 	{#if label}
 		<Label for={id}>{label}</Label>
 	{/if}
@@ -41,17 +40,17 @@
 	[data-component] {
 		display: flex;
 		flex-direction: column;
-		gap: var(--st-radio-group-gap, 0.25rem);
+		gap: var(--st-checkbox-gap, 0.25rem);
 	}
 	[part='items'] {
 		display: flex;
 	}
 	[part='items'][data-orientation='horizontal'] {
 		flex-direction: row;
-		gap: var(--st-radio-group-items-horizontal-gap, 0.75rem);
+		gap: var(--st-checkbox-items-horizontal-gap, 0.75rem);
 	}
 	[part='items'][data-orientation='vertical'] {
 		flex-direction: column;
-		gap: var(--st-radio-group-items-vertical-gap, 0.5rem);
+		gap: var(--st-checkbox-items-vertical-gap, 0.5rem);
 	}
 </style>

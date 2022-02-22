@@ -11,6 +11,8 @@ export { default as NotificationProvider } from './notification/NotificationProv
 export { Notification } from './core/stores/notification'
 export { default as RadioGroup } from './radio/RadioGroup.svelte'
 export { default as RadioButton } from './radio/RadioButton.svelte'
+export { default as Checkbox } from './checkbox/Checkbox.svelte'
+export { default as CheckboxGroup } from './checkbox/CheckboxGroup.svelte'
 export { default as ThemeProvider } from './theme/ThemeProvider.svelte'
 export { default as ThemeToggle } from './theme/ThemeToggle.svelte'
 export { Theme } from './core/stores/theme'

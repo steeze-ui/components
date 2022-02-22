@@ -1,1 +1,1 @@
-export type RadioGroupOrientation = 'horizontal' | 'vertical'
+export type GroupOrientation = 'horizontal' | 'vertical'

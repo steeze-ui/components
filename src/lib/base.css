@@ -179,6 +179,9 @@
 	--st-box-bg-color: var(--st-colors-dark1);
 	--st-box-border-color: transparent;
 
+	/* Tag */
+	--st-tag-bg-color: var(--st-colors-dark3);
+
 	/* * Components */
 
 	/* Label */
@@ -218,9 +221,6 @@
 	/* Tabs */
 	--st-tabs-border-color: var(--st-border-color);
 	--st-tab-active-color: var(--st-colors-primary3);
-
-	/* Tag */
-	--st-tag-bg-color: var(--st-colors-dark3);
 }
 
 /* ! Light Theme */
@@ -240,6 +240,9 @@
 	/* Boxes */
 	--st-box-bg-color: var(--st-colors-light9);
 	--st-box-border-color: transparent;
+
+	/* Tag */
+	--st-tag-bg-color: var(--st-colors-light9);
 
 	/** Components */
 
@@ -280,7 +283,4 @@
 	/* Tabs */
 	--st-tabs-border-color: var(--st-border-color);
 	--st-tab-active-color: var(--st-colors-primary5);
-
-	/* Tag */
-	--st-tag-bg-color: var(--st-colors-light9);
 }
