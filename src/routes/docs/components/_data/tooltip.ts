@@ -64,12 +64,12 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import {Tooltip, Button} from '@steeze-ui/components'
-</script${'>'}
+	import { Tooltip, Button } from '@steeze-ui/components'
+</script>
 
 <Tooltip>
-  <Button slot="trigger" let:id aria-describedby={id}>Open</Button>
-  <span slot="content">Hi There! Iam Content.</span>
+	<Button slot="trigger" let:id aria-describedby={id}>Open</Button>
+	<span slot="content">Hi There! Iam Content.</span>
 </Tooltip>`
 
 export const examples: ComponentExample[] = [

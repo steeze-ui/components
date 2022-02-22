@@ -52,8 +52,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import { Tabs } from "@steeze-ui/components"
-
+	import { Tabs } from "@steeze-ui/components"
 	let selected = 0
 	let items = [
 		{title: "Tab 1"}, 

@@ -61,7 +61,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import {TextArea} from "@steeze-ui/components"
+	import { TextArea } from "@steeze-ui/components"
 </script>
 
 <TextArea />`

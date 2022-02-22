@@ -84,7 +84,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import {Toggle} from '@steeze-ui/components'
+	import { Toggle } from '@steeze-ui/components'
 </script>
 
 <Toggle checked />`

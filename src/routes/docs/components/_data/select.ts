@@ -321,12 +321,12 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import { Select } from '@steeze-ui/components'
+	import { Select } from '@steeze-ui/components'
 
-  const items = [
-    { label: 'First' },
-    { label: 'Second' }
-  ] 
+	const items = [
+		{ label: 'First' },
+		{ label: 'Second' }
+	] 
 </script>
 
 <Select {items} value="{items[0]}" />`

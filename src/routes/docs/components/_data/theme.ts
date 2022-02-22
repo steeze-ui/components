@@ -28,7 +28,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import { ThemeProvider, ThemeToggle } from "@steeze-ui/components"
+	import { ThemeProvider, ThemeToggle } from "@steeze-ui/components"
 </script>
 
 <!-- sets the theme class reactively using the Theme store -->

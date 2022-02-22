@@ -54,7 +54,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import { NotificationProvider, Notification, Button } from "@steeze-ui/components"
+	import { NotificationProvider, Notification, Button } from "@steeze-ui/components"
 </script>
 
 <Button on:click={() => {

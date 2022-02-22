@@ -72,7 +72,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-  import {Popover, Button} from '@steeze-ui/components'
+	import { Popover, Button } from '@steeze-ui/components'
 </script>
 
 <Popover>

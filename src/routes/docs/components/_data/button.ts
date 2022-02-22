@@ -58,7 +58,7 @@ export const data: ComponentData = {
 }
 
 export const quickstart = `<script>
-	import {Button} from '@steeze-ui/components'
+	import { Button } from '@steeze-ui/components'
 </script>
 
 <Button
