@@ -19,6 +19,7 @@ export const data: ComponentData = {
 					Type: 'String',
 					Default: 'null'
 				},
+				{ Property: 'value', Type: 'String', Default: 'null' },
 				{ Property: 'label', Type: 'String', Default: 'null' },
 				{ Property: 'orientation', Type: 'RadioGroupOrientation', Default: "'horizontal'" }
 			],
@@ -45,16 +46,10 @@ export const data: ComponentData = {
 		},
 		'API Reference - RadioButton': {
 			Properties: [
-				{
-					Property: {
-						text: 'group',
-						help: 'Binds the selected value of the RadioGroup. Needs to be provided on every RadioButton within a RadioGroup'
-					},
-					Type: 'String',
-					Default: 'null'
-				},
 				{ Property: 'label', Type: 'String', Default: 'null' },
-				{ Property: 'value', Type: 'String', Default: 'null' }
+				{ Property: 'value', Type: 'String', Default: 'null' },
+				{ Property: 'disabled', Type: 'Boolean', Default: 'false' },
+				{ Property: 'required', Type: 'Boolean', Default: 'false' }
 			],
 			Slots: [{ Name: 'label', Props: ['id', 'label'], Notes: '_Render a custom label' }]
 		},
@@ -106,9 +101,9 @@ export const quickstart = `<script>
 	let stance = "goofy"
 </script>
 
-<RadioGroup label="Stance" orientation="vertical" name="stance" >
-	<RadioButton bind:group={stance} label="Goofy" value="goofy" />
-	<RadioButton bind:group={stance} label="Regular" value="regular" />
+<RadioGroup label="Stance" name="stance" bind:value={stance} orientation="vertical">
+	<RadioButton label="Goofy" value="goofy" />
+	<RadioButton label="Regular" value="regular" />
 </RadioGroup>`
 
 export const examples: ComponentExample[] = []

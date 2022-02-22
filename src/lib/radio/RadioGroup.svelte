@@ -4,16 +4,28 @@
 	import { getId } from '$lib/core/stores/id'
 	import type { RadioGroupOrientation } from '$lib/core/types'
 	import { setContext } from 'svelte'
+	import { writable } from 'svelte/store'
 
-	export let name = null
+	export let name: string = null
 	export let orientation: RadioGroupOrientation = 'horizontal'
 	export let label: string = null
+	export let value: string = null
 
 	const id = getId()
+
+	//name
 	if (!name) {
 		name = id
 	}
 	setContext('ST_RADIO_NAME', name)
+
+	//value
+	const valueStore = writable(value)
+	setContext('ST_RADIO_VALUE', valueStore)
+
+	$: {
+		value = $valueStore
+	}
 </script>
 
 <div data-component="radio-group">

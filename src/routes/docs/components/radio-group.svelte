@@ -14,13 +14,13 @@
 
 <Component {data} {quickstart} {examples}>
 	<div class="demo-container">
-		<RadioGroup label="Stance">
-			<RadioButton bind:group={stance} label="Goofy" value="goofy" />
-			<RadioButton bind:group={stance} label="Switch" value="switch" />
+		<RadioGroup label="Stance: {stance}" bind:value={stance}>
+			<RadioButton label="Goofy" value="goofy" />
+			<RadioButton label="Switch" value="switch" />
 		</RadioGroup>
-		<RadioGroup label="Park Type" orientation="vertical">
-			<RadioButton bind:group={park} label="Vert" value="vert" />
-			<RadioButton bind:group={park} label="Street" value="street" />
+		<RadioGroup label="Park Type: {park}" orientation="vertical" bind:value={park}>
+			<RadioButton label="Vert" value="vert" />
+			<RadioButton label="Street" value="street" />
 		</RadioGroup>
 	</div>
 </Component>

@@ -3,18 +3,30 @@
 
 	import { getId } from '$lib/core/stores/id'
 	import { getContext } from 'svelte'
+	import type { Writable } from 'svelte/store'
 
-	export let label = null
-	export let value = null
-	export let group = null
+	export let label: string = null
+	export let value: string = null
+	export let disabled = false
+	export let required = false
 
 	const name: string = getContext('ST_RADIO_NAME')
+	const valueStore: Writable<String> = getContext('ST_RADIO_VALUE')
 
 	const id = getId()
 </script>
 
 <div data-component="radio-button">
-	<input part="indicator" bind:group type="radio" {id} {name} {value} />
+	<input
+		part="indicator"
+		bind:group={$valueStore}
+		type="radio"
+		{id}
+		{name}
+		{value}
+		{required}
+		{disabled}
+	/>
 	<slot name="label" {id} {label}>
 		<Label for={id}>{label}</Label>
 	</slot>
