@@ -16,9 +16,8 @@
 		select: CustomEvent<T | T[]>
 	}
 
-	export let identifier = 'id'
 	export let items: T[] = []
-	export let value: (T[] | T | string) & { includes?: (item: T) => boolean } = null
+	export let value: (T | T[]) & { includes?: (item: T) => boolean } = null
 
 	//functionality
 	export let groupBy: (item: T) => string = null
@@ -48,7 +47,6 @@
 	let refTrigger: HTMLElement
 	let refFloating: any
 	let refInput: HTMLElement
-	let refField: HTMLElement
 
 	let buttonId = getId()
 	let listboxId = getId()
@@ -75,41 +73,28 @@
 	$: {
 		itemsMap = {}
 
-		if (items.constructor.name === 'Object') {
-			for (const id of Object.keys(items)) {
-				const item = { ...items[id], [identifier]: id } as T
-				const group = groupBy ? groupBy(item) : ''
-				if (!itemsMap[group]) {
-					itemsMap[group] = []
-				}
-				itemsMap[group].push(item)
+		for (const item of items as T[]) {
+			const group = groupBy ? groupBy(item) : ''
+			if (!itemsMap[group]) {
+				itemsMap[group] = []
 			}
-		} else {
-			for (const item of items as T[]) {
-				const group = groupBy ? groupBy(item) : ''
-				if (!itemsMap[group]) {
-					itemsMap[group] = []
-				}
-				itemsMap[group].push(item)
-			}
+			itemsMap[group].push(item)
 		}
 	}
 
 	// init value
-	if (multiple) {
-		if (value === null) {
-			value = []
-		} else if (items.constructor.name === 'Object') {
-			value = [value as T]
-		}
-	}
+	$: checkValue(multiple)
 
-	if (value && typeof value === 'string') {
-		for (const group of Object.keys(itemsMap)) {
-			const item = itemsMap[group].find((e) => e[identifier] === value)
-			if (item) {
-				value = item
-				break
+	function checkValue(isMultiple: boolean) {
+		if (isMultiple) {
+			if (!value) {
+				value = []
+			} else if (value.constructor === Object) {
+				value = [value as T]
+			}
+		} else {
+			if (value?.constructor === Array ?? false) {
+				value = null
 			}
 		}
 	}
@@ -119,15 +104,16 @@
 
 	// Selector Search
 	let searchValue = ''
-	$: {
+	$: resetFocusIndex(searchValue)
+
+	function resetFocusIndex(searchValue: string) {
 		//reset focused index when searchValue changes
-		searchValue
 		focusedItemGroupIndex = 0
 		focusedItemIndex = 0
 	}
 
 	function getItemsBySearch(searchText: string): ItemsMap {
-		const map: ItemsMap = {}
+		const map: ItemsMap = { '': [] }
 		for (const [group, items] of Object.entries(itemsMap)) {
 			const found = items.filter((e) => {
 				if (filterBy) {
@@ -202,7 +188,7 @@
 				value = (value as T[]).filter((e) => e !== item)
 			}
 		} else {
-			if (clearable && item?.[identifier] === value?.[identifier]) {
+			if (clearable && item === value) {
 				value = null
 			} else {
 				value = item
@@ -351,6 +337,7 @@
 	{helper}
 	{width}
 	{disabled}
+	data-multiple={multiple ? '' : null}
 	{focused}
 	{theme}
 	{...$$restProps}
@@ -367,7 +354,6 @@
 	aria-controls={listboxId}
 	aria-haspopup="true"
 	aria-expanded={expanded ? true : false}
-	bind:refField
 >
 	<svelte:fragment slot="label" let:htmlfor let:id>
 		<slot name="label" {id} {htmlfor} />
@@ -380,13 +366,11 @@
 	<div slot="default" part="value">
 		{#if isSelected}
 			{#if multiple}
-				<div part="multiple-value">
-					{#each multiValue ?? [] as item}
-						<span part="selected" data-multiple-value>
-							{item}
-						</span>
-					{/each}
-				</div>
+				{#each multiValue ?? [] as item}
+					<span part="tag">
+						{item}
+					</span>
+				{/each}
 			{:else}
 				<span part="selected" data-single-value>
 					{singleValue}
@@ -476,18 +460,15 @@
 						</span>
 					{/if}
 					{#each selectorItems[group] as item, itemIndex}
-						{@const id = item[identifier]}
 						{@const focused =
 							groupIndex === focusedItemGroupIndex && itemIndex === focusedItemIndex}
-						{@const selected = multiple
-							? value.includes(item)
-							: value?.[identifier] === id ?? false}
+						{@const selected = multiple ? value.includes(item) : value === item}
 						{@const ariaId = `${listboxId}-menu-item-${groupIndex}-${itemIndex}`}
 						{@const label = itemLabelRenderer(item)}
 
 						<slot
 							name="item"
-							{id}
+							id={ariaId}
 							{item}
 							{label}
 							{focused}
@@ -523,6 +504,12 @@
 		--st-field-bg-color: var(--st-select-hover-bg-color);
 	}
 
+	:global([data-component='select'][data-multiple]) {
+		--st-field-height: auto;
+		--st-field-min-height: var(--st-field-height-md);
+		--st-field-padding: 0.325rem 0.75rem;
+	}
+
 	:global([data-component='select']) {
 		--st-field-hover-border-color: var(--st-field-border-color);
 		--st-field-hover-bg-color: var(--st-select-hover-bg-color);
@@ -533,15 +520,18 @@
 	}
 
 	[part='value'] {
-		display: flex;
-		gap: 0.5rem;
-		flex: auto;
 		font-size: var(--st-select-font-size, var(--st-field-font-size));
 		font-weight: var(--st-select-font-weight, var(--st-field-font-weight));
 		color: var(--st-select-color, var(--st-field-color));
 		cursor: pointer;
 		pointer-events: none;
 		overflow: hidden;
+
+		display: flex;
+		flex: auto;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--st-select-tags-gap, 0.325rem);
 	}
 
 	[part='value'] span {
@@ -597,5 +587,14 @@
 		font-weight: var(--st-item-font-weight, var(--st-field-font-weight));
 		color: var(--st-item-text-color, var(--st-body-text-color));
 		padding: var(--st-item-padding, 0.2rem 0.75rem 0.2rem 0.5rem);
+	}
+
+	[part='tag'] {
+		padding: var(--st-select-tag-padding, 0 0.325rem);
+		border-radius: var(--st-select-tag-border-radius, var(--st-border-radius-sm));
+		font-size: var(--st-select-tag-font-size, var(--st-font-size-sm));
+		font-weight: var(--st-select-tag-font-weight, var(--st-field-font-weight));
+		color: var(--st-select-tag-color, var(--st-field-color));
+		background-color: var(--st-select-tag-bg-color, var(--st-tag-bg-color));
 	}
 </style>

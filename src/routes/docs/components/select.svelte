@@ -7,52 +7,89 @@
 	import { data, quickstart, examples } from './_data/select'
 
 	import Select from '$lib/select/Select.svelte'
+	import { Toggle } from '$lib'
+	import { Label } from '$lib/core/parts'
 
 	const items = [
-		{ id: '1', label: 'Hot', meta: 'black' },
-		{ id: '2', label: 'New', meta: 'white' }
+		{ label: 'Flatrail', group: 'Rails' },
+		{ label: 'Handrail', group: 'Rails' },
+		{ label: 'Wallbank', group: 'Bank' },
+		{ label: 'Speedbank', group: 'Bank' },
+		{ label: 'A-Frame', group: 'Funbox' },
+		{ label: 'Pyramid', group: 'Funbox' }
 	]
-	const itemsWithGroup = [
-		{ id: '1', label: 'Flatrail', group: 'Rails' },
-		{ id: '2', label: 'Handrail', group: 'Rails' },
-		{ id: '3', label: 'Wallbank', group: 'Bank' },
-		{ id: '4', label: 'Speedbank', group: 'Bank' },
-		{ id: '5', label: 'A-Frame', group: 'Funbox' },
-		{ id: '6', label: 'Pyramid', group: 'Funbox' }
-	]
+
+	let multiple = false
+	let searchable = true
+	let grouped = true
+	let clearable = true
+	let taggable = true
 </script>
 
 <Component {data} {quickstart} {examples}>
 	<div class="demo-container">
 		<!-- <Select searchable clearable label="Single" width="12rem" placeholder="Select.." {items} /> -->
 		<Select
-			searchable
-			clearable
 			label="Multiple"
-			width="12rem"
+			width="15rem"
 			placeholder="Select.."
-			retainOnSelect
+			{items}
+			{multiple}
+			{searchable}
+			{clearable}
+			retainOnSelect={multiple}
+			groupBy={grouped
+				? (item) => {
+						return item.group
+				  }
+				: null}
 			filterBy={(item, text) => {
 				return (
 					item.label.toLowerCase().includes(text.toLowerCase()) ||
-					item.meta.toLowerCase().includes(text.toLowerCase())
+					item.group.toLowerCase().includes(text.toLowerCase())
 				)
 			}}
-			taggable={(v) => {
-				return { id: v.toLowerCase(), label: v, meta: '' }
-			}}
-			pushTags
-			multiple
-			{items}
+			taggable={taggable
+				? (v) => {
+						return { label: v, group: 'Ungrouped' }
+				  }
+				: null}
+			pushTags={taggable}
 		/>
-		<!-- <Select
-			width="12rem"
-			loop
-			searchable
-			clearable
-			groupBy={(e) => e.group}
-			placeholder="Choose Obstacle.."
-			items={itemsWithGroup}
-		/> -->
+	</div>
+
+	<div class="st-small gap-3 flex items-center flex-wrap justify-center">
+		<div class="flex gap-2 items-center">
+			<Label for="multiple">Multiple</Label>
+			<Toggle id="multiple" bind:checked={multiple} />
+		</div>
+		<div class="seperator" />
+		<div class="flex gap-2 items-center">
+			<Label for="searchable">Searchable</Label>
+			<Toggle id="searchable" bind:checked={searchable} />
+		</div>
+		<div class="seperator" />
+		<div class="flex gap-2 items-center">
+			<Label for="grouped">Grouped</Label>
+			<Toggle id="grouped" bind:checked={grouped} />
+		</div>
+		<div class="seperator" />
+		<div class="flex gap-2 items-center">
+			<Label for="clearable">Clearable</Label>
+			<Toggle id="clearable" bind:checked={clearable} />
+		</div>
+		<div class="seperator" />
+		<div class="flex gap-2 items-center">
+			<Label for="taggable">Taggable</Label>
+			<Toggle id="taggable" bind:checked={taggable} />
+		</div>
 	</div>
 </Component>
+
+<style>
+	.seperator {
+		height: 1rem;
+		width: 1px;
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+</style>

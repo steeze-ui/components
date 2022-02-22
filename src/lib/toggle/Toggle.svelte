@@ -24,7 +24,7 @@
 		--st-toggle-size-i: var(--st-toggle-size, 20px);
 		--st-toggle-offset-i: var(--st-toggle-offset, 4px);
 
-		height: calc(var(--st-toggle-size-i) + 2 * var(--st-toggle-offset-i));
+		/* height: calc(var(--st-toggle-size-i) + 2 * var(--st-toggle-offset-i)); */
 	}
 
 	:global([data-component='toggle'] [part='switch']) {

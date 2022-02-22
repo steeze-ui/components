@@ -19,14 +19,6 @@ export const data: ComponentData = {
 			Properties: [
 				{
 					Property: {
-						text: 'identifier',
-						help: 'Unique identifier of the item, used for internal calculations'
-					},
-					Type: 'String',
-					Default: "'id'"
-				},
-				{
-					Property: {
 						text: 'items',
 						help: 'The values to choose from'
 					},
@@ -43,6 +35,30 @@ export const data: ComponentData = {
 				},
 				{
 					Property: {
+						text: 'multiple',
+						help: 'Allow the user to select multiple items'
+					},
+					Type: 'Boolean',
+					Default: 'false'
+				},
+				{
+					Property: {
+						text: 'searchable',
+						help: 'Allow the user to search for items'
+					},
+					Type: 'Boolean',
+					Default: 'false'
+				},
+				{
+					Property: {
+						text: 'clearable',
+						help: 'Allow the user to clear the selected value'
+					},
+					Type: 'Boolean',
+					Default: 'false'
+				},
+				{
+					Property: {
 						text: 'groupBy',
 						help: 'Group Items by a given key'
 					},
@@ -56,30 +72,6 @@ export const data: ComponentData = {
 					},
 					Type: '(item:T, searchText:string) => boolean',
 					Default: 'null'
-				},
-				{
-					Property: {
-						text: 'searchable',
-						help: 'Allow the user to search for items'
-					},
-					Type: 'Boolean',
-					Default: 'false'
-				},
-				{
-					Property: {
-						text: 'multiple',
-						help: 'Allow the user to select multiple items'
-					},
-					Type: 'Boolean',
-					Default: 'false'
-				},
-				{
-					Property: {
-						text: 'clearable',
-						help: 'Allow the user to clear the selected value'
-					},
-					Type: 'Boolean',
-					Default: 'false'
 				},
 				{
 					Property: {
@@ -268,7 +260,7 @@ export const data: ComponentData = {
 					Notes: 'Light Appearance of the Component'
 				},
 				{
-					Classname: 'st-size-small',
+					Classname: 'st-small',
 					Notes: 'Smaller Appearance of the Component'
 				}
 			]
@@ -280,8 +272,8 @@ export const quickstart = `<script>
   import { Select } from '@steeze-ui/components'
 
   const items = [
-    { id: '1', label: 'First Item' },
-    { id: '2', label: 'Second Item' }
+    { label: 'First' },
+    { label: 'Second' }
   ]
 </script>
 
@@ -293,23 +285,13 @@ export const examples: ComponentExample[] = [
 		description:
 			'Changes how the label will be rendered for the Input and Selector Items. This is needed in case where your item object has no label property',
 		source: `<script>
-  const items = [{id:"1",value:"value 1"}]
+  const items = [{value:"value 1"}]
 </script>
 
 <Select {items} itemLabelRenderer={(e)=>\`Item: \${e.value}\`} />`
 	},
 	{
-		title: 'Custom Identifier',
-		description:
-			'In case your item object comes with a different identifier you can change the default identifier of id to your needs',
-		source: `<script>
-  const items = [{key:"1",label:"value 1"}]
-</script>
-
-<Select {items} identifier="key" />`
-	},
-	{
-		title: 'Custom Label Renderer',
+		title: 'Custom Selector Item',
 		description:
 			"Render a completely custom Menu Item using the item slot and its let: properties. Don't forget to apply the id, to make it accessible for screen readers",
 		source: `<Select {items}>
@@ -333,9 +315,9 @@ export const examples: ComponentExample[] = [
 		description: 'Sort items by Grouping them together.',
 		source: `<script>
   const items = [
-    {id:"1",value:"Value 1",group:"Group 1"},
-    {id:"2",value:"Value 2",group:"Group 2"},
-    {id:"3",value:"Value 3",group:"Group 2"},
+    {value:"Value 1",group:"Group 1"},
+    {value:"Value 2",group:"Group 2"},
+    {value:"Value 3",group:"Group 2"},
   ]
 </script>
 
