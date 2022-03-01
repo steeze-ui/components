@@ -13,13 +13,13 @@
 
 # Accessibility
 
-As explained in [Introduction](/) I had a course about Accessibility in my Uni and here I want to collect some of the most important keynotes.
+As explained in [Introduction](/docs/overview/introduction) I had a course about Accessibility in my Uni and here I want to collect some of the most important keynotes.
 
 ## Screen Reader
 
 A Screen Reader(SR) is a software used by visually handicapped people to describe what you would see on a website. Here it is most needed to make use of the html aria-\* attributes by [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/), so the SR can make sense on how to correctl traverse the dom.
 
-For example the [Select](https://www.steeze-ui.com/components/select) component uses a custom listbox that pops up somewhere in the body when the trigger is clicked. Without certain aria attributes the SR couldn't make sense of this and simply wouldn't notify the user about the popped up listbox.
+For example the [Select](/docs/components/select) component uses a custom listbox that pops up somewhere in the body when the trigger is clicked. Without certain aria attributes the SR couldn't make sense of this and simply wouldn't notify the user about the popped up listbox.
 
 Another example are accessible names for the native html button element. They need the `aria-label` property defined in order to be correctly announced by the SR.
 
@@ -33,7 +33,7 @@ Probably the easiest would be the Lighthouse report which every Chromium based b
 
 ## Keyboard Handling
 
-In contrast to SR's, a proper Keyboard handling can benefit anyone and should therefore have a high priority to invest time in. HTML has already keyboard support built-in for its native elements. Components like the [Select](https://www.steeze-ui.com/components/select) are highly custom and therefore need its own implementation of keyboard inputs. Luckily [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) provides us a list of required [keyboard interactions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role#keyboard_interactions) for the listbox role.
+In contrast to SR's, a proper Keyboard handling can benefit anyone and should therefore have a high priority to invest time in. HTML has already keyboard support built-in for its native elements. Components like the [Select](/docs/components/select) are highly custom and therefore need its own implementation of keyboard inputs. Luckily [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/) provides us a list of required [keyboard interactions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role#keyboard_interactions) for the listbox role.
 
 ## Color / Contrast Radio
 
