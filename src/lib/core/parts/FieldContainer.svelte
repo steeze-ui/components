@@ -4,12 +4,13 @@
 	import { getId } from '$lib/core/stores/id'
 
 	//refs
-	export let ref = null
-	export let refField = null
+	export let ref: HTMLElement | undefined = undefined
+	export let refField: HTMLElement | undefined = undefined
+	export let refLabel: HTMLElement | undefined = undefined
 
 	//appearance
 	export let component = 'field-container'
-	export let theme: string = null
+	export let theme: string = ''
 	export let width = 'var(--st-field-width)'
 	export let height = 'var(--st-field-height)'
 	export let label = ''
@@ -26,8 +27,6 @@
 	export const fieldId = getId()
 	const labelId = getId()
 	const helperId = getId()
-
-	export let refLabel = null
 </script>
 
 <div

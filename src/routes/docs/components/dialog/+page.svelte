@@ -8,7 +8,7 @@
 	import Label from '$lib/core/parts/Label.svelte'
 	import Dialog from '$lib/dialog/Dialog.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, examples, quickstart } from './_data/dialog'
+	import { data, examples, quickstart } from '../_data/dialog'
 
 	let opened = false
 	let draggable = false

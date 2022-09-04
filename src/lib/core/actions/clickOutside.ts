@@ -15,14 +15,14 @@ export function clickOutside(
 	params: {
 		enabled: boolean
 		cb: () => void
-		exclude?: HTMLElement[]
+		exclude?: (HTMLElement | undefined)[]
 	}
 ): ReturnType<Action> {
 	const { enabled: initialEnabled, cb, exclude } = params
 
 	const handleOutsideClick = ({ target }: MouseEvent) => {
 		if (exclude) {
-			if (exclude.some((e) => e.contains(target as HTMLElement))) return
+			if (exclude.some((e) => e?.contains(target as HTMLElement))) return
 
 			// if (exclude.contains(target as HTMLElement)) {
 			// 	return
@@ -33,14 +33,16 @@ export function clickOutside(
 		}
 	}
 
-	function update({ enabled }: { enabled: boolean }) {
-		if (enabled) {
+	function update(props: UpdateParams | unknown) {
+		if ((props as UpdateParams).enabled) {
 			window.addEventListener('click', handleOutsideClick)
 		} else {
 			window.removeEventListener('click', handleOutsideClick)
 		}
 	}
+
 	update({ enabled: initialEnabled })
+
 	return {
 		update,
 		destroy() {
@@ -48,3 +50,5 @@ export function clickOutside(
 		}
 	}
 }
+
+type UpdateParams = { enabled: boolean }

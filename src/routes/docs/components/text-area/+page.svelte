@@ -5,7 +5,7 @@
 <script lang="ts">
 	import TextArea from '$lib/fields/TextArea.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, examples, quickstart } from './_data/text-area'
+	import { data, examples, quickstart } from '../_data/text-area'
 
 	let value = 'This is awesome!'
 

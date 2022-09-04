@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/text-field'
+	import { data, quickstart, examples } from '../_data/text-field'
 
 	import TextField from '$lib/fields/TextField.svelte'
 	import { Heart } from '@steeze-ui/heroicons'

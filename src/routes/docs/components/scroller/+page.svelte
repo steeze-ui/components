@@ -6,9 +6,10 @@
 	import Scroller from '$lib/scroller/Scroller.svelte'
 	import Section from '$lib/scroller/Section.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/scroller'
+	import type { Writable } from 'svelte/store'
+	import { data, quickstart, examples } from '../_data/scroller'
 
-	let section
+	let section: Writable<any>
 </script>
 
 <Component {data} {quickstart} {examples}>

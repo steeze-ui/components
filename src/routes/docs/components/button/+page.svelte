@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/button'
+	import { data, quickstart, examples } from '../_data/button'
 
 	import Button from '$lib/button/Button.svelte'
 	import { Moon, Sun } from '@steeze-ui/heroicons'

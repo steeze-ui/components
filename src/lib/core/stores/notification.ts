@@ -5,7 +5,7 @@ function createNotificationStore() {
 	let id = 0
 	const { update, subscribe } = writable({
 		duration: 5000,
-		items: []
+		items: [] as NotificationItem[]
 	})
 
 	return {

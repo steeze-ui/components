@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/select'
+	import { data, quickstart, examples } from '../_data/select'
 
 	import Select from '$lib/select/Select.svelte'
 	import { Toggle } from '$lib'
@@ -42,7 +42,7 @@
 				? (item) => {
 						return item.group
 				  }
-				: null}
+				: undefined}
 			filterBy={(item, text) => {
 				return (
 					item.label.toLowerCase().includes(text.toLowerCase()) ||
@@ -53,7 +53,7 @@
 				? (v) => {
 						return { label: v, group: 'Ungrouped' }
 				  }
-				: null}
+				: undefined}
 			pushTags={taggable}
 		/>
 	</div>

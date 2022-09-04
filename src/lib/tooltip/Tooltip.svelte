@@ -7,7 +7,7 @@
 	export let position: FloatingPosition = 'bottom'
 	export let delay = 500
 	export let theme = ''
-	export let maxWidth: string = null
+	export let maxWidth: string | undefined = undefined
 	export let manualOpened = false
 
 	let opened = false

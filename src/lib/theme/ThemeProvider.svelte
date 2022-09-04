@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env'
+	import { browser } from '$app/environment'
 	import { Theme } from '$lib/core/stores/theme'
 
 	export let fromSystem = false

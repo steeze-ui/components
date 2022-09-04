@@ -1,7 +1,7 @@
 <script lang="ts">
 	let htmlFor: string
 	export { htmlFor as for }
-	export let ref = null
+	export let ref: HTMLElement | undefined = undefined
 </script>
 
 <label bind:this={ref} data-component="label" on:click for={htmlFor} {...$$restProps}>

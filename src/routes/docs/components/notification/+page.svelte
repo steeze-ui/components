@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/notification'
+	import { data, quickstart, examples } from '../_data/notification'
 
 	import NotificationProvider from '$lib/notification/NotificationProvider.svelte'
 	import { Notification } from '$lib/core/stores/notification'

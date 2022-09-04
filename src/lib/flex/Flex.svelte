@@ -13,8 +13,8 @@
 	export let justify: FlexJustifyContent = 'flex-start'
 	export let align: FlexAlignItems = 'flex-start'
 	export let wrap: FlexWrap = 'nowrap'
-	export let flow: FlexFlow = null
-	export let gap: string = null
+	export let flow: FlexFlow | undefined = undefined
+	export let gap: string | undefined = undefined
 	export let shrink = 1
 	export let grow = 0
 	export let basis = 'auto'

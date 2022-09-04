@@ -4,17 +4,17 @@
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 
-	export let label: string = null
+	export let label: string | undefined = undefined
 	export let width = '12rem'
-	export let helper: string = null
-	export let name: string = null
+	export let helper: string | undefined = undefined
+	export let name: string | undefined = undefined
 	export let value = ''
-	export let placeholder: string = null
+	export let placeholder: string | undefined = undefined
 	export let disabled = false
 	export let required = false
 	export let autoselect = false
 	export let clearable = false
-	export let theme: string = null
+	export let theme: string | undefined = undefined
 
 	let refInput: HTMLInputElement
 

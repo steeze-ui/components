@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env'
+	import { browser } from '$app/environment'
 
 	import { computePosition, flip, offset, shift, size } from '@floating-ui/dom'
 	import { scale } from 'svelte/transition'
@@ -10,10 +10,10 @@
 	export let posX = 0
 	export let posY = 0
 
-	export let ref = null
-	export let trigger = null
+	export let ref: HTMLElement | undefined = undefined
+	export let trigger: HTMLElement | undefined = undefined
 
-	export let clickOutsideCallback: () => void = null
+	export let clickOutsideCallback: (() => void) | undefined = undefined
 	export let clickOutsideEnabled = false
 
 	export async function updatePosition() {
@@ -32,7 +32,7 @@
 					offset(5),
 					size({
 						apply({ width, height }) {
-							Object.assign(ref.style, {
+							Object.assign((ref as HTMLElement).style, {
 								maxWidth: `${width}px`,
 								maxHeight: `${height}px`
 							})

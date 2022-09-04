@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/popover'
+	import { data, quickstart, examples } from '../_data/popover'
 
 	import Button from '$lib/button/Button.svelte'
 	import Popover from '$lib/popover/Popover.svelte'

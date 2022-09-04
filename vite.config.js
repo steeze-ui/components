@@ -1,18 +1,18 @@
 import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import path from 'path'
+import { sveltekit } from '@sveltejs/kit/vite'
+import WindiCSS from 'vite-plugin-windicss'
 
 export default defineConfig({
-	plugins: [svelte({ hot: !process.env.VITEST })],
-	extensions: ['.jsx', '.svelte'],
-	test: {
-		globals: true,
-		environment: 'jsdom'
-	},
-	resolve: {
-		alias: {
-			$lib: path.resolve('./src/lib'),
-			$app: path.resolve('./.svelte-kit/runtime/app')
-		}
-	}
+	plugins: [sveltekit(), WindiCSS({ config: 'windi.config.js' })]
+	// extensions: ['.jsx', '.svelte'],
+	// test: {
+	// 	globals: true,
+	// 	environment: 'jsdom'
+	// }
+	// resolve: {
+	// 	alias: {
+	// 		$lib: path.resolve('./src/lib'),
+	// 		$app: path.resolve('./.svelte-kit/runtime/app')
+	// 	}
+	// }
 })

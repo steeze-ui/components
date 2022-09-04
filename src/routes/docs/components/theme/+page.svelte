@@ -5,7 +5,7 @@
 <script lang="ts">
 	import ThemeToggle from '$lib/theme/ThemeToggle.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/theme'
+	import { data, quickstart, examples } from '../_data/theme'
 </script>
 
 <Component {data} {quickstart} {examples}>

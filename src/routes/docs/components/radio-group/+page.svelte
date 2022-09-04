@@ -6,7 +6,7 @@
 	import RadioButton from '$lib/radio/RadioButton.svelte'
 	import RadioGroup from '$lib/radio/RadioGroup.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, examples, quickstart } from './_data/radio-group'
+	import { data, examples, quickstart } from '../_data/radio-group'
 
 	let stance = 'goofy'
 	let park = 'street'

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/tabs'
+	import { data, quickstart, examples } from '../_data/tabs'
 
 	import Tabs from '$lib/tabs/Tabs.svelte'
 

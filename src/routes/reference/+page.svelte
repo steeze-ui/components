@@ -42,17 +42,10 @@
 			label="Already Filled"
 			name="val2"
 			placeholder="Select"
-			value="1"
 			items={[{ id: '1', label: 'Value' }]}
 		/>
 		<Select name="val3" disabled placeholder="Select" items={[{ id: '1', label: 'Value' }]} />
-		<Select
-			name="val4"
-			disabled
-			placeholder="Select"
-			value="1"
-			items={[{ id: '1', label: 'Value' }]}
-		/>
+		<Select name="val4" disabled placeholder="Select" items={[{ id: '1', label: 'Value' }]} />
 	</div>
 	<div class="flex gap-4">
 		<Toggle name="toggle2" checked value="on" />

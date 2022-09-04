@@ -6,28 +6,29 @@
 	import { onMount } from 'svelte'
 
 	//appearance
-	export let theme: string = null
-	export let label: string = null
-	export let helper: string = null
+	export let theme: string | undefined = undefined
+	export let label: string | undefined = undefined
+	export let helper: string | undefined = undefined
 	export let width: string = '12rem'
 
 	//form
-	export let name = null
-	export let value = null
+	export let name: string | undefined = undefined
+	export let value: string | undefined = undefined
 	export let disabled = false
 	export let focus = false
 	export let required = false
 
 	// refs
-	let refSelect
-	let focused = false
+	let refSelect: HTMLElement | undefined = undefined
 
 	// ids
 	let id = getId()
 
+	let focused = false
+
 	onMount(() => {
 		if (focus) {
-			refSelect.focus()
+			refSelect?.focus()
 		}
 	})
 </script>

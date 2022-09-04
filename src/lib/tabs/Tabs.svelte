@@ -10,7 +10,7 @@
 
 	export let items: Tab[]
 	export let selected = 0
-	export let theme = null
+	export let theme: string | undefined = undefined
 
 	const tabsId = getId()
 
@@ -26,7 +26,7 @@
 		dispatch('selectedIndexChange', index)
 	}
 
-	const refs = []
+	const refs: any[] = []
 
 	// Key Events
 	function handleKeydown(event: KeyboardEvent) {

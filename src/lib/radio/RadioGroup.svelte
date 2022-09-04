@@ -6,10 +6,10 @@
 	import { setContext } from 'svelte'
 	import { writable } from 'svelte/store'
 
-	export let name: string = null
+	export let name: string | undefined = undefined
 	export let orientation: GroupOrientation = 'horizontal'
-	export let label: string = null
-	export let value: string = null
+	export let label: string | undefined = undefined
+	export let value: string | undefined = undefined
 
 	const id = getId()
 

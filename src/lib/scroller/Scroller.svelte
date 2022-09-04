@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, setContext } from 'svelte'
 	import { writable, type Writable } from 'svelte/store'
+
 	export let threshold = 0
 	export const section: Writable<string> = writable('')
 

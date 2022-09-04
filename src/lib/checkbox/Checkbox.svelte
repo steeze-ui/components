@@ -2,12 +2,12 @@
 	import { Label } from '$lib/core/parts'
 	import { getId } from '$lib/core/stores/id'
 	import { getContext } from 'svelte'
-	import { writable, Writable } from 'svelte/store'
+	import { writable, type Writable } from 'svelte/store'
 
-	export let label: string = null
-	export let value: string = null
+	export let label: string | undefined = undefined
+	export let value: string | undefined = undefined
 	export let name: string = getContext('ST_CHECKBOX_NAME')
-	export let group: string[] = null
+	export let group: string[] | undefined = undefined
 
 	const id = getId()
 
@@ -17,8 +17,8 @@
 		group = $valueStore
 	}
 
-	function onChange({ target }) {
-		const { value, checked } = target
+	function onChange(e: Event) {
+		const { value, checked } = e.target as any
 		if (checked) {
 			$valueStore = [...$valueStore, value]
 		} else {
@@ -28,13 +28,21 @@
 		// 	valueStore.set(group)
 		// }
 	}
+
+	function isChecked(val: string | undefined) {
+		if (val) {
+			return $valueStore.includes(val)
+		} else {
+			return false
+		}
+	}
 </script>
 
 <div data-component="checkbox">
 	<input
 		part="indicator"
 		type="checkbox"
-		checked={$valueStore.includes(value)}
+		checked={isChecked(value)}
 		on:change={onChange}
 		{id}
 		{name}

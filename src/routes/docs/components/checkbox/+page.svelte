@@ -6,10 +6,10 @@
 	import { Checkbox } from '$lib'
 	import CheckboxGroup from '$lib/checkbox/CheckboxGroup.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, examples, quickstart } from './_data/checkbox'
+	import { data, examples, quickstart } from '../_data/checkbox'
 
 	let type = ['street']
-	let single = []
+	let single: string[] = []
 </script>
 
 <Component {data} {quickstart} {examples}>

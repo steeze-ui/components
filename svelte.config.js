@@ -3,7 +3,6 @@ import mdsvexConfig from './mdsvex.config.js'
 // import adapter from '@sveltejs/adapter-auto'
 import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
-import WindiCSS from 'vite-plugin-windicss'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -26,16 +25,16 @@ const config = {
 				'object-src': ['none'],
 				'base-uri': ['self']
 			}
-		},
-		vite: {
-			plugins: [WindiCSS({ config: 'windi.config.js' })]
-		},
-		package: {
-			files: (file) => !file.includes('_')
-			// exports: (file) => {
-			// 	return (file === 'index.ts') | (file === 'base.css')
-			// }
 		}
+		// vite: {
+
+		// }
+		// package: {
+		// 	files: (file) => !file.includes('_')
+		// 	// exports: (file) => {
+		// 	// 	return (file === 'index.ts') | (file === 'base.css')
+		// 	// }
+		// }
 	}
 }
 

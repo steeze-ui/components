@@ -10,7 +10,7 @@
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import type { IconSource } from '@steeze-ui/svelte-icon/types'
 	import { Notification } from '$lib/core/stores/notification'
-	import { fly, FlyParams } from 'svelte/transition'
+	import { fly, type FlyParams } from 'svelte/transition'
 
 	export let item: NotificationItem
 	export let closable = true

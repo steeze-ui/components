@@ -8,7 +8,7 @@
 
 	import Flex from '$lib/flex/Flex.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/flex'
+	import { data, quickstart, examples } from '../_data/flex'
 
 	const directionItems: { label: string; id: FlexDirection }[] = [
 		{ label: 'row', id: 'row' },

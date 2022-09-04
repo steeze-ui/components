@@ -5,7 +5,7 @@
 <script lang="ts">
 	import NativeSelect from '$lib/select/NativeSelect.svelte'
 	import Component from '$lib/_internal/docs/Component.svelte'
-	import { data, quickstart, examples } from './_data/native-select'
+	import { data, quickstart, examples } from '../_data/native-select'
 
 	let value = '1'
 </script>

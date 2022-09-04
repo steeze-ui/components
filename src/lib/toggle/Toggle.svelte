@@ -3,9 +3,9 @@
 
 	export let checked = false
 	export let disabled = false
-	export let name = null
+	export let name: string | undefined = undefined
 	export let value = 'on'
-	export let theme = null
+	export let theme: string | undefined = undefined
 </script>
 
 <div

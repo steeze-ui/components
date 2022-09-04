@@ -4,13 +4,13 @@
 	import { onMount } from 'svelte'
 
 	export let disabled = false
-	export let icon: IconSource = null
+	export let icon: IconSource | undefined = undefined
 	export let iconTheme = 'default'
 	export let iconSize = '18px'
 	export let theme: string = 'secondary'
 	export let width = 'initial'
 
-	const props = {}
+	const props: { 'data-icon'?: string } = {}
 
 	onMount(() => {
 		if (!$$slots.default) {

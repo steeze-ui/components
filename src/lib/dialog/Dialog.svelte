@@ -3,7 +3,7 @@
 	import { getId } from '$lib/core/stores/id'
 	import { focus } from 'focus-svelte'
 	import { createEventDispatcher } from 'svelte'
-	import { scale, ScaleParams } from 'svelte/transition'
+	import { scale, type ScaleParams } from 'svelte/transition'
 
 	export let opened = false
 	export let draggable = false
@@ -43,8 +43,8 @@
 	}
 
 	// Position
-	let top: number = null
-	let left: number = null
+	let top: number
+	let left: number
 
 	const calcOverlayPosition = () => {
 		const boundsDialog = refDialog.getBoundingClientRect()

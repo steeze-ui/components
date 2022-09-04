@@ -17,24 +17,24 @@
 	}
 
 	export let items: T[] = []
-	export let value: (T | T[]) & { includes?: (item: T) => boolean } = null
+	export let value: T | T[] | undefined = undefined
 
 	//functionality
-	export let groupBy: (item: T) => string = null
-	export let filterBy: (item: T, searchText: string) => boolean = null
+	export let groupBy: ((item: T) => string) | undefined = undefined
+	export let filterBy: ((item: T, searchText: string) => boolean) | undefined = undefined
 	export let multiple = false
 	export let searchable = false
 	export let clearable = false
-	export let taggable: (value: string) => T = null
+	export let taggable: ((value: string) => T) | undefined = undefined
 	export let pushTags = false
 	export let loop = false
 	//display
-	export let theme: string = null
-	export let label: string = null
-	export let helper: string = null
-	export let placeholder: string = null
+	export let theme: string = ''
+	export let label: string | undefined = undefined
+	export let helper: string | undefined = undefined
+	export let placeholder: string | undefined = undefined
 	export let emptyText = 'No options found'
-	export let itemLabelRenderer = (e: T) => e?.['label'] ?? ''
+	export let itemLabelRenderer = (e: T) => (e as any)?.['label'] ?? ''
 	export let position: FloatingPosition = 'bottom-end'
 	export let width: string = '12rem'
 	export let retainOnSelect = false
@@ -49,7 +49,7 @@
 	let refInput: HTMLElement
 	let refLabel: HTMLElement
 
-	let fieldId
+	let fieldId: string
 	let listboxId = getId()
 	let dispatch = createEventDispatcher()
 
@@ -105,7 +105,7 @@
 			}
 		} else {
 			if (value?.constructor === Array ?? false) {
-				value = null
+				value = undefined
 			}
 		}
 	}
@@ -200,7 +200,7 @@
 			}
 		} else {
 			if (clearable && item === value) {
-				value = null
+				value = undefined
 			} else {
 				value = item
 			}
@@ -218,7 +218,7 @@
 		if (multiple) {
 			value = []
 		} else {
-			value = null
+			value = undefined
 		}
 		dispatch('select', value as T | T[])
 		lastCleared = true
@@ -331,6 +331,10 @@
 	$: expanded && refTrigger && refFloating && refFloating.updatePosition()
 
 	$: searchValue && refFloating.updatePosition()
+
+	function isItemSelected(multiple: boolean, value: any, item: any) {
+		return multiple ? value?.includes(item) : value === item
+	}
 </script>
 
 <svelte:window
@@ -367,6 +371,7 @@
 	aria-expanded={expanded ? true : false}
 	aria-controls={listboxId}
 	aria-owns={listboxId}
+	data-multiple={multiple ? '' : undefined}
 	bind:fieldId
 	bind:refLabel
 	{...$$restProps}
@@ -476,7 +481,7 @@
 					{#each selectorItems[group] as item, itemIndex}
 						{@const focused =
 							groupIndex === focusedItemGroupIndex && itemIndex === focusedItemIndex}
-						{@const selected = multiple ? value.includes(item) : value === item}
+						{@const selected = isItemSelected(multiple, value, item)}
 						{@const ariaId = `${listboxId}-menu-item-${groupIndex}-${itemIndex}`}
 						{@const label = itemLabelRenderer(item)}
 
@@ -537,7 +542,7 @@
 
 		display: flex;
 		flex: auto;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		align-items: center;
 		gap: var(--st-select-tags-gap, 0.325rem);
 	}
@@ -605,5 +610,12 @@
 		font-weight: var(--st-select-tag-font-weight, var(--st-field-font-weight));
 		color: var(--st-select-tag-color, var(--st-field-color));
 		background-color: var(--st-select-tag-bg-color, var(--st-tag-bg-color));
+	}
+
+	[data-multiple] [part='value'] {
+	}
+
+	:global([data-component='select'] [data-multiple] [part='value']) {
+		flex-wrap: wrap;
 	}
 </style>
