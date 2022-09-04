@@ -12,6 +12,9 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 
+	package: {
+		files: (file) => !file.includes('_')
+	},
 	kit: {
 		adapter: adapter(),
 		// hydrate the <div id="svelte"> element in src/app.html
@@ -26,14 +29,9 @@ const config = {
 				'base-uri': ['self']
 			}
 		}
+
 		// vite: {
 
-		// }
-		// package: {
-		// 	files: (file) => !file.includes('_')
-		// 	// exports: (file) => {
-		// 	// 	return (file === 'index.ts') | (file === 'base.css')
-		// 	// }
 		// }
 	}
 }

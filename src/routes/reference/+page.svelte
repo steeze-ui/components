@@ -5,7 +5,7 @@
 	import Form from '$lib/core/form/_Form.svelte'
 	import TextField from '$lib/fields/TextField.svelte'
 
-	const colors = {
+	const colors: any = {
 		light: 10,
 		dark: 10,
 		gray: 10,
