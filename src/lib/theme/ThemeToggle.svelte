@@ -19,6 +19,7 @@
 		color: var(--st-body-text-color);
 		outline: none;
 		border-radius: var(--st-border-radius-md);
+		background-color: transparent;
 	}
 
 	button:hover {

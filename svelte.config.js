@@ -13,14 +13,11 @@ const config = {
 	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 
 	package: {
+		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 		files: (file) => !file.includes('_')
 	},
 	kit: {
 		adapter: adapter(),
-		// hydrate the <div id="svelte"> element in src/app.html
-		prerender: {
-			entries: ['*']
-		},
 		csp: {
 			mode: 'auto',
 			directives: {
@@ -29,10 +26,6 @@ const config = {
 				'base-uri': ['self']
 			}
 		}
-
-		// vite: {
-
-		// }
 	}
 }
 
