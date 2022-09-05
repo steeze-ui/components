@@ -9,6 +9,7 @@
 <li
 	part="item"
 	role="option"
+	aria-selected={selected}
 	aria-checked={selected}
 	data-focused={focused ? true : null}
 	data-selected={selected ? true : null}
