@@ -13,10 +13,10 @@
 	const currentIndex = keys.findIndex((e) => e === current)
 
 	const nextKey = keys?.[currentIndex + 1]
-	const nextValue = menu.flat()[nextKey]
+	const nextValue = (menu.flat() as any)[nextKey]
 
 	const prevKey = keys?.[currentIndex - 1]
-	const prevValue = menu.flat()[prevKey]
+	const prevValue = (menu.flat() as any)[prevKey]
 </script>
 
 <div part="wrapper">

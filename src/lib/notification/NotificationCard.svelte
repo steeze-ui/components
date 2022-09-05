@@ -2,10 +2,10 @@
 	import type { NotificationItem } from '$lib/types'
 	import {
 		CheckCircle,
-		Exclamation,
+		ExclamationTriangle,
 		ExclamationCircle,
 		InformationCircle,
-		X
+		XMark
 	} from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import type { IconSource } from '@steeze-ui/svelte-icon/types'
@@ -29,7 +29,7 @@
 			case 'info':
 				return InformationCircle
 			case 'warning':
-				return Exclamation
+				return ExclamationTriangle
 			default:
 				return InformationCircle
 		}
@@ -62,7 +62,7 @@
 				Notification.close(item)
 			}}
 		>
-			<Icon src={X} size="20px" />
+			<Icon src={XMark} size="20px" />
 		</button>
 	{/if}
 </div>

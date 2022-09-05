@@ -1,5 +1,5 @@
 <script>
-	import { Menu, X } from '@steeze-ui/heroicons'
+	import { Bars3, XMark } from '@steeze-ui/heroicons'
 
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { menu } from '../stores/menu'
@@ -12,7 +12,7 @@
 		: 'hidden'}  z-50 border-solid flex-col flex-nowrap h-full border-r-1 min-h-0 py-4 top-16 bottom-0 left-0 w-64 justify-start items-stretch overflow-auto fixed md:flex "
 >
 	<button class="flex top-5 right-5 absolute md:hidden" on:click={() => menu.setOpened(false)}>
-		<Icon src={X} size="18" color="white" />
+		<Icon src={XMark} size="18" color="white" />
 	</button>
 	<ul class="flex flex-col gap-4">
 		<slot />
@@ -26,7 +26,7 @@
 		on:click={() => menu.setOpened(true)}
 		aria-label="toggle menu"
 	>
-		<Icon src={Menu} size="22" color="white" />
+		<Icon src={Bars3} size="22" color="white" />
 	</button>
 </div>
 

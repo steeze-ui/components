@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ThemeToggle from '$lib/theme/ThemeToggle.svelte'
-	import { Menu } from '@steeze-ui/heroicons'
 	import { GithubLogo } from '@steeze-ui/radix-icons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { menu } from '../stores/menu'

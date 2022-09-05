@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PrismJS from 'prismjs'
 	import '$lib/_internal/utils/prism'
-	import { ClipboardCopy } from '@steeze-ui/heroicons'
+	import { Clipboard } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 
 	export function getHighlighted(source: string) {
@@ -19,7 +19,7 @@
 			navigator.clipboard.writeText(content)
 		}}
 	>
-		<Icon src={ClipboardCopy} size="22" />
+		<Icon src={Clipboard} size="22" />
 	</button>
 	{@html `<pre class="language-svelte" tabindex="-1"><code>${getHighlighted(content)}</code></pre>`}
 </div>

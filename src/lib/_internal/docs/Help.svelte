@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import Tooltip from '$lib/tooltip/Tooltip.svelte'
 	import { ExclamationCircle } from '@steeze-ui/heroicons'
 
-	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
+	import { Icon } from '@steeze-ui/svelte-icon'
 
-	export let text
+	export let text: string = ''
 	let focused = false
 </script>
 

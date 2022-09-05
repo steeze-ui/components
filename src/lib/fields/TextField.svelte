@@ -1,6 +1,6 @@
 <script lang="ts">
 	import FieldContainer from '$lib/core/parts/FieldContainer.svelte'
-	import { X } from '@steeze-ui/heroicons'
+	import { XMark } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 
@@ -83,7 +83,7 @@
 		<slot name="suffix" />
 		{#if clearable && value}
 			<button part="clear-button" aria-label="clear value of text input" on:click={clear}>
-				<Icon src={X} size="16px" />
+				<Icon src={XMark} size="16px" />
 			</button>
 		{/if}
 	</svelte:fragment>

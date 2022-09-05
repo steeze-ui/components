@@ -6,7 +6,7 @@
 	import { getId } from '$lib/core/stores/id'
 	import Item from '$lib/listbox/Item.svelte'
 	import ListBox from '$lib/listbox/ListBox.svelte'
-	import { ChevronDown, X } from '@steeze-ui/heroicons'
+	import { ChevronDown, XMark } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte'
 
@@ -440,7 +440,7 @@
 				type="button"
 			>
 				<!-- Clear Icon -->
-				<Icon src={X} size="16px" />
+				<Icon src={XMark} size="16px" />
 			</button>
 		{:else}
 			<button

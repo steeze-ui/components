@@ -2,7 +2,7 @@
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
 	import type { FloatingPosition } from '$lib/core/types'
-	import { X } from '@steeze-ui/heroicons'
+	import { XMark } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
 	import { getId } from '../core/stores/id'
 
@@ -52,7 +52,7 @@
 								setOpened(false)
 							}}
 						>
-							<Icon src={X} size="16" />
+							<Icon src={XMark} size="16" />
 						</button>
 					</div>
 				{/if}
