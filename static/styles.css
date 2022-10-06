@@ -1,5 +1,10 @@
 :root {
 	--st-md-code-pre: rgb(25, 25, 52);
+
+	--st-base-hue: 243;
+	--st-grayscale-hue: 243;
+	--st-text-hue: 243;
+	--st-primary-hue: 243;
 }
 
 html {
@@ -7,6 +12,7 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
 }
+
 body {
 	font-family: var(--st-font-family);
 	background-color: var(--st-primary-bg-color);
@@ -45,6 +51,7 @@ html.light body ::-webkit-scrollbar-thumb {
 .st-focus-ring:focus {
 	outline: none;
 }
+
 .st-focus-ring:focus-visible {
 	outline: var(--st-outline-width) solid var(--st-outline-color);
 }
