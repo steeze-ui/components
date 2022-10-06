@@ -2,13 +2,13 @@
 	import FieldContainer from '$lib/core/parts/FieldContainer.svelte'
 	import Floating from '$lib/core/parts/Floating.svelte'
 	import Portal from '$lib/core/parts/Portal.svelte'
-	import type { FloatingPosition } from '$lib/core/types'
 	import { getId } from '$lib/core/stores/id'
+	import type { FloatingPosition } from '$lib/core/types'
 	import Item from '$lib/listbox/Item.svelte'
 	import ListBox from '$lib/listbox/ListBox.svelte'
 	import { ChevronDown, XMark } from '@steeze-ui/heroicons'
 	import Icon from '@steeze-ui/svelte-icon/Icon.svelte'
-	import { createEventDispatcher, onDestroy, onMount, tick } from 'svelte'
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte'
 
 	type T = $$Generic
 
@@ -610,9 +610,6 @@
 		font-weight: var(--st-select-tag-font-weight, var(--st-field-font-weight));
 		color: var(--st-select-tag-color, var(--st-field-color));
 		background-color: var(--st-select-tag-bg-color, var(--st-tag-bg-color));
-	}
-
-	[data-multiple] [part='value'] {
 	}
 
 	:global([data-component='select'] [data-multiple] [part='value']) {
